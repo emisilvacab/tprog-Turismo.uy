@@ -1,0 +1,31 @@
+package logica;
+
+import java.util.Map;
+
+public class ManejadorSalida{
+	private Map<String, Salida> salidas;
+	private static ManejadorSalida instancia = null;
+	
+	private ManejadorSalida() {}
+	
+	public static ManejadorSalida getInstance() {
+		if (instancia == null)
+			instancia = new ManejadorSalida();
+		return instancia;
+	}
+	
+	public void addSalida(Salida salida) {
+		salidas.put(salida.getNombre(), salida);
+	}
+	
+	public Salida getSalida(String nombre) {
+		return salidas.get(nombre);
+	}
+	//esto se puede devolver en un array asi es mas facil pa despues recorrer no se q pasa si devuelvo el map se prueba
+	public Map<String, Salida> getSalidas(){
+		if (salidas.isEmpty())
+			return null;
+		else
+			return salidas;
+	}
+}
