@@ -1,6 +1,8 @@
-package logica;
+package data;
 
 import java.util.Map;
+
+import logica.Departamento;
 
 public class ManejadorDepartamento{
 	private Map<String, Departamento> departamentos;

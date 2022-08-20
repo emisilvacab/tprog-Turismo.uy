@@ -1,6 +1,8 @@
-package logica;
+package data;
 
 import java.util.Map;
+
+import logica.Paquete;
 
 public class ManejadorPaquete{
 	private Map<String, Paquete> paquetes;

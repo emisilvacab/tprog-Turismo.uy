@@ -9,6 +9,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import logica.Fabrica;
+
 /**
 * Clase principal (Frame) con el método Main.
 * @author leonardo.melgar
@@ -35,6 +37,10 @@ public class Principal {
     
     public Principal() {
     	initialize();
+    	
+    	// Inicialización
+        Fabrica fabrica = Fabrica.getInstance();
+        ICU = fabrica.getIControladorUsuario();
     }
     
     private void initialize() {

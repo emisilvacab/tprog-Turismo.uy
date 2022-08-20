@@ -1,6 +1,9 @@
-package logica;
+package data;
 
 import java.util.Map;
+
+import logica.Proveedor;
+import logica.Turista;
 
 public class ManejadorUsuario{
 	private Map<String, Proveedor> proveedores;

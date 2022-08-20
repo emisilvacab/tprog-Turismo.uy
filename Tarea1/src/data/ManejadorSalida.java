@@ -1,6 +1,8 @@
-package logica;
+package data;
 
 import java.util.Map;
+
+import logica.Salida;
 
 public class ManejadorSalida{
 	private Map<String, Salida> salidas;
