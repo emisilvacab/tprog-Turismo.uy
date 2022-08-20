@@ -10,6 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import logica.Fabrica;
+import logica.controladores.IControladorDepartamento;
+import logica.controladores.IControladorPaquete;
+import logica.controladores.IControladorUsuario;
 
 /**
 * Clase principal (Frame) con el método Main.
@@ -19,6 +22,10 @@ import logica.Fabrica;
 
 public class Principal {
 	private JFrame frmReservas_UY;
+	private IControladorUsuario ICU;
+	private IControladorPaquete ICP;
+	private IControladorDepartamento ICD;
+	
 	
 	
 	
@@ -41,6 +48,8 @@ public class Principal {
     	// Inicialización
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIControladorUsuario();
+        ICD = fabrica.getIControladorDepartamento();
+        ICP = fabrica.getIControladorPaquete();
     }
     
     private void initialize() {
