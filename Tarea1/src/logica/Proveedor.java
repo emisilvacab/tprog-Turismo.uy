@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Proveedor extends Usuario{
@@ -14,7 +15,7 @@ public class Proveedor extends Usuario{
 		super(nickname, nombre, apellido, correo, nacimiento);
 		this.descripcion = descripcion;
 		this.link = "";
-		this.actividades = null;
+		this.actividades = new HashMap<String, Actividad>();
 	}
 
 	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String descripcion, String link) {

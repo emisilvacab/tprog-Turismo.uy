@@ -14,8 +14,8 @@ public class Turista extends Usuario{
 	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String nacionalidad) {
 		super(nickname, nombre, apellido, correo, nacimiento);
 		this.nacionalidad = nacionalidad;
-		this.compras = null;
-		this.inscripciones = null;
+		this.compras = new Vector<Compra>();
+		this.inscripciones = new Vector<Inscripcion>();
 		// TODO Auto-generated constructor stub
 	}
 

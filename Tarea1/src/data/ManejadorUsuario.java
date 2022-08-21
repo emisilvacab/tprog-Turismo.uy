@@ -1,6 +1,7 @@
 package data;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import logica.Proveedor;
@@ -12,8 +13,8 @@ public class ManejadorUsuario{
 	private static ManejadorUsuario instancia = null;
 	
 	private ManejadorUsuario() {
-		proveedores = Map.of();
-		turistas = Map.of();
+		proveedores = new HashMap<String, Proveedor>();
+		turistas = new HashMap<String, Turista>();
 	}
 	
 	public static ManejadorUsuario getInstance() {
