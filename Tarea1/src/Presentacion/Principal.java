@@ -13,6 +13,7 @@ import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
+import presentacion.ConsultarUsuario;
 
 /**
 * Clase principal (Frame) con el método Main.
@@ -25,6 +26,7 @@ public class Principal {
 	private IControladorUsuario ICU;
 	private IControladorPaquete ICP;
 	private IControladorDepartamento ICD;
+	private ConsultarUsuario conUsrInternalFrame;
 	
 	
 	
@@ -50,6 +52,9 @@ public class Principal {
         ICU = fabrica.getIControladorUsuario();
         ICD = fabrica.getIControladorDepartamento();
         ICP = fabrica.getIControladorPaquete();
+        
+        conUsrInternalFrame = new ConsultarUsuario(ICU);
+        conUsrInternalFrame.setVisible(false);
     }
     
     private void initialize() {
@@ -78,6 +83,19 @@ public class Principal {
             }
         });
         menuSistema.add(menuSalir);
+        JMenu menuUsuarios = new JMenu("Usuarios");
+        menuBar.add(menuUsuarios);
+        
+        JMenuItem menuItemConsultaUsuario = new JMenuItem("Consultar");
+        menuItemConsultaUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Muestro el InternalFrame para ver información de un usuario
+                conUsrInternalFrame.setVisible(true);
+            }
+        });
+        menuUsuarios.add(menuItemConsultaUsuario);
     }
+    
+    
 
 }

@@ -1,5 +1,6 @@
 package data;
 
+import java.util.Collections;
 import java.util.Map;
 
 import logica.Proveedor;
@@ -10,7 +11,10 @@ public class ManejadorUsuario{
 	private Map<String, Turista> turistas;
 	private static ManejadorUsuario instancia = null;
 	
-	private ManejadorUsuario() {}
+	private ManejadorUsuario() {
+		proveedores = Map.of();
+		turistas = Map.of();
+	}
 	
 	public static ManejadorUsuario getInstance() {
 		if (instancia == null)
@@ -35,16 +39,10 @@ public class ManejadorUsuario{
 	}
 	
 	public Map<String, Proveedor> getProveedores() {
-		if (turistas.isEmpty())
-			return null;
-		else
 			return proveedores;
 	}
 	
 	public Map<String, Turista> getTuristas(){
-		if (turistas.isEmpty())
-			return null;
-		else
 			return turistas;
 	}
 	
