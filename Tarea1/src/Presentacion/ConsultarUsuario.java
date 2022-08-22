@@ -128,10 +128,9 @@ public class ConsultarUsuario extends JInternalFrame {
 			    
 			    nicknameTag = new JLabel("Nickname: ");
 			    GridBagConstraints gbc_nicknameTag = new GridBagConstraints();
-			    gbc_nicknameTag.gridwidth = 3;
-			    gbc_nicknameTag.anchor = GridBagConstraints.WEST;
+			    gbc_nicknameTag.anchor = GridBagConstraints.EAST;
 			    gbc_nicknameTag.insets = new Insets(0, 0, 5, 5);
-			    gbc_nicknameTag.gridx = 2;
+			    gbc_nicknameTag.gridx = 0;
 			    gbc_nicknameTag.gridy = 2;
 			    getContentPane().add(nicknameTag, gbc_nicknameTag);
 			
@@ -150,10 +149,9 @@ public class ConsultarUsuario extends JInternalFrame {
 				
 					nombreTag = new JLabel("Nombre: ");
 					GridBagConstraints gbc_nombreTag = new GridBagConstraints();
-					gbc_nombreTag.gridwidth = 3;
-					gbc_nombreTag.anchor = GridBagConstraints.WEST;
+					gbc_nombreTag.anchor = GridBagConstraints.EAST;
 					gbc_nombreTag.insets = new Insets(0, 0, 5, 5);
-					gbc_nombreTag.gridx = 2;
+					gbc_nombreTag.gridx = 0;
 					gbc_nombreTag.gridy = 3;
 					getContentPane().add(nombreTag, gbc_nombreTag);
 				
@@ -162,7 +160,7 @@ public class ConsultarUsuario extends JInternalFrame {
 				GridBagConstraints gbc_apellidoTag = new GridBagConstraints();
 				gbc_apellidoTag.anchor = GridBagConstraints.EAST;
 				gbc_apellidoTag.insets = new Insets(0, 0, 5, 5);
-				gbc_apellidoTag.gridx = 4;
+				gbc_apellidoTag.gridx = 0;
 				gbc_apellidoTag.gridy = 4;
 				getContentPane().add(apellidoTag, gbc_apellidoTag);
 				
@@ -172,19 +170,19 @@ public class ConsultarUsuario extends JInternalFrame {
 				GridBagConstraints gbc_correoTag = new GridBagConstraints();
 				gbc_correoTag.anchor = GridBagConstraints.EAST;
 				gbc_correoTag.insets = new Insets(0, 0, 5, 5);
-				gbc_correoTag.gridx = 4;
+				gbc_correoTag.gridx = 0;
 				gbc_correoTag.gridy = 5;
 				getContentPane().add(correoTag, gbc_correoTag);
-				
-				
-				
-				nacimientoTag = new JLabel("Nacimiento: ");
-				GridBagConstraints gbc_nacimientoTag = new GridBagConstraints();
-				gbc_nacimientoTag.anchor = GridBagConstraints.EAST;
-				gbc_nacimientoTag.insets = new Insets(0, 0, 5, 5);
-				gbc_nacimientoTag.gridx = 4;
-				gbc_nacimientoTag.gridy = 6;
-				getContentPane().add(nacimientoTag, gbc_nacimientoTag);
+		
+		
+		
+		nacimientoTag = new JLabel("Nacimiento: ");
+		GridBagConstraints gbc_nacimientoTag = new GridBagConstraints();
+		gbc_nacimientoTag.anchor = GridBagConstraints.EAST;
+		gbc_nacimientoTag.insets = new Insets(0, 0, 5, 5);
+		gbc_nacimientoTag.gridx = 0;
+		gbc_nacimientoTag.gridy = 6;
+		getContentPane().add(nacimientoTag, gbc_nacimientoTag);
 				
 			
 			
@@ -192,6 +190,7 @@ public class ConsultarUsuario extends JInternalFrame {
 				
 		
 		tipoUsuario = new JLabel("El usuario es un turista: ");
+		tipoUsuario.setForeground(Color.BLUE);
 		GridBagConstraints gbc_tipoUsuario = new GridBagConstraints();
 		gbc_tipoUsuario.gridwidth = 10;
 		gbc_tipoUsuario.insets = new Insets(0, 0, 5, 0);
@@ -202,8 +201,9 @@ public class ConsultarUsuario extends JInternalFrame {
 		
 		descripcionTag = new JLabel("Descripcion: ");
 		GridBagConstraints gbc_descripcionTag = new GridBagConstraints();
+		gbc_descripcionTag.anchor = GridBagConstraints.EAST;
 		gbc_descripcionTag.insets = new Insets(0, 0, 5, 5);
-		gbc_descripcionTag.gridx = 4;
+		gbc_descripcionTag.gridx = 0;
 		gbc_descripcionTag.gridy = 8;
 		getContentPane().add(descripcionTag, gbc_descripcionTag);
 		descripcionTag.setVisible(false);
@@ -218,8 +218,9 @@ public class ConsultarUsuario extends JInternalFrame {
 		
 		linkTag = new JLabel("Link: ");
 		GridBagConstraints gbc_linkTag = new GridBagConstraints();
+		gbc_linkTag.anchor = GridBagConstraints.EAST;
 		gbc_linkTag.insets = new Insets(0, 0, 5, 5);
-		gbc_linkTag.gridx = 4;
+		gbc_linkTag.gridx = 0;
 		gbc_linkTag.gridy = 9;
 		getContentPane().add(linkTag, gbc_linkTag);
 		linkTag.setVisible(false);
