@@ -1,6 +1,9 @@
 package logica;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 public class Paquete{
@@ -85,5 +88,16 @@ public class Paquete{
 	
 	public void addActividad(Actividad actividad) {
 		this.actividades.put(actividad.getNombre(), actividad);
+	}
+
+	public Set<String> obtenerNombresSalidasAsociadas(Set<String> actividades) {
+		Set<String> salidas = new HashSet<String>();
+		for (Actividad act: this.actividades.values()) {
+			salidas.addAll(act.obtenerNombresSalidasAsociadas());
+			}
+				
+		return salidas;
+	
+		
 	}
 }

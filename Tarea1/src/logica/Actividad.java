@@ -1,7 +1,10 @@
 package logica;
 
+import java.util.Collection;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Actividad{
 	
@@ -117,5 +120,16 @@ public class Actividad{
 	public void addSalida(Salida salida) {
 		this.salidas.put(salida.getNombre(), salida);
 	}
+
+	public Set<String> obtenerNombresSalidasAsociadas() {
+		Set<String> res = new HashSet<String>();
+		for (Salida sal: this.getSalidas().values()) {
+			res.add(sal.getNombre());
+			}
+				
+		return res;
+	
+	}
+
 	
 }
