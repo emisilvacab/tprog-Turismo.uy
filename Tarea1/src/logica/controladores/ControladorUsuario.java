@@ -1,18 +1,25 @@
 package logica.controladores;
 
 import logica.DataType.DataUsuario;
+
 import logica.DataType.*;
 
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
 import data.ManejadorUsuario;
 import excepciones.usuarioNoExisteException;
+import logica.Inscripcion;
+import logica.Paquete;
 import logica.Proveedor;
 import logica.Turista;
 import logica.Usuario;
+import logica.Actividad;
+import data.ManejadorPaquete;
 
 public class ControladorUsuario implements IControladorUsuario {
 
@@ -50,6 +57,48 @@ public class ControladorUsuario implements IControladorUsuario {
 	
 		}
 		
+	}
+
+	@Override
+	public Set<String> obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException {
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Turista tur = mu.getTurista(nickname);
+		if (tur == null) throw new usuarioNoExisteException("El turista no fue encontrado");
+		Vector<Inscripcion> inscripciones = tur.getInscripciones();
+		Set<String> nombresSalidas = new HashSet<String>();
+		for (Inscripcion inscripcion: inscripciones) {
+			if (inscripcion.getSalida() != null) {
+				nombresSalidas.add(inscripcion.getSalida().getNombre());
+			}
+		}
+		return nombresSalidas;
+		
+	
+	}
+
+	@Override
+	public Set<String> mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException {
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Proveedor prov = mu.getProveedor(nickname);
+		Set<String> actividades = new HashSet<String>();
+		if (prov==null) throw new usuarioNoExisteException("no se encontro ningun usuario con el nickname ingresado");
+		else {
+			for (Actividad act :prov.getActividades().values()){
+				actividades.add(act.getNombre());
+			}
+		}
+		return actividades;
+		
+	}
+
+	@Override
+	public Set<String> mostrarSalidasAsociadas(Set<String> actividadesOfrecidas) {
+		Set<String> salidas = new HashSet<String>();
+		ManejadorPaquete mp = ManejadorPaquete.getInstance();
+		for (Paquete paq: mp.getPaquetes().values()) {
+			salidas.addAll(paq.obtenerNombresSalidasAsociadas(actividadesOfrecidas));
+		}
+		return salidas;
 	}
     
     
