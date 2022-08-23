@@ -13,7 +13,6 @@ import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
-import presentacion.ConsultarUsuario;
 
 /**
 * Clase principal (Frame) con el método Main.
