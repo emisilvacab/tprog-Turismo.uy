@@ -11,17 +11,12 @@ public class DTSalida{
 	private GregorianCalendar fechaDTSalida;
 	private String lugarDTSalida;
 	
-	private DTActividad actividad;
-	private Vector<DTInscripcion> inscripciones;
-
-	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, String lugarDTSalida, DTActividad actividad) {
+	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, String lugarDTSalida) {
 		this.nombre = nombre;
 		this.maxTuristas = maxTuristas;
 		this.alta = alta;
 		this.fechaDTSalida = fechaDTSalida;
 		this.lugarDTSalida = lugarDTSalida;
-		this.actividad = actividad;
-		this.inscripciones = null;
 	}
 
 	public String getNombre() {
@@ -63,26 +58,4 @@ public class DTSalida{
 	public void setLugarDTSalida(String lugarDTSalida) {
 		this.lugarDTSalida = lugarDTSalida;
 	}
-
-	public DTActividad getDTActividad() {
-		return actividad;
-	}
-
-	public void setDTActividad(DTActividad actividad) {
-		this.actividad = actividad;
-	}
-
-	public Vector<DTInscripcion> getDTInscripciones() {
-		return inscripciones;
-	}
-
-	public void setDTInscripciones(Vector<DTInscripcion> inscripciones) {
-		this.inscripciones = inscripciones;
-	}
-	
-	public void addDTInscripcion(DTInscripcion inscripcion) {
-		//fijarse si se puede inscribir esto no se si se hace aca o en controlador/manejador
-		this.inscripciones.add(inscripcion);
-	}
-	
 }

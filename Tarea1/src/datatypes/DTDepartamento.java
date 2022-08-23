@@ -8,14 +8,11 @@ public class DTDepartamento{
 	private String descripcion;
 	private String url;
 	
-	private Map<String, DTActividad> actividades;
-
 	
 	public DTDepartamento(String nombre, String descripcion, String url) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.url = url;
-		this.actividades = null;
 	}
 
 	public String getNombre() {
@@ -30,11 +27,6 @@ public class DTDepartamento{
 		return url;
 	}
 	
-	//SE PUEDE MODIFICAR PARA QUE DEVUELVA SOLO NOMBRES/IDENTIFICADORES
-	public Map<String, DTActividad> getDTActividades() {
-		return actividades;
-	}
-	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -46,13 +38,4 @@ public class DTDepartamento{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	public void setDTActividades(Map<String, DTActividad> actividades) {
-		this.actividades = actividades;
-	}
-	
-	public void addDTActividad(DTActividad actividad) {
-		this.actividades.put(actividad.getNombre(), actividad);
-	}
-	
 }

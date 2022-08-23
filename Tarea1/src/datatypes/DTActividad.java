@@ -12,22 +12,15 @@ public class DTActividad{
 	private String ciudad;
 	private GregorianCalendar alta;
 	
-	private DTDepartamento departamento;
-	private DTProveedor proveedor;
-	private Map<String, DTPaquete> paquetes;	
-	private Map<String, DTSalida> salidas;	
 	
-	public DTActividad(String nombre, String descripcion, int duracion, Float costo, String ciudad, GregorianCalendar alta, DTDepartamento departamento, DTProveedor proveedor) {
+	
+	public DTActividad(String nombre, String descripcion, int duracion, Float costo, String ciudad, GregorianCalendar alta) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.duracion = duracion;
 		this.costo = costo;
 		this.ciudad = ciudad;
 		this.alta = alta;
-		this.departamento = departamento;
-		this.proveedor = proveedor;
-		this.paquetes = null;
-		this.salidas = null;
 	}
 
 	public String getNombre() {
@@ -48,14 +41,6 @@ public class DTActividad{
 
 	public int getDuracion() {
 		return duracion;
-	}
-
-	public DTDepartamento getDTDepartamento() {
-		return departamento;
-	}
-	
-	public void setDTDepartamento(DTDepartamento departamento) {
-		this.departamento = departamento;
 	}
 
 	public void setDuracion(int duracion) {
@@ -84,38 +69,6 @@ public class DTActividad{
 
 	public void setAlta(GregorianCalendar alta) {
 		this.alta = alta;
-	}
-	
-	public DTProveedor getDTProveedor() {
-		return proveedor;
-	}
-
-	public void setDTProveedor(DTProveedor proveedor) {
-		this.proveedor = proveedor;
-	}
-
-	public Map<String, DTPaquete> getDTPaquetes() {
-		return paquetes;
-	}
-
-	public void setDTPaquetes(Map<String, DTPaquete> paquetes) {
-		this.paquetes = paquetes;
-	}
-	
-	public void addDTPaquete(DTPaquete paquete) {
-		this.paquetes.put(paquete.getNombre(), paquete);
-	}
-
-	public Map<String, DTSalida> getDTSalidas() {
-		return salidas;
-	}
-
-	public void setDTSalidas(Map<String, DTSalida> salidas) {
-		this.salidas = salidas;
-	}
-
-	public void addDTSalida(DTSalida salida) {
-		this.salidas.put(salida.getNombre(), salida);
 	}
 	
 }
