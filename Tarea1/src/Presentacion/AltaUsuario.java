@@ -4,8 +4,6 @@ import javax.swing.JInternalFrame;
 
 import logica.controladores.IControladorUsuario;
 
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,13 +11,12 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
-import javax.swing.JButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class AltaUsuario extends JInternalFrame{
 	/**
@@ -28,13 +25,13 @@ public class AltaUsuario extends JInternalFrame{
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario contrUsers;
 	private Boolean esTurista;
-	private JTextField textFieldNombre;
-	private JTextField textFieldApellido;
-	private JLabel lblIngreseCi;
-	private JTextField textFieldCI;
-	private JButton btnAceptar;
-	private JButton btnCancelar;
-	
+	private JTextField nombreField;
+	private JTextField apellidoField;
+	private JTextField nicknameField;
+	private JTextField correoField;
+	private JTextField nacionalidadField;
+	private JTextField descripcionField;
+	private JTextField linkField;
 	
 	public AltaUsuario(IControladorUsuario icu) {
 		contrUsers = icu;
@@ -44,26 +41,103 @@ public class AltaUsuario extends JInternalFrame{
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Agregar un usuario");
-        setBounds(30, 30, 519, 362);
+        setBounds(30, 30, 564, 362);
         
         JLabel tipoUserLabel = new JLabel("Indique el tipo de usuario");
         
         JRadioButton turistaButton = new JRadioButton("Turista");
         
         JRadioButton proveedorButton = new JRadioButton("Proveedor");
+        
+        JLabel nombreLabel = new JLabel("Nombre: ");
+        
+        nombreField = new JTextField();
+        nombreField.setColumns(10);
+        
+        JLabel apellidoLabel = new JLabel("Apellido: ");
+        
+        apellidoField = new JTextField();
+        apellidoField.setColumns(10);
+        
+        JLabel nicknameLabel = new JLabel("Nickname: ");
+        
+        nicknameField = new JTextField();
+        nicknameField.setColumns(10);
+        
+        JLabel correoLabel = new JLabel("Correo: ");
+        
+        correoField = new JTextField();
+        correoField.setColumns(10);
+        
+        JLabel nacionalidadLabel = new JLabel("Nacionalidad: ");
+        nacionalidadLabel.setVisible(false);
+        
+        nacionalidadField = new JTextField();
+        nacionalidadField.setVisible(false);
+        nacionalidadField.setColumns(10);
+        
+        JLabel descripcionLabel = new JLabel("Descripcion: ");
+        
+        descripcionField = new JTextField();
+        descripcionField.setColumns(10);
+        
+        JLabel linkLabel = new JLabel("Link: ");
+        
+        linkField = new JTextField();
+        linkField.setColumns(10);
+        
+        JButton cancelarButton = new JButton("Cancelar");
+        
+        JButton confirmarButton = new JButton("Confirmar");
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
+        	groupLayout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(165)
         			.addComponent(tipoUserLabel, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(162, Short.MAX_VALUE))
+        			.addContainerGap(207, Short.MAX_VALUE))
         		.addGroup(groupLayout.createSequentialGroup()
-        			.addGap(51)
-        			.addComponent(turistaButton)
-        			.addPreferredGap(ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
-        			.addComponent(proveedorButton)
-        			.addGap(74))
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(51)
+        					.addComponent(turistaButton))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(23)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(groupLayout.createSequentialGroup()
+        							.addComponent(nombreLabel)
+        							.addGap(39)
+        							.addComponent(nombreField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+        							.addGroup(groupLayout.createSequentialGroup()
+        								.addComponent(correoLabel)
+        								.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+        								.addComponent(correoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        							.addGroup(groupLayout.createSequentialGroup()
+        								.addComponent(nicknameLabel)
+        								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        								.addComponent(nicknameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        							.addGroup(groupLayout.createSequentialGroup()
+        								.addComponent(nacionalidadLabel)
+        								.addPreferredGap(ComponentPlacement.RELATED)
+        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        									.addComponent(cancelarButton)
+        									.addComponent(nacionalidadField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))))
+        			.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(confirmarButton)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(descripcionLabel)
+        						.addComponent(apellidoLabel)
+        						.addComponent(linkLabel))
+        					.addGap(18)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(linkField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(descripcionField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(proveedorButton)
+        						.addComponent(apellidoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+        			.addGap(15))
         );
         groupLayout.setVerticalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
@@ -74,7 +148,33 @@ public class AltaUsuario extends JInternalFrame{
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(turistaButton)
         				.addComponent(proveedorButton))
-        			.addContainerGap(245, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(nombreLabel)
+        				.addComponent(nombreField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(apellidoLabel)
+        				.addComponent(apellidoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(nicknameLabel)
+        				.addComponent(nicknameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(correoLabel)
+        				.addComponent(correoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(descripcionLabel)
+        				.addComponent(descripcionField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(26)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(nacionalidadLabel)
+        				.addComponent(nacionalidadField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(linkField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(linkLabel))
+        			.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(cancelarButton)
+        				.addComponent(confirmarButton))
+        			.addContainerGap())
         );
         getContentPane().setLayout(groupLayout);
         
@@ -86,120 +186,32 @@ public class AltaUsuario extends JInternalFrame{
         proveedorButton.addActionListener( new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		esTurista = false;
+        		nacionalidadLabel.setVisible(false);
+        		nacionalidadField.setVisible(false);
+        		linkLabel.setVisible(true);
+        		linkField.setVisible(true);
+        		descripcionLabel.setVisible(true);
+        		descripcionField.setVisible(true);
         	}
         });
         
         turistaButton.addActionListener( new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		esTurista = true;
+        		nacionalidadLabel.setVisible(true);
+        		nacionalidadField.setVisible(true);
+        		linkLabel.setVisible(false);
+        		linkField.setVisible(false);
+        		descripcionLabel.setVisible(false);
+        		descripcionField.setVisible(false);
         	}
         });
         
         
-        JLabel lblIngreseNombre = new JLabel("Nombre:");
-        lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseNombre = new GridBagConstraints();
-        gbc_lblIngreseNombre.fill = GridBagConstraints.BOTH;
-        gbc_lblIngreseNombre.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseNombre.gridx = 0;
-        gbc_lblIngreseNombre.gridy = 0;
-        getContentPane().add(lblIngreseNombre, gbc_lblIngreseNombre);
-
-        // Una campo de texto (JTextField) para ingresar el nombre del usuario. 
-        // Por defecto es posible ingresar cualquier string.
-        textFieldNombre = new JTextField();
-        GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
-        gbc_textFieldNombre.gridwidth = 2;
-        gbc_textFieldNombre.fill = GridBagConstraints.BOTH;
-        gbc_textFieldNombre.insets = new Insets(0, 0, 5, 0);
-        gbc_textFieldNombre.gridx = 1;
-        gbc_textFieldNombre.gridy = 0;
-        getContentPane().add(textFieldNombre, gbc_textFieldNombre);
-        textFieldNombre.setColumns(10);
-
-        // Una etiqueta (JLabel) indicandp que en el siguiente campo debe ingresarse 
-        // el apellido del usuario. El texto está alineado horizontalmente a la derecha para
-        // que quede casi pegado al campo de texto.
-        JLabel lblIngreseApellido = new JLabel("Apellido:");
-        lblIngreseApellido.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseApellido = new GridBagConstraints();
-        gbc_lblIngreseApellido.fill = GridBagConstraints.BOTH;
-        gbc_lblIngreseApellido.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseApellido.gridx = 0;
-        gbc_lblIngreseApellido.gridy = 1;
-        getContentPane().add(lblIngreseApellido, gbc_lblIngreseApellido);
-
-        // Una campo de texto (JTextField) para ingresar el apellido del usuario. 
-        // Por defecto es posible ingresar cualquier string.
-        textFieldApellido = new JTextField();
-        GridBagConstraints gbc_textFieldApellido = new GridBagConstraints();
-        gbc_textFieldApellido.gridwidth = 2;
-        gbc_textFieldApellido.fill = GridBagConstraints.BOTH;
-        gbc_textFieldApellido.insets = new Insets(0, 0, 5, 0);
-        gbc_textFieldApellido.gridx = 1;
-        gbc_textFieldApellido.gridy = 1;
-        getContentPane().add(textFieldApellido, gbc_textFieldApellido);
-        textFieldApellido.setColumns(10);
-
-        // Una etiqueta (JLabel) indicando que en el siguiente campo debe ingresarse 
-        // la cédula del usuario. El texto está alineado horizontalmente a la derecha para
-        // que quede casi pegado al campo de texto.
-        lblIngreseCi = new JLabel("C.I.:");
-        lblIngreseCi.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseCi = new GridBagConstraints();
-        gbc_lblIngreseCi.fill = GridBagConstraints.BOTH;
-        gbc_lblIngreseCi.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseCi.gridx = 0;
-        gbc_lblIngreseCi.gridy = 2;
-        getContentPane().add(lblIngreseCi, gbc_lblIngreseCi);
-
-        // Una campo de texto (JTextField) para ingresar la cédula del usuario. 
-        // Por defecto es posible ingresar cualquier string.
-        // Al campo se le incluye un Tooltip que, al pasar el mouse por encima, despliega un mensaje.
-        textFieldCI = new JTextField();
-        textFieldCI.setToolTipText("Ingrese un número sin puntos ni guiones");
-        textFieldCI.setColumns(10);
-        GridBagConstraints gbc_textFieldCI = new GridBagConstraints();
-        gbc_textFieldCI.gridwidth = 2;
-        gbc_textFieldCI.fill = GridBagConstraints.BOTH;
-        gbc_textFieldCI.insets = new Insets(0, 0, 5, 0);
-        gbc_textFieldCI.gridx = 1;
-        gbc_textFieldCI.gridy = 2;
-        getContentPane().add(textFieldCI, gbc_textFieldCI);
-
-        // Un botón (JButton) con un evento asociado que permite registrar el usuario.
-        // Dado que el código de registro tiene cierta complejidad, conviene delegarlo
-        // a otro método en lugar de incluirlo directamente de el método actionPerformed 
-        btnAceptar = new JButton("Aceptar");
-        btnAceptar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                
-            }
-        });
-
-        GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-        gbc_btnAceptar.fill = GridBagConstraints.BOTH;
-        gbc_btnAceptar.insets = new Insets(0, 0, 0, 5);
-        gbc_btnAceptar.gridx = 1;
-        gbc_btnAceptar.gridy = 3;
-        getContentPane().add(btnAceptar, gbc_btnAceptar);
-
-        // Un botón (JButton) con un evento asociado que permite cerrar el formulario (solo ocultarlo).
-        // Dado que antes de cerrar se limpia el formulario, se invoca un método reutilizable para ello. 
-        btnCancelar = new JButton("Cancelar");
-        btnCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-            }
-        });
-        GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-        gbc_btnCancelar.fill = GridBagConstraints.BOTH;
-        gbc_btnCancelar.gridx = 2;
-        gbc_btnCancelar.gridy = 3;
-        getContentPane().add(btnCancelar, gbc_btnCancelar);
-    }
         
         
         
-
+        
+        
+	}
 }

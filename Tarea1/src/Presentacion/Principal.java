@@ -26,6 +26,7 @@ public class Principal {
 	private IControladorPaquete ICP;
 	private IControladorDepartamento ICD;
 	private ConsultarUsuario conUsrInternalFrame;
+	private AltaUsuario crearUsrInternalFrame;
 	
 	
 	
@@ -55,6 +56,11 @@ public class Principal {
         conUsrInternalFrame = new ConsultarUsuario(ICU);
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
+        
+        crearUsrInternalFrame = new AltaUsuario(ICU);
+        crearUsrInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(crearUsrInternalFrame);
+        
 
     }
     
@@ -84,6 +90,7 @@ public class Principal {
             }
         });
         menuSistema.add(menuSalir);
+        
         JMenu menuUsuarios = new JMenu("Usuarios");
         menuBar.add(menuUsuarios);
         
@@ -95,6 +102,14 @@ public class Principal {
             }
         });
         menuUsuarios.add(menuItemConsultaUsuario);
+        
+        JMenuItem menuItemAltaUsuario = new JMenuItem("Alta");
+        menuItemAltaUsuario.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		crearUsrInternalFrame.setVisible(true);
+        	}
+        });
+        menuUsuarios.add(menuItemAltaUsuario);
     }
     
     
