@@ -1,6 +1,7 @@
 package data;
 
 import java.util.Map;
+import java.util.HashMap;
 
 import logica.Paquete;
 
@@ -8,7 +9,9 @@ public class ManejadorPaquete{
 	private Map<String, Paquete> paquetes;
 	private static ManejadorPaquete instancia = null;
 	
-	private ManejadorPaquete(){}
+	private ManejadorPaquete(){
+		this.paquetes = new HashMap<String, Paquete>();
+	}
 	
 	public static ManejadorPaquete getInstance() {
 		if (instancia == null)

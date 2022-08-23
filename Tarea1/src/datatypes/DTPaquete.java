@@ -1,8 +1,5 @@
 package datatypes;
 
-import java.util.Map;
-import java.util.Vector;
-
 public class DTPaquete{
 	
 	private String nombre;
@@ -10,11 +7,18 @@ public class DTPaquete{
 	private int validez;
 	private float descuento;
 	
+	public DTPaquete() {
+		this.setNombre(new String());
+		this.setDescripcion(new String());
+		this.setValidez(0);
+		this.setDescuento(0);
+	}
+	
 	public DTPaquete(String nombre, String descripcion, int validez, float descuento) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.validez = validez;
-		this.descuento = descuento;
+		this.setNombre(nombre);
+		this.setDescripcion(descripcion);
+		this.setValidez(validez);
+		this.setDescuento(descuento);
 	}
 
 	public String getNombre() {

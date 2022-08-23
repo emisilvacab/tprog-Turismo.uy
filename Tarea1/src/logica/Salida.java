@@ -23,7 +23,7 @@ public class Salida{
 		this.fechaSalida = fechaSalida;
 		this.lugarSalida = lugarSalida;
 		this.actividad = actividad;
-		this.inscripciones = null;
+		this.inscripciones = new Vector<Inscripcion>();
 	}
 
 	public String getNombre() {
