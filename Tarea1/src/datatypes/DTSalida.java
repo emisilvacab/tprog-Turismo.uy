@@ -1,7 +1,6 @@
 package datatypes;
 
 import java.util.GregorianCalendar;
-import java.util.Vector;
 
 public class DTSalida{
 	
@@ -11,12 +10,20 @@ public class DTSalida{
 	private GregorianCalendar fechaDTSalida;
 	private String lugarDTSalida;
 	
+	public DTSalida() {
+		this.setNombre(new String());
+		this.setMaxTuristas(0);
+		this.setAlta(new GregorianCalendar());
+		this.setFechaDTSalida(new GregorianCalendar());
+		this.setLugarDTSalida(new String());
+	}
+	
 	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, String lugarDTSalida) {
-		this.nombre = nombre;
-		this.maxTuristas = maxTuristas;
-		this.alta = alta;
-		this.fechaDTSalida = fechaDTSalida;
-		this.lugarDTSalida = lugarDTSalida;
+		this.setNombre(nombre);
+		this.setMaxTuristas(maxTuristas);
+		this.setAlta(alta);
+		this.setFechaDTSalida(fechaDTSalida);
+		this.setLugarDTSalida(lugarDTSalida);
 	}
 
 	public String getNombre() {

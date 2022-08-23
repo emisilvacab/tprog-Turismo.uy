@@ -1,26 +1,33 @@
 package datatypes;
 
 import java.util.GregorianCalendar;
-import java.util.Map;
 
 public class DTActividad{
 	
 	private String nombre;
 	private String descripcion;
 	private int duracion;
-	private Float costo;
+	private float costo;
 	private String ciudad;
 	private GregorianCalendar alta;
 	
 	
+	public DTActividad() {
+		this.setNombre(new String());
+		this.setDescripcion(new String());
+		this.setDuracion(0);
+		this.setCosto(0);
+		this.setCiudad(new String());
+		this.setAlta(new GregorianCalendar());
+	}
 	
 	public DTActividad(String nombre, String descripcion, int duracion, Float costo, String ciudad, GregorianCalendar alta) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.duracion = duracion;
-		this.costo = costo;
-		this.ciudad = ciudad;
-		this.alta = alta;
+		this.setNombre(nombre);
+		this.setDescripcion(descripcion);
+		this.setDuracion(duracion);
+		this.setCosto(costo);
+		this.setCiudad(ciudad);
+		this.setAlta(alta);
 	}
 
 	public String getNombre() {
@@ -47,11 +54,11 @@ public class DTActividad{
 		this.duracion = duracion;
 	}
 
-	public Float getCosto() {
+	public float getCosto() {
 		return costo;
 	}
 
-	public void setCosto(Float costo) {
+	public void setCosto(float costo) {
 		this.costo = costo;
 	}
 

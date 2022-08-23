@@ -1,7 +1,7 @@
 package logica;
 
-import java.util.Collection;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -29,8 +29,8 @@ public class Actividad{
 		this.alta = alta;
 		this.departamento = departamento;
 		this.proveedor = proveedor;
-		this.paquetes = null;
-		this.salidas = null;
+		this.paquetes = new HashMap<String, Paquete>();
+		this.salidas = new HashMap<String, Salida>();
 	}
 
 	public String getNombre() {

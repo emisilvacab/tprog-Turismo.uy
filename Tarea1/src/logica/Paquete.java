@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class Paquete{
 		this.validez = validez;
 		this.descuento = descuento;
 		this.actividades = actividades;
-		this.compras = null;
+		this.compras = new Vector<Compra>();
 	}
 	
 	public Paquete(String nombre, String descripcion, int validez, float descuento) {
@@ -30,8 +31,8 @@ public class Paquete{
 		this.descripcion = descripcion;
 		this.validez = validez;
 		this.descuento = descuento;
-		this.actividades = null;
-		this.compras = null;
+		this.actividades = new HashMap<String, Actividad>();
+		this.compras = new Vector<Compra>();
 	}
 
 	public String getNombre() {

@@ -13,10 +13,10 @@ import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
-import presentacion.ConsultarUsuario;
+import Presentacion.ConsultarUsuario;
 
 /**
-* Clase principal (Frame) con el mÃ©todo Main.
+* Clase principal (Frame) con el método Main.
 * @author leonardo.melgar
 *
 */
@@ -47,7 +47,7 @@ public class Principal {
     public Principal() {
     	initialize();
     	
-    	// InicializaciÃ³n
+    	// Inicialización
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIControladorUsuario();
         ICD = fabrica.getIControladorDepartamento();
@@ -67,9 +67,9 @@ public class Principal {
         frmReservas_UY.setBounds(100, 100, 450, 400);
         frmReservas_UY.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Se crea una barra de menÃº (JMenuBar) con dos menÃº (JMenu) desplegables.
-        // Cada menÃº contiene diferentes opciones (JMenuItem), los cuales tienen un 
-        // evento asociado que permite realizar una acciÃ³n una vez se seleccionan. 
+        // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
+        // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
+        // evento asociado que permite realizar una acción una vez se seleccionan. 
         JMenuBar menuBar = new JMenuBar();
         frmReservas_UY.setJMenuBar(menuBar);
 
@@ -79,7 +79,7 @@ public class Principal {
         JMenuItem menuSalir = new JMenuItem("Salir");
         menuSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                // Salgo de la aplicaciÃ³n
+                // Salgo de la aplicación
                 frmReservas_UY.setVisible(false);
                 frmReservas_UY.dispose();
             }
@@ -91,7 +91,7 @@ public class Principal {
         JMenuItem menuItemConsultaUsuario = new JMenuItem("Consultar");
         menuItemConsultaUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver informaciÃ³n de un usuario
+                // Muestro el InternalFrame para ver información de un usuario
                 conUsrInternalFrame.setVisible(true);
             }
         });

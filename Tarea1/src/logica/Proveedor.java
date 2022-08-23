@@ -14,7 +14,7 @@ public class Proveedor extends Usuario{
 	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String descripcion) {
 		super(nickname, nombre, apellido, correo, nacimiento);
 		this.descripcion = descripcion;
-		this.link = "";
+		this.link = new String();
 		this.actividades = new HashMap<String, Actividad>();
 	}
 
@@ -22,7 +22,7 @@ public class Proveedor extends Usuario{
 		super(nickname, nombre, apellido, correo, nacimiento);
 		this.descripcion = descripcion;
 		this.link = link;
-		this.actividades = null;
+		this.actividades = new HashMap<String, Actividad>();
 
 	}
 	
