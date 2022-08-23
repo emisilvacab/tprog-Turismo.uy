@@ -61,4 +61,8 @@ public class Turista extends Usuario{
 	public void addInscripcion(Inscripcion inscripcion) {
 		this.inscripciones.add(inscripcion);
 	}
+
+	public void agregarInscripcion(Inscripcion insc) {
+		inscripciones.add(insc);
+	}
 }

@@ -86,5 +86,24 @@ public class Salida{
 		//fijarse si se puede inscribir esto no se si se hace aca o en controlador/manejador
 		this.inscripciones.add(inscripcion);
 	}
+
+	public boolean admiteCapacidad(int capacidad) {
+		int total = 0;
+		for(int i = 0; i < inscripciones.size(); i++) {
+			total += inscripciones.get(i).getCantTuristas();
+		}
+		return (total + capacidad <= maxTuristas);
+	}
+
+	public boolean existeInscripcion(String nickname) {
+		int i = 0;
+		while (i < inscripciones.size() && inscripciones.get(i).getNicknameInscripto() != nickname)
+			i++;
+		return (i < inscripciones.size());
+	}
+
+	public void agregarInscripcion(Inscripcion insc) {
+		inscripciones.add(insc);
+	}
 	
 }

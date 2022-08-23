@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import datatypes.DTActividad;
+
 public class Actividad{
 	
 	private String nombre;
@@ -129,6 +131,11 @@ public class Actividad{
 				
 		return res;
 	
+	}
+
+	public DTActividad getDatos() {
+		DTActividad res = new DTActividad(nombre,descripcion,duracion,costo,ciudad,alta);
+		return res;
 	}
 
 	

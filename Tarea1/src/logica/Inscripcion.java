@@ -75,6 +75,11 @@ public class Inscripcion{
 		this.pagoConPaquete = pagoConPaquete;
 	}
 
+
+	public String getNicknameInscripto() {
+		return turista.getNickname();
+	}
+
 	
 	
 }
