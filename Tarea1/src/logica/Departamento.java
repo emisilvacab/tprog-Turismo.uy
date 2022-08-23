@@ -1,10 +1,7 @@
 package logica;
 
 import java.util.HashMap;
-<<<<<<< Upstream, based on origin/master
-=======
 import java.util.HashSet;
->>>>>>> 80d68e8 Logica de InscripcionASalida (no testeada)
 import java.util.Map;
 
 import datatypes.DTActividad;
@@ -22,11 +19,7 @@ public class Departamento{
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.url = url;
-<<<<<<< Upstream, based on origin/master
-		this.actividades = new HashMap<String, Actividad>();
-=======
 		this.actividades = new HashMap<String,Actividad>();
->>>>>>> 80d68e8 Logica de InscripcionASalida (no testeada)
 	}
 
 	public String getNombre() {
