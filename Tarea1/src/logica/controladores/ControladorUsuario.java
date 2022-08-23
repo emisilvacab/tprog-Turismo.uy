@@ -1,8 +1,5 @@
 package logica.controladores;
 
-import logica.DataType.DataUsuario;
-
-import logica.DataType.*;
 
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -11,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+import datatypes.*;
 import data.ManejadorUsuario;
 import excepciones.usuarioNoExisteException;
 import logica.Inscripcion;
@@ -38,7 +36,7 @@ public class ControladorUsuario implements IControladorUsuario {
     
 
 	@Override
-	public DataUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException {
+	public DTUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException {
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Usuario user = mu.getTurista(nickname);
 		if (user == null) {
@@ -49,10 +47,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		}else {
 			if (user.getClass() == Turista.class) {
 				Turista tur = (Turista)user;
-				return new DataTurista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), tur.getNacionalidad());
+				return new DTTurista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), tur.getNacionalidad());
 			}else {
 				Proveedor prov = (Proveedor)user;
-				return new DataProveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), prov.getDescripcion(), prov.getLink());
+				return new DTProveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), prov.getDescripcion(), prov.getLink());
 			}
 	
 		}

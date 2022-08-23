@@ -2,13 +2,13 @@ package logica.controladores;
 
 import java.util.Set;
 
+import datatypes.DTUsuario;
 import excepciones.usuarioNoExisteException;
-import logica.DataType.*;
 
 public interface IControladorUsuario {
 	public abstract Set<String> obtenerUsuarios();
 
-	public abstract DataUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException;
+	public abstract DTUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException;
 	
 	public abstract Set<String> obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException;
 

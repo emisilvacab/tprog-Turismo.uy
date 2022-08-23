@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import excepciones.usuarioNoExisteException;
-import logica.DataType.DataProveedor;
-import logica.DataType.DataTurista;
-import logica.DataType.DataUsuario;
+import datatypes.DTProveedor;
+import datatypes.DTTurista;
+import datatypes.DTUsuario;
 import logica.controladores.IControladorUsuario;
 
 import javax.swing.JButton;
@@ -35,7 +35,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario contUser;
 	private JComboBox<String> listaUsuarios;
-	private DataUsuario userSelected;
+	private DTUsuario userSelected;
 	private JButton btnCerrar;
 	private JLabel nombreUsuario;
 	private JLabel nicknameUsuario;
@@ -272,7 +272,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		
 	}
 	
-	private void cargarInfoUsuario(DataUsuario userSelected) {
+	private void cargarInfoUsuario(DTUsuario userSelected) {
 		nicknameUsuario = new JLabel(userSelected.getNickname());
 	    nicknameUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 	    nicknameUsuario.setBounds(10, 114, 65, 14);
@@ -321,7 +321,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_nacimientoUsuario.gridy = 6;
 		getContentPane().add(nacimientoUsuario, gbc_nacimientoUsuario);
 		
-		if (userSelected.getClass() == DataTurista.class) {
+		if (userSelected.getClass() == DTTurista.class) {
 			nacionalidadUsuario = new JLabel("Uruguay");
 			GridBagConstraints gbc_nacionalidadUsuario = new GridBagConstraints();
 			gbc_nacionalidadUsuario.insets = new Insets(0, 0, 5, 5);
@@ -349,7 +349,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			
 			tipoUsuario.setText("El usuario es un Turista");
 			tipoUsuario.setVisible(true);
-			DataTurista tur = (DataTurista)userSelected;
+			DTTurista tur = (DTTurista)userSelected;
 			nacionalidadUsuario.setText(tur.getNacionalidad());
 			nacionalidadUsuario.setVisible(true);
 			nacionalidadTag.setVisible(true);
@@ -379,7 +379,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		}else {
 			tipoUsuario.setText("El usuario es un Proveedor");
 			tipoUsuario.setVisible(true);
-			DataProveedor prov = (DataProveedor)userSelected;
+			DTProveedor prov = (DTProveedor)userSelected;
 			linkProv.setText(prov.getLink());
 			linkProv.setVisible(true);
 			descripcionProv.setText(prov.getDescripcion());
