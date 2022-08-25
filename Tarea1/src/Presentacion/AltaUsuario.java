@@ -71,6 +71,7 @@ public class AltaUsuario extends JInternalFrame{
 		setResizable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setClosable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Agregar un usuario");
         setBounds(30, 30, 628, 390);

@@ -4,7 +4,7 @@ import java.util.Set;
 
 import datatypes.DTUsuario;
 import excepciones.usuarioNoExisteException;
-import excepciones.UsuarioRepetidoException;s
+import excepciones.UsuarioRepetidoException;
 
 public interface IControladorUsuario {
 	public abstract Set<String> obtenerUsuarios();
