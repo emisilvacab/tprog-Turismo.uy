@@ -17,7 +17,7 @@ public class Inscripcion{
 		this.cantTuristas = cantTuristas;
 		this.salida = salida;
 		this.turista = turista;
-		this.costo = 0; //CALCULAR ESTO
+		this.costo = salida.getCostoActividad() * cantTuristas; 
 		this.pagoConPaquete = null;
 	}
 

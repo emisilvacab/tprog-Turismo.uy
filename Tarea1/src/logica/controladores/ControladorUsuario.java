@@ -141,12 +141,12 @@ public class ControladorUsuario implements IControladorUsuario {
 			throw new usuarioNoExisteException("No se encontró un turista con el nickname ingresado.");
 		
 		boolean hayLugar = salida.admiteCapacidad(capacidad);
-		boolean existe = salida.existeInscripcion(nickname);
+		boolean existe = salida.existeInscripcion(turista.getNickname());
 		if (hayLugar && !existe) {
 			GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
 			Inscripcion insc = new Inscripcion(fechaActual,capacidad,salida,turista);
-			salida.agregarInscripcion(insc);
-			turista.agregarInscripcion(insc);
+			salida.addInscripcion(insc);
+			turista.addInscripcion(insc);
 			return "no";
 		}
 		else {
@@ -155,6 +155,5 @@ public class ControladorUsuario implements IControladorUsuario {
 			else 
 				return "existe";
 		}
-	}	
-	
+	}
 }

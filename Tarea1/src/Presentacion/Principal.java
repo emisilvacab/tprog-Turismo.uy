@@ -16,7 +16,7 @@ import logica.controladores.IControladorUsuario;
 import Presentacion.ConsultarUsuario;
 
 /**
-* Clase principal (Frame) con el método Main.
+* Clase principal (Frame) con el metodo Main.
 * @author leonardo.melgar
 *
 */
@@ -27,6 +27,7 @@ public class Principal {
 	private IControladorPaquete ICP;
 	private IControladorDepartamento ICD;
 	private ConsultarUsuario conUsrInternalFrame;
+	private InscripcionASalida inscASalInternalFrame;
 	
 	
 	
@@ -47,7 +48,7 @@ public class Principal {
     public Principal() {
     	initialize();
     	
-    	// Inicialización
+    	// Inicializaciï¿½n
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIControladorUsuario();
         ICD = fabrica.getIControladorDepartamento();
@@ -56,6 +57,10 @@ public class Principal {
         conUsrInternalFrame = new ConsultarUsuario(ICU);
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
+        
+        inscASalInternalFrame = new InscripcionASalida(ICU,ICD);
+        inscASalInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(inscASalInternalFrame);
 
     }
     
@@ -67,9 +72,9 @@ public class Principal {
         frmReservas_UY.setBounds(100, 100, 450, 400);
         frmReservas_UY.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
-        // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
-        // evento asociado que permite realizar una acción una vez se seleccionan. 
+        // Se crea una barra de menï¿½ (JMenuBar) con dos menï¿½ (JMenu) desplegables.
+        // Cada menï¿½ contiene diferentes opciones (JMenuItem), los cuales tienen un 
+        // evento asociado que permite realizar una acciï¿½n una vez se seleccionan. 
         JMenuBar menuBar = new JMenuBar();
         frmReservas_UY.setJMenuBar(menuBar);
 
@@ -79,23 +84,34 @@ public class Principal {
         JMenuItem menuSalir = new JMenuItem("Salir");
         menuSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                // Salgo de la aplicación
+                // Salgo de la aplicaciï¿½n
                 frmReservas_UY.setVisible(false);
                 frmReservas_UY.dispose();
             }
         });
         menuSistema.add(menuSalir);
+        
         JMenu menuUsuarios = new JMenu("Usuarios");
         menuBar.add(menuUsuarios);
         
         JMenuItem menuItemConsultaUsuario = new JMenuItem("Consultar");
         menuItemConsultaUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver información de un usuario
+                // Muestro el InternalFrame para ver informaciï¿½n de un usuario
                 conUsrInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuItemConsultaUsuario);
+        
+        JMenuItem menuItemInscripcionASalida = new JMenuItem("Inscribir a salida");
+        menuItemInscripcionASalida.setToolTipText("Seleccione esta opciÃ³n si desea inscribir un usuario a una salida");
+        menuItemInscripcionASalida.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	inscASalInternalFrame.cargarDptos();
+                inscASalInternalFrame.setVisible(true);
+            }
+        });
+        menuUsuarios.add(menuItemInscripcionASalida);
     }
     
     

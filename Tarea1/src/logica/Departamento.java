@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 
 import datatypes.DTActividad;
+import datatypes.DTSalida;
+import excepciones.actividadNoExisteException;
+import excepciones.departamentoNoExisteException;
 
 public class Departamento{
 	
@@ -65,13 +68,13 @@ public class Departamento{
 			res.add(actividades.get(key).getDatos());
 		});
 		return res;
+	}
+
+	public HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
+		Actividad act = actividades.get(nombreAct);
+		if (act == null)
+			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");
+		return act.obtenerSalidasVigentes();
 	};
-	
-	
-	
-	
-	
-	
-	
 	
 }
