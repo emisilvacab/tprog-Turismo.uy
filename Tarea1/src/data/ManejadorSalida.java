@@ -1,6 +1,7 @@
 package data;
 
 import java.util.Map;
+import java.util.HashMap;
 
 import logica.Salida;
 
@@ -8,7 +9,9 @@ public class ManejadorSalida{
 	private Map<String, Salida> salidas;
 	private static ManejadorSalida instancia = null;
 	
-	private ManejadorSalida() {}
+	private ManejadorSalida() {
+		this.salidas = new HashMap<String, Salida>();
+	}
 	
 	public static ManejadorSalida getInstance() {
 		if (instancia == null)

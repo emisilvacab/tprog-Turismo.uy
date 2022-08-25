@@ -1,6 +1,13 @@
 package logica;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+
+import datatypes.DTActividad;
+import datatypes.DTSalida;
+import excepciones.actividadNoExisteException;
+import excepciones.departamentoNoExisteException;
 
 public class Departamento{
 	
@@ -8,14 +15,14 @@ public class Departamento{
 	private String descripcion;
 	private String url;
 	
-	private Map<String, Actividad> actividades;
+	private HashMap<String, Actividad> actividades;
 
 	
 	public Departamento(String nombre, String descripcion, String url) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.url = url;
-		this.actividades = null;
+		this.actividades = new HashMap<String,Actividad>();
 	}
 
 	public String getNombre() {
@@ -31,7 +38,7 @@ public class Departamento{
 	}
 	
 	//SE PUEDE MODIFICAR PARA QUE DEVUELVA SOLO NOMBRES/IDENTIFICADORES
-	public Map<String, Actividad> getActividades() {
+	public HashMap<String, Actividad> getActividades() {
 		return actividades;
 	}
 	
@@ -47,12 +54,27 @@ public class Departamento{
 		this.url = url;
 	}
 	
-	public void setActividades(Map<String, Actividad> actividades) {
+	public void setActividades(HashMap<String, Actividad> actividades) {
 		this.actividades = actividades;
 	}
 	
 	public void addActividad(Actividad actividad) {
 		this.actividades.put(actividad.getNombre(), actividad);
 	}
+	
+	public HashSet<DTActividad> obtenerDatosActividades(){
+		HashSet<DTActividad> res = new HashSet<DTActividad>();
+		actividades.forEach((key,value)->{
+			res.add(actividades.get(key).getDatos());
+		});
+		return res;
+	}
+
+	public HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
+		Actividad act = actividades.get(nombreAct);
+		if (act == null)
+			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");
+		return act.obtenerSalidasVigentes();
+	};
 	
 }

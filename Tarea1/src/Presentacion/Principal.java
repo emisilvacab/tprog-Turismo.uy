@@ -27,6 +27,8 @@ public class Principal {
 	private IControladorDepartamento ICD;
 	private ConsultarUsuario conUsrInternalFrame;
 	private AltaUsuario crearUsrInternalFrame;
+	private InscripcionASalida inscASalInternalFrame;
+	
 	
 	
 	
@@ -61,7 +63,10 @@ public class Principal {
         crearUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(crearUsrInternalFrame);
         
-
+        inscASalInternalFrame = new InscripcionASalida(ICU,ICD);
+        inscASalInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(inscASalInternalFrame);
+        
     }
     
     private void initialize() {
@@ -110,6 +115,17 @@ public class Principal {
         	}
         });
         menuUsuarios.add(menuItemAltaUsuario);
+        
+        JMenuItem menuItemInscripcionASalida = new JMenuItem("Inscribir a salida");
+        menuItemInscripcionASalida.setToolTipText("Seleccione esta opción si desea inscribir un usuario a una salida");
+        menuItemInscripcionASalida.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	inscASalInternalFrame.cargarDptos();
+                inscASalInternalFrame.setVisible(true);
+            }
+        });
+        menuUsuarios.add(menuItemInscripcionASalida);
+ 
         
         
 

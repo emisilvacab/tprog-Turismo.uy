@@ -1,10 +1,14 @@
 package logica;
 
-import java.util.Collection;
+import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import datatypes.DTActividad;
+import datatypes.DTSalida;
 
 public class Actividad{
 	
@@ -29,8 +33,8 @@ public class Actividad{
 		this.alta = alta;
 		this.departamento = departamento;
 		this.proveedor = proveedor;
-		this.paquetes = null;
-		this.salidas = null;
+		this.paquetes = new HashMap<String, Paquete>();
+		this.salidas = new HashMap<String, Salida>();
 	}
 
 	public String getNombre() {
@@ -129,6 +133,20 @@ public class Actividad{
 				
 		return res;
 	
+	}
+
+	public DTActividad getDatos() {
+		DTActividad res = new DTActividad(nombre,descripcion,duracion,costo,ciudad,alta);
+		return res;
+	}
+
+	public HashSet<DTSalida> obtenerSalidasVigentes() {
+		HashSet<DTSalida> res = new HashSet<DTSalida>();
+		salidas.forEach((key,value)->{
+			if(value.getFechaSalida().after(GregorianCalendar.from(ZonedDateTime.now())))
+				res.add(value.getDatos());				
+					});
+		return res;
 	}
 
 	

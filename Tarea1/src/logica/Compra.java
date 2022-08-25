@@ -15,8 +15,8 @@ public class Compra{
 	public Compra(GregorianCalendar fecha, int cantTuristas, GregorianCalendar vencimiento, int costoTotal,Paquete paquete, Turista turista) {
 		this.fecha = fecha;
 		this.cantTuristas = cantTuristas;
-		//this.vencimiento = vencimiento; Calculado
-		//this.costoTotal = costoTotal; Calculado
+		this.vencimiento = new GregorianCalendar(); //Calculado
+		this.costoTotal = 0; //Calculado
 		this.paquete = paquete;
 		this.turista = turista;
 	}

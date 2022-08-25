@@ -5,13 +5,13 @@ import java.util.GregorianCalendar;
 public class DTInscripcion{
 	
 	private GregorianCalendar fecha;
-	private int cantDTTuristas;
+	private int cantTuristas;
 	private float costo;
 	
-	public DTInscripcion(GregorianCalendar fecha, int cantDTTuristas) {
-		this.fecha = fecha;
-		this.cantDTTuristas = cantDTTuristas;
-		this.costo = 0; //CALCULAR ESTO
+	public DTInscripcion(GregorianCalendar fecha, int cantTuristas, float costo) {
+		this.setFecha(fecha);
+		this.setCantTuristas(cantTuristas);
+		this.setCosto(costo);
 	}
 
 
@@ -25,18 +25,22 @@ public class DTInscripcion{
 	}
 
 
-	public int getCantDTTuristas() {
-		return cantDTTuristas;
+	public int getCantTuristas() {
+		return cantTuristas;
 	}
 
 
 	public float getCosto() {
 		return costo;
 	}
+	
+	public void setCosto(float costo) {
+		this.costo = costo;
+	}
 
 
-	public void setCantDTTuristas(int cantDTTuristas) {
-		this.cantDTTuristas = cantDTTuristas;
+	public void setCantTuristas(int cantDTTuristas) {
+		this.cantTuristas = cantDTTuristas;
 	}
 		
 }

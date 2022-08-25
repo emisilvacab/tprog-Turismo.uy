@@ -16,5 +16,8 @@ public interface IControladorUsuario {
 	public abstract Set<String> mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException;
 
 	public abstract void altaUsuario(DTUsuario user) throws UsuarioRepetidoException;
+	
+	public abstract String ingresarDatosInscripcion(String nickname,String nombre,int capacidad) throws excepciones.salidaNoExisteException, usuarioNoExisteException;
+	
 
 }

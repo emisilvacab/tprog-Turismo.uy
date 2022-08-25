@@ -10,12 +10,20 @@ public class DTUsuario{
 	private String correo;
 	private GregorianCalendar nacimiento;
 	
+	public DTUsuario() {
+		this.setNickname(new String());
+		this.setNombre(new String());
+		this.setApellido(new String());
+		this.setCorreo(new String());
+		this.setNacimiento(new GregorianCalendar());
+	}
+	
 	public DTUsuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento) {
-		this.nickname = nickname;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.correo = correo;
-		this.nacimiento = nacimiento;
+		this.setNickname(nickname);
+		this.setNombre(nombre);
+		this.setApellido(apellido);
+		this.setCorreo(correo);
+		this.setNacimiento(nacimiento);
 	}
 	
 	public String getNickname() {

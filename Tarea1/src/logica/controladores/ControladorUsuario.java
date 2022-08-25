@@ -1,6 +1,7 @@
 package logica.controladores;
 
 
+import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
@@ -11,14 +12,17 @@ import java.util.Vector;
 import datatypes.*;
 import data.ManejadorUsuario;
 import excepciones.UsuarioRepetidoException;
+import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
 import logica.Inscripcion;
 import logica.Paquete;
 import logica.Proveedor;
+import logica.Salida;
 import logica.Turista;
 import logica.Usuario;
 import logica.Actividad;
 import data.ManejadorPaquete;
+import data.ManejadorSalida;
 
 public class ControladorUsuario implements IControladorUsuario {
 
@@ -130,5 +134,34 @@ public class ControladorUsuario implements IControladorUsuario {
 //        } else
 //            throw new UsuarioNoExisteException("No existen usuarios registrados");
 //
-//    }
+//    } QUE ES ESTO?????
+	
+	public String ingresarDatosInscripcion(String nickname,String nombre,int capacidad) throws excepciones.salidaNoExisteException, usuarioNoExisteException{
+		
+		ManejadorSalida mSalida = ManejadorSalida.getInstance();
+		ManejadorUsuario mUsuario = ManejadorUsuario.getInstance();
+		
+		Salida salida = mSalida.getSalida(nombre);
+		if (salida == null)
+			throw new salidaNoExisteException("No se encontró una salida con el nombre ingresado.");
+		Turista turista = mUsuario.getTurista(nickname);
+		if (turista == null) 
+			throw new usuarioNoExisteException("No se encontró un turista con el nickname ingresado.");
+		
+		boolean hayLugar = salida.admiteCapacidad(capacidad);
+		boolean existe = salida.existeInscripcion(turista.getNickname());
+		if (hayLugar && !existe) {
+			GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
+			Inscripcion insc = new Inscripcion(fechaActual,capacidad,salida,turista);
+			salida.addInscripcion(insc);
+			turista.addInscripcion(insc);
+			return "no";
+		}
+		else {
+			if(!hayLugar)
+				return "lleno";
+			else 
+				return "existe";
+		}
+	}
 }

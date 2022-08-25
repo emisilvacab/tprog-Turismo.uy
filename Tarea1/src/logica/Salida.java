@@ -4,6 +4,8 @@ import java.util.GregorianCalendar;
 import java.util.Vector;
 //import java.util.Map;
 
+import datatypes.DTSalida;
+
 public class Salida{
 	
 	private String nombre;
@@ -23,7 +25,7 @@ public class Salida{
 		this.fechaSalida = fechaSalida;
 		this.lugarSalida = lugarSalida;
 		this.actividad = actividad;
-		this.inscripciones = null;
+		this.inscripciones = new Vector<Inscripcion>();
 	}
 
 	public String getNombre() {
@@ -83,8 +85,31 @@ public class Salida{
 	}
 	
 	public void addInscripcion(Inscripcion inscripcion) {
-		//fijarse si se puede inscribir esto no se si se hace aca o en controlador/manejador
 		this.inscripciones.add(inscripcion);
+	}
+
+	public boolean admiteCapacidad(int capacidad) {
+		int total = 0;
+		for(int i = 0; i < inscripciones.size(); i++) {
+			total += inscripciones.get(i).getCantTuristas();
+		}
+		return (total + capacidad <= maxTuristas);
+	}
+
+	public boolean existeInscripcion(String nickname) {
+		int i = 0;
+		while (i < inscripciones.size() && (inscripciones.get(i).getNicknameInscripto() != nickname))
+			i++;
+		return (i < inscripciones.size());
+	}
+
+	public DTSalida getDatos() {
+		DTSalida res = new DTSalida(nombre,maxTuristas,alta,fechaSalida,lugarSalida);
+		return res;
+	}
+
+	public float getCostoActividad() {
+		return actividad.getCosto();
 	}
 	
 }

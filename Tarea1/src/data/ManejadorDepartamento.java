@@ -8,7 +8,9 @@ public class ManejadorDepartamento{
 	private HashMap<String, Departamento> departamentos;
 	private static ManejadorDepartamento instancia = null;
 	
-	private ManejadorDepartamento() {}
+	private ManejadorDepartamento() {
+		departamentos = new HashMap<String, Departamento>();
+	}
 	
 	public static ManejadorDepartamento getInstance() {
 		if (instancia == null)
@@ -25,9 +27,6 @@ public class ManejadorDepartamento{
 	}
 	
 	public HashMap<String, Departamento> getDepartamentos(){
-		if (departamentos.isEmpty())
-			return null;
-		else
 			return departamentos;
 	}
 }

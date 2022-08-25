@@ -17,7 +17,7 @@ public class Inscripcion{
 		this.cantTuristas = cantTuristas;
 		this.salida = salida;
 		this.turista = turista;
-		this.costo = 0; //CALCULAR ESTO
+		this.costo = salida.getCostoActividad() * cantTuristas; 
 		this.pagoConPaquete = null;
 	}
 
@@ -73,6 +73,11 @@ public class Inscripcion{
 
 	public void setPagoPaquete(Compra pagoConPaquete) {
 		this.pagoConPaquete = pagoConPaquete;
+	}
+
+
+	public String getNicknameInscripto() {
+		return turista.getNickname();
 	}
 
 	
