@@ -90,8 +90,8 @@ public class ConsultarUsuario extends JInternalFrame {
 				GridBagConstraints gbc_listaUsuarios = new GridBagConstraints();
 				gbc_listaUsuarios.anchor = GridBagConstraints.NORTHWEST;
 				gbc_listaUsuarios.insets = new Insets(0, 0, 5, 0);
-				gbc_listaUsuarios.gridwidth = 9;
-				gbc_listaUsuarios.gridx = 1;
+				gbc_listaUsuarios.gridwidth = 10;
+				gbc_listaUsuarios.gridx = 0;
 				gbc_listaUsuarios.gridy = 0;
 				getContentPane().add(listaUsuarios, gbc_listaUsuarios);
 				listaUsuarios.setVisible(true);
