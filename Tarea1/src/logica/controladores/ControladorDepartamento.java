@@ -15,7 +15,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	
 	public HashSet<String> obtenerDepartamentos(){
 		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
-		HashMap<String, Departamento> dptos = mDptos.getDepartamentos();
+		HashMap<String, Departamento> dptos = (HashMap<String, Departamento>) mDptos.getDepartamentos();
 		HashSet<String> res = new HashSet<String>();
 		dptos.forEach((key,value)->{
 			res.add(key);
