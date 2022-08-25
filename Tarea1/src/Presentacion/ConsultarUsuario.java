@@ -7,9 +7,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import excepciones.usuarioNoExisteException;
-import logica.DataType.DataProveedor;
-import logica.DataType.DataTurista;
-import logica.DataType.DataUsuario;
+import datatypes.DTProveedor;
+import datatypes.DTTurista;
+import datatypes.DTUsuario;
+import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 
 import javax.swing.JButton;
@@ -18,11 +19,8 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.util.Set;
-import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
 import javax.swing.SwingConstants;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -35,7 +33,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario contUser;
 	private JComboBox<String> listaUsuarios;
-	private DataUsuario userSelected;
+	private DTUsuario userSelected;
 	private JButton btnCerrar;
 	private JLabel nombreUsuario;
 	private JLabel nicknameUsuario;
@@ -58,9 +56,11 @@ public class ConsultarUsuario extends JInternalFrame {
 	private JLabel linkProv;
 	private JComboBox<String> comboActividadesOfrecidas;
 	private JComboBox<String> comboSalidasAsociadas;
+	private IControladorPaquete conPaq;
 
-	public ConsultarUsuario(IControladorUsuario icu) {
+	public ConsultarUsuario(IControladorUsuario icu, IControladorPaquete icp) {
 		contUser = icu;
+		conPaq = icp;
 		
 		setResizable(true);
         setIconifiable(true);
@@ -90,8 +90,8 @@ public class ConsultarUsuario extends JInternalFrame {
 				GridBagConstraints gbc_listaUsuarios = new GridBagConstraints();
 				gbc_listaUsuarios.anchor = GridBagConstraints.NORTHWEST;
 				gbc_listaUsuarios.insets = new Insets(0, 0, 5, 0);
-				gbc_listaUsuarios.gridwidth = 9;
-				gbc_listaUsuarios.gridx = 1;
+				gbc_listaUsuarios.gridwidth = 10;
+				gbc_listaUsuarios.gridx = 0;
 				gbc_listaUsuarios.gridy = 0;
 				getContentPane().add(listaUsuarios, gbc_listaUsuarios);
 				listaUsuarios.setVisible(true);
@@ -272,7 +272,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		
 	}
 	
-	private void cargarInfoUsuario(DataUsuario userSelected) {
+	private void cargarInfoUsuario(DTUsuario userSelected) {
 		nicknameUsuario = new JLabel(userSelected.getNickname());
 	    nicknameUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 	    nicknameUsuario.setBounds(10, 114, 65, 14);
@@ -321,7 +321,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		gbc_nacimientoUsuario.gridy = 6;
 		getContentPane().add(nacimientoUsuario, gbc_nacimientoUsuario);
 		
-		if (userSelected.getClass() == DataTurista.class) {
+		if (userSelected.getClass() == DTTurista.class) {
 			nacionalidadUsuario = new JLabel("Uruguay");
 			GridBagConstraints gbc_nacionalidadUsuario = new GridBagConstraints();
 			gbc_nacionalidadUsuario.insets = new Insets(0, 0, 5, 5);
@@ -349,7 +349,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			
 			tipoUsuario.setText("El usuario es un Turista");
 			tipoUsuario.setVisible(true);
-			DataTurista tur = (DataTurista)userSelected;
+			DTTurista tur = (DTTurista)userSelected;
 			nacionalidadUsuario.setText(tur.getNacionalidad());
 			nacionalidadUsuario.setVisible(true);
 			nacionalidadTag.setVisible(true);
@@ -379,7 +379,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		}else {
 			tipoUsuario.setText("El usuario es un Proveedor");
 			tipoUsuario.setVisible(true);
-			DataProveedor prov = (DataProveedor)userSelected;
+			DTProveedor prov = (DTProveedor)userSelected;
 			linkProv.setText(prov.getLink());
 			linkProv.setVisible(true);
 			descripcionProv.setText(prov.getDescripcion());
@@ -392,7 +392,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			} catch (usuarioNoExisteException e1) {
 				JOptionPane.showMessageDialog( null, e1.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 			}
-			Set<String> salidasAsociadas = contUser.mostrarSalidasAsociadas(actividadesOfrecidas);
+			Set<String> salidasAsociadas = conPaq.mostrarSalidasAsociadas(actividadesOfrecidas);
 			for (String actividad: actividadesOfrecidas) {
 				comboActividadesOfrecidas.addItem(actividad);
 			}
