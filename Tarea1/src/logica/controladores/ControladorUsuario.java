@@ -10,6 +10,7 @@ import java.util.Vector;
 
 import datatypes.*;
 import data.ManejadorUsuario;
+import excepciones.UsuarioRepetidoException;
 import excepciones.usuarioNoExisteException;
 import logica.Inscripcion;
 import logica.Paquete;
@@ -90,14 +91,23 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 
 	@Override
-	public Set<String> mostrarSalidasAsociadas(Set<String> actividadesOfrecidas) {
-		Set<String> salidas = new HashSet<String>();
-		ManejadorPaquete mp = ManejadorPaquete.getInstance();
-		for (Paquete paq: mp.getPaquetes().values()) {
-			salidas.addAll(paq.obtenerNombresSalidasAsociadas(actividadesOfrecidas));
+	public void altaUsuario(DTUsuario user) throws UsuarioRepetidoException {
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		if (mu.getProveedor(user.getNickname())!=null || mu.getTurista(user.getNickname())!=null) {
+			throw new UsuarioRepetidoException("Ya existe un usuario con el nickname ingresado");
+		}else {
+			if (user.getClass() == DTTurista.class) {
+				DTTurista dttur = (DTTurista)user;
+				mu.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), dttur.getNacionalidad()));
+			}else {
+				DTProveedor dtprov = (DTProveedor)user;
+				mu.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), dtprov.getDescripcion(), dtprov.getLink()));
+				
+			}
 		}
-		return salidas;
+		
 	}
+
     
     
     

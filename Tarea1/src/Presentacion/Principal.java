@@ -53,7 +53,7 @@ public class Principal {
         ICD = fabrica.getIControladorDepartamento();
         ICP = fabrica.getIControladorPaquete();
         
-        conUsrInternalFrame = new ConsultarUsuario(ICU);
+        conUsrInternalFrame = new ConsultarUsuario(ICU, ICP);
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
         
@@ -69,7 +69,7 @@ public class Principal {
         // Se crea el Frame con las dimensiones indicadas.
         frmReservas_UY = new JFrame();
         frmReservas_UY.setTitle("Reservas_UY admin");
-        frmReservas_UY.setBounds(100, 100, 450, 400);
+        frmReservas_UY.setBounds(100, 100, 569, 450);
         frmReservas_UY.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
@@ -110,6 +110,9 @@ public class Principal {
         	}
         });
         menuUsuarios.add(menuItemAltaUsuario);
+        
+        
+
     }
     
     

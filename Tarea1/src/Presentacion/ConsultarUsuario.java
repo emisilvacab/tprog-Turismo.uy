@@ -10,6 +10,7 @@ import excepciones.usuarioNoExisteException;
 import datatypes.DTProveedor;
 import datatypes.DTTurista;
 import datatypes.DTUsuario;
+import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 
 import javax.swing.JButton;
@@ -55,9 +56,11 @@ public class ConsultarUsuario extends JInternalFrame {
 	private JLabel linkProv;
 	private JComboBox<String> comboActividadesOfrecidas;
 	private JComboBox<String> comboSalidasAsociadas;
+	private IControladorPaquete conPaq;
 
-	public ConsultarUsuario(IControladorUsuario icu) {
+	public ConsultarUsuario(IControladorUsuario icu, IControladorPaquete icp) {
 		contUser = icu;
+		conPaq = icp;
 		
 		setResizable(true);
         setIconifiable(true);
@@ -389,7 +392,7 @@ public class ConsultarUsuario extends JInternalFrame {
 			} catch (usuarioNoExisteException e1) {
 				JOptionPane.showMessageDialog( null, e1.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 			}
-			Set<String> salidasAsociadas = contUser.mostrarSalidasAsociadas(actividadesOfrecidas);
+			Set<String> salidasAsociadas = conPaq.mostrarSalidasAsociadas(actividadesOfrecidas);
 			for (String actividad: actividadesOfrecidas) {
 				comboActividadesOfrecidas.addItem(actividad);
 			}

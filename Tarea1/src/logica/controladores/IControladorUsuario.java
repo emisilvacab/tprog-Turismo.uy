@@ -4,6 +4,7 @@ import java.util.Set;
 
 import datatypes.DTUsuario;
 import excepciones.usuarioNoExisteException;
+import excepciones.UsuarioRepetidoException;s
 
 public interface IControladorUsuario {
 	public abstract Set<String> obtenerUsuarios();
@@ -14,6 +15,6 @@ public interface IControladorUsuario {
 
 	public abstract Set<String> mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException;
 
-	public abstract Set<String> mostrarSalidasAsociadas(Set<String> actividadesOfrecidas);
+	public abstract void altaUsuario(DTUsuario user) throws UsuarioRepetidoException;
 
 }
