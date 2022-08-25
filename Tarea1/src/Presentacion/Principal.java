@@ -46,7 +46,7 @@ public class Principal {
     }
     
     public Principal() {
-    	
+    	initialize();
     	
     	// Inicializaci�n
         Fabrica fabrica = Fabrica.getInstance();
@@ -54,13 +54,9 @@ public class Principal {
         ICD = fabrica.getIControladorDepartamento();
         ICP = fabrica.getIControladorPaquete();
         
-        ICU.cargarDatos();
-        ICD.cargarDatos();
-    	initialize();
-        
-        /*conUsrInternalFrame = new ConsultarUsuario(ICU);
+        conUsrInternalFrame = new ConsultarUsuario(ICU);
         conUsrInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(conUsrInternalFrame);*/
+        frmReservas_UY.getContentPane().add(conUsrInternalFrame);
         
         inscASalInternalFrame = new InscripcionASalida(ICU,ICD);
         inscASalInternalFrame.setVisible(false);

@@ -156,16 +156,4 @@ public class ControladorUsuario implements IControladorUsuario {
 				return "existe";
 		}
 	}
-
-	@Override
-	public void cargarDatos() {
-		Turista tur1 = new Turista("leomel","Leonardo", "Melgar","leonmel1@gmail.com", new GregorianCalendar(2001,6,5), "uruguaya");
-		Turista tur2 = new Turista("leomel2","Leonardo2", "Melgar2","leonmel1@gmail.com2", new GregorianCalendar(2001,6,1), "uruguaya2");
-		Proveedor p1 = new Proveedor("joacomanya","Joaquin", "Vidal", "joaco01@mail.com", new GregorianCalendar(2001,8,4),"älgo");
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		mu.addProveedor(p1);
-		mu.addTurista(tur1);
-		mu.addTurista(tur2);
-	}	
-	
 }

@@ -19,6 +19,4 @@ public interface IControladorUsuario {
 	
 	public abstract String ingresarDatosInscripcion(String nickname,String nombre,int capacidad) throws usuarioNoExisteException,salidaNoExisteException;
 
-	public abstract void cargarDatos();
-
 }
