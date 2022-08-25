@@ -141,12 +141,12 @@ public class ControladorUsuario implements IControladorUsuario {
 			throw new usuarioNoExisteException("No se encontró un turista con el nickname ingresado.");
 		
 		boolean hayLugar = salida.admiteCapacidad(capacidad);
-		boolean existe = salida.existeInscripcion(nickname);
+		boolean existe = salida.existeInscripcion(turista.getNickname());
 		if (hayLugar && !existe) {
 			GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
 			Inscripcion insc = new Inscripcion(fechaActual,capacidad,salida,turista);
-			salida.agregarInscripcion(insc);
-			turista.agregarInscripcion(insc);
+			salida.addInscripcion(insc);
+			turista.addInscripcion(insc);
 			return "no";
 		}
 		else {
@@ -155,6 +155,17 @@ public class ControladorUsuario implements IControladorUsuario {
 			else 
 				return "existe";
 		}
+	}
+
+	@Override
+	public void cargarDatos() {
+		Turista tur1 = new Turista("leomel","Leonardo", "Melgar","leonmel1@gmail.com", new GregorianCalendar(2001,6,5), "uruguaya");
+		Turista tur2 = new Turista("leomel2","Leonardo2", "Melgar2","leonmel1@gmail.com2", new GregorianCalendar(2001,6,1), "uruguaya2");
+		Proveedor p1 = new Proveedor("joacomanya","Joaquin", "Vidal", "joaco01@mail.com", new GregorianCalendar(2001,8,4),"älgo");
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		mu.addProveedor(p1);
+		mu.addTurista(tur1);
+		mu.addTurista(tur2);
 	}	
 	
 }

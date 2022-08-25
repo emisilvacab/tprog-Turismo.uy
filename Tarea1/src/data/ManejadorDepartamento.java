@@ -6,7 +6,7 @@ import java.util.Map;
 import logica.Departamento;
 
 public class ManejadorDepartamento{
-	private Map<String, Departamento> departamentos;
+	private HashMap<String, Departamento> departamentos;
 	private static ManejadorDepartamento instancia = null;
 	
 	private ManejadorDepartamento() {
@@ -27,10 +27,10 @@ public class ManejadorDepartamento{
 		return departamentos.get(nombre);
 	}
 	
-	public Map<String, Departamento> getDepartamentos(){
-		if (departamentos.isEmpty())
+	public HashMap<String, Departamento> getDepartamentos(){
+		/*if (departamentos.isEmpty())
 			return null;
-		else
+		else*/
 			return departamentos;
 	}
 }
