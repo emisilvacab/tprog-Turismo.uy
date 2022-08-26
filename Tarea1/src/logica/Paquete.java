@@ -94,8 +94,10 @@ public class Paquete{
 	public Set<String> obtenerNombresSalidasAsociadas(Set<String> actividades) {
 		Set<String> salidas = new HashSet<String>();
 		for (Actividad act: this.actividades.values()) {
-			salidas.addAll(act.obtenerNombresSalidasAsociadas());
+			if (actividades.contains(act.getNombre())){
+				salidas.addAll(act.obtenerNombresSalidasAsociadas());
 			}
+		}
 				
 		return salidas;
 	

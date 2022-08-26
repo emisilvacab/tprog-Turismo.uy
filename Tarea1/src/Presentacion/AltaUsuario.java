@@ -213,6 +213,7 @@ public class AltaUsuario extends JInternalFrame{
 						contrUsers.altaUsuario(user);
 					} catch (UsuarioRepetidoException e1) {
 						JOptionPane.showMessageDialog( null, e1.getMessage(), "Alta Usuario", JOptionPane.ERROR_MESSAGE);
+						return;
 					}
         			JOptionPane.showMessageDialog(null, "Usuario cargado con éxito!", "Alta de usuario",
                             JOptionPane.INFORMATION_MESSAGE);

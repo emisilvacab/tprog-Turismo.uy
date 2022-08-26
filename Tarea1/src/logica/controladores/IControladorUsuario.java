@@ -7,13 +7,13 @@ import excepciones.usuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 
 public interface IControladorUsuario {
-	public abstract Set<String> obtenerUsuarios();
+	public abstract String[] obtenerUsuarios();
 
 	public abstract DTUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException;
 	
-	public abstract Set<String> obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException;
+	public abstract String[] obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException;
 
-	public abstract Set<String> mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException;
+	public abstract String[] mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException;
 
 	public abstract void altaUsuario(DTUsuario user) throws UsuarioRepetidoException;
 	

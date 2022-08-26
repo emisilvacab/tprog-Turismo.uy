@@ -103,6 +103,7 @@ public class Principal {
         menuItemConsultaUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
+            	conUsrInternalFrame.cargarUsuarios();
                 conUsrInternalFrame.setVisible(true);
             }
         });
