@@ -28,10 +28,7 @@ public class ManejadorPaquete{
 	}
 	
 	public Map<String, Paquete> getPaquetes(){
-		if (paquetes.isEmpty())
-			return null;
-		else
-			return paquetes;
+		return paquetes;
 	}
 	
 }

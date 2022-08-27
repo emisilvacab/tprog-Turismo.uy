@@ -11,13 +11,18 @@ public class ControladorPaquete implements IControladorPaquete{
 		
 	}
 	@Override
-	public Set<String> mostrarSalidasAsociadas(Set<String> actividadesOfrecidas) {
+	public String[] mostrarSalidasAsociadas(String[] actividadesOfrecidas) {
 		Set<String> salidas = new HashSet<String>();
+		HashSet<String> acts = new HashSet<String>();
+		for (String act: actividadesOfrecidas) {
+			acts.add(act);
+		}
 		ManejadorPaquete mp = ManejadorPaquete.getInstance();
 		for (Paquete paq: mp.getPaquetes().values()) {
-			salidas.addAll(paq.obtenerNombresSalidasAsociadas(actividadesOfrecidas));
+			salidas.addAll(paq.obtenerNombresSalidasAsociadas(acts));
 		}
-		return salidas;
+		return salidas.toArray(new String[salidas.size()]);
 	}
+
 
 }

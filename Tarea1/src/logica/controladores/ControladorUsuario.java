@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
+import java.util.Arrays;
 
 import datatypes.*;
 import data.ManejadorUsuario;
@@ -29,13 +30,20 @@ public class ControladorUsuario implements IControladorUsuario {
     public ControladorUsuario() {
     }
     
-    public Set<String> obtenerUsuarios(){
+    public String[] obtenerUsuarios(){
     	ManejadorUsuario mu = ManejadorUsuario.getInstance();
     	Map<String, Proveedor> proveedores = mu.getProveedores();
     	Map<String, Turista> turistas = mu.getTuristas();
-    	Set<String> usersName = proveedores.keySet();
-    	usersName.addAll(turistas.keySet());
-    	return usersName;
+    	Set<String> provsName = proveedores.keySet();
+    	Set<String> tursName = turistas.keySet();
+    	Set<String> usersName = new HashSet<String>();
+    	for (String prov: provsName) {
+    		usersName.add(prov);
+    	}
+    	for (String tur: tursName) {
+    		usersName.add(tur);
+    	}
+    	return usersName.toArray(new String[usersName.size()]);
     	
     }
     
@@ -63,7 +71,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 
 	@Override
-	public Set<String> obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException {
+	public String[] obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException {
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Turista tur = mu.getTurista(nickname);
 		if (tur == null) throw new usuarioNoExisteException("El turista no fue encontrado");
@@ -74,13 +82,14 @@ public class ControladorUsuario implements IControladorUsuario {
 				nombresSalidas.add(inscripcion.getSalida().getNombre());
 			}
 		}
-		return nombresSalidas;
+		return nombresSalidas.toArray(new String[nombresSalidas.size()]);
 		
-	
 	}
+	
+	
 
 	@Override
-	public Set<String> mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException {
+	public String[] mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException {
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Proveedor prov = mu.getProveedor(nickname);
 		Set<String> actividades = new HashSet<String>();
@@ -90,7 +99,7 @@ public class ControladorUsuario implements IControladorUsuario {
 				actividades.add(act.getNombre());
 			}
 		}
-		return actividades;
+		return actividades.toArray(new String[actividades.size()]);
 		
 	}
 
