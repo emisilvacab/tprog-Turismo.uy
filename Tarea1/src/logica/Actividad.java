@@ -149,5 +149,12 @@ public class Actividad{
 		return res;
 	}
 
+	public boolean existeSalida(String nombre) {
+		Salida sal = salidas.get(nombre);
+		if (sal == null)
+			return false;
+		else 
+			return true;
+	}
 	
 }
