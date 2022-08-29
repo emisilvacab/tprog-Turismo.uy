@@ -67,7 +67,6 @@ public class ConsultaDeSalida extends JInternalFrame {
 		cDpto = icd;
 		
 		setTitle("Consulta de Salida Turistica");
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);

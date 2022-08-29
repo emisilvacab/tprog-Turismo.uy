@@ -144,10 +144,9 @@ public class AltaSalida extends JInternalFrame{
 						String lugarSalida = textLugar.getText();
 						String nombreDep = (String) listaDep.getSelectedItem();
 						String nombreAct = (String) listaAct.getSelectedItem();
-
 						GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
-						int horaSalida = 0;// lo ingresa el usuario junto con fecha tambien DE 0 A 23 hs
-						boolean existeSalida = icd.ingresarDatosSalida(nombreSalida, cantTuristas, fechaActual, new GregorianCalendar(), horaSalida, lugarSalida, nombreDep, nombreAct);
+						int horaSalida = 1;// lo ingresa el usuario junto con fecha tambien DE 0 A 23 hs
+						boolean existeSalida = icd.ingresarDatosSalida(nombreSalida, cantTuristas, fechaActual, new GregorianCalendar(2023, 4, 28), horaSalida, lugarSalida, nombreDep, nombreAct);
 					
 						if (existeSalida) {
 							JOptionPane.showMessageDialog(null, "Ya existe una salida con el mismo nombre reingrese los datos.", "Ya existe", JOptionPane.ERROR_MESSAGE);

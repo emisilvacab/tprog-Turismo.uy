@@ -142,7 +142,7 @@ public class AltaUsuario extends JInternalFrame{
         	}
         });
         
-        turistaButton.addActionListener( new ActionListener() {
+        turistaButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		esTurista = true;
         		nacionalidadLabel.setVisible(true);
@@ -253,7 +253,7 @@ public class AltaUsuario extends JInternalFrame{
 		nickname = nicknameField.getText();
 		apellido = apellidoField.getText();
 		correo = correoField.getText();
-		fecha =  new GregorianCalendar(datePicker.getModel().getYear(), datePicker.getModel().getMonth()-1, datePicker.getModel().getDay());
+		fecha =  new GregorianCalendar(datePicker.getModel().getYear(), datePicker.getModel().getMonth(), datePicker.getModel().getDay());
 		if (turistaButton.isSelected()) {
 			nacionalidad = nacionalidadField.getText();
 		}else {

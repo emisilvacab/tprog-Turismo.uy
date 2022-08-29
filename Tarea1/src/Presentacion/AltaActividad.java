@@ -185,18 +185,19 @@ public class AltaActividad extends JInternalFrame {
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (checkFormulario()) {
 					try {
 						String nombre = txfNombre.getText();
-						String descripcion = txfDescripcion.getText();
-						int duracion = (int) txfDuracion.getValue();
-						float costo = (float) txfCosto.getValue();
+						String descripcion = txfDescripcion.getText();				
+						String dur = (String) txfDuracion.getText();
+						int duracion = Integer.parseInt(dur);
+						String cos = (String) txfCosto.getText();
+						float costo = Float.parseFloat(cos);						
 						String ciudad = txfCiudad.getText();
 						String departamento = (String) comboDepartamento.getSelectedItem();
 						String proveedor = (String) comboProveedor.getSelectedItem();
-						GregorianCalendar fecha = GregorianCalendar.from(ZonedDateTime.now());
+						GregorianCalendar fecha = GregorianCalendar.from(ZonedDateTime.now());				
 						
 						boolean existeAct = iCtrlDepartamento.ingresarDatosActividad(nombre,  descripcion, duracion, costo, ciudad, fecha, proveedor, departamento);
 					
@@ -204,7 +205,7 @@ public class AltaActividad extends JInternalFrame {
 							JOptionPane.showMessageDialog(null, "Ya hay una actividad con el nombre "+ nombre + ". Cambie los datos para ingresar una nueva actividad.", "Actividad " + nombre + " ya existente", JOptionPane.ERROR_MESSAGE);
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "Actividad dada de alta con exito!", "Nueva activiad ingresada", JOptionPane.OK_OPTION);
+							JOptionPane.showMessageDialog(null, "Actividad dada de alta con exito!", "Nueva activiad ingresada", JOptionPane.INFORMATION_MESSAGE);
 							limpiarFormulario();
 						}
 					}
@@ -220,6 +221,13 @@ public class AltaActividad extends JInternalFrame {
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+        		JOptionPane.showMessageDialog(null, "Alta cancelada!", "Alta de actividad", JOptionPane.INFORMATION_MESSAGE);
+        		limpiarFormulario();
+				setVisible(false);
+			}
+		});
 		getContentPane().add(btnCancelar);
 		
 	}
@@ -246,10 +254,10 @@ public class AltaActividad extends JInternalFrame {
 	}
 	
 	public void cargarProveedores() {
-		String[] proveedores = iCtrlUsuario.obtenerProveedores();
-		for (String s : proveedores)
-			comboProveedor.addItem(s);
-		comboProveedor.setSelectedItem(null);
+        DefaultComboBoxModel<String> model;
+        model = new DefaultComboBoxModel<String>(iCtrlUsuario.obtenerProveedores());
+        comboProveedor.setModel(model);
     }
+	
 	
 }
