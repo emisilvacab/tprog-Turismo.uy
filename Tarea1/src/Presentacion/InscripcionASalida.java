@@ -66,7 +66,6 @@ public class InscripcionASalida extends JInternalFrame {
 		icd = picd;
 		
 		setResizable(true);
-		setIconifiable(true);
 	    //setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	    setClosable(true);
 	    setTitle("Inscripción a salida");
@@ -193,6 +192,7 @@ public class InscripcionASalida extends JInternalFrame {
 				setVisible(false);
 			}
 		});
+		
 		
 		//Ingreso de todos los componentes en el groupLayout (realizado con el window design)
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
