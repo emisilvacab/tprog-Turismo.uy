@@ -15,7 +15,7 @@ import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 
 /**
-* Clase principal (Frame) con el método Main.
+* Clase Principal (Frame) con el método Main.
 * @author leonardo.melgar
 *
 */
@@ -26,7 +26,7 @@ public class Principal {
 	private IControladorPaquete ICP;
 	private IControladorDepartamento ICD;
 	private ConsultarUsuario conUsrInternalFrame;
-	//private AltaUsuario crearUsrInternalFrame;
+	private AltaUsuario crearUsrInternalFrame;
 	private InscripcionASalida inscASalInternalFrame;
 	private AltaSalida altaSalidaInternalFrame;
 	
@@ -59,9 +59,9 @@ public class Principal {
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
         
-        //crearUsrInternalFrame = new AltaUsuario(ICU);
-        //crearUsrInternalFrame.setVisible(false);
-        //frmReservas_UY.getContentPane().add(crearUsrInternalFrame);
+        crearUsrInternalFrame = new AltaUsuario(ICU);
+        crearUsrInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(crearUsrInternalFrame);
         
         inscASalInternalFrame = new InscripcionASalida(ICU,ICD);
         inscASalInternalFrame.setVisible(false);
@@ -121,7 +121,7 @@ public class Principal {
         JMenuItem menuItemAltaUsuario = new JMenuItem("Alta");
         menuItemAltaUsuario.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//crearUsrInternalFrame.setVisible(true);
+        		crearUsrInternalFrame.setVisible(true);
         	}
         });
         menuUsuarios.add(menuItemAltaUsuario);
