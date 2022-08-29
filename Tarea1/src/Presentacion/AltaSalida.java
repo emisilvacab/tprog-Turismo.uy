@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTActividad;
 
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
@@ -37,7 +38,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import datatypes.DTActividad;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;

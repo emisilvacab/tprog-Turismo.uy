@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 public class Actividad{
 	

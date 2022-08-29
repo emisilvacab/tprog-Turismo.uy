@@ -3,6 +3,9 @@ package Presentacion;
 import javax.swing.JInternalFrame;
 
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -26,9 +29,6 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import datatypes.DTProveedor;
-import datatypes.DTTurista;
-import datatypes.DTUsuario;
 import excepciones.UsuarioRepetidoException;
 
 import javax.swing.JTextField;

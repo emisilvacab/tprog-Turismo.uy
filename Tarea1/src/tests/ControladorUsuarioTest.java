@@ -5,10 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import datatypes.DTActividad;
-import datatypes.DTProveedor;
-import datatypes.DTSalida;
-import datatypes.DTTurista;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
@@ -19,6 +15,10 @@ import logica.Departamento;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTSalida;
+import logica.datatypes.DTTurista;
 
 import java.time.ZonedDateTime;
 import java.util.Calendar;

@@ -5,6 +5,9 @@ import javax.swing.JInternalFrame;
 import excepciones.actividadNoExisteException;
 
 import logica.controladores.IControladorDepartamento;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,8 +28,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 

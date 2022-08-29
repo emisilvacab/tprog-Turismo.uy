@@ -1,8 +1,5 @@
 package Presentacion;
 
-import datatypes.DTProveedor;
-import datatypes.DTTurista;
-import datatypes.DTUsuario;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
@@ -16,6 +13,9 @@ import javax.swing.JOptionPane;
 
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
 
 public class CargarDatos {
 	private IControladorUsuario icu;

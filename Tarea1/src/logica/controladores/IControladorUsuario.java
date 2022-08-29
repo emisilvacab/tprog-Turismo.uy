@@ -3,8 +3,8 @@ package logica.controladores;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
-import datatypes.DTUsuario;
 import excepciones.usuarioNoExisteException;
+import logica.datatypes.DTUsuario;
 import excepciones.UsuarioRepetidoException;
 
 public interface IControladorUsuario {

@@ -4,7 +4,8 @@ import javax.swing.JInternalFrame;
 
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
-
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -21,8 +22,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.salidaNoExisteException;

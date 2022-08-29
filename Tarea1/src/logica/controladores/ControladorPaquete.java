@@ -3,8 +3,8 @@ package logica.controladores;
 import java.util.HashSet;
 import java.util.Set;
 
-import data.ManejadorPaquete;
 import logica.Paquete;
+import logica.manejadores.ManejadorPaquete;
 
 public class ControladorPaquete implements IControladorPaquete{
 	public ControladorPaquete() {

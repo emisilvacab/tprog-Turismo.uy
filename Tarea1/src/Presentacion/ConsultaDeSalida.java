@@ -33,10 +33,10 @@ import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
 import excepciones.departamentoNoExisteException;
 import logica.controladores.IControladorDepartamento;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 public class ConsultaDeSalida extends JInternalFrame {
 	private IControladorDepartamento cDpto;

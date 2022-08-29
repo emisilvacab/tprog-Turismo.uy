@@ -6,6 +6,9 @@ import javax.swing.JInternalFrame;
 import logica.Proveedor;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,9 +21,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import datatypes.DTProveedor;
-import datatypes.DTTurista;
-import datatypes.DTUsuario;
 import excepciones.usuarioNoExisteException;
 import javax.swing.JButton;
 

@@ -1,4 +1,4 @@
-package data;
+package logica.manejadores;
 
 import java.util.Map;
 import java.util.HashMap;

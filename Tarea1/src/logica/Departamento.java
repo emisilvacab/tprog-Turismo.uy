@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 public class Departamento{
 	

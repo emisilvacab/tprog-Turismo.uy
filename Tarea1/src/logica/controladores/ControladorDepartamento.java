@@ -7,11 +7,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import data.ManejadorDepartamento;
-import data.ManejadorSalida;
-import data.ManejadorUsuario;
-import datatypes.DTActividad;
-import datatypes.DTSalida;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
@@ -21,6 +16,11 @@ import logica.Actividad;
 import logica.Departamento;
 import logica.Proveedor;
 import logica.Salida;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
+import logica.manejadores.ManejadorDepartamento;
+import logica.manejadores.ManejadorSalida;
+import logica.manejadores.ManejadorUsuario;
 
 public class ControladorDepartamento implements IControladorDepartamento {
 	
