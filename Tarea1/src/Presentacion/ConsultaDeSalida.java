@@ -55,6 +55,8 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private JLabel tagDpto;
 	private JLabel tagActividad;
 	private JLabel tagSalida;
+	private JLabel lblNewLabel;
+	private JTextField textFieldHora;
 	
 
 	/**
@@ -69,7 +71,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
-		setBounds(100, 100, 338, 311);
+		setBounds(100, 100, 338, 347);
 		
 		
 		
@@ -81,12 +83,12 @@ public class ConsultaDeSalida extends JInternalFrame {
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
 				
-				comboBoxDepartamento.setSelectedItem(null);
-				comboBoxActividad.setSelectedItem(null);
-				comboBoxSalida.setSelectedItem(null);
+				//comboBoxDepartamento.setSelectedItem(null);
+				//comboBoxActividad.setSelectedItem(null);
+				//comboBoxSalida.setSelectedItem(null);
 				
-				comboBoxActividad.setEnabled(false);
-				comboBoxSalida.setEnabled(false);
+				//comboBoxActividad.setEnabled(false);
+				//comboBoxSalida.setEnabled(false);
             }
         });
 		
@@ -111,18 +113,21 @@ public class ConsultaDeSalida extends JInternalFrame {
 			public void itemStateChanged(ItemEvent e) {
 				comboBoxActividad.setEnabled(false);
 				comboBoxSalida.setEnabled(false);
+				
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
-				comboBoxActividad.setSelectedItem(null);
-				comboBoxSalida.setSelectedItem(null);
+				
+				//comboBoxActividad.setSelectedItem(null);
+				//comboBoxSalida.setSelectedItem(null);
 				
 				if(comboBoxDepartamento.getSelectedItem() != null) {
 					cargarActividades();
-					comboBoxActividad.setEnabled(true);
+					if(comboBoxActividad.getSelectedItem() != null)
+						comboBoxActividad.setEnabled(true);
 				}
 				limpiarFormulario();
 				
-				
+				mostrarSalida();
 			}
 		});
 		 			
@@ -144,17 +149,20 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxActividad = new JComboBox<String>();
 		
 		comboBoxActividad.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				comboBoxSalida.setEnabled(false);
-				comboBoxSalida.setSelectedItem(null);
+			public void itemStateChanged(ItemEvent f) {
+				//comboBoxSalida.setEnabled(false);
+				
+				//comboBoxSalida.setSelectedItem(null);
+				
 				comboBoxSalida.removeAllItems();
 				
 				if(comboBoxActividad.getSelectedItem() != null) {
 					cargarSalidas();
-					comboBoxSalida.setEnabled(true);
+					if(comboBoxSalida.getSelectedItem() != null)
+					    comboBoxSalida.setEnabled(true);
 				}
 				limpiarFormulario();
-				
+				mostrarSalida();
 			}
 		});
 		
@@ -177,7 +185,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxSalida = new JComboBox<String>();
 		
 		comboBoxSalida.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent g) {
 				if(comboBoxSalida.getSelectedItem() != null) {
 					mostrarSalida();
 				}else {
@@ -304,20 +312,38 @@ public class ConsultaDeSalida extends JInternalFrame {
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
 				
-				comboBoxDepartamento.setSelectedItem(null);
-				comboBoxActividad.setSelectedItem(null);
-				comboBoxSalida.setSelectedItem(null);
+				//comboBoxDepartamento.setSelectedItem(null);
+				//comboBoxActividad.setSelectedItem(null);
+				//comboBoxSalida.setSelectedItem(null);
 				
-				comboBoxActividad.setEnabled(false);
-				comboBoxSalida.setEnabled(false);
+				//comboBoxActividad.setEnabled(false);
+				//comboBoxSalida.setEnabled(false);
+				mostrarSalida();
             }
         });
-			
+		
+		lblNewLabel = new JLabel("Hora");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 10;
+		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		
+		textFieldHora = new JTextField();
+		textFieldHora.setEditable(false);
+		GridBagConstraints gbc_textFieldHora = new GridBagConstraints();
+		gbc_textFieldHora.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldHora.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldHora.gridx = 2;
+		gbc_textFieldHora.gridy = 10;
+		getContentPane().add(textFieldHora, gbc_textFieldHora);
+		textFieldHora.setColumns(10);
+		
 		GridBagConstraints gbc_buttonCerrar = new GridBagConstraints();
-		gbc_buttonCerrar.insets = new Insets(0, 0, 5, 0);
-		gbc_buttonCerrar.gridwidth = 4;
+		gbc_buttonCerrar.gridwidth = 6;
 		gbc_buttonCerrar.gridx = 0;
-		gbc_buttonCerrar.gridy = 10;
+		gbc_buttonCerrar.gridy = 11;
 		getContentPane().add(buttonCerrar, gbc_buttonCerrar);
 		
 		
@@ -331,7 +357,7 @@ public class ConsultaDeSalida extends JInternalFrame {
         textFieldSalida.setText("");
         textFieldAlta.setText("");
         textFieldLugar.setText("");
-        
+        textFieldHora.setText("");
         
     }
 	
@@ -368,16 +394,15 @@ public class ConsultaDeSalida extends JInternalFrame {
 	
 	private void mostrarSalida() {
 		//try
+		if(comboBoxDepartamento.getSelectedItem() != null && comboBoxActividad.getSelectedItem() != null && comboBoxSalida.getSelectedItem() != null) {
 		try {
 			HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes((String) comboBoxActividad.getSelectedItem(),(String) comboBoxDepartamento.getSelectedItem());
-			DTSalida salida;
-			Iterator<DTSalida> it = sals.iterator();
-			while(it.hasNext() && it.next().getNombre() != comboBoxSalida.getSelectedItem()) {
-				it.next();
-				
+			DTSalida salida = null;
+		    
+			for(DTSalida it : sals) {
+				if(it.getNombre() == comboBoxSalida.getSelectedItem())
+					salida = it;
 			}
-			
-			salida = it.next();
 							
 			textFieldNombre.setText(salida.getNombre());
 			Integer numero = salida.getMaxTuristas();
@@ -399,11 +424,12 @@ public class ConsultaDeSalida extends JInternalFrame {
 	        textFieldSalida.setText(fechaSalidaString);
 	        textFieldAlta.setText(fechaAltaString);
 	        textFieldLugar.setText(salida.getLugarDTSalida());	
+	        textFieldHora.setText(salida.getHora()+"hs");
 	        
 		}catch(actividadNoExisteException | departamentoNoExisteException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);
 		}
-		
+		}
 	}
 	
 	public void cargarDepartamentos() {
