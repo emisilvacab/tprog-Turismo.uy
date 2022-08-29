@@ -2,7 +2,6 @@ package Presentacion;
 
 import javax.swing.JInternalFrame;
 
-import logica.DataUsuario;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 
@@ -40,9 +39,9 @@ import datatypes.DTActividad;
 import datatypes.DTProveedor;
 import datatypes.DTTurista;
 import datatypes.DTUsuario;
-import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 import excepciones.departamentoNoExisteException;
+import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
 
@@ -182,7 +181,7 @@ public class AltaActividad extends JInternalFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (checkFormulario()) {
-//					try {
+					try {
 						String nombre = txfNombre.getText();
 						String descripcion = txfDescripcion.getText();
 						int duracion = (int) txfDuracion.getValue();
@@ -192,7 +191,7 @@ public class AltaActividad extends JInternalFrame {
 						String proveedor = (String) comboProveedor.getSelectedItem();
 						GregorianCalendar fecha = GregorianCalendar.from(ZonedDateTime.now());
 						
-						boolean existeAct = iCtrlUsuario.ingresarDatosActividad(nombre,  descripcion, duracion, costo, ciudad, fecha, proveedor, departamento);
+						boolean existeAct = iCtrlDepartamento.ingresarDatosActividad(nombre,  descripcion, duracion, costo, ciudad, fecha, proveedor, departamento);
 					
 						if (existeAct) {
 							JOptionPane.showMessageDialog(null, "Ya hay una actividad con el nombre "+ nombre + ". Cambie los datos para ingresar una nueva actividad.", "Actividad " + nombre + " ya existente", JOptionPane.ERROR_MESSAGE);
@@ -202,12 +201,12 @@ public class AltaActividad extends JInternalFrame {
 							limpiarFormulario();
 						}
 					}
-/*					catch(salidaNoExisteException e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage(), "La salida seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
+					catch(departamentoNoExisteException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "El departamento seleccionado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 					}
-					catch(usuarioNoExisteException e2) {
-						JOptionPane.showMessageDialog(null, e2.getMessage(), "El usuario ingresado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
-					}	*/
+					catch(proveedorNoExisteException e2) {
+						JOptionPane.showMessageDialog(null, e2.getMessage(), "El proveedor ingresado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});

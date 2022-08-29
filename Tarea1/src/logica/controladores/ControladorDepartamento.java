@@ -57,7 +57,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return res;
 	}
 	
-	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep) {
+	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep) throws excepciones.proveedorNoExisteException, departamentoNoExisteException {
 		ManejadorDepartamento manDepartamento = ManejadorDepartamento.getInstance();
 		ManejadorUsuario manUsuario = ManejadorUsuario.getInstance();
 		
@@ -74,7 +74,13 @@ public class ControladorDepartamento implements IControladorDepartamento {
     	}
     	if (!encontro) {
     		depAsignado = departamentos.get(nombreDep);
+    		if (depAsignado == null) {
+    			throw new departamentoNoExisteException("No existe departamento");
+    		}
     		Proveedor proveedor = manUsuario.getProveedores().get(nicknameProv);
+    		if (proveedor == null) {
+    			throw new excepciones.proveedorNoExisteException("No existe proveedor");
+    		}
     		Actividad nuevaActividad = new Actividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, depAsignado, proveedor);
     		depAsignado.getActividades().put(nombreAct, nuevaActividad);
     		proveedor.getActividades().put(nombreAct, nuevaActividad);
