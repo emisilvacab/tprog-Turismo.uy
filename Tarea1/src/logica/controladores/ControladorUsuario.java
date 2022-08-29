@@ -173,4 +173,18 @@ public class ControladorUsuario implements IControladorUsuario {
 				return "existe";
 		}
 	}
+	
+	public String[] obtenerProveedores() {
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+    	Map<String, Proveedor> proveedores = mu.getProveedores();
+    	Set<String> provsName = proveedores.keySet();
+    	Set<String> usersName = new HashSet<String>();
+    	for (String prov: provsName) {
+    		usersName.add(prov);
+    	}
+    	return usersName.toArray(new String[usersName.size()]);
+	}
+	
+	
 }
+

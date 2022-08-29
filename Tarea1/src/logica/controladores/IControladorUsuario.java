@@ -1,5 +1,6 @@
 package logica.controladores;
 
+import java.util.GregorianCalendar;
 import java.util.Set;
 
 import datatypes.DTUsuario;
@@ -19,5 +20,6 @@ public interface IControladorUsuario {
 	
 	public abstract String ingresarDatosInscripcion(String nickname,String nombre,int capacidad) throws excepciones.salidaNoExisteException, usuarioNoExisteException;
 	
-
+	public abstract String[] obtenerProveedores();
+	
 }

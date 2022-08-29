@@ -3,6 +3,8 @@ package logica.controladores;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import data.ManejadorDepartamento;
 import data.ManejadorSalida;
@@ -14,6 +16,7 @@ import excepciones.departamentoNoExisteException;
 import excepciones.salidaNoExisteException;
 import logica.Actividad;
 import logica.Departamento;
+import logica.Proveedor;
 
 public class ControladorDepartamento implements IControladorDepartamento {
 	
@@ -50,5 +53,30 @@ public class ControladorDepartamento implements IControladorDepartamento {
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");	
 		}
 		return res;
+	}
+	
+	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep) {
+		ManejadorDepartamento manDepartamento = ManejadorDepartamento.getInstance();
+		ManejadorUsuario manUsuario = ManejadorUsuario.getInstance();
+		
+		HashMap<String, Departamento> departamentos = manDepartamento.getDepartamentos();
+    	Set<String> setNombresDep = departamentos.keySet();
+    	boolean encontro = false;
+    	Departamento depAsignado;
+    	for (String dep: setNombresDep) {
+    		Departamento departamento = manDepartamento.getDepartamento(dep);
+    		if (departamento.getActividades().get(nombreAct) != null) {
+    			encontro = true;
+    			break;
+    		}
+    	}
+    	if (!encontro) {
+    		depAsignado = departamentos.get(nombreDep);
+    		Proveedor proveedor = manUsuario.getProveedores().get(nicknameProv);
+    		Actividad nuevaActividad = new Actividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, depAsignado, proveedor);
+    		depAsignado.getActividades().put(nombreAct, nuevaActividad);
+    		proveedor.getActividades().put(nombreAct, nuevaActividad);
+    	}
+		return false;
 	}
 }
