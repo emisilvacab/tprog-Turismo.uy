@@ -19,5 +19,5 @@ public interface IControladorDepartamento {
 	
 	public abstract boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep) throws excepciones.proveedorNoExisteException, departamentoNoExisteException;
 	
-	public abstract boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.salidaYaExisteException, actividadNoExisteException;
+	public abstract boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException;
 }

@@ -39,6 +39,7 @@ import javax.swing.event.InternalFrameEvent;
 import datatypes.DTActividad;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
+import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
 import excepciones.salidaYaExisteException;
 import excepciones.usuarioNoExisteException;
@@ -48,6 +49,8 @@ import javax.swing.JSpinner;
 
 public class AltaSalida extends JInternalFrame{
 	
+
+	private static final long serialVersionUID = 1L;
 	private IControladorDepartamento icd;
 	
 	private JLabel lblDep;
@@ -69,15 +72,16 @@ public class AltaSalida extends JInternalFrame{
 	
 	public AltaSalida(IControladorDepartamento picd) {
 		
+		
 		icd = picd;
 		
-		setTitle("Alta de Salida Turistica");
-		//setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setResizable(true);
-		setMaximizable(true);
-		setIconifiable(true);
-		setClosable(true);
-		
+        setIconifiable(true);
+        setMaximizable(true);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setClosable(true);
+        setTitle("Alta de Salida Turistica");
+        setBounds(30, 30, 397, 310);
 		
 	    addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -92,7 +96,6 @@ public class AltaSalida extends JInternalFrame{
 		lblAct = new JLabel("Selecccione una actividad:");	
 		listaAct = new JComboBox<String>();
 		
-		//Evento en listaDptos que carga lista de actividades
 		listaDep.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				try {
@@ -141,12 +144,10 @@ public class AltaSalida extends JInternalFrame{
 						String lugarSalida = textLugar.getText();
 						
 						String datosDep = (String) listaDep.getSelectedItem();
-						//Separacion del nombre del departamento del resto de datos
 						int pos = datosDep.indexOf("(");
 						String nombreDep = datosDep.substring(0,pos-1);
 						
 						String datosAct = (String) listaAct.getSelectedItem();
-						//Separacion del nombre de la actividad del resto de datos
 						int pos2 = datosAct.indexOf("(");
 						String nombreAct = datosAct.substring(0,pos2-1);
 							
@@ -165,8 +166,8 @@ public class AltaSalida extends JInternalFrame{
 					catch(actividadNoExisteException e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "La actividad seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
 					}
-					catch(salidaYaExisteException e2) {
-						JOptionPane.showMessageDialog(null, e2.getMessage(), "La salida ya existe", JOptionPane.ERROR_MESSAGE);
+					catch(proveedorNoExisteException e2) {
+						JOptionPane.showMessageDialog(null, e2.getMessage(), "El proveedor seleccionado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 					}	
 				}
 			}
@@ -184,37 +185,33 @@ public class AltaSalida extends JInternalFrame{
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(lblDep)
-							.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
 							.addComponent(listaDep, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNombre)
 								.addComponent(lblAct)
 								.addComponent(lblCant))
-							.addPreferredGap(ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(spinnerCant)
+								.addComponent(spinnerCant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textNombre)
 								.addComponent(listaAct, 0, 208, Short.MAX_VALUE)))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(lblLugar)
+							.addPreferredGap(ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+							.addComponent(textLugar, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblLugar, Alignment.LEADING)
-										.addComponent(btnAceptar, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
-									.addGap(18))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblFecha)
-									.addGap(125)))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(textLugar, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-								.addComponent(btnCancelar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE))))
+							.addComponent(btnAceptar, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+						.addComponent(lblFecha))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -246,7 +243,7 @@ public class AltaSalida extends JInternalFrame{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAceptar)
 						.addComponent(btnCancelar))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(13, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}
