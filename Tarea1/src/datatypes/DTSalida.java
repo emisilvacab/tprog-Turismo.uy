@@ -8,21 +8,24 @@ public class DTSalida{
 	private int maxTuristas;
 	private GregorianCalendar alta;
 	private GregorianCalendar fechaDTSalida;
+	private int hora;
 	private String lugarDTSalida;
 	
 	public DTSalida() {
 		this.setNombre(new String());
 		this.setMaxTuristas(0);
+		this.setHora(0);
 		this.setAlta(new GregorianCalendar());
 		this.setFechaDTSalida(new GregorianCalendar());
 		this.setLugarDTSalida(new String());
 	}
 	
-	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, String lugarDTSalida) {
+	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, int hora, String lugarDTSalida) {
 		this.setNombre(nombre);
 		this.setMaxTuristas(maxTuristas);
 		this.setAlta(alta);
 		this.setFechaDTSalida(fechaDTSalida);
+		this.setHora(hora);
 		this.setLugarDTSalida(lugarDTSalida);
 	}
 
@@ -64,5 +67,13 @@ public class DTSalida{
 
 	public void setLugarDTSalida(String lugarDTSalida) {
 		this.lugarDTSalida = lugarDTSalida;
+	}
+
+	public int getHora() {
+		return hora;
+	}
+
+	public void setHora(int hora) {
+		this.hora = hora;
 	}
 }

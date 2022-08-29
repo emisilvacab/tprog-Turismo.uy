@@ -145,7 +145,7 @@ public class ControladorUsuario implements IControladorUsuario {
 //
 //    } QUE ES ESTO?????
 	
-	public String ingresarDatosInscripcion(String nickname,String nombre,int capacidad) throws excepciones.salidaNoExisteException, usuarioNoExisteException{
+	public String ingresarDatosInscripcion(String nickname,String nombre,int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException{
 		
 		ManejadorSalida mSalida = ManejadorSalida.getInstance();
 		ManejadorUsuario mUsuario = ManejadorUsuario.getInstance();
@@ -160,8 +160,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		boolean hayLugar = salida.admiteCapacidad(capacidad);
 		boolean existe = salida.existeInscripcion(turista.getNickname());
 		if (hayLugar && !existe) {
-			GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
-			Inscripcion insc = new Inscripcion(fechaActual,capacidad,salida,turista);
+			Inscripcion insc = new Inscripcion(fechaAlta,capacidad,salida,turista);
 			salida.addInscripcion(insc);
 			turista.addInscripcion(insc);
 			return "no";

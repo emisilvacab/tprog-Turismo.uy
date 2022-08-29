@@ -18,7 +18,7 @@ public interface IControladorUsuario {
 
 	public abstract void altaUsuario(DTUsuario user) throws UsuarioRepetidoException;
 	
-	public abstract String ingresarDatosInscripcion(String nickname,String nombre,int capacidad) throws excepciones.salidaNoExisteException, usuarioNoExisteException;
+	public abstract String ingresarDatosInscripcion(String nickname,String nombre,int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException;
 	
 	public abstract String[] obtenerProveedores();
 	

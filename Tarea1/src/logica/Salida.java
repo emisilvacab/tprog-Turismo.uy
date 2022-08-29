@@ -12,17 +12,19 @@ public class Salida{
 	private int maxTuristas;
 	private GregorianCalendar alta;
 	private GregorianCalendar fechaSalida;
+	private int hora;
 	private String lugarSalida;
 	
 	private Actividad actividad;
 	private Vector<Inscripcion> inscripciones;
 	//private Map<String, Inscripcion> inscripciones; MAP O VECTOR?
 
-	public Salida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaSalida, String lugarSalida, Actividad actividad) {
+	public Salida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaSalida, int hora, String lugarSalida, Actividad actividad) {
 		this.nombre = nombre;
 		this.maxTuristas = maxTuristas;//Al inscribir turistas decrementamos este numero o agregamos atributo con cantidadInscriptos
 		this.alta = alta;
 		this.fechaSalida = fechaSalida;
+		this.hora = hora;
 		this.lugarSalida = lugarSalida;
 		this.actividad = actividad;
 		this.inscripciones = new Vector<Inscripcion>();
@@ -104,12 +106,20 @@ public class Salida{
 	}
 
 	public DTSalida getDatos() {
-		DTSalida res = new DTSalida(nombre,maxTuristas,alta,fechaSalida,lugarSalida);
+		DTSalida res = new DTSalida(nombre,maxTuristas,alta,fechaSalida,hora,lugarSalida);
 		return res;
 	}
 
 	public float getCostoActividad() {
 		return actividad.getCosto();
+	}
+
+	public int getHora() {
+		return hora;
+	}
+
+	public void setHora(int hora) {
+		this.hora = hora;
 	}
 	
 }
