@@ -73,11 +73,10 @@ public class ConsultaDeSalida extends JInternalFrame {
 		setBounds(100, 100, 338, 347);
 		
 		
-		
 		addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
 				setVisible(false);
-				limpiarFormulario();
+				//limpiarFormulario();
 				comboBoxDepartamento.removeAllItems();
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
@@ -459,6 +458,11 @@ public class ConsultaDeSalida extends JInternalFrame {
 	}
 	
 	public void mostrar(String dptoNombre, String actNombre, String salNombre) {
+		comboBoxDepartamento.removeAllItems();
+		comboBoxActividad.removeAllItems();
+		comboBoxSalida.removeAllItems();
+		limpiarFormulario();
+		
 		tagDpto.setVisible(false);
 		tagActividad.setVisible(false);
 		tagSalida.setVisible(false);
@@ -467,12 +471,15 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxActividad.setVisible(false);
 		comboBoxSalida.setVisible(false);
 		
+		comboBoxDepartamento.addItem(dptoNombre);
+		comboBoxActividad.addItem(actNombre);
+		comboBoxSalida.addItem(salNombre);
+		
 		comboBoxDepartamento.setSelectedItem(dptoNombre);
 		comboBoxActividad.setSelectedItem(actNombre);
 		comboBoxSalida.setSelectedItem(salNombre);
 		
 		mostrarSalida();
-		
 		
 	}
 	

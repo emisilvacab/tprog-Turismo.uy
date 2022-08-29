@@ -31,6 +31,7 @@ public class Principal {
 	private AltaSalida altaSalidaInternalFrame;
 	private ConsultaDeSalida consultaSalidaInternalFrame;
 	private AltaActividad altaActividadInternalFrame;
+	private ConsultaDeActividad consultaActividadInternalFrame;
 	
 	
 	
@@ -83,6 +84,10 @@ public class Principal {
         altaActividadInternalFrame = new AltaActividad(ICD,ICU);
         altaActividadInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(altaActividadInternalFrame);
+        
+        consultaActividadInternalFrame = new ConsultaDeActividad(ICD);
+        consultaActividadInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(consultaActividadInternalFrame);
         
     }
     
@@ -181,6 +186,19 @@ public class Principal {
             	consultaSalidaInternalFrame.setVisible(true);
             }
         });
+        
+        JMenuItem menuItemConsultaActividad = new JMenuItem("Consulta de Actividad");
+        menuActividades.add(menuItemConsultaActividad);
+        menuItemConsultaActividad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	consultaActividadInternalFrame.cargarDepartamentos();
+            	consultaActividadInternalFrame.setVisible(true);
+            }
+        });
+        
+        
+        
+        
         menuActividades.add(menuItemConsultaSalida);
         
         JMenuItem menuItemAltaActividad = new JMenuItem("Alta de actividad");
