@@ -51,6 +51,11 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private JComboBox<String> comboBoxActividad;
 	private JComboBox<String> comboBoxSalida;
 	
+	//tags
+	private JLabel tagDpto;
+	private JLabel tagActividad;
+	private JLabel tagSalida;
+	
 
 	/**
 	 * Create the frame.
@@ -64,7 +69,9 @@ public class ConsultaDeSalida extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
-		setBounds(100, 100, 327, 276);
+		setBounds(100, 100, 338, 311);
+		
+		
 		
 		addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -90,7 +97,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
-		JLabel tagDpto = new JLabel("Departamento");		
+		tagDpto = new JLabel("Departamento");		
 		GridBagConstraints gbc_tagDpto = new GridBagConstraints();
 		gbc_tagDpto.anchor = GridBagConstraints.EAST;
 		gbc_tagDpto.insets = new Insets(0, 0, 5, 5);
@@ -126,7 +133,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		gbc_comboBoxDepartamento.gridy = 1;
 		getContentPane().add(comboBoxDepartamento, gbc_comboBoxDepartamento);
 		
-		JLabel tagActividad = new JLabel("Actividad");
+		tagActividad = new JLabel("Actividad");
 		GridBagConstraints gbc_tagActividad = new GridBagConstraints();
 		gbc_tagActividad.anchor = GridBagConstraints.EAST;
 		gbc_tagActividad.insets = new Insets(0, 0, 5, 5);
@@ -159,7 +166,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		gbc_comboBoxActividad.gridy = 2;
 		getContentPane().add(comboBoxActividad, gbc_comboBoxActividad);
 		
-		JLabel tagSalida = new JLabel("Salida");
+		tagSalida = new JLabel("Salida");
 		GridBagConstraints gbc_tagSalida = new GridBagConstraints();
 		gbc_tagSalida.anchor = GridBagConstraints.EAST;
 		gbc_tagSalida.insets = new Insets(0, 0, 5, 5);
@@ -384,9 +391,9 @@ public class ConsultaDeSalida extends JInternalFrame {
 	        Integer anioS = fechaSalida.get(fechaSalida.YEAR);
 	        String fechaSalidaString = diaS.toString()+"/"+mesS.toString()+"/"+anioS.toString();
 	        
-	        Integer diaA = fechaAlta.get(fechaSalida.DAY_OF_MONTH);
-	        Integer mesA = fechaAlta.get(fechaSalida.MONTH);
-	        Integer anioA = fechaAlta.get(fechaSalida.YEAR);
+	        Integer diaA = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
+	        Integer mesA = fechaAlta.get(fechaAlta.MONTH);
+	        Integer anioA = fechaAlta.get(fechaAlta.YEAR);
 	        String fechaAltaString = diaA.toString()+"/"+mesA.toString()+"/"+anioA.toString();
 	        
 	        textFieldSalida.setText(fechaSalidaString);
@@ -400,6 +407,18 @@ public class ConsultaDeSalida extends JInternalFrame {
 	}
 	
 	public void cargarDepartamentos() {
+		tagDpto.setVisible(true);
+		tagActividad.setVisible(true);
+		tagSalida.setVisible(true);
+		
+		comboBoxDepartamento.setVisible(true);
+		comboBoxActividad.setVisible(true);
+		comboBoxSalida.setVisible(true);
+		
+		comboBoxDepartamento.removeAllItems();
+		comboBoxActividad.removeAllItems();
+		comboBoxSalida.removeAllItems();
+		
 		Set<String> dptos = cDpto.obtenerDepartamentos();
 		for (String s : dptos)
 			comboBoxDepartamento.addItem(s);
@@ -407,10 +426,28 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxActividad.setSelectedItem(null);
 		comboBoxSalida.setSelectedItem(null);
 		
-		if(comboBoxDepartamento.getSelectedItem() != null)
-			comboBoxActividad.setEnabled(true);
+		
+	    comboBoxActividad.setEnabled(false);
 		comboBoxSalida.setEnabled(false);
 		limpiarFormulario();
+		
+	}
+	
+	public void mostrar(String dptoNombre, String actNombre, String salNombre) {
+		tagDpto.setVisible(false);
+		tagActividad.setVisible(false);
+		tagSalida.setVisible(false);
+		
+		comboBoxDepartamento.setVisible(false);
+		comboBoxActividad.setVisible(false);
+		comboBoxSalida.setVisible(false);
+		
+		comboBoxDepartamento.setSelectedItem(dptoNombre);
+		comboBoxActividad.setSelectedItem(actNombre);
+		comboBoxSalida.setSelectedItem(salNombre);
+		
+		mostrarSalida();
+		
 		
 	}
 	
