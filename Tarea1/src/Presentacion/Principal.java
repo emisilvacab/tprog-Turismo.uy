@@ -30,6 +30,7 @@ public class Principal {
 	private InscripcionASalida inscASalInternalFrame;
 	private AltaSalida altaSalidaInternalFrame;
 	private ConsultaDeSalida consultaSalidaInternalFrame;
+	private AltaActividad altaActividadInternalFrame;
 	
 	
 	
@@ -79,6 +80,9 @@ public class Principal {
         consultaSalidaInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(consultaSalidaInternalFrame);
         
+        altaActividadInternalFrame = new AltaActividad(ICD,ICU);
+        altaActividadInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(altaActividadInternalFrame);
         
     }
     
@@ -170,7 +174,7 @@ public class Principal {
         menuActividades.add(menuItemAltaSalida);
         
         JMenuItem menuItemConsultaSalida = new JMenuItem("Consulta de Salida");
-        menuItemConsultaSalida.setToolTipText("Seleccione esta opción si desea dar de alta una salida");
+        menuItemConsultaSalida.setToolTipText("Seleccione esta opción si desea consultar una salida");
         menuItemConsultaSalida.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	consultaSalidaInternalFrame.cargarDepartamentos();
@@ -178,6 +182,17 @@ public class Principal {
             }
         });
         menuActividades.add(menuItemConsultaSalida);
+        
+        JMenuItem menuItemAltaActividad = new JMenuItem("Alta de actividad");
+        menuItemAltaActividad.setToolTipText("Seleccione esta opción si desea dar de alta una actividad");
+        menuItemAltaActividad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	altaActividadInternalFrame.cargarDepartamentos();
+            	altaActividadInternalFrame.cargarProveedores();
+            	altaActividadInternalFrame.setVisible(true);
+            }
+        });
+        menuActividades.add(menuItemAltaActividad);
  		
     }
     
