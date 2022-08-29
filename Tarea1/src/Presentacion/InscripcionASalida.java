@@ -30,13 +30,14 @@ import excepciones.usuarioNoExisteException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-
+import javax.swing.JFrame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JSpinner;
 import java.awt.event.ItemListener;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 
 public class InscripcionASalida extends JInternalFrame {
@@ -61,15 +62,22 @@ public class InscripcionASalida extends JInternalFrame {
 	
 
 	public InscripcionASalida(IControladorUsuario picu, IControladorDepartamento picd) {
+		setMaximizable(true);
 		
 		icu = picu;
 		icd = picd;
 		
+		
+		Dimension dmsInternal = new Dimension(500,500);
+		setMaximumSize(dmsInternal);
+		setMaximizable(false);
 		setResizable(true);
-		setIconifiable(true);
 	    //setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	    setClosable(true);
 	    setTitle("Inscripción a salida");
+	    setBounds(0, 0, 410, 350);
+	    
+		
 	    
 	    addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -193,6 +201,7 @@ public class InscripcionASalida extends JInternalFrame {
 				setVisible(false);
 			}
 		});
+		
 		
 		//Ingreso de todos los componentes en el groupLayout (realizado con el window design)
 		GroupLayout groupLayout = new GroupLayout(getContentPane());

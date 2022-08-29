@@ -54,6 +54,8 @@ public class Principal {
         ICD = fabrica.getIControladorDepartamento();
         ICP = fabrica.getIControladorPaquete();
         
+        frmReservas_UY.setLayout(null);
+        
         conUsrInternalFrame = new ConsultarUsuario(ICU);
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
