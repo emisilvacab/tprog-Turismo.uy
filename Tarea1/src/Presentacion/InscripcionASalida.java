@@ -37,6 +37,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JSpinner;
 import java.awt.event.ItemListener;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import javax.swing.JFrame;
 
@@ -62,16 +63,17 @@ public class InscripcionASalida extends JInternalFrame {
 	
 
 	public InscripcionASalida(IControladorUsuario picu, IControladorDepartamento picd) {
-		setMaximizable(true);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		icu = picu;
 		icd = picd;
 		
+		Dimension dmsInternal = new Dimension(500,500);
+		setMaximumSize(dmsInternal);
+		setMaximizable(false);
 		setResizable(true);
-	    //setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	    setClosable(true);
 	    setTitle("Inscripción a salida");
+	    setBounds(0, 0, 410, 350);
 	    
 	    addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
