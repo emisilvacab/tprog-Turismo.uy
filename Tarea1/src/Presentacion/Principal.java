@@ -29,6 +29,7 @@ public class Principal {
 	private AltaUsuario crearUsrInternalFrame;
 	private InscripcionASalida inscASalInternalFrame;
 	private AltaSalida altaSalidaInternalFrame;
+	private ConsultaDeSalida consultaSalidaInternalFrame;
 	
 	
 	
@@ -72,6 +73,11 @@ public class Principal {
         altaSalidaInternalFrame = new AltaSalida(ICD);
         altaSalidaInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(altaSalidaInternalFrame);
+        
+        
+        consultaSalidaInternalFrame = new ConsultaDeSalida(ICD);
+        consultaSalidaInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(consultaSalidaInternalFrame);
         
         
     }
@@ -153,7 +159,17 @@ public class Principal {
             }
         });
         menuActividades.add(menuItemAltaSalida);
- 
+        
+        JMenuItem menuItemConsultaSalida = new JMenuItem("Consulta de Salida");
+        menuItemConsultaSalida.setToolTipText("Seleccione esta opción si desea dar de alta una salida");
+        menuItemConsultaSalida.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	consultaSalidaInternalFrame.cargarDepartamentos();
+            	consultaSalidaInternalFrame.setVisible(true);
+            }
+        });
+        menuActividades.add(menuItemConsultaSalida);
+ 		
     }
     
     
