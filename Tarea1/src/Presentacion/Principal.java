@@ -56,7 +56,7 @@ public class Principal {
         ICD = fabrica.getIControladorDepartamento();
         ICP = fabrica.getIControladorPaquete();
         
-        frmReservas_UY.setLayout(null);
+        frmReservas_UY.getContentPane().setLayout(null);
         
         conUsrInternalFrame = new ConsultarUsuario(ICU, ICP);
         conUsrInternalFrame.setVisible(false);
@@ -112,6 +112,15 @@ public class Principal {
             }
         });
         menuSistema.add(menuSalir);
+        
+        JMenuItem menuCargarDatos = new JMenuItem("Cargar datos");
+        menuCargarDatos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent a) {
+                // Cargo los datos
+            	CargarDatos carga = new CargarDatos(ICU, ICD);
+            }
+        });
+        menuSistema.add(menuCargarDatos);
         
         // MENU USUARIOS
         
