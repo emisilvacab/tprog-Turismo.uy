@@ -174,7 +174,7 @@ public class InscripcionASalida extends JInternalFrame {
 								JOptionPane.showMessageDialog(null, "El usuario ingresado ya está inscripto a la salida seleccionada. Cambie la salida seleccionada o ingrese otro usuario.", "Inscripción ya existente", JOptionPane.ERROR_MESSAGE);
 							}
 							else {
-								JOptionPane.showMessageDialog(null, "Usuario inscipto con éxito!", "Usuario inscripto", JOptionPane.OK_OPTION);
+								JOptionPane.showMessageDialog(null, "Usuario inscipto con éxito!", "Usuario inscripto", JOptionPane.INFORMATION_MESSAGE);
 								limpiarCampos();
 								cargarDptos();
 							}
