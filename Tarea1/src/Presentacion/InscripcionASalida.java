@@ -291,7 +291,7 @@ public class InscripcionASalida extends JInternalFrame {
 		listaActs.setSelectedItem(null);
 		listaSals.setSelectedItem(null);
 		textFieldUser.setText("");
-		spinnerCantUsers.setValue(1);	
+		spinnerCantUsers.setValue(1);
 	}
 	
 	private boolean checkCampos() {

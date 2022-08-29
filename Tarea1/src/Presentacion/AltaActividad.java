@@ -57,8 +57,10 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class AltaActividad extends JInternalFrame {
+
+	private static final long serialVersionUID = 1L;
 	private IControladorUsuario iCtrlUsuario;
 	private IControladorDepartamento iCtrlDepartamento;
 	

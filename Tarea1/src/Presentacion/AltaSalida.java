@@ -134,7 +134,6 @@ public class AltaSalida extends JInternalFrame{
 		textLugar.setColumns(10);
 		
 		btnAceptar = new JButton("Aceptar");
-		
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (checkCampos()) {
@@ -143,15 +142,9 @@ public class AltaSalida extends JInternalFrame{
 						String nombreSalida = textNombre.getText();
 						int cantTuristas = (int) spinnerCant.getValue();
 						String lugarSalida = textLugar.getText();
-						
-						String datosDep = (String) listaDep.getSelectedItem();
-						int pos = datosDep.indexOf("(");
-						String nombreDep = datosDep.substring(0,pos-1);
-						
-						String datosAct = (String) listaAct.getSelectedItem();
-						int pos2 = datosAct.indexOf("(");
-						String nombreAct = datosAct.substring(0,pos2-1);
-						
+						String nombreDep = (String) listaDep.getSelectedItem();
+						String nombreAct = (String) listaAct.getSelectedItem();
+
 						GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
 						int horaSalida = 0;// lo ingresa el usuario junto con fecha tambien DE 0 A 23 hs
 						boolean existeSalida = icd.ingresarDatosSalida(nombreSalida, cantTuristas, fechaActual, new GregorianCalendar(), horaSalida, lugarSalida, nombreDep, nombreAct);
@@ -160,7 +153,7 @@ public class AltaSalida extends JInternalFrame{
 							JOptionPane.showMessageDialog(null, "Ya existe una salida con el mismo nombre reingrese los datos.", "Ya existe", JOptionPane.ERROR_MESSAGE);
 						}
 						else {
-								JOptionPane.showMessageDialog(null, "Salida ingresada con éxito!", "Salida ingresada", JOptionPane.OK_OPTION);
+								JOptionPane.showMessageDialog(null, "Salida ingresada con éxito!", "Salida ingresada", JOptionPane.INFORMATION_MESSAGE);
 								limpiarCampos();
 								cargarDptos();
 						}
@@ -177,9 +170,9 @@ public class AltaSalida extends JInternalFrame{
 		});
 		
 		btnCancelar = new JButton("Cancelar");
-		
 		btnCancelar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+        		JOptionPane.showMessageDialog(null, "Alta cancelada!", "Alta de salida", JOptionPane.INFORMATION_MESSAGE);
 				limpiarCampos();
 				setVisible(false);
 			}
@@ -263,16 +256,17 @@ public class AltaSalida extends JInternalFrame{
 	
 	private boolean checkCampos() {
 		String nombreSalida = textNombre.getText();
+		String lugarSalida = textLugar.getText();
 		
 		if (nombreSalida.isEmpty())
 			JOptionPane.showMessageDialog(null, "Ingrese el nombre de la salida.", "Salida no ingresada", JOptionPane.ERROR_MESSAGE);
-		else
-			if (listaAct.getSelectedItem() == null)
-				JOptionPane.showMessageDialog(null, "Seleccione una actividad.", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
-			else
-				if ((int)spinnerCant.getValue() < 1)
-					JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
-		return (!nombreSalida.isEmpty() && listaAct.getSelectedItem() != null && (int)spinnerCant.getValue() >= 1);
+		if (listaAct.getSelectedItem() == null)
+			JOptionPane.showMessageDialog(null, "Seleccione una actividad.", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
+		if (lugarSalida.isEmpty())
+			JOptionPane.showMessageDialog(null, "Ingrese un lugar.", "Lugar no ingresado", JOptionPane.ERROR_MESSAGE);
+		if ((int)spinnerCant.getValue() < 1)
+			JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
+		return (!nombreSalida.isEmpty() && listaAct.getSelectedItem() != null && (int)spinnerCant.getValue() >= 1 && !lugarSalida.isEmpty());
 	}
 	
 	public void cargarDptos() {
