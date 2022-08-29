@@ -87,13 +87,18 @@ public class AltaActividad extends JInternalFrame {
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	
-	public AltaActividad() {
+	public AltaActividad(IControladorDepartamento IConD, IControladorUsuario IConU) {
+		
+		iCtrlUsuario = IConU;
+		iCtrlDepartamento = IConD;
+		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Alta de Actividad Turistica");
 		setResizable(true);
 		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
+		setBounds(0,0,500,350);
 		getContentPane().setLayout(new GridLayout(8, 3, 3, 15));
 		
 		labelDepartamento = new JLabel("Departamento:");
