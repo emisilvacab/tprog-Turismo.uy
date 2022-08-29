@@ -7,6 +7,7 @@ import logica.controladores.IControladorUsuario;
 
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,6 +35,7 @@ import javax.swing.JFormattedTextField;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.ZonedDateTime;
 
 import javax.swing.JSpinner;
 import java.awt.event.ItemListener;
@@ -161,8 +163,8 @@ public class InscripcionASalida extends JInternalFrame {
 						//Separación del nombre de la salida del resto de datos
 						int pos = datosSalida.indexOf("(");
 						String nombreSalida = datosSalida.substring(0,pos-1);
-							
-						String problema = icu.ingresarDatosInscripcion(nombreUsuario,nombreSalida,cant);
+						GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
+						String problema = icu.ingresarDatosInscripcion(nombreUsuario,nombreSalida,cant,fechaActual);
 					
 						if (problema == "lleno") {
 							JOptionPane.showMessageDialog(null, "La salida no cuenta con la capacidad para la cantidad de personas registradas. Cambie la salida seleccionada o la cantidad de personas a registrar.", "Capacidad superada", JOptionPane.ERROR_MESSAGE);

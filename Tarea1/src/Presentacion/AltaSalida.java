@@ -25,6 +25,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -150,8 +151,10 @@ public class AltaSalida extends JInternalFrame{
 						String datosAct = (String) listaAct.getSelectedItem();
 						int pos2 = datosAct.indexOf("(");
 						String nombreAct = datosAct.substring(0,pos2-1);
-							
-						boolean existeSalida = icd.ingresarDatosSalida(nombreSalida, cantTuristas, new GregorianCalendar(), lugarSalida, nombreDep, nombreAct);
+						
+						GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
+						int horaSalida = 0;// lo ingresa el usuario junto con fecha tambien DE 0 A 23 hs
+						boolean existeSalida = icd.ingresarDatosSalida(nombreSalida, cantTuristas, fechaActual, new GregorianCalendar(), horaSalida, lugarSalida, nombreDep, nombreAct);
 					
 						if (existeSalida) {
 							JOptionPane.showMessageDialog(null, "Ya existe una salida con el mismo nombre reingrese los datos.", "Ya existe", JOptionPane.ERROR_MESSAGE);

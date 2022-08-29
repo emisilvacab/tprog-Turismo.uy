@@ -1,5 +1,6 @@
 package logica.controladores;
 
+import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -89,7 +90,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return false;
 	}
 	
-	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException {
+	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException {
 		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
 		if (dpto == null)
@@ -99,12 +100,17 @@ public class ControladorDepartamento implements IControladorDepartamento {
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado.");
 		boolean existeSalida = act.existeSalida(nombre);
 		if (!existeSalida) {
-			GregorianCalendar fechaActual = new GregorianCalendar();//fecha actual
-			Salida nueva = new Salida(nombre, maxTuristas, fechaActual, fechaSalida, lugarSalida, act);
+			Salida nueva = new Salida(nombre, maxTuristas, fechaAlta, fechaSalida, horaSalida, lugarSalida, act);
 			act.addSalida(nueva);
 			ManejadorSalida msal = ManejadorSalida.getInstance();
 			msal.addSalida(nueva);
 		}
 		return existeSalida;
+	}
+	
+	public void ingresarDepartamento(String nombre, String descripcion, String url) {
+		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		Departamento nuevo = new Departamento(nombre, descripcion, url);
+		mDptos.addDepartamento(nuevo);
 	}
 }
