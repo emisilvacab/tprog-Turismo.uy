@@ -4,10 +4,10 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 public interface IControladorDepartamento {
 	

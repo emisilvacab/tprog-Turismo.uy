@@ -33,10 +33,10 @@ import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
 import excepciones.departamentoNoExisteException;
 import logica.controladores.IControladorDepartamento;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 public class ConsultaDeSalida extends JInternalFrame {
 	private IControladorDepartamento cDpto;
@@ -67,18 +67,16 @@ public class ConsultaDeSalida extends JInternalFrame {
 		cDpto = icd;
 		
 		setTitle("Consulta de Salida Turistica");
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
 		setBounds(100, 100, 338, 347);
 		
 		
-		
 		addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
 				setVisible(false);
-				limpiarFormulario();
+				//limpiarFormulario();
 				comboBoxDepartamento.removeAllItems();
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
@@ -460,6 +458,11 @@ public class ConsultaDeSalida extends JInternalFrame {
 	}
 	
 	public void mostrar(String dptoNombre, String actNombre, String salNombre) {
+		comboBoxDepartamento.removeAllItems();
+		comboBoxActividad.removeAllItems();
+		comboBoxSalida.removeAllItems();
+		limpiarFormulario();
+		
 		tagDpto.setVisible(false);
 		tagActividad.setVisible(false);
 		tagSalida.setVisible(false);
@@ -468,12 +471,15 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxActividad.setVisible(false);
 		comboBoxSalida.setVisible(false);
 		
+		comboBoxDepartamento.addItem(dptoNombre);
+		comboBoxActividad.addItem(actNombre);
+		comboBoxSalida.addItem(salNombre);
+		
 		comboBoxDepartamento.setSelectedItem(dptoNombre);
 		comboBoxActividad.setSelectedItem(actNombre);
 		comboBoxSalida.setSelectedItem(salNombre);
 		
 		mostrarSalida();
-		
 		
 	}
 	

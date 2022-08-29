@@ -10,8 +10,6 @@ import java.util.Set;
 import java.util.Vector;
 import java.util.Arrays;
 
-import datatypes.*;
-import data.ManejadorUsuario;
 import excepciones.UsuarioRepetidoException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
@@ -21,9 +19,13 @@ import logica.Proveedor;
 import logica.Salida;
 import logica.Turista;
 import logica.Usuario;
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
+import logica.manejadores.ManejadorPaquete;
+import logica.manejadores.ManejadorSalida;
+import logica.manejadores.ManejadorUsuario;
 import logica.Actividad;
-import data.ManejadorPaquete;
-import data.ManejadorSalida;
 
 public class ControladorUsuario implements IControladorUsuario {
 
