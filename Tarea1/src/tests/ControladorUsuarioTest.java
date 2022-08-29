@@ -40,7 +40,7 @@ class ControladorUsuarioTest {
 
 	@Test
 	void testInscripcionASalida() {
-		//ingreso se datos previos, no testeados en este test
+		//ingreso de datos previos, no testeados en este test
 		DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
 		DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
 		try {
@@ -89,9 +89,7 @@ class ControladorUsuarioTest {
 		int j = 0; 
 		for (String d : dptos) {
 			assertEquals(d,"Montevideo");
-			j++;
 		}
-		assertEquals(j,1);
 		
 		//testeo de los datos de la actividad registrada
 		try {
@@ -121,7 +119,6 @@ class ControladorUsuarioTest {
 		//testeo de si se devuelve unicamente la salida vigente
 		try {
 			HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentes("Paseo por Parque Rodo", "Montevideo");
-			int i = 0;
 			for (DTSalida s : salidasVigentes) {
 				assertEquals(s.getNombre(),"Juegos");
 				assertEquals(s.getMaxTuristas(),6);
@@ -129,9 +126,7 @@ class ControladorUsuarioTest {
 				assertEquals(s.getFechaDTSalida().get(Calendar.MONTH),11);
 				assertEquals(s.getFechaDTSalida().get(Calendar.YEAR),2022);
 				assertEquals(s.getLugarDTSalida(),"Playa Ramirez");
-				i++;
 			}
-			assertEquals(i,1);
 		}
 		catch (departamentoNoExisteException e) {
 			fail(e.getMessage());
