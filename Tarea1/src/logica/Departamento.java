@@ -75,6 +75,10 @@ public class Departamento{
 		if (act == null)
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");
 		return act.obtenerSalidasVigentes();
-	};
+	}
+	
+	public Actividad obtenerActividad(String nombreAct) {
+		return actividades.get(nombreAct);
+	}
 	
 }

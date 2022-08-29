@@ -15,7 +15,7 @@ public class Actividad{
 	private String nombre;
 	private String descripcion;
 	private int duracion;
-	private Float costo;
+	private float costo;
 	private String ciudad;
 	private GregorianCalendar alta;
 	
@@ -24,7 +24,7 @@ public class Actividad{
 	private Map<String, Paquete> paquetes;	
 	private Map<String, Salida> salidas;	
 	
-	public Actividad(String nombre, String descripcion, int duracion, Float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor) {
+	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.duracion = duracion;
@@ -149,5 +149,12 @@ public class Actividad{
 		return res;
 	}
 
+	public boolean existeSalida(String nombre) {
+		Salida sal = salidas.get(nombre);
+		if (sal == null)
+			return false;
+		else 
+			return true;
+	}
 	
 }

@@ -41,9 +41,7 @@ import javax.swing.SpringLayout;
 import net.miginfocom.swing.MigLayout;
 
 public class AltaUsuario extends JInternalFrame{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario contrUsers;
 	private Boolean esTurista;
