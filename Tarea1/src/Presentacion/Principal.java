@@ -30,7 +30,7 @@ public class Principal {
 	private InscripcionASalida inscASalInternalFrame;
 	private AltaSalida altaSalidaInternalFrame;
 	private ConsultaDeSalida consultaSalidaInternalFrame;
-	private ConsultaDeActividad consultaActividadInternalFrame;
+	private AltaActividad altaActividadInternalFrame;
 	
 	
 	
@@ -57,7 +57,7 @@ public class Principal {
         ICD = fabrica.getIControladorDepartamento();
         ICP = fabrica.getIControladorPaquete();
         
-        frmReservas_UY.getContentPane().setLayout(null);
+        frmReservas_UY.setLayout(null);
         
         conUsrInternalFrame = new ConsultarUsuario(ICU, ICP);
         conUsrInternalFrame.setVisible(false);
@@ -80,10 +80,9 @@ public class Principal {
         consultaSalidaInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(consultaSalidaInternalFrame);
         
-        consultaActividadInternalFrame = new ConsultaDeActividad(ICD);
-        consultaActividadInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(consultaActividadInternalFrame);
-        
+        altaActividadInternalFrame = new AltaActividad(ICD,ICU);
+        altaActividadInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(altaActividadInternalFrame);
         
     }
     
@@ -141,7 +140,7 @@ public class Principal {
         menuUsuarios.add(menuItemAltaUsuario);
         
         JMenuItem menuItemInscripcionASalida = new JMenuItem("Inscribir a salida");
-        menuItemInscripcionASalida.setToolTipText("Seleccione esta opci髇 si desea inscribir un usuario a una salida");
+        menuItemInscripcionASalida.setToolTipText("Seleccione esta opci贸n si desea inscribir un usuario a una salida");
         menuItemInscripcionASalida.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	inscASalInternalFrame.cargarDptos();
@@ -156,7 +155,7 @@ public class Principal {
         menuBar.add(menuActividades);
         
         JMenuItem menuItemAltaSalida = new JMenuItem("Crear Salida");
-        menuItemAltaSalida.setToolTipText("Seleccione esta opci髇 si desea dar de alta una salida");
+        menuItemAltaSalida.setToolTipText("Seleccione esta opci贸n si desea dar de alta una salida");
         menuItemAltaSalida.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	altaSalidaInternalFrame.cargarDptos();
@@ -166,7 +165,7 @@ public class Principal {
         menuActividades.add(menuItemAltaSalida);
         
         JMenuItem menuItemConsultaSalida = new JMenuItem("Consulta de Salida");
-        menuItemConsultaSalida.setToolTipText("Seleccione esta opci髇 si desea consultar una salida");
+        menuItemConsultaSalida.setToolTipText("Seleccione esta opci贸n si desea consultar una salida");
         menuItemConsultaSalida.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	consultaSalidaInternalFrame.cargarDepartamentos();
@@ -175,15 +174,18 @@ public class Principal {
         });
         menuActividades.add(menuItemConsultaSalida);
         
-        JMenuItem menuItemConsultaActividad = new JMenuItem("Consulta de Actividad");
-        menuItemConsultaActividad.setToolTipText("Seleccione esta opci髇 si desea consultar una actividad");
-        menuItemConsultaActividad.addActionListener(new ActionListener() {
+        JMenuItem menuItemAltaActividad = new JMenuItem("Alta de actividad");
+        menuItemAltaActividad.setToolTipText("Seleccione esta opci贸n si desea dar de alta una actividad");
+        menuItemAltaActividad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	consultaActividadInternalFrame.cargarDepartamentos();
-            	consultaActividadInternalFrame.setVisible(true);
+            	altaActividadInternalFrame.cargarDepartamentos();
+            	altaActividadInternalFrame.cargarProveedores();
+            	altaActividadInternalFrame.setVisible(true);
             }
         });
-        menuActividades.add(menuItemConsultaActividad);
+        menuActividades.add(menuItemAltaActividad);
  		
     }
+    
+    
 }
