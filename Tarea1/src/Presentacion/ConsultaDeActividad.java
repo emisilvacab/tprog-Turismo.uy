@@ -19,6 +19,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.InternalFrameAdapter;
@@ -38,15 +39,15 @@ public class ConsultaDeActividad extends JInternalFrame {
 	
 	private IControladorDepartamento cDpto;
 	private JTextField textFieldNombre;
-	private JTextField textFieldDescripcion;
+	private JTextArea textAreaDescripcion;
 	private JTextField textFieldDuracion;
 	private JTextField textFieldCosto;
 	private JTextField textFieldCiudad;
 	private JTextField textFieldFechaAlta;
 	
-	private JComboBox comboBoxDepartamento;
-	private JComboBox comboBoxActividad;
-	private JComboBox comboBoxSalida;
+	private JComboBox<String> comboBoxDepartamento;
+	private JComboBox<String> comboBoxActividad;
+	private JComboBox<String> comboBoxSalida;
 	
 	/**
 	 * Create the frame.
@@ -54,12 +55,13 @@ public class ConsultaDeActividad extends JInternalFrame {
 	public ConsultaDeActividad(IControladorDepartamento icd) {
 		
 		consultaDeSalida = new ConsultaDeSalida(icd);
+		this.getContentPane().add(consultaDeSalida);
 		
 		setMaximizable(true);
 		setClosable(true);
 		cDpto = icd;
 		setTitle("Consulta de Actividad");
-		setBounds(100, 100, 369, 381);
+		setBounds(100, 100, 499, 453);
 		
 		addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -81,17 +83,17 @@ public class ConsultaDeActividad extends JInternalFrame {
 		JLabel lblDepartamento = new JLabel("Departamento");
 		lblDepartamento.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		comboBoxDepartamento = new JComboBox();
+		comboBoxDepartamento = new JComboBox<String>();
 		
 		comboBoxDepartamento.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				comboBoxActividad.setEnabled(false);				
 				comboBoxActividad.removeAllItems();				
-				comboBoxActividad.setSelectedItem(null);
+				//comboBoxActividad.setSelectedItem(null);
 				
 				comboBoxSalida.setEnabled(false);				
 				comboBoxSalida.removeAllItems();				
-				comboBoxSalida.setSelectedItem(null);
+				//comboBoxSalida.setSelectedItem(null);
 				
 				
 				if(comboBoxDepartamento.getSelectedItem() != null) {
@@ -99,6 +101,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 					comboBoxActividad.setEnabled(true);
 				}
 				limpiarFormulario();
+				mostrarActividad();
 				
 				
 			}
@@ -107,7 +110,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		JLabel lblNewLabel = new JLabel("Actividad");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		comboBoxActividad = new JComboBox();
+		comboBoxActividad = new JComboBox<String>();
 		comboBoxActividad.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				
@@ -143,9 +146,10 @@ public class ConsultaDeActividad extends JInternalFrame {
 		textFieldNombre.setEditable(false);
 		textFieldNombre.setColumns(10);
 		
-		textFieldDescripcion = new JTextField();
-		textFieldDescripcion.setEditable(false);
-		textFieldDescripcion.setColumns(10);
+		textAreaDescripcion = new JTextArea();
+		textAreaDescripcion.setLineWrap(true);
+		textAreaDescripcion.setEditable(false);
+		textAreaDescripcion.setColumns(10);
 		
 		textFieldDuracion = new JTextField();
 		textFieldDuracion.setEditable(false);
@@ -165,7 +169,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		
 		JLabel lblNewLabel_7 = new JLabel("Salidas");
 		
-		comboBoxSalida = new JComboBox();
+		comboBoxSalida = new JComboBox<String>();
 		comboBoxSalida.setEnabled(false);
 		
 		JButton buttonInfo = new JButton("Ver");
@@ -186,21 +190,17 @@ public class ConsultaDeActividad extends JInternalFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(37)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED))
+						.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
+										.addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED))
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 									.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -211,18 +211,20 @@ public class ConsultaDeActividad extends JInternalFrame {
 										.addComponent(textFieldFechaAlta)
 										.addComponent(textFieldCosto)
 										.addComponent(textFieldDuracion)
-										.addComponent(textFieldDescripcion)
-										.addComponent(textFieldCiudad)
 										.addComponent(comboBoxSalida, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(comboBoxActividad, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(comboBoxDepartamento, 0, 129, Short.MAX_VALUE))
+								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(textAreaDescripcion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+										.addComponent(textFieldNombre, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+												.addComponent(comboBoxActividad, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(comboBoxDepartamento, 0, 129, Short.MAX_VALUE))))
 									.addGap(40))
-								.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(textFieldCiudad))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -243,7 +245,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_2)
-						.addComponent(textFieldDescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textAreaDescripcion, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_3)
@@ -265,7 +267,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 						.addComponent(lblNewLabel_7)
 						.addComponent(comboBoxSalida, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(buttonInfo))
-					.addContainerGap(13, Short.MAX_VALUE))
+					.addContainerGap(69, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 
@@ -275,7 +277,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 	
 	private void limpiarFormulario() {
 		textFieldNombre.setText("");
-		textFieldDescripcion.setText("");
+		textAreaDescripcion.setText("");
 		textFieldDuracion.setText("");
 		textFieldCosto.setText("");
 		textFieldCiudad.setText("");
@@ -309,20 +311,18 @@ public class ConsultaDeActividad extends JInternalFrame {
 	}
 	
 	private void mostrarActividad() {
-		if (comboBoxDepartamento.getSelectedItem() != null) {
+		if (comboBoxDepartamento.getSelectedItem() != null && comboBoxActividad.getSelectedItem() != null) {
 			try {
 				HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
-				DTActividad actividad;
-				Iterator<DTActividad> it = acts.iterator();
-				while(it.hasNext() && it.next().getNombre() != comboBoxActividad.getSelectedItem()) {
-					it.next();
-					
+				DTActividad actividad = null;
+				
+				for(DTActividad it : acts) {
+					if(it.getNombre() == comboBoxActividad.getSelectedItem())
+						actividad = it;
 				}
 				
-				actividad = it.next();
-				
 				textFieldNombre.setText(actividad.getNombre());
-				textFieldDescripcion.setText(actividad.getDescripcion());
+				textAreaDescripcion.setText(actividad.getDescripcion());
 				Integer duracion = actividad.getDuracion();
 				textFieldDuracion.setText(duracion.toString());
 				textFieldCosto.setText(Float.toString(actividad.getCosto()));
@@ -365,11 +365,9 @@ public class ConsultaDeActividad extends JInternalFrame {
 	}
 	
 	private void mostrarInfo() {
-		consultaDeSalida.mostrar((String) comboBoxDepartamento.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(),(String) comboBoxSalida.getSelectedItem());
 		consultaDeSalida.setVisible(true);
-		this.getContentPane().add(consultaDeSalida);
-		
-		
+		consultaDeSalida.mostrar((String) comboBoxDepartamento.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(),(String) comboBoxSalida.getSelectedItem());
+			
 	}
 	
 	
