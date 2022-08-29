@@ -26,9 +26,9 @@ public class Principal {
 	private IControladorPaquete ICP;
 	private IControladorDepartamento ICD;
 	private ConsultarUsuario conUsrInternalFrame;
-	private AltaUsuario crearUsrInternalFrame;
+	//private AltaUsuario crearUsrInternalFrame;
 	private InscripcionASalida inscASalInternalFrame;
-	
+	private AltaSalida altaSalidaInternalFrame;
 	
 	
 	
@@ -59,13 +59,18 @@ public class Principal {
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
         
-        crearUsrInternalFrame = new AltaUsuario(ICU);
-        crearUsrInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(crearUsrInternalFrame);
+        //crearUsrInternalFrame = new AltaUsuario(ICU);
+        //crearUsrInternalFrame.setVisible(false);
+        //frmReservas_UY.getContentPane().add(crearUsrInternalFrame);
         
         inscASalInternalFrame = new InscripcionASalida(ICU,ICD);
         inscASalInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(inscASalInternalFrame);
+        
+        altaSalidaInternalFrame = new AltaSalida(ICD);
+        altaSalidaInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(altaSalidaInternalFrame);
+        
         
     }
     
@@ -80,6 +85,9 @@ public class Principal {
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
         // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
         // evento asociado que permite realizar una acción una vez se seleccionan. 
+        
+        //MENU SISTEMA
+        
         JMenuBar menuBar = new JMenuBar();
         frmReservas_UY.setJMenuBar(menuBar);
 
@@ -96,13 +104,14 @@ public class Principal {
         });
         menuSistema.add(menuSalir);
         
+        // MENU USUARIOS
+        
         JMenu menuUsuarios = new JMenu("Usuarios");
         menuBar.add(menuUsuarios);
         
         JMenuItem menuItemConsultaUsuario = new JMenuItem("Consultar");
         menuItemConsultaUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Muestro el InternalFrame para ver información de un usuario
             	conUsrInternalFrame.cargarUsuarios();
                 conUsrInternalFrame.setVisible(true);
             }
@@ -112,7 +121,7 @@ public class Principal {
         JMenuItem menuItemAltaUsuario = new JMenuItem("Alta");
         menuItemAltaUsuario.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		crearUsrInternalFrame.setVisible(true);
+        		//crearUsrInternalFrame.setVisible(true);
         	}
         });
         menuUsuarios.add(menuItemAltaUsuario);
@@ -126,12 +135,23 @@ public class Principal {
             }
         });
         menuUsuarios.add(menuItemInscripcionASalida);
+        
+        //MENU DE ACTIVIDADES
+        
+        JMenu menuActividades = new JMenu("Actividades");
+        menuBar.add(menuActividades);
+        
+        JMenuItem menuItemAltaSalida = new JMenuItem("Crear Salida");
+        menuItemAltaSalida.setToolTipText("Seleccione esta opción si desea dar de alta una salida");
+        menuItemAltaSalida.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	altaSalidaInternalFrame.cargarDptos();
+            	altaSalidaInternalFrame.setVisible(true);
+            }
+        });
+        menuActividades.add(menuItemAltaSalida);
  
-        
-        
-
     }
     
     
-
 }

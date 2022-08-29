@@ -12,6 +12,7 @@ import datatypes.DTSalida;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.salidaNoExisteException;
+import excepciones.salidaYaExisteException;
 import logica.Actividad;
 import logica.Departamento;
 import logica.Salida;
@@ -53,13 +54,15 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return res;
 	}
 	
-	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaSalida, String lugarSalida, String nombreDpto, String nombreAct) {
+	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.salidaYaExisteException, actividadNoExisteException {
 		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
 		Actividad act = dpto.obtenerActividad(nombreAct);
+		if (act == null)
+			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado.");
 		boolean existeSalida = act.existeSalida(nombre);
 		if (existeSalida)
-			throw new salidaYaExisteException("Ya existe Salida");//ver como es esto'
+			throw new salidaYaExisteException("Ya existe Salida");
 		else {
 			GregorianCalendar fechaActual = new GregorianCalendar();//fecha actual
 			Salida nueva = new Salida(nombre, maxTuristas, fechaActual, fechaSalida, lugarSalida, act);
