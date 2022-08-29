@@ -111,14 +111,17 @@ public class ConsultaDeSalida extends JInternalFrame {
 			public void itemStateChanged(ItemEvent e) {
 				comboBoxActividad.setEnabled(false);
 				comboBoxSalida.setEnabled(false);
+				
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
-				comboBoxActividad.setSelectedItem(null);
-				comboBoxSalida.setSelectedItem(null);
+				
+				//comboBoxActividad.setSelectedItem(null);
+				//comboBoxSalida.setSelectedItem(null);
 				
 				if(comboBoxDepartamento.getSelectedItem() != null) {
 					cargarActividades();
-					comboBoxActividad.setEnabled(true);
+					if(comboBoxActividad.getSelectedItem() != null)
+						comboBoxActividad.setEnabled(true);
 				}
 				limpiarFormulario();
 				
@@ -144,14 +147,17 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxActividad = new JComboBox<String>();
 		
 		comboBoxActividad.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent f) {
 				comboBoxSalida.setEnabled(false);
-				comboBoxSalida.setSelectedItem(null);
+				
+				//comboBoxSalida.setSelectedItem(null);
+				
 				comboBoxSalida.removeAllItems();
 				
 				if(comboBoxActividad.getSelectedItem() != null) {
 					cargarSalidas();
-					comboBoxSalida.setEnabled(true);
+					if(comboBoxSalida.getSelectedItem() != null)
+					    comboBoxSalida.setEnabled(true);
 				}
 				limpiarFormulario();
 				
@@ -177,7 +183,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxSalida = new JComboBox<String>();
 		
 		comboBoxSalida.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent g) {
 				if(comboBoxSalida.getSelectedItem() != null) {
 					mostrarSalida();
 				}else {
@@ -370,14 +376,12 @@ public class ConsultaDeSalida extends JInternalFrame {
 		//try
 		try {
 			HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes((String) comboBoxActividad.getSelectedItem(),(String) comboBoxDepartamento.getSelectedItem());
-			DTSalida salida;
-			Iterator<DTSalida> it = sals.iterator();
-			while(it.hasNext() && it.next().getNombre() != comboBoxSalida.getSelectedItem()) {
-				it.next();
-				
+			DTSalida salida = null;
+		    
+			for(DTSalida it : sals) {
+				if(it.getNombre() == comboBoxSalida.getSelectedItem())
+					salida = it;
 			}
-			
-			salida = it.next();
 							
 			textFieldNombre.setText(salida.getNombre());
 			Integer numero = salida.getMaxTuristas();
