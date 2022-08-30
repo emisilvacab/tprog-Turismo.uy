@@ -23,15 +23,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-<<<<<<< HEAD
+
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
-=======
->>>>>>> refs/heads/master
+
 import excepciones.usuarioNoExisteException;
 import javax.swing.JButton;
 
@@ -417,12 +416,10 @@ public class ConsultarUsuario extends JInternalFrame{
 	public void cargarActividadesOfrecidas(String nickname) {
         DefaultComboBoxModel<String> model;
         try {
-<<<<<<< HEAD
+
         	actividadesOfrecidasBox.removeAllItems();
-        	actividadesOfrecidas = contUser.mostrarActividadesOfrecidas(nickname);
-=======
         	actividadesOfrecidas = contUser.obtenerActividadesOfrecidas(nickname);
->>>>>>> refs/heads/master
+
 			model = new DefaultComboBoxModel<String>(actividadesOfrecidas);
 			actividadesOfrecidasBox.setModel(model);
 		} catch (usuarioNoExisteException e) {
@@ -442,12 +439,7 @@ public class ConsultarUsuario extends JInternalFrame{
 			
 		}
 	}
-<<<<<<< HEAD
-	
-	
-=======
-	*/
->>>>>>> refs/heads/master
+
 	public void cargarSalidasInscripto(String nickname) {
 		DefaultComboBoxModel<String> model;
         try {
