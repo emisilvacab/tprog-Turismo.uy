@@ -328,7 +328,7 @@ public class ConsultarUsuario extends JInternalFrame{
         
 	}
 	protected void limpiarFormulario() {
-		listaUsuarios.removeAllItems();
+		//listaUsuarios.removeAllItems();
 		nombreText.setVisible(false);
 		nicknameText.setVisible(false);
 		apellidoText.setVisible(false);
