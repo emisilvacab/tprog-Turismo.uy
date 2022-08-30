@@ -400,6 +400,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 			
 			textFieldFechaAlta.setText(fechaAltaString);
 			
+			cargarSalidas();
+			
 			
 		} catch (actividadNoExisteException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);		

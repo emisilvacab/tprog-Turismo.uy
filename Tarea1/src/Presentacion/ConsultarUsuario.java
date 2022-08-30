@@ -178,7 +178,7 @@ public class ConsultarUsuario extends JInternalFrame{
         cerrarButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		setVisible(false);
-        		limpiarFormulario();
+        		//limpiarFormulario();
         	}
         });
         
@@ -201,6 +201,13 @@ public class ConsultarUsuario extends JInternalFrame{
         });
         
         buttonVerActividad = new JButton("Ver");
+        buttonVerActividad.setVisible(true);
+        buttonVerActividad.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		mostrarActividad();
+        		
+        	}
+        });
         
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
@@ -461,9 +468,8 @@ public class ConsultarUsuario extends JInternalFrame{
         model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasDeActividad((String) listaUsuarios.getSelectedItem(), (String) actividadesOfrecidasBox.getSelectedItem()));
         salidasAsociadasBox.setModel(model);
 		}catch (usuarioNoExisteException | actividadNoExisteException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
-
-			
+			//JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
+	
 		}
 	}
 
