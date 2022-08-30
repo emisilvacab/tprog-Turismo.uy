@@ -12,11 +12,12 @@ public class Inscripcion{
 	private Turista turista;
 	
 	public Inscripcion(GregorianCalendar fecha, int cantTuristas, Salida salida, Turista turista) {
-		this.fecha = fecha;
-		this.cantTuristas = cantTuristas;
-		this.salida = salida;
-		this.turista = turista;
-		this.costo = salida.getCostoActividad() * cantTuristas; 	}
+		this.setFecha(fecha);
+		this.setCantTuristas(cantTuristas);
+		this.setSalida(salida);
+		this.setTurista(turista);
+		this.costo  = (salida.getCostoActividad() * cantTuristas); 	
+	}
 
 
 	public GregorianCalendar getFecha() {

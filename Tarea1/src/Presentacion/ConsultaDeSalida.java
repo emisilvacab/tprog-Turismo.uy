@@ -46,22 +46,16 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private JTextField textFieldSalida;
 	private JTextField textFieldLugar;
 	
-	//combo boxes
 	private JComboBox<String> comboBoxDepartamento;
 	private JComboBox<String> comboBoxActividad;
 	private JComboBox<String> comboBoxSalida;
 	
-	//tags
 	private JLabel tagDpto;
 	private JLabel tagActividad;
 	private JLabel tagSalida;
 	private JLabel lblNewLabel;
 	private JTextField textFieldHora;
 	
-
-	/**
-	 * Create the frame.
-	 */
 	public ConsultaDeSalida(IControladorDepartamento icd) {
 		
 		cDpto = icd;
@@ -76,17 +70,9 @@ public class ConsultaDeSalida extends JInternalFrame {
 		addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
 				setVisible(false);
-				//limpiarFormulario();
 				comboBoxDepartamento.removeAllItems();
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
-				
-				//comboBoxDepartamento.setSelectedItem(null);
-				//comboBoxActividad.setSelectedItem(null);
-				//comboBoxSalida.setSelectedItem(null);
-				
-				//comboBoxActividad.setEnabled(false);
-				//comboBoxSalida.setEnabled(false);
             }
         });
 		
@@ -114,9 +100,6 @@ public class ConsultaDeSalida extends JInternalFrame {
 				
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
-				
-				//comboBoxActividad.setSelectedItem(null);
-				//comboBoxSalida.setSelectedItem(null);
 				
 				if(comboBoxDepartamento.getSelectedItem() != null) {
 					cargarActividades();
@@ -148,10 +131,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		
 		comboBoxActividad.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent f) {
-				//comboBoxSalida.setEnabled(false);
-				
-				//comboBoxSalida.setSelectedItem(null);
-				
+
 				comboBoxSalida.removeAllItems();
 				
 				if(comboBoxActividad.getSelectedItem() != null) {
@@ -164,7 +144,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 			}
 		});
 		
-		comboBoxActividad.setEnabled(false); //inicia cerrada
+		comboBoxActividad.setEnabled(false);
 		GridBagConstraints gbc_comboBoxActividad = new GridBagConstraints();
 		gbc_comboBoxActividad.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxActividad.fill = GridBagConstraints.HORIZONTAL;
@@ -192,7 +172,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 			
 			}});
 		
-		comboBoxSalida.setEnabled(false); //inicia cerrada
+		comboBoxSalida.setEnabled(false);
 		GridBagConstraints gbc_comboBoxSalida = new GridBagConstraints();
 		gbc_comboBoxSalida.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxSalida.fill = GridBagConstraints.HORIZONTAL;
@@ -309,13 +289,6 @@ public class ConsultaDeSalida extends JInternalFrame {
 				comboBoxDepartamento.removeAllItems();
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
-				
-				//comboBoxDepartamento.setSelectedItem(null);
-				//comboBoxActividad.setSelectedItem(null);
-				//comboBoxSalida.setSelectedItem(null);
-				
-				//comboBoxActividad.setEnabled(false);
-				//comboBoxSalida.setEnabled(false);
 				mostrarSalida();
             }
         });
@@ -348,7 +321,6 @@ public class ConsultaDeSalida extends JInternalFrame {
 		
 	}
 	
-	//Auxiliares
 	private void limpiarFormulario() {
 		textFieldNombre.setText("");	
         textFieldMaximo.setText("");     
@@ -361,7 +333,6 @@ public class ConsultaDeSalida extends JInternalFrame {
 	
 	
 	private void cargarActividades() {
-		//try
 		if (comboBoxDepartamento.getSelectedItem() != null) {
 			try {
 				HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
@@ -376,7 +347,6 @@ public class ConsultaDeSalida extends JInternalFrame {
 	}
 	
 	private void cargarSalidas() {
-		//try
 		if (comboBoxActividad.getSelectedItem() != null) {
 			try {
 				HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes((String) comboBoxActividad.getSelectedItem(),(String) comboBoxDepartamento.getSelectedItem());
@@ -391,7 +361,6 @@ public class ConsultaDeSalida extends JInternalFrame {
 	}
 	
 	private void mostrarSalida() {
-		//try
 		if(comboBoxDepartamento.getSelectedItem() != null && comboBoxActividad.getSelectedItem() != null && comboBoxSalida.getSelectedItem() != null) {
 		try {
 			HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes((String) comboBoxActividad.getSelectedItem(),(String) comboBoxDepartamento.getSelectedItem());

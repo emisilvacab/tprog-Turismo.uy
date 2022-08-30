@@ -64,18 +64,13 @@ public class ConsultarUsuario extends JInternalFrame{
 	private JLabel nacionalidadText;
 	private JLabel salidasInscriptoTag;
 	private JComboBox<String> salidasInscriptoBox;
-	private JButton buttonVerActividad;
 	
 	private JButton buttonActividad;
 	private JButton buttonSalida;
 	
 
+
 	public ConsultarUsuario(IControladorUsuario icu, IControladorDepartamento icd) {
-		
-		consultaDeActividad = new ConsultaDeActividad(icd);
-		this.getContentPane().add(consultaDeActividad);
-		consultaDeActividad.setVisible(false);
-		
 		contUser = icu;
 		consultaDeSalida = new ConsultaDeSalida(icd);
 		this.getContentPane().add(consultaDeSalida);
@@ -164,7 +159,7 @@ public class ConsultarUsuario extends JInternalFrame{
         actividadesOfrecidasBox.setVisible(false);
         actividadesOfrecidasBox.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		mostrarActividad();
+        		//caso de uso consulta de actividad
         	}
         });
         
@@ -220,15 +215,37 @@ public class ConsultarUsuario extends JInternalFrame{
         	}
         });
         
-        buttonVerActividad = new JButton("Ver");
-        buttonVerActividad.setVisible(true);
-        buttonVerActividad.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		mostrarActividad();
-        		
-        	}
-        });
+        buttonActividad = new JButton("Ver");
+        buttonActividad.setVisible(false);
+        buttonActividad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            	if(actividadesOfrecidasBox.getSelectedItem() != null)
+            		try {
+            			consultaDeActividad.setVisible(true);
+            			consultaDeActividad.mostrarDT(contUser.obtenerDatoActividadProveedor((String) listaUsuarios.getSelectedItem(),(String) actividadesOfrecidasBox.getSelectedItem()));
+            		} catch(usuarioNoExisteException exc ) {
+	        			JOptionPane.showMessageDialog(null, exc.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
+
+            		}
+            }
+        }); 
         
+        
+        buttonSalida = new JButton("Ver");
+        buttonSalida.setVisible(false);
+        buttonSalida.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            	if(salidasAsociadasBox.getSelectedItem() != null)
+            		try {
+            			consultaDeSalida.setVisible(true);
+            			consultaDeSalida.mostrarDT(contUser.obtenerDatoSalidaProveedor((String) listaUsuarios.getSelectedItem(),(String) actividadesOfrecidasBox.getSelectedItem(),(String) salidasAsociadasBox.getSelectedItem()  ));
+            		} catch(usuarioNoExisteException | actividadNoExisteException exc ) {
+	        			JOptionPane.showMessageDialog(null, exc.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
+
+            		}
+            }
+        });
+       
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
@@ -238,12 +255,12 @@ public class ConsultarUsuario extends JInternalFrame{
         			.addContainerGap(156, Short.MAX_VALUE))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(151)
-        			.addComponent(infoUsuario, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+        			.addComponent(infoUsuario, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         			.addGap(129))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(157)
         			.addComponent(tipoUsuarioText)
-        			.addContainerGap(331, Short.MAX_VALUE))
+        			.addContainerGap(288, Short.MAX_VALUE))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(36)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -251,7 +268,7 @@ public class ConsultarUsuario extends JInternalFrame{
         					.addComponent(salidasInscriptoTag)
         					.addGap(32)
         					.addComponent(salidasInscriptoBox, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
         					.addComponent(cerrarButton, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
         				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
         					.addGroup(groupLayout.createSequentialGroup()
@@ -293,17 +310,18 @@ public class ConsultarUsuario extends JInternalFrame{
         										.addPreferredGap(ComponentPlacement.RELATED)
         										.addComponent(nacionalidadText, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
         									.addComponent(descripcionText, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)))
-        							.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-        								.addComponent(actividadesOfrecidasTag)
-        								.addPreferredGap(ComponentPlacement.RELATED)
-        								.addComponent(actividadesOfrecidasBox, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
-        								.addPreferredGap(ComponentPlacement.UNRELATED)
-        								.addComponent(buttonVerActividad, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
-        							.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-        								.addComponent(salidasAsociadasTag)
-        								.addPreferredGap(ComponentPlacement.UNRELATED)
-        								.addComponent(salidasAsociadasBox, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
-        						.addPreferredGap(ComponentPlacement.RELATED))))
+        							.addGroup(groupLayout.createSequentialGroup()
+        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        									.addComponent(actividadesOfrecidasTag)
+        									.addComponent(salidasAsociadasTag))
+        								.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+        									.addComponent(salidasAsociadasBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        									.addComponent(actividadesOfrecidasBox, 0, 170, Short.MAX_VALUE))))
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        							.addComponent(buttonSalida)
+        							.addComponent(buttonActividad)))))
         			.addContainerGap())
         );
         groupLayout.setVerticalGroup(
@@ -343,9 +361,9 @@ public class ConsultarUsuario extends JInternalFrame{
         				.addComponent(nacionalidadText))
         			.addGap(18)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(actividadesOfrecidasTag)
         				.addComponent(actividadesOfrecidasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(buttonVerActividad))
+        				.addComponent(actividadesOfrecidasTag)
+        				.addComponent(buttonActividad))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(salidasAsociadasTag)
@@ -353,7 +371,7 @@ public class ConsultarUsuario extends JInternalFrame{
         				.addComponent(buttonSalida))
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addGroup(groupLayout.createSequentialGroup()
-        					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
         					.addComponent(cerrarButton)
         					.addContainerGap())
         				.addGroup(groupLayout.createSequentialGroup()
@@ -367,14 +385,6 @@ public class ConsultarUsuario extends JInternalFrame{
         
         
         
-	}
-	protected void mostrarActividad() {
-		consultaDeActividad.setVisible(true);
-		String actividadSeleccionada = (String) actividadesOfrecidasBox.getSelectedItem();
-		if (actividadSeleccionada != null) {
-			consultaDeActividad.mostrarDesdeConsultaDeUsuario(actividadSeleccionada);
-		}
-		
 	}
 	protected void limpiarFormulario() {
 		//listaUsuarios.removeAllItems();

@@ -11,11 +11,11 @@ public abstract class Usuario{
 	private GregorianCalendar nacimiento;
 	
 	public Usuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento) {
-		this.nickname = nickname;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.correo = correo;
-		this.nacimiento = nacimiento;
+		this.setNickname(nickname);
+		this.setNombre(nombre);
+		this.setApellido(apellido);
+		this.setCorreo(correo);
+		this.setNacimiento(nacimiento);
 	}
 	
 	public String getNickname() {

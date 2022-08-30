@@ -136,16 +136,16 @@ public class CargarDatos {
 		
 		
 		try {
-			icu.ingresarDatosInscripcion("lachiqui","Degusta Agosto", 3, new GregorianCalendar(2022, 7, 15)); //costo 2400 15/8/2022
-			icu.ingresarDatosInscripcion("elelvis","Degusta Agosto", 5, new GregorianCalendar(2022, 7, 16)); // costo 4000 16/8/2022
-			icu.ingresarDatosInscripcion("lachiqui","Almuerzo 2", 3, new GregorianCalendar(2022, 7, 18)); //costo 1200 18/8/2022
-			icu.ingresarDatosInscripcion("isabelita","Almuerzo 2", 1, new GregorianCalendar(2022, 7, 19));// costo 400 19/8/2022
-			icu.ingresarDatosInscripcion("mastropiero","Almuerzo 4", 2, new GregorianCalendar(2022, 7, 19));// costo 1600 19/8/2022
-			icu.ingresarDatosInscripcion("chino","Teatro con Sabores 1", 1, new GregorianCalendar(2022, 7, 19)); //costo 500 19/8/2022
-			icu.ingresarDatosInscripcion("chino","Teatro con Sabores 2", 10, new GregorianCalendar(2022, 7, 20)); //costo 5000 20/8/2022
-			icu.ingresarDatosInscripcion("bobesponja","Teatro con Sabores 2", 2, new GregorianCalendar(2022, 7, 20));// costo 1000 20/8/2022
-			icu.ingresarDatosInscripcion("anibal","Teatro con Sabores 2", 1, new GregorianCalendar(2022, 7, 21));// costo 500 21/8/2022
-			icu.ingresarDatosInscripcion("tony","Degusta Setiembre", 11, new GregorianCalendar(2022, 7, 21)); //costo 8800 21/8/2022
+			icu.ingresarDatosInscripcion("lachiqui","Degusta Agosto", 3, new GregorianCalendar(2022, 7, 15)); //costo 2400
+			icu.ingresarDatosInscripcion("elelvis","Degusta Agosto", 5, new GregorianCalendar(2022, 7, 16)); // costo 4000
+			icu.ingresarDatosInscripcion("lachiqui","Almuerzo 2", 3, new GregorianCalendar(2022, 7, 18)); //costo 1200
+			icu.ingresarDatosInscripcion("isabelita","Almuerzo 2", 1, new GregorianCalendar(2022, 7, 19));// costo 400
+			icu.ingresarDatosInscripcion("mastropiero","Almuerzo 4", 2, new GregorianCalendar(2022, 7, 19));// costo 1600
+			icu.ingresarDatosInscripcion("chino","Teatro con Sabores 1", 1, new GregorianCalendar(2022, 7, 19)); //costo 500
+			icu.ingresarDatosInscripcion("chino","Teatro con Sabores 2", 10, new GregorianCalendar(2022, 7, 20)); //costo 5000
+			icu.ingresarDatosInscripcion("bobesponja","Teatro con Sabores 2", 2, new GregorianCalendar(2022, 7, 20));// costo 1000
+			icu.ingresarDatosInscripcion("anibal","Teatro con Sabores 2", 1, new GregorianCalendar(2022, 7, 21));// costo 500
+			icu.ingresarDatosInscripcion("tony","Degusta Setiembre", 11, new GregorianCalendar(2022, 7, 21)); //costo 8800
 			
 		}
 		catch(salidaNoExisteException e1) {

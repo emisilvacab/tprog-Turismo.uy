@@ -9,24 +9,11 @@ public class Turista extends Usuario{
 	
 	private Vector<Inscripcion> inscripciones;
 	
-	//parece que se hace asi, si lo hago como abajo me tira que tengo que invocar al super (constructor de Usuario aunque sea abstracta Usuario)
 	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String nacionalidad) {
 		super(nickname, nombre, apellido, correo, nacimiento);
-		this.nacionalidad = nacionalidad;
-		this.inscripciones = new Vector<Inscripcion>();
-		// TODO Auto-generated constructor stub
+		this.setNacionalidad(nacionalidad);
+		this.setInscripciones(new Vector<Inscripcion>());
 	}
-
-/*
-	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String nacionalidad) {
-		this.setNickname(nickname);
-		this.setNombre(nombre);
-		this.setApellido(apellido);
-		this.setCorreo(correo);
-		this.setNacimiento(nacimiento);
-		this.nacionalidad = nacionalidad;
-	}
-*/
 	
 	public String getNacionalidad() {
 		return nacionalidad;
