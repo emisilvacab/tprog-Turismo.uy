@@ -79,14 +79,15 @@ public class ConsultarUsuario extends JInternalFrame{
         listaUsuarios = new JComboBox<String>();
         listaUsuarios.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
-        		try {
-        		cargarSalidasAsociadas();
-        		} catch(usuarioNoExisteException c){
-        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
-
+        		if (listaUsuarios.getSelectedItem()!=null) {
+	        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
+	        		try {
+	        		cargarSalidasAsociadas();
+	        		} catch(usuarioNoExisteException c){
+	        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
+	        		}
+	        		//cargarUsuarios();
         		}
-        		//cargarUsuarios();
         	}
         });
         
@@ -441,8 +442,6 @@ public class ConsultarUsuario extends JInternalFrame{
         salidasAsociadasBox.setModel(model);
 		}catch (usuarioNoExisteException | actividadNoExisteException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
-
-			
 		}
 	}
 

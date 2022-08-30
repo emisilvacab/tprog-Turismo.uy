@@ -99,7 +99,6 @@ class ControladorDepartamentoTest {
 			}
 			assertEquals(j <= 5, true);
 		}
-		assertEquals(provs.length,5);
 		
 		boolean ingresado;
 		try {
