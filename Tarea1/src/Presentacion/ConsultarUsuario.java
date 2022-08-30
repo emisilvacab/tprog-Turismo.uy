@@ -451,7 +451,7 @@ public class ConsultarUsuario extends JInternalFrame{
         DefaultComboBoxModel<String> model;
         try {
 
-        	actividadesOfrecidasBox.removeAllItems();
+        	//actividadesOfrecidasBox.removeAllItems();
         	actividadesOfrecidas = contUser.obtenerActividadesOfrecidas(nickname);
 
 			model = new DefaultComboBoxModel<String>(actividadesOfrecidas);
@@ -476,7 +476,7 @@ public class ConsultarUsuario extends JInternalFrame{
 	public void cargarSalidasInscripto(String nickname) {
 		DefaultComboBoxModel<String> model;
         try {
-        	salidasInscriptoBox.removeAllItems();
+        	//salidasInscriptoBox.removeAllItems();
 			model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasInscripto(nickname));
 			salidasInscriptoBox.setModel(model);
 		} catch (usuarioNoExisteException e) {
