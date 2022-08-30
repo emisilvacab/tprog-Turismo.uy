@@ -10,14 +10,6 @@ public class DTUsuario{
 	private String correo;
 	private GregorianCalendar nacimiento;
 	
-	public DTUsuario() {
-		this.setNickname(new String());
-		this.setNombre(new String());
-		this.setApellido(new String());
-		this.setCorreo(new String());
-		this.setNacimiento(new GregorianCalendar());
-	}
-	
 	public DTUsuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento) {
 		this.setNickname(nickname);
 		this.setNombre(nombre);

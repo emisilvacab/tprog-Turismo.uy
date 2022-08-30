@@ -11,15 +11,6 @@ public class DTSalida{
 	private int hora;
 	private String lugarDTSalida;
 	
-	public DTSalida() {
-		this.setNombre(new String());
-		this.setMaxTuristas(0);
-		this.setHora(0);
-		this.setAlta(new GregorianCalendar());
-		this.setFechaDTSalida(new GregorianCalendar());
-		this.setLugarDTSalida(new String());
-	}
-	
 	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, int hora, String lugarDTSalida) {
 		this.setNombre(nombre);
 		this.setMaxTuristas(maxTuristas);
