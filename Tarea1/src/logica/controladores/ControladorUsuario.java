@@ -188,7 +188,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 	
 	@Override
-	public DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException{
+	public DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException{
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Proveedor proveedor = mu.getProveedor(nickname);
 		if(proveedor == null)
@@ -202,10 +202,8 @@ public class ControladorUsuario implements IControladorUsuario {
 			}
 							
 		}
-			
-		
 		if(actividad == null)
-			throw new usuarioNoExisteException("Usuario no existe");
+			throw new actividadNoExisteException("Actividad no existe");
 	
 		return actividad;
 	}

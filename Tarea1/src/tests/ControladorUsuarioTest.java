@@ -332,4 +332,48 @@ class ControladorUsuarioTest {
 		assertThrows(usuarioNoExisteException.class, ()->{DTSalida erroneo = icu.obtenerDatoSalidaProveedor("joker", "Paseo por Parque Rodo", "Juegos");});
 		assertThrows(usuarioNoExisteException.class, ()->{DTSalida erroneo = icu.obtenerDatoSalidaProveedor("wason", "Paseo por lago ness", "Juegos");});
 	}
+	
+	@Test
+	void obtenerDatoActividadProveedorTest() {
+		
+		try {
+			DTActividad act = icu.obtenerDatoActividadProveedor("wason", "Paseo por Parque Rodo");
+			assertEquals(act.getNombre(),"Paseo por Parque Rodo");
+			assertEquals(act.getDuracion(),4);
+			assertEquals(act.getDescripcion(),"Recorrido");
+			assertEquals(act.getCosto(),(float) 100, 0);
+			assertEquals(act.getCiudad(),"Parque Rodo");
+			assertEquals(act.getAlta().get(Calendar.DAY_OF_MONTH),1);
+			assertEquals(act.getAlta().get(Calendar.MONTH),11);
+			assertEquals(act.getAlta().get(Calendar.YEAR),2012);
+			
+		} 
+		catch (usuarioNoExisteException e) {
+			fail(e.getMessage());
+			e.printStackTrace();
+		}
+		catch (actividadNoExisteException e) {
+			fail(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		assertThrows(usuarioNoExisteException.class, ()->{DTActividad act = icu.obtenerDatoActividadProveedor("Diegu", "Paseo por Parque Rodo");});
+		assertThrows(actividadNoExisteException.class, ()->{DTActividad act = icu.obtenerDatoActividadProveedor("wason", "Ir al estadio del Huesca");});
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -78,41 +78,41 @@ public class AltaUsuario extends JInternalFrame{
         tipoUserLabel.setBounds(135, 12, 159, 14);
         
         turistaButton = new JRadioButton("Turista");
-        turistaButton.setBounds(40, 32, 59, 23);
+        turistaButton.setBounds(6, 33, 110, 23);
         
         proveedorButton = new JRadioButton("Proveedor");
-        proveedorButton.setBounds(387, 32, 75, 23);
+        proveedorButton.setBounds(298, 33, 110, 23);
         
         JLabel nombreLabel = new JLabel("Nombre: ");
-        nombreLabel.setBounds(11, 65, 45, 14);
+        nombreLabel.setBounds(11, 65, 88, 14);
         
         nombreField = new JTextField();
         nombreField.setBounds(99, 59, 96, 20);
         nombreField.setColumns(10);
         
         JLabel apellidoLabel = new JLabel("Apellido: ");
-        apellidoLabel.setBounds(324, 65, 47, 14);
+        apellidoLabel.setBounds(298, 65, 79, 14);
         
         apellidoField = new JTextField();
         apellidoField.setBounds(387, 59, 96, 20);
         apellidoField.setColumns(10);
         
         JLabel nicknameLabel = new JLabel("Nickname: ");
-        nicknameLabel.setBounds(11, 95, 54, 14);
+        nicknameLabel.setBounds(11, 95, 88, 14);
         
         nicknameField = new JTextField();
         nicknameField.setBounds(99, 89, 96, 20);
         nicknameField.setColumns(10);
         
         JLabel correoLabel = new JLabel("Correo: ");
-        correoLabel.setBounds(11, 125, 40, 14);
+        correoLabel.setBounds(11, 125, 88, 14);
         
         correoField = new JTextField();
         correoField.setBounds(99, 119, 96, 20);
         correoField.setColumns(10);
         
         JLabel nacionalidadLabel = new JLabel("Nacionalidad: ");
-        nacionalidadLabel.setBounds(11, 155, 70, 14);
+        nacionalidadLabel.setBounds(11, 155, 88, 14);
         nacionalidadLabel.setVisible(false);
         
         nacionalidadField = new JTextField();
@@ -121,7 +121,7 @@ public class AltaUsuario extends JInternalFrame{
         nacionalidadField.setColumns(10);
         
         JLabel descripcionLabel = new JLabel("Descripcion: ");
-        descripcionLabel.setBounds(298, 125, 63, 14);
+        descripcionLabel.setBounds(298, 125, 81, 14);
         descripcionLabel.setVisible(false);
         
         descripcionField = new JTextField();
@@ -130,7 +130,7 @@ public class AltaUsuario extends JInternalFrame{
         descripcionField.setVisible(false);
         
         JLabel linkLabel = new JLabel("Link: ");
-        linkLabel.setBounds(345, 155, 26, 14);
+        linkLabel.setBounds(298, 155, 81, 14);
         linkLabel.setVisible(false);
         
         linkField = new JTextField();
@@ -139,10 +139,10 @@ public class AltaUsuario extends JInternalFrame{
         linkField.setVisible(false);
         
         JButton cancelarButton = new JButton("Cancelar");
-        cancelarButton.setBounds(99, 179, 75, 23);
+        cancelarButton.setBounds(298, 181, 185, 23);
         
         JButton confirmarButton = new JButton("Confirmar");
-        confirmarButton.setBounds(298, 179, 81, 23);
+        confirmarButton.setBounds(11, 181, 184, 23);
         
         ButtonGroup turOProv = new ButtonGroup();
         turOProv.add(proveedorButton);
@@ -192,7 +192,7 @@ public class AltaUsuario extends JInternalFrame{
         getContentPane().add(nombreField);
         
         JLabel nacimientoLabel = new JLabel("Nacimiento:");
-        nacimientoLabel.setBounds(298, 95, 59, 14);
+        nacimientoLabel.setBounds(298, 95, 79, 14);
         getContentPane().add(nacimientoLabel);
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(387, 89, 120, 26);

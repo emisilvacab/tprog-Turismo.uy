@@ -208,9 +208,12 @@ public class ConsultarUsuario extends JInternalFrame{
             		try {
             			consultaDeActividad.setVisible(true);
             			consultaDeActividad.mostrarDT(contUser.obtenerDatoActividadProveedor((String) listaUsuarios.getSelectedItem(),(String) actividadesOfrecidasBox.getSelectedItem()));
-            		} catch(usuarioNoExisteException exc ) {
+            		} 
+            		catch(usuarioNoExisteException exc ) {
 	        			JOptionPane.showMessageDialog(null, exc.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
-
+            		}
+            		catch (actividadNoExisteException e) {
+            			JOptionPane.showMessageDialog(null, e.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
             		}
             }
         }); 
