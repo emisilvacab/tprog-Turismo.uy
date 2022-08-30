@@ -87,7 +87,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
     		depAsignado.getActividades().put(nombreAct, nuevaActividad);
     		proveedor.getActividades().put(nombreAct, nuevaActividad);
     	}
-		return false;
+		return encontro;
 	}
 	
 	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException {
