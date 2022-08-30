@@ -11,6 +11,9 @@ import logica.datatypes.DTUsuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.HashSet;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -20,6 +23,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTSalida;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
+import excepciones.actividadNoExisteException;
+import excepciones.departamentoNoExisteException;
+
 import excepciones.usuarioNoExisteException;
 import javax.swing.JButton;
 
@@ -28,6 +39,7 @@ public class ConsultarUsuario extends JInternalFrame{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario contUser;
 	private JComboBox<String> listaUsuarios;
@@ -67,10 +79,14 @@ public class ConsultarUsuario extends JInternalFrame{
         listaUsuarios = new JComboBox<String>();
         listaUsuarios.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-	        	if(listaUsuarios.getSelectedItem()!=null) {	
-        			cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
-	        		cargarUsuarios();
-	        	}
+        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
+        		try {
+        		cargarSalidasAsociadas();
+        		} catch(usuarioNoExisteException c){
+        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
+
+        		}
+        		//cargarUsuarios();
         	}
         });
         
@@ -123,6 +139,18 @@ public class ConsultarUsuario extends JInternalFrame{
         		//caso de uso consulta de actividad
         	}
         });
+        
+        actividadesOfrecidasBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				try {
+					cargarSalidasAsociadas();
+				}catch (usuarioNoExisteException error) {
+					JOptionPane.showMessageDialog(null, error.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
+
+					
+				}
+			}
+		});
         
         actividadesOfrecidasTag = new JLabel("Actividades ofrecidas: ");
         actividadesOfrecidasTag.setVisible(false);
@@ -300,7 +328,7 @@ public class ConsultarUsuario extends JInternalFrame{
         
 	}
 	protected void limpiarFormulario() {
-		listaUsuarios.removeAllItems();
+		//listaUsuarios.removeAllItems();
 		nombreText.setVisible(false);
 		nicknameText.setVisible(false);
 		apellidoText.setVisible(false);
@@ -339,6 +367,10 @@ public class ConsultarUsuario extends JInternalFrame{
 			
 			if (user.getClass() == DTProveedor.class) {
 				tipoUsuarioText.setText("El usuario es proveedor!");
+				
+				salidasInscriptoTag.setVisible(false); //tiene que ocultar
+				salidasInscriptoBox.setVisible(false);
+								
 				tipoUsuarioText.setVisible(true);
 				DTProveedor prov = (DTProveedor) user;
 				cargarActividadesOfrecidas(user.getNickname());
@@ -358,6 +390,13 @@ public class ConsultarUsuario extends JInternalFrame{
 			else {
 				tipoUsuarioText.setText("El usuario es turista!");
 				tipoUsuarioText.setVisible(true);
+				
+				actividadesOfrecidasBox.setVisible(false); //tiene que ocultar
+				actividadesOfrecidasTag.setVisible(false);
+				salidasAsociadasTag.setVisible(false);
+				salidasAsociadasBox.setVisible(false);
+				
+				
 				DTTurista tur = (DTTurista) user;
 				cargarSalidasInscripto(tur.getNickname());
 				nacionalidadText.setText(tur.getNacionalidad());
@@ -374,6 +413,7 @@ public class ConsultarUsuario extends JInternalFrame{
 		
 	}
 	public void cargarUsuarios() {
+		listaUsuarios.removeAllItems();
         DefaultComboBoxModel<String> model;
         model = new DefaultComboBoxModel<String>(contUser.obtenerUsuarios());
         listaUsuarios.setModel(model);
@@ -382,25 +422,36 @@ public class ConsultarUsuario extends JInternalFrame{
 	public void cargarActividadesOfrecidas(String nickname) {
         DefaultComboBoxModel<String> model;
         try {
+
+        	actividadesOfrecidasBox.removeAllItems();
         	actividadesOfrecidas = contUser.obtenerActividadesOfrecidas(nickname);
+
 			model = new DefaultComboBoxModel<String>(actividadesOfrecidas);
-			listaUsuarios.setModel(model);
+			actividadesOfrecidasBox.setModel(model);
 		} catch (usuarioNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 		}
     }
-	/*
+	
 	public void cargarSalidasAsociadas() throws usuarioNoExisteException {
+		salidasAsociadasBox.removeAllItems();
 		DefaultComboBoxModel<String> model;
-        model = new DefaultComboBoxModel<String>(conPaq.mostrarSalidasAsociadas(actividadesOfrecidas));
-		listaUsuarios.setModel(model);
+		try {
+        model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasDeActividad((String) listaUsuarios.getSelectedItem(), (String) actividadesOfrecidasBox.getSelectedItem()));
+        salidasAsociadasBox.setModel(model);
+		}catch (usuarioNoExisteException | actividadNoExisteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
+
+			
+		}
 	}
-	*/
+
 	public void cargarSalidasInscripto(String nickname) {
 		DefaultComboBoxModel<String> model;
         try {
+        	salidasInscriptoBox.removeAllItems();
 			model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasInscripto(nickname));
-			listaUsuarios.setModel(model);
+			salidasInscriptoBox.setModel(model);
 		} catch (usuarioNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 			

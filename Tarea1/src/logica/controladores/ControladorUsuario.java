@@ -11,6 +11,7 @@ import java.util.Vector;
 import java.util.Arrays;
 
 import excepciones.UsuarioRepetidoException;
+import excepciones.actividadNoExisteException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
 import logica.Inscripcion;
@@ -160,6 +161,35 @@ public class ControladorUsuario implements IControladorUsuario {
     	return usersName.toArray(new String[usersName.size()]);
 	}
 	
+	@Override
+	public String[] obtenerSalidasDeActividad(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException{
+		Set<String> res = new HashSet<String>();
+		
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Proveedor proveedor = mu.getProveedor(nickname);
+		if(proveedor == null)
+			throw new usuarioNoExisteException("No se encontró un proveedor con el nickname ingresado.");
+		Map<String,Actividad> actividades = proveedor.getActividades();
+		if(actividades == null)
+			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado.");
+		for(Map.Entry<String, Actividad> act : actividades.entrySet()) {
+			if(act.getKey() == nombreAct) {
+				Map<String,Salida> salidas = act.getValue().getSalidas();
+				for(Map.Entry<String,Salida> sal : salidas.entrySet()) {
+					res.add(sal.getKey());
+					
+				}
+				
+				
+			}
+			
+			
+		}
+		
+		
+		return res.toArray(new String[res.size()]);
+	}
+
 	
 }
 
