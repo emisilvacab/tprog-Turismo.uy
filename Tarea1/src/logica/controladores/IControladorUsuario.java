@@ -27,7 +27,7 @@ public interface IControladorUsuario {
 	
 	public abstract String[] obtenerSalidasDeActividad(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException;
 	
-	public abstract DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException;
+	public abstract DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException;
 	
 	public abstract DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException;
     
