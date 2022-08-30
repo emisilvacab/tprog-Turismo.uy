@@ -21,7 +21,7 @@ public class DTActividad{
 		this.setAlta(new GregorianCalendar());
 	}
 	
-	public DTActividad(String nombre, String descripcion, int duracion, Float costo, String ciudad, GregorianCalendar alta) {
+	public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setDuracion(duracion);

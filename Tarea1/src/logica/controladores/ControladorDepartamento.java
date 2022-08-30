@@ -113,4 +113,37 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		Departamento nuevo = new Departamento(nombre, descripcion, url);
 		mDptos.addDepartamento(nuevo);
 	}
+
+	@Override
+	public DTActividad obtenerDatosActividad(String actividadSeleccionada) throws actividadNoExisteException{
+		Actividad act = null;
+		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		HashMap<String, Departamento> departamentos = mDptos.getDepartamentos();
+		for (Departamento dep: departamentos.values()) {
+			act = dep.obtenerActividad(actividadSeleccionada);
+			if (act != null) {
+				break;
+			}
+			
+		}
+		//public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta) {
+
+		if (act == null) {
+			throw new actividadNoExisteException("actividad no encontrada");
+		}else {
+			DTActividad res = new DTActividad(act.getNombre(), act.getDescripcion(), act.getDuracion(), act.getCosto(), act.getCiudad(), act.getAlta());
+			return res;
+		}
+	}
+
 }
+
+
+
+
+
+
+
+
+
+

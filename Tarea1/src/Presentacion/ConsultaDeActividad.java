@@ -45,6 +45,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 	private JTextField textFieldCosto;
 	private JTextField textFieldCiudad;
 	private JTextField textFieldFechaAlta;
+	private JLabel lblDepartamento;
+	private JLabel lblActividad;
 	
 	private JComboBox<String> comboBoxDepartamento;
 	private JComboBox<String> comboBoxActividad;
@@ -81,7 +83,7 @@ public class ConsultaDeActividad extends JInternalFrame {
             }
         });
 		
-		JLabel lblDepartamento = new JLabel("Departamento");
+		lblDepartamento = new JLabel("Departamento");
 		lblDepartamento.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		comboBoxDepartamento = new JComboBox<String>();
@@ -108,8 +110,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 			}
 		});
 		
-		JLabel lblNewLabel = new JLabel("Actividad");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblActividad = new JLabel("Actividad");
+		lblActividad.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		comboBoxActividad = new JComboBox<String>();
 		comboBoxActividad.addItemListener(new ItemListener() {
@@ -204,7 +206,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 										.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED))
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblActividad, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 									.addComponent(lblDepartamento, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -237,7 +239,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 						.addComponent(comboBoxDepartamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
+						.addComponent(lblActividad)
 						.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(27)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -369,6 +371,43 @@ public class ConsultaDeActividad extends JInternalFrame {
 		consultaDeSalida.setVisible(true);
 		consultaDeSalida.mostrar((String) comboBoxDepartamento.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(),(String) comboBoxSalida.getSelectedItem());
 			
+	}
+
+	public void mostrarDesdeConsultaDeUsuario(String actividadSeleccionada) {
+		comboBoxDepartamento.setVisible(false);
+		lblDepartamento.setVisible(false);
+		comboBoxActividad.setVisible(false);
+		lblActividad.setVisible(false);
+		textFieldNombre.setText(actividadSeleccionada);
+		textFieldNombre.setVisible(true);
+		try {
+			DTActividad act = cDpto.obtenerDatosActividad(actividadSeleccionada);
+			textFieldNombre.setText(act.getNombre());
+			textAreaDescripcion.setText(act.getDescripcion());
+			Integer duracion = act.getDuracion();
+			textFieldDuracion.setText(duracion.toString());
+			textFieldCosto.setText(Float.toString(act.getCosto()));
+			textFieldCiudad.setText(act.getCiudad());
+			
+			GregorianCalendar fechaAlta = act.getAlta();
+	        
+	       
+	        
+	        Integer diaA = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
+	        Integer mesA = fechaAlta.get(fechaAlta.MONTH);
+	        Integer anioA = fechaAlta.get(fechaAlta.YEAR);
+	        String fechaAltaString = diaA.toString()+"/"+mesA.toString()+"/"+anioA.toString();
+			
+			textFieldFechaAlta.setText(fechaAltaString);
+			
+			
+		} catch (actividadNoExisteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);		
+			}
+		
+		
+		
+		
 	}
 	
 	
