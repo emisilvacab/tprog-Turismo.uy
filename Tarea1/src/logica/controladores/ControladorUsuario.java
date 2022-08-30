@@ -19,7 +19,9 @@ import logica.Proveedor;
 import logica.Salida;
 import logica.Turista;
 import logica.Usuario;
+import logica.datatypes.DTActividad;
 import logica.datatypes.DTProveedor;
+import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
 import logica.manejadores.ManejadorSalida;
@@ -47,7 +49,6 @@ public class ControladorUsuario implements IControladorUsuario {
     	return usersName.toArray(new String[usersName.size()]);
     	
     }
-    
 
 	@Override
 	public DTUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException {
@@ -122,29 +123,6 @@ public class ControladorUsuario implements IControladorUsuario {
 		
 	}
 
-    
-    
-    
-//    public DataUsuario[] getUsuarios() throws UsuarioNoExisteException {
-//        ManejadorUsuario mu = ManejadorUsuario.getInstance();
-//        Usuario[] usrs = mu.getUsuarios();
-//
-//        if (usrs != null) {
-//            DataUsuario[] du = new DataUsuario[usrs.length];
-//            Usuario usuario;
-//
-//            // Para separar lÃ³gica de presentaciÃ³n, no se deben devolver los Usuario,
-//            // sino los DataUsuario
-//            for (int i = 0; i < usrs.length; i++) {
-//                usuario = usrs[i];
-//                du[i] = new DataUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getCedulaIdentidad());
-//            }
-//
-//            return du;
-//        } else
-//            throw new UsuarioNoExisteException("No existen usuarios registrados");
-//
-//    } QUE ES ESTO?????
 	
 	public String ingresarDatosInscripcion(String nickname,String nombre,int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException{
 		
@@ -192,10 +170,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Proveedor proveedor = mu.getProveedor(nickname);
 		if(proveedor == null)
-			throw new usuarioNoExisteException("No se encontró un proveedor con el nickname ingresado.");
+			throw new usuarioNoExisteException("No se encontrï¿½ un proveedor con el nickname ingresado.");
 		Map<String,Actividad> actividades = proveedor.getActividades();
 		if(actividades == null)
-			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado.");
+			throw new actividadNoExisteException("No se encontrï¿½ una actividad con el nombre ingresado.");
 		for(Map.Entry<String, Actividad> act : actividades.entrySet()) {
 			if(act.getKey() == nombreAct) {
 				Map<String,Salida> salidas = act.getValue().getSalidas();
@@ -213,7 +191,62 @@ public class ControladorUsuario implements IControladorUsuario {
 		
 		return res.toArray(new String[res.size()]);
 	}
-
+	
+	@Override
+	public DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException{
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Proveedor proveedor = mu.getProveedor(nickname);
+		if(proveedor == null)
+			throw new usuarioNoExisteException("Usuario no existe");
+		DTActividad actividad = null;
+		Map<String,Actividad> actividades = proveedor.getActividades();
+		for(Map.Entry<String, Actividad> act : actividades.entrySet()) {
+			if(act.getKey() == nombreAct) {
+				actividad = act.getValue().getDatos();
+					
+			}
+							
+		}
+			
+		
+		if(actividad == null)
+			throw new usuarioNoExisteException("Usuario no existe");
+	
+		return actividad;
+	}
+	
+	@Override
+	public DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException{
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Proveedor proveedor = mu.getProveedor(nickname);
+		if(proveedor == null)
+			throw new usuarioNoExisteException("Usuario no existe");
+		Actividad actividad = null;
+		Map<String,Actividad> actividades = proveedor.getActividades();
+		for(Map.Entry<String, Actividad> act : actividades.entrySet()) {
+			if(act.getKey() == nombreAct) {
+				actividad = act.getValue();
+					
+			}
+							
+		}		
+		
+		if(actividad == null)
+			throw new usuarioNoExisteException("Usuario no existe");
+		
+		
+		DTSalida salida = null;
+		Map<String,Salida> salidas = actividad.getSalidas();
+		for(Map.Entry<String, Salida> sal : salidas.entrySet()) {
+			if(sal.getKey() == nombreSal) {
+				salida = sal.getValue().getDatos();
+					
+			}
+							
+		}
+		return salida;
+		
+	}
 	
 }
 

@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.Set;
 
 import logica.datatypes.DTUsuario;
+import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
 import excepciones.usuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
@@ -26,4 +27,8 @@ public interface IControladorUsuario {
 	
 	public abstract String[] obtenerSalidasDeActividad(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException;
 	
+	public abstract DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException;
+	
+	public abstract DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException;
+    
 }

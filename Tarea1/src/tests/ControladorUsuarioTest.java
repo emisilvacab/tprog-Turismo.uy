@@ -108,12 +108,6 @@ class ControladorUsuarioTest {
 	@Test
 	void testAltaUsuario() {
 		GregorianCalendar nacimiento = new GregorianCalendar(2001,6,5);
-//		DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-//		DTProveedor userU2 = new DTProveedor("leomel2", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "lol", "superlol");
-//			try {
-//				icu.altaUsuario(userU2);
-//				icu.altaUsuario(userU1);
-//				icu.altaUsuario(userU3);
 				try {
 					DTUsuario userObtenido = icu.obtenerUsuario("leomel");
 					DTUsuario userObtenido2 = icu.obtenerUsuario("joaco");
@@ -136,11 +130,8 @@ class ControladorUsuarioTest {
 					fail(e.getMessage());
 					e.printStackTrace();
 				}
-//			} catch (UsuarioRepetidoException e) {
-//				fail(e.getMessage());
-//				e.printStackTrace();
-//			}
 	}
+	
 	private boolean contiene(String[] arreglo, String palabra) {
 		boolean found = false;
 		for (String nombre: arreglo) {
@@ -194,58 +185,12 @@ class ControladorUsuarioTest {
 
 	@Test
 	void testInscripcionASalida() {
-		//ingreso se datos previos, no testeados en este test
-//		DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-////		DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-//		try {
-//			icu.altaUsuario(userU1);
-//			icu.altaUsuario(userU2);
-//		}
-//		catch(UsuarioRepetidoException e) {
-//			fail(e.getMessage());
-//			e.printStackTrace();
-//		}
-//		icd.ingresarDepartamento("Montevideo","Capital de Uruguay", "mvdeo.com.uy");
-//		DTProveedor userP1 = new DTProveedor("wason","Ignacio","Nunez","wason@gmail.com", new GregorianCalendar(2001,3,2),"Proveedor desde 2010");
-//		try {
-//			icu.altaUsuario(userP1);
-//		}
-//		catch(UsuarioRepetidoException e) {
-//			fail(e.getMessage());
-//			e.printStackTrace();
-//		}
-//		try {
-//			icd.ingresarDatosActividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012,11,1), "wason", "Montevideo");
-//		}
-//		catch(proveedorNoExisteException e) {
-//			fail(e.getMessage());
-//			e.printStackTrace();
-//		}
-//		catch (departamentoNoExisteException e) {
-//			fail(e.getMessage());
-//			e.printStackTrace();
-//		}
-//		try {
-//			icd.ingresarDatosSalida("Juegos", 6, new GregorianCalendar(2015,10,2),new GregorianCalendar(2022,11,8), 15,"Playa Ramirez", "Montevideo", "Paseo por Parque Rodo");
-//			icd.ingresarDatosSalida("Juegos_vencida",6, new GregorianCalendar(2015,10,2), new GregorianCalendar(2021,8,13), 15, "Playa Ramirez", "Montevideo", "Paseo por Parque Rodo");
-//		}
-//		catch(proveedorNoExisteException e) {
-//			fail(e.getMessage());
-//			e.printStackTrace();
-//		}
-//		catch (actividadNoExisteException e) {
-//			fail(e.getMessage());
-//			e.printStackTrace();
-//		}
-		
+	
 		//testeo de obtenerDepartamentos
 		Set<String> dptos = icd.obtenerDepartamentos();
-		int j = 0; 
 		for (String d : dptos) {
 			assertEquals(d,"Montevideo");
-			j++;
 		}
-		assertEquals(j,1);
 		
 		//testeo de los datos de la actividad registrada
 		try {
@@ -275,7 +220,6 @@ class ControladorUsuarioTest {
 		//testeo de si se devuelve unicamente la salida vigente
 		try {
 			HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentes("Paseo por Parque Rodo", "Montevideo");
-			int i = 0;
 			for (DTSalida s : salidasVigentes) {
 				assertEquals(s.getNombre(),"Juegos");
 				assertEquals(s.getMaxTuristas(),6);
@@ -283,9 +227,7 @@ class ControladorUsuarioTest {
 				assertEquals(s.getFechaDTSalida().get(Calendar.MONTH),11);
 				assertEquals(s.getFechaDTSalida().get(Calendar.YEAR),2022);
 				assertEquals(s.getLugarDTSalida(),"Playa Ramirez");
-				i++;
 			}
-			assertEquals(i,1);
 		}
 		catch (departamentoNoExisteException e) {
 			fail(e.getMessage());

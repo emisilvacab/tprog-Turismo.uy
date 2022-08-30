@@ -93,7 +93,7 @@ public class AltaSalida extends JInternalFrame{
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Alta de Salida Turistica");
-        setBounds(30, 30, 440, 300);
+        setBounds(30, 30, 430, 325);
 		
 	    addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {

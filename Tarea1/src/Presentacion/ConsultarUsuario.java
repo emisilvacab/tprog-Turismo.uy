@@ -36,7 +36,8 @@ import excepciones.usuarioNoExisteException;
 import javax.swing.JButton;
 
 public class ConsultarUsuario extends JInternalFrame{
-	
+	private ConsultaDeSalida consultaDeSalida;
+	private ConsultaDeActividad consultaDeActividad;
 	/**
 	 * 
 	 */
@@ -64,8 +65,9 @@ public class ConsultarUsuario extends JInternalFrame{
 	private JLabel salidasInscriptoTag;
 	private JComboBox<String> salidasInscriptoBox;
 	private JButton buttonVerActividad;
-	private ConsultaDeActividad consultaDeActividad;
 	
+	private JButton buttonActividad;
+	private JButton buttonSalida;
 	
 
 	public ConsultarUsuario(IControladorUsuario icu, IControladorDepartamento icd) {
@@ -75,6 +77,11 @@ public class ConsultarUsuario extends JInternalFrame{
 		consultaDeActividad.setVisible(false);
 		
 		contUser = icu;
+		consultaDeSalida = new ConsultaDeSalida(icd);
+		this.getContentPane().add(consultaDeSalida);
+        
+		consultaDeActividad = new ConsultaDeActividad(icd);
+		this.getContentPane().add(consultaDeActividad);
 		
 		setResizable(true);
         setIconifiable(true);
@@ -84,19 +91,32 @@ public class ConsultarUsuario extends JInternalFrame{
         setTitle("Consultar un Usuario");
         setBounds(30, 30, 502, 424);
         
+        
         listaUsuarios = new JComboBox<String>();
+        
         listaUsuarios.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		if (listaUsuarios.getSelectedItem()!=null) {
+	        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
+	        		try {
+	        		cargarSalidasAsociadas();
+	        		} catch(usuarioNoExisteException c){
+	        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
+	        		}
+	        		//cargarUsuarios();
         		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
+        		
+        		/*
         		try {
+        				
         		cargarSalidasAsociadas();
         		} catch(usuarioNoExisteException c){
         			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
-
+				*/
         		}
-        		//cargarUsuarios();
         	}
         });
+        
         
         JLabel infoUsuario = new JLabel("Información del Usuario:");
         
@@ -178,7 +198,7 @@ public class ConsultarUsuario extends JInternalFrame{
         cerrarButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		setVisible(false);
-        		//limpiarFormulario();
+        		limpiarFormulario();
         	}
         });
         
@@ -215,7 +235,7 @@ public class ConsultarUsuario extends JInternalFrame{
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(136)
         			.addComponent(listaUsuarios, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(144, Short.MAX_VALUE))
+        			.addContainerGap(156, Short.MAX_VALUE))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(151)
         			.addComponent(infoUsuario, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
@@ -329,7 +349,8 @@ public class ConsultarUsuario extends JInternalFrame{
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(salidasAsociadasTag)
-        				.addComponent(salidasAsociadasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(salidasAsociadasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(buttonSalida))
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addGroup(groupLayout.createSequentialGroup()
         					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
@@ -396,8 +417,20 @@ public class ConsultarUsuario extends JInternalFrame{
 			if (user.getClass() == DTProveedor.class) {
 				tipoUsuarioText.setText("El usuario es proveedor!");
 				
+				try {
+    				
+	        		cargarSalidasAsociadas();
+	        		} catch(usuarioNoExisteException c){
+	        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
+
+	        			
+	        	}
+				
 				salidasInscriptoTag.setVisible(false); //tiene que ocultar
 				salidasInscriptoBox.setVisible(false);
+				
+				buttonSalida.setVisible(true);
+				buttonActividad.setVisible(true);
 								
 				tipoUsuarioText.setVisible(true);
 				DTProveedor prov = (DTProveedor) user;
@@ -423,6 +456,8 @@ public class ConsultarUsuario extends JInternalFrame{
 				actividadesOfrecidasTag.setVisible(false);
 				salidasAsociadasTag.setVisible(false);
 				salidasAsociadasBox.setVisible(false);
+				buttonSalida.setVisible(false);
+				buttonActividad.setVisible(false);
 				
 				
 				DTTurista tur = (DTTurista) user;
@@ -451,7 +486,7 @@ public class ConsultarUsuario extends JInternalFrame{
         DefaultComboBoxModel<String> model;
         try {
 
-        	//actividadesOfrecidasBox.removeAllItems();
+        	actividadesOfrecidasBox.removeAllItems();
         	actividadesOfrecidas = contUser.obtenerActividadesOfrecidas(nickname);
 
 			model = new DefaultComboBoxModel<String>(actividadesOfrecidas);
@@ -468,15 +503,14 @@ public class ConsultarUsuario extends JInternalFrame{
         model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasDeActividad((String) listaUsuarios.getSelectedItem(), (String) actividadesOfrecidasBox.getSelectedItem()));
         salidasAsociadasBox.setModel(model);
 		}catch (usuarioNoExisteException | actividadNoExisteException e) {
-			//JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
-	
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	public void cargarSalidasInscripto(String nickname) {
 		DefaultComboBoxModel<String> model;
         try {
-        	//salidasInscriptoBox.removeAllItems();
+        	salidasInscriptoBox.removeAllItems();
 			model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasInscripto(nickname));
 			salidasInscriptoBox.setModel(model);
 		} catch (usuarioNoExisteException e) {

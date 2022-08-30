@@ -57,6 +57,7 @@ public class Principal {
         
         frmReservas_UY.getContentPane().setLayout(null);
         
+
         conUsrInternalFrame = new ConsultarUsuario(ICU, ICD);
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);

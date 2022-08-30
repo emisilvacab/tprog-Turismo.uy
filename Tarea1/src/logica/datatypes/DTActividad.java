@@ -12,15 +12,6 @@ public class DTActividad{
 	private GregorianCalendar alta;
 	
 	
-	public DTActividad() {
-		this.setNombre(new String());
-		this.setDescripcion(new String());
-		this.setDuracion(0);
-		this.setCosto(0);
-		this.setCiudad(new String());
-		this.setAlta(new GregorianCalendar());
-	}
-	
 	public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
