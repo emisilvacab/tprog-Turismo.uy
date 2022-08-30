@@ -14,7 +14,6 @@ import excepciones.UsuarioRepetidoException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
 import logica.Inscripcion;
-import logica.Paquete;
 import logica.Proveedor;
 import logica.Salida;
 import logica.Turista;
@@ -22,7 +21,6 @@ import logica.Usuario;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
-import logica.manejadores.ManejadorPaquete;
 import logica.manejadores.ManejadorSalida;
 import logica.manejadores.ManejadorUsuario;
 import logica.Actividad;
@@ -91,7 +89,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	
 
 	@Override
-	public String[] mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException {
+	public String[] obtenerActividadesOfrecidas(String nickname) throws usuarioNoExisteException {
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Proveedor prov = mu.getProveedor(nickname);
 		Set<String> actividades = new HashSet<String>();

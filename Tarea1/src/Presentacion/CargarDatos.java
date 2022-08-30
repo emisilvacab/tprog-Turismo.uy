@@ -155,6 +155,8 @@ public class CargarDatos {
 			JOptionPane.showMessageDialog(null, e2.getMessage(), "El usuario ingresado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 		}	
 		
+		JOptionPane.showMessageDialog(null, "Datos cargados con éxito!", "Cargar datos", JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 	
 	

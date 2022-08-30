@@ -410,12 +410,12 @@ public class ConsultaDeSalida extends JInternalFrame {
 	        GregorianCalendar fechaAlta = salida.getAlta();
 	        
 	        Integer diaS = fechaSalida.get(fechaSalida.DAY_OF_MONTH);
-	        Integer mesS = fechaSalida.get(fechaSalida.MONTH);
+	        Integer mesS = fechaSalida.get(fechaSalida.MONTH) + 1;
 	        Integer anioS = fechaSalida.get(fechaSalida.YEAR);
 	        String fechaSalidaString = diaS.toString()+"/"+mesS.toString()+"/"+anioS.toString();
 	        
 	        Integer diaA = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
-	        Integer mesA = fechaAlta.get(fechaAlta.MONTH);
+	        Integer mesA = fechaAlta.get(fechaAlta.MONTH) + 1;
 	        Integer anioA = fechaAlta.get(fechaAlta.YEAR);
 	        String fechaAltaString = diaA.toString()+"/"+mesA.toString()+"/"+anioA.toString();
 	        

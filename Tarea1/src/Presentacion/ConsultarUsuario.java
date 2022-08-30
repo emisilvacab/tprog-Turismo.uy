@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import logica.Proveedor;
-import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
@@ -31,7 +30,6 @@ public class ConsultarUsuario extends JInternalFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario contUser;
-	private IControladorPaquete conPaq;
 	private JComboBox<String> listaUsuarios;
 	private JLabel nicknameText;
 	private JLabel nombreText;
@@ -55,9 +53,8 @@ public class ConsultarUsuario extends JInternalFrame{
 	
 	
 
-	public ConsultarUsuario(IControladorUsuario icu, IControladorPaquete icp) {
+	public ConsultarUsuario(IControladorUsuario icu) {
 		contUser = icu;
-		conPaq = icp;
 		
 		setResizable(true);
         setIconifiable(true);
@@ -343,7 +340,7 @@ public class ConsultarUsuario extends JInternalFrame{
 				tipoUsuarioText.setVisible(true);
 				DTProveedor prov = (DTProveedor) user;
 				cargarActividadesOfrecidas(user.getNickname());
-				cargarSalidasAsociadas();
+				//cargarSalidasAsociadas();
 				actividadesOfrecidasBox.setVisible(true);
 				actividadesOfrecidasTag.setVisible(true);
 				salidasAsociadasTag.setVisible(true);
@@ -383,20 +380,20 @@ public class ConsultarUsuario extends JInternalFrame{
 	public void cargarActividadesOfrecidas(String nickname) {
         DefaultComboBoxModel<String> model;
         try {
-        	actividadesOfrecidas = contUser.mostrarActividadesOfrecidas(nickname);
+        	actividadesOfrecidas = contUser.obtenerActividadesOfrecidas(nickname);
 			model = new DefaultComboBoxModel<String>(actividadesOfrecidas);
 			listaUsuarios.setModel(model);
 		} catch (usuarioNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 		}
     }
-	
+	/*
 	public void cargarSalidasAsociadas() throws usuarioNoExisteException {
 		DefaultComboBoxModel<String> model;
         model = new DefaultComboBoxModel<String>(conPaq.mostrarSalidasAsociadas(actividadesOfrecidas));
 		listaUsuarios.setModel(model);
 	}
-	
+	*/
 	public void cargarSalidasInscripto(String nickname) {
 		DefaultComboBoxModel<String> model;
         try {
