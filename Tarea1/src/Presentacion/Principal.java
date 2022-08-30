@@ -168,7 +168,7 @@ public class Principal {
         JMenu menuActividades = new JMenu("Actividades");
         menuBar.add(menuActividades);
         
-        JMenuItem menuItemAltaSalida = new JMenuItem("Crear Salida");
+        JMenuItem menuItemAltaSalida = new JMenuItem("Alta de Salida");
         menuItemAltaSalida.setToolTipText("Seleccione esta opción si desea dar de alta una salida");
         menuItemAltaSalida.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -187,21 +187,12 @@ public class Principal {
             }
         });
         
-        JMenuItem menuItemConsultaActividad = new JMenuItem("Consulta de Actividad");
-        menuActividades.add(menuItemConsultaActividad);
-        menuItemConsultaActividad.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	consultaActividadInternalFrame.cargarDepartamentos();
-            	consultaActividadInternalFrame.setVisible(true);
-            }
-        });
-        
         
         
         
         menuActividades.add(menuItemConsultaSalida);
         
-        JMenuItem menuItemAltaActividad = new JMenuItem("Alta de actividad");
+        JMenuItem menuItemAltaActividad = new JMenuItem("Alta de Actividad");
         menuItemAltaActividad.setToolTipText("Seleccione esta opción si desea dar de alta una actividad");
         menuItemAltaActividad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -211,6 +202,15 @@ public class Principal {
             }
         });
         menuActividades.add(menuItemAltaActividad);
+        
+        JMenuItem menuItemConsultaActividad = new JMenuItem("Consulta de Actividad");
+        menuActividades.add(menuItemConsultaActividad);
+        menuItemConsultaActividad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	consultaActividadInternalFrame.cargarDepartamentos();
+            	consultaActividadInternalFrame.setVisible(true);
+            }
+        });
  		
     }
     
