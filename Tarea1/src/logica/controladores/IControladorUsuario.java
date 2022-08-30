@@ -4,8 +4,10 @@ import java.util.GregorianCalendar;
 import java.util.Set;
 
 import datatypes.DTUsuario;
+import datatypes.DTSalida;
 import excepciones.usuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
+import excepciones.actividadNoExisteException;
 
 public interface IControladorUsuario {
 	public abstract String[] obtenerUsuarios();
@@ -21,5 +23,7 @@ public interface IControladorUsuario {
 	public abstract String ingresarDatosInscripcion(String nickname,String nombre,int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException;
 	
 	public abstract String[] obtenerProveedores();
+	
+	public abstract String[] obtenerSalidasDeActividad(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException;
 	
 }
