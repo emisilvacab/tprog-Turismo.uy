@@ -144,7 +144,6 @@ public class AltaUsuario extends JInternalFrame{
         JButton confirmarButton = new JButton("Confirmar");
         confirmarButton.setBounds(298, 179, 81, 23);
         
-        //los agrupo para que solo se seleccione uno
         ButtonGroup turOProv = new ButtonGroup();
         turOProv.add(proveedorButton);
         turOProv.add(turistaButton);

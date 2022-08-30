@@ -38,9 +38,6 @@ import javax.swing.JButton;
 public class ConsultarUsuario extends JInternalFrame{
 	private ConsultaDeSalida consultaDeSalida;
 	private ConsultaDeActividad consultaDeActividad;
-	/**
-	 * 
-	 */
 	
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario contUser;
@@ -98,16 +95,7 @@ public class ConsultarUsuario extends JInternalFrame{
 	        		} catch(usuarioNoExisteException c){
 	        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
 	        		}
-	        		//cargarUsuarios();
         		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
-        		
-        		/*
-        		try {
-        				
-        		cargarSalidasAsociadas();
-        		} catch(usuarioNoExisteException c){
-        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
-				*/
         		}
         	}
         });
@@ -159,7 +147,6 @@ public class ConsultarUsuario extends JInternalFrame{
         actividadesOfrecidasBox.setVisible(false);
         actividadesOfrecidasBox.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//caso de uso consulta de actividad
         	}
         });
         
@@ -185,7 +172,6 @@ public class ConsultarUsuario extends JInternalFrame{
         salidasAsociadasBox.setVisible(false);
         salidasAsociadasBox.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		     //llamar a consulta de actividad   
         	}
         });
         
@@ -211,7 +197,6 @@ public class ConsultarUsuario extends JInternalFrame{
         salidasInscriptoBox.setVisible(false);
         salidasInscriptoBox.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//llamar caso de uso consulta salida
         	}
         });
         
@@ -387,7 +372,6 @@ public class ConsultarUsuario extends JInternalFrame{
         
 	}
 	protected void limpiarFormulario() {
-		//listaUsuarios.removeAllItems();
 		nombreText.setVisible(false);
 		nicknameText.setVisible(false);
 		apellidoText.setVisible(false);
@@ -436,7 +420,7 @@ public class ConsultarUsuario extends JInternalFrame{
 	        			
 	        	}
 				
-				salidasInscriptoTag.setVisible(false); //tiene que ocultar
+				salidasInscriptoTag.setVisible(false);
 				salidasInscriptoBox.setVisible(false);
 				
 				buttonSalida.setVisible(true);
@@ -445,7 +429,6 @@ public class ConsultarUsuario extends JInternalFrame{
 				tipoUsuarioText.setVisible(true);
 				DTProveedor prov = (DTProveedor) user;
 				cargarActividadesOfrecidas(user.getNickname());
-				//cargarSalidasAsociadas();
 				actividadesOfrecidasBox.setVisible(true);
 				actividadesOfrecidasTag.setVisible(true);
 				salidasAsociadasTag.setVisible(true);
@@ -462,7 +445,7 @@ public class ConsultarUsuario extends JInternalFrame{
 				tipoUsuarioText.setText("El usuario es turista!");
 				tipoUsuarioText.setVisible(true);
 				
-				actividadesOfrecidasBox.setVisible(false); //tiene que ocultar
+				actividadesOfrecidasBox.setVisible(false);
 				actividadesOfrecidasTag.setVisible(false);
 				salidasAsociadasTag.setVisible(false);
 				salidasAsociadasBox.setVisible(false);

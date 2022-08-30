@@ -37,14 +37,7 @@ public class DTUsuario{
 	public GregorianCalendar getNacimiento() {
 		return nacimiento;
 	}
-	
-    /* Sirve para mostrar textualmente la información del usuario, por ejemplo en un ComboBox
-     
-    public String toString() {
-        return getCedulaIdentidad() + " (" + getNombre() + " " + getApellido() + ")";
-    }
-	*/
-	
+
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}

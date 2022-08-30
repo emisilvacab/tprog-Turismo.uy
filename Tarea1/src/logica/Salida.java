@@ -2,7 +2,6 @@ package logica;
 
 import java.util.GregorianCalendar;
 import java.util.Vector;
-//import java.util.Map;
 
 import logica.datatypes.DTSalida;
 
@@ -17,17 +16,16 @@ public class Salida{
 	
 	private Actividad actividad;
 	private Vector<Inscripcion> inscripciones;
-	//private Map<String, Inscripcion> inscripciones; MAP O VECTOR?
 
 	public Salida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaSalida, int hora, String lugarSalida, Actividad actividad) {
-		this.nombre = nombre;
-		this.maxTuristas = maxTuristas;//Al inscribir turistas decrementamos este numero o agregamos atributo con cantidadInscriptos
-		this.alta = alta;
-		this.fechaSalida = fechaSalida;
-		this.hora = hora;
-		this.lugarSalida = lugarSalida;
-		this.actividad = actividad;
-		this.inscripciones = new Vector<Inscripcion>();
+		this.setNombre(nombre);
+		this.setMaxTuristas(maxTuristas);
+		this.setAlta(alta);
+		this.setFechaSalida(fechaSalida);
+		this.setHora(hora);
+		this.setLugarSalida(lugarSalida);
+		this.setActividad(actividad);
+		this.setInscripciones(new Vector<Inscripcion>());
 	}
 
 	public String getNombre() {

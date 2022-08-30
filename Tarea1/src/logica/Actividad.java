@@ -24,15 +24,15 @@ public class Actividad{
 	private Map<String, Salida> salidas;	
 	
 	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.duracion = duracion;
-		this.costo = costo;
-		this.ciudad = ciudad;
-		this.alta = alta;
-		this.departamento = departamento;
-		this.proveedor = proveedor;
-		this.salidas = new HashMap<String, Salida>();
+		this.setNombre(nombre);
+		this.setDescripcion(descripcion);
+		this.setDuracion(duracion);
+		this.setCosto(costo);
+		this.setCiudad(ciudad);
+		this.setAlta(alta);
+		this.setDepartamento(departamento);
+		this.setProveedor(proveedor);
+		this.setSalidas(new HashMap<String, Salida>());
 	}
 
 	public String getNombre() {
@@ -109,16 +109,6 @@ public class Actividad{
 
 	public void addSalida(Salida salida) {
 		this.salidas.put(salida.getNombre(), salida);
-	}
-
-	public Set<String> obtenerNombresSalidasAsociadas() {
-		Set<String> res = new HashSet<String>();
-		for (Salida sal: this.getSalidas().values()) {
-			res.add(sal.getNombre());
-			}
-				
-		return res;
-	
 	}
 
 	public DTActividad getDatos() {

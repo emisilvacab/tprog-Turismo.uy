@@ -19,10 +19,10 @@ public class Departamento{
 
 	
 	public Departamento(String nombre, String descripcion, String url) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.url = url;
-		this.actividades = new HashMap<String,Actividad>();
+		this.setNombre(nombre);
+		this.setDescripcion(descripcion);
+		this.setUrl(url);
+		this.setActividades(new HashMap<String,Actividad>());
 	}
 
 	public String getNombre() {
@@ -37,7 +37,6 @@ public class Departamento{
 		return url;
 	}
 	
-	//SE PUEDE MODIFICAR PARA QUE DEVUELVA SOLO NOMBRES/IDENTIFICADORES
 	public HashMap<String, Actividad> getActividades() {
 		return actividades;
 	}

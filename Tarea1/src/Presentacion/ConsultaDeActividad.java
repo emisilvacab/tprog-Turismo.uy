@@ -95,11 +95,9 @@ public class ConsultaDeActividad extends JInternalFrame {
 			public void itemStateChanged(ItemEvent e) {
 				comboBoxActividad.setEnabled(false);				
 				comboBoxActividad.removeAllItems();				
-				//comboBoxActividad.setSelectedItem(null);
 				
 				comboBoxSalida.setEnabled(false);				
 				comboBoxSalida.removeAllItems();				
-				//comboBoxSalida.setSelectedItem(null);
 				
 				
 				if(comboBoxDepartamento.getSelectedItem() != null) {
@@ -279,8 +277,6 @@ public class ConsultaDeActividad extends JInternalFrame {
 
 	}
 	
-	//Funciones
-	
 	private void limpiarFormulario() {
 		textFieldNombre.setText("");
 		textAreaDescripcion.setText("");
@@ -302,7 +298,6 @@ public class ConsultaDeActividad extends JInternalFrame {
 	}
 	
 	private void cargarActividades() {
-		//try
 		if (comboBoxDepartamento.getSelectedItem() != null) {
 			try {
 				HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
@@ -356,7 +351,6 @@ public class ConsultaDeActividad extends JInternalFrame {
 	}
 	
 	private void cargarSalidas() {
-		//try
 		if (comboBoxActividad.getSelectedItem() != null) {
 			try {
 				HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes((String) comboBoxActividad.getSelectedItem(),(String) comboBoxDepartamento.getSelectedItem());

@@ -52,7 +52,6 @@ import excepciones.usuarioNoExisteException;
 
 import java.awt.Button;
 import javax.swing.JSpinner;
-//import net.miginfocom.swing.MigLayout;
 import javax.swing.SpringLayout;
 
 public class AltaSalida extends JInternalFrame{

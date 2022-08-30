@@ -297,4 +297,6 @@ class ControladorUsuarioTest {
 		//testeo excepcion ingreso de salida que no existe
 		assertThrows(salidaNoExisteException.class, ()->{String problema = icu.ingresarDatosInscripcion("leomel2", "Rio", 10, new GregorianCalendar(2022,8,29));});
 	}
+	@Test
+	void obtenerConsultaUsuario() {}
 }
