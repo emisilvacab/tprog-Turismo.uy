@@ -80,6 +80,12 @@ public class ConsultarUsuario extends JInternalFrame{
         listaUsuarios.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
+        		try {
+        		cargarSalidasAsociadas();
+        		} catch(usuarioNoExisteException c){
+        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
+
+        		}
         		//cargarUsuarios();
         	}
         });
