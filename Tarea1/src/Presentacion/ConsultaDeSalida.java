@@ -483,5 +483,44 @@ public class ConsultaDeSalida extends JInternalFrame {
 		
 	}
 	
+	public void mostrarDT(DTSalida salida) {
+		comboBoxDepartamento.removeAllItems();
+		comboBoxActividad.removeAllItems();
+		comboBoxSalida.removeAllItems();
+		limpiarFormulario();
+		
+		tagDpto.setVisible(false);
+		tagActividad.setVisible(false);
+		tagSalida.setVisible(false);
+		
+		comboBoxDepartamento.setVisible(false);
+		comboBoxActividad.setVisible(false);
+		comboBoxSalida.setVisible(false);
+		
+		textFieldNombre.setText(salida.getNombre());
+		Integer numero = salida.getMaxTuristas();
+        textFieldMaximo.setText(numero.toString());
+        
+        GregorianCalendar fechaSalida = salida.getFechaDTSalida();
+        GregorianCalendar fechaAlta = salida.getAlta();
+        
+        Integer diaS = fechaSalida.get(fechaSalida.DAY_OF_MONTH);
+        Integer mesS = fechaSalida.get(fechaSalida.MONTH) + 1;
+        Integer anioS = fechaSalida.get(fechaSalida.YEAR);
+        String fechaSalidaString = diaS.toString()+"/"+mesS.toString()+"/"+anioS.toString();
+        
+        Integer diaA = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
+        Integer mesA = fechaAlta.get(fechaAlta.MONTH) + 1;
+        Integer anioA = fechaAlta.get(fechaAlta.YEAR);
+        String fechaAltaString = diaA.toString()+"/"+mesA.toString()+"/"+anioA.toString();
+        
+        textFieldSalida.setText(fechaSalidaString);
+        textFieldAlta.setText(fechaAltaString);
+        textFieldLugar.setText(salida.getLugarDTSalida());	
+        textFieldHora.setText(salida.getHora()+"hs");
+		mostrarSalida();
+		
+	}
+	
 	
 }

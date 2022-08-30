@@ -45,10 +45,15 @@ public class ConsultaDeActividad extends JInternalFrame {
 	private JTextField textFieldCosto;
 	private JTextField textFieldCiudad;
 	private JTextField textFieldFechaAlta;
+	private JButton buttonInfo;
 	
 	private JComboBox<String> comboBoxDepartamento;
 	private JComboBox<String> comboBoxActividad;
 	private JComboBox<String> comboBoxSalida;
+	
+	private JLabel tagSalidas;
+	private JLabel tagDepartamento;
+	private JLabel tagActividad;
 	
 	/**
 	 * Create the frame.
@@ -81,8 +86,8 @@ public class ConsultaDeActividad extends JInternalFrame {
             }
         });
 		
-		JLabel lblDepartamento = new JLabel("Departamento");
-		lblDepartamento.setHorizontalAlignment(SwingConstants.RIGHT);
+		tagDepartamento = new JLabel("Departamento");
+		tagDepartamento.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		comboBoxDepartamento = new JComboBox<String>();
 		
@@ -108,8 +113,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 			}
 		});
 		
-		JLabel lblNewLabel = new JLabel("Actividad");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		tagActividad = new JLabel("Actividad");
+		tagActividad.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		comboBoxActividad = new JComboBox<String>();
 		comboBoxActividad.addItemListener(new ItemListener() {
@@ -168,12 +173,12 @@ public class ConsultaDeActividad extends JInternalFrame {
 		textFieldFechaAlta.setEditable(false);
 		textFieldFechaAlta.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("Salidas");
+		tagSalidas = new JLabel("Salidas");
 		
 		comboBoxSalida = new JComboBox<String>();
 		comboBoxSalida.setEnabled(false);
 		
-		JButton buttonInfo = new JButton("Ver");
+		buttonInfo = new JButton("Ver");
 		buttonInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             	if(comboBoxSalida.getSelectedItem() != null)
@@ -191,7 +196,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(37)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tagSalidas, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -204,8 +209,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 										.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED))
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lblDepartamento, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))
+									.addComponent(tagActividad, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(tagDepartamento, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
@@ -233,11 +238,11 @@ public class ConsultaDeActividad extends JInternalFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(34)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDepartamento)
+						.addComponent(tagDepartamento)
 						.addComponent(comboBoxDepartamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
+						.addComponent(tagActividad)
 						.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(27)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -265,7 +270,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 						.addComponent(lblNewLabel_6))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_7)
+						.addComponent(tagSalidas)
 						.addComponent(comboBoxSalida, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(buttonInfo))
 					.addContainerGap(69, Short.MAX_VALUE))
@@ -369,6 +374,40 @@ public class ConsultaDeActividad extends JInternalFrame {
 		consultaDeSalida.setVisible(true);
 		consultaDeSalida.mostrar((String) comboBoxDepartamento.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(),(String) comboBoxSalida.getSelectedItem());
 			
+	}
+	
+	public void mostrarDT(DTActividad actividad) {
+		textFieldNombre.setText(actividad.getNombre());
+		textAreaDescripcion.setText(actividad.getDescripcion());
+		
+		Integer duracion = actividad.getDuracion();
+		textFieldDuracion.setText(duracion.toString());
+		
+		String costo = String.valueOf(actividad.getCosto());
+		textFieldCosto.setText(costo);
+		textFieldCiudad.setText(actividad.getCiudad());
+		
+		GregorianCalendar fechaAlta = actividad.getAlta();
+        
+        
+        
+        Integer diaA = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
+        Integer mesA = fechaAlta.get(fechaAlta.MONTH) + 1;
+        Integer anioA = fechaAlta.get(fechaAlta.YEAR);
+        String fechaAltaString = diaA.toString()+"/"+mesA.toString()+"/"+anioA.toString();
+		
+		textFieldFechaAlta.setText(fechaAltaString);
+		
+		comboBoxDepartamento.setVisible(false);
+		comboBoxActividad.setVisible(false);
+		comboBoxSalida.setVisible(false);
+		
+		tagDepartamento.setVisible(false);
+		tagActividad.setVisible(false);
+		tagSalidas.setVisible(false);
+		buttonInfo.setVisible(false);
+		
+		
 	}
 	
 	
