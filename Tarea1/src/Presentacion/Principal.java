@@ -11,7 +11,6 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 
 /**
@@ -23,7 +22,6 @@ import logica.controladores.IControladorUsuario;
 public class Principal {
 	private JFrame frmReservas_UY;
 	private IControladorUsuario ICU;
-	private IControladorPaquete ICP;
 	private IControladorDepartamento ICD;
 	private ConsultarUsuario conUsrInternalFrame;
 	private AltaUsuario crearUsrInternalFrame;
@@ -56,11 +54,10 @@ public class Principal {
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIControladorUsuario();
         ICD = fabrica.getIControladorDepartamento();
-        ICP = fabrica.getIControladorPaquete();
         
         frmReservas_UY.getContentPane().setLayout(null);
         
-        conUsrInternalFrame = new ConsultarUsuario(ICU, ICP);
+        conUsrInternalFrame = new ConsultarUsuario(ICU);
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
         

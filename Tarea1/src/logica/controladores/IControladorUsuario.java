@@ -14,7 +14,7 @@ public interface IControladorUsuario {
 	
 	public abstract String[] obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException;
 
-	public abstract String[] mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException;
+	public abstract String[] obtenerActividadesOfrecidas(String nickname) throws usuarioNoExisteException;
 
 	public abstract void altaUsuario(DTUsuario user) throws UsuarioRepetidoException;
 	

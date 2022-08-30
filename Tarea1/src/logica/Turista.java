@@ -7,14 +7,12 @@ public class Turista extends Usuario{
 	
 	private String nacionalidad;
 	
-	private Vector<Compra> compras;//MAP CON FECHA?
-	private Vector<Inscripcion> inscripciones;//MAP CON FECHA?
+	private Vector<Inscripcion> inscripciones;
 	
 	//parece que se hace asi, si lo hago como abajo me tira que tengo que invocar al super (constructor de Usuario aunque sea abstracta Usuario)
 	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String nacionalidad) {
 		super(nickname, nombre, apellido, correo, nacimiento);
 		this.nacionalidad = nacionalidad;
-		this.compras = new Vector<Compra>();
 		this.inscripciones = new Vector<Inscripcion>();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,18 +34,6 @@ public class Turista extends Usuario{
 
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
-	}
-
-	public Vector<Compra> getCompras() {
-		return compras;
-	}
-
-	public void setCompras(Vector<Compra> compras) {
-		this.compras = compras;
-	}
-	
-	public void addCompra(Compra compra) {
-		this.compras.add(compra);
 	}
 
 	public Vector<Inscripcion> getInscripciones() {
