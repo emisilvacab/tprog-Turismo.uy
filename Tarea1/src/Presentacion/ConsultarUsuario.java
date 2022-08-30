@@ -126,7 +126,7 @@ public class ConsultarUsuario extends JInternalFrame{
         actividadesOfrecidasBox.setVisible(false);
         actividadesOfrecidasBox.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//caso de uso consulta de actividad
+        		mostrarActividad();
         	}
         });
         
@@ -309,6 +309,14 @@ public class ConsultarUsuario extends JInternalFrame{
         
         
         
+	}
+	protected void mostrarActividad() {
+		consultaDeActividad.setVisible(true);
+		String actividadSeleccionada = (String) actividadesOfrecidasBox.getSelectedItem();
+		if (actividadSeleccionada != null) {
+			consultaDeActividad.mostrarDesdeConsultaDeUsuario(actividadSeleccionada);
+		}
+		
 	}
 	protected void limpiarFormulario() {
 		listaUsuarios.removeAllItems();
