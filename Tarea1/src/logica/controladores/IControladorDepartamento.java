@@ -22,4 +22,7 @@ public interface IControladorDepartamento {
 	public abstract boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException;
 	
 	public abstract void ingresarDepartamento(String nombre, String descripcion, String url);
+
+	public abstract DTActividad obtenerDatosActividad(String actividadSeleccionada) throws actividadNoExisteException;
+	
 }

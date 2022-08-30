@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import logica.Proveedor;
+import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
@@ -50,10 +51,17 @@ public class ConsultarUsuario extends JInternalFrame{
 	private JLabel nacionalidadText;
 	private JLabel salidasInscriptoTag;
 	private JComboBox<String> salidasInscriptoBox;
+	private JButton buttonVerActividad;
+	private ConsultaDeActividad consultaDeActividad;
 	
 	
 
-	public ConsultarUsuario(IControladorUsuario icu) {
+	public ConsultarUsuario(IControladorUsuario icu, IControladorDepartamento icd) {
+		
+		consultaDeActividad = new ConsultaDeActividad(icd);
+		this.getContentPane().add(consultaDeActividad);
+		consultaDeActividad.setVisible(false);
+		
 		contUser = icu;
 		
 		setResizable(true);
@@ -162,29 +170,31 @@ public class ConsultarUsuario extends JInternalFrame{
         	}
         });
         
+        buttonVerActividad = new JButton("Ver");
+        
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.TRAILING)
+        	groupLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(136)
         			.addComponent(listaUsuarios, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap(144, Short.MAX_VALUE))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(151)
-        			.addComponent(infoUsuario, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+        			.addComponent(infoUsuario, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
         			.addGap(129))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(157)
         			.addComponent(tipoUsuarioText)
-        			.addContainerGap(260, Short.MAX_VALUE))
-        		.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+        			.addContainerGap(331, Short.MAX_VALUE))
+        		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(36)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addGroup(groupLayout.createSequentialGroup()
         					.addComponent(salidasInscriptoTag)
         					.addGap(32)
         					.addComponent(salidasInscriptoBox, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
         					.addComponent(cerrarButton, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
         				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
         					.addGroup(groupLayout.createSequentialGroup()
@@ -226,15 +236,17 @@ public class ConsultarUsuario extends JInternalFrame{
         										.addPreferredGap(ComponentPlacement.RELATED)
         										.addComponent(nacionalidadText, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
         									.addComponent(descripcionText, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)))
-        							.addGroup(groupLayout.createSequentialGroup()
-        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        									.addComponent(actividadesOfrecidasTag)
-        									.addComponent(salidasAsociadasTag))
-        								.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-        									.addComponent(salidasAsociadasBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        									.addComponent(actividadesOfrecidasBox, 0, 170, Short.MAX_VALUE))))
-        						.addGap(17))))
+        							.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+        								.addComponent(actividadesOfrecidasTag)
+        								.addPreferredGap(ComponentPlacement.RELATED)
+        								.addComponent(actividadesOfrecidasBox, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+        								.addPreferredGap(ComponentPlacement.UNRELATED)
+        								.addComponent(buttonVerActividad, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
+        							.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+        								.addComponent(salidasAsociadasTag)
+        								.addPreferredGap(ComponentPlacement.UNRELATED)
+        								.addComponent(salidasAsociadasBox, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
+        						.addPreferredGap(ComponentPlacement.RELATED))))
         			.addContainerGap())
         );
         groupLayout.setVerticalGroup(
@@ -274,15 +286,16 @@ public class ConsultarUsuario extends JInternalFrame{
         				.addComponent(nacionalidadText))
         			.addGap(18)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(actividadesOfrecidasTag)
         				.addComponent(actividadesOfrecidasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(actividadesOfrecidasTag))
+        				.addComponent(buttonVerActividad))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(salidasAsociadasTag)
         				.addComponent(salidasAsociadasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addGroup(groupLayout.createSequentialGroup()
-        					.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
         					.addComponent(cerrarButton)
         					.addContainerGap())
         				.addGroup(groupLayout.createSequentialGroup()
