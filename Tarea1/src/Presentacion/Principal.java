@@ -11,7 +11,6 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 
 /**
@@ -23,7 +22,6 @@ import logica.controladores.IControladorUsuario;
 public class Principal {
 	private JFrame frmReservas_UY;
 	private IControladorUsuario ICU;
-	private IControladorPaquete ICP;
 	private IControladorDepartamento ICD;
 	private ConsultarUsuario conUsrInternalFrame;
 	private AltaUsuario crearUsrInternalFrame;
@@ -56,11 +54,10 @@ public class Principal {
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIControladorUsuario();
         ICD = fabrica.getIControladorDepartamento();
-        ICP = fabrica.getIControladorPaquete();
         
         frmReservas_UY.getContentPane().setLayout(null);
         
-        conUsrInternalFrame = new ConsultarUsuario(ICU, ICP);
+        conUsrInternalFrame = new ConsultarUsuario(ICU);
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
         
@@ -168,7 +165,7 @@ public class Principal {
         JMenu menuActividades = new JMenu("Actividades");
         menuBar.add(menuActividades);
         
-        JMenuItem menuItemAltaSalida = new JMenuItem("Crear Salida");
+        JMenuItem menuItemAltaSalida = new JMenuItem("Alta de Salida");
         menuItemAltaSalida.setToolTipText("Seleccione esta opción si desea dar de alta una salida");
         menuItemAltaSalida.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -187,21 +184,12 @@ public class Principal {
             }
         });
         
-        JMenuItem menuItemConsultaActividad = new JMenuItem("Consulta de Actividad");
-        menuActividades.add(menuItemConsultaActividad);
-        menuItemConsultaActividad.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	consultaActividadInternalFrame.cargarDepartamentos();
-            	consultaActividadInternalFrame.setVisible(true);
-            }
-        });
-        
         
         
         
         menuActividades.add(menuItemConsultaSalida);
         
-        JMenuItem menuItemAltaActividad = new JMenuItem("Alta de actividad");
+        JMenuItem menuItemAltaActividad = new JMenuItem("Alta de Actividad");
         menuItemAltaActividad.setToolTipText("Seleccione esta opción si desea dar de alta una actividad");
         menuItemAltaActividad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -211,6 +199,15 @@ public class Principal {
             }
         });
         menuActividades.add(menuItemAltaActividad);
+        
+        JMenuItem menuItemConsultaActividad = new JMenuItem("Consulta de Actividad");
+        menuActividades.add(menuItemConsultaActividad);
+        menuItemConsultaActividad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	consultaActividadInternalFrame.cargarDepartamentos();
+            	consultaActividadInternalFrame.setVisible(true);
+            }
+        });
  		
     }
     

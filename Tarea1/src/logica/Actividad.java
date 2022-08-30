@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 public class Actividad{
 	
@@ -21,7 +21,6 @@ public class Actividad{
 	
 	private Departamento departamento;
 	private Proveedor proveedor;
-	private Map<String, Paquete> paquetes;	
 	private Map<String, Salida> salidas;	
 	
 	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor) {
@@ -33,7 +32,6 @@ public class Actividad{
 		this.alta = alta;
 		this.departamento = departamento;
 		this.proveedor = proveedor;
-		this.paquetes = new HashMap<String, Paquete>();
 		this.salidas = new HashMap<String, Salida>();
 	}
 
@@ -99,18 +97,6 @@ public class Actividad{
 
 	public void setProveedor(Proveedor proveedor) {
 		this.proveedor = proveedor;
-	}
-
-	public Map<String, Paquete> getPaquetes() {
-		return paquetes;
-	}
-
-	public void setPaquetes(Map<String, Paquete> paquetes) {
-		this.paquetes = paquetes;
-	}
-	
-	public void addPaquete(Paquete paquete) {
-		this.paquetes.put(paquete.getNombre(), paquete);
 	}
 
 	public Map<String, Salida> getSalidas() {

@@ -4,7 +4,8 @@ import javax.swing.JInternalFrame;
 
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
-
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -21,8 +22,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import datatypes.DTActividad;
-import datatypes.DTSalida;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.salidaNoExisteException;
@@ -122,7 +121,7 @@ public class InscripcionASalida extends JInternalFrame {
 						listaSals.removeAllItems();
 						HashSet<DTSalida> sals = icd.obtenerDatosSalidasVigentes((String) listaActs.getSelectedItem(),(String) listaDptos.getSelectedItem());
 						for (DTSalida s : sals)
-							listaSals.addItem(s.getNombre() + " (desde: " + s.getLugarDTSalida() + ") " + s.getFechaDTSalida().get(Calendar.DAY_OF_MONTH) + "/" + s.getFechaDTSalida().get(Calendar.MONTH) + "/" + s.getFechaDTSalida().get(Calendar.YEAR));
+							listaSals.addItem(s.getNombre() + " (desde: " + s.getLugarDTSalida() + ") " + s.getFechaDTSalida().get(Calendar.DAY_OF_MONTH) + "/" + (s.getFechaDTSalida().get(Calendar.MONTH)+1) + "/" + s.getFechaDTSalida().get(Calendar.YEAR));
 					}
 				}
 				catch (actividadNoExisteException e2) {	
@@ -174,7 +173,7 @@ public class InscripcionASalida extends JInternalFrame {
 								JOptionPane.showMessageDialog(null, "El usuario ingresado ya está inscripto a la salida seleccionada. Cambie la salida seleccionada o ingrese otro usuario.", "Inscripción ya existente", JOptionPane.ERROR_MESSAGE);
 							}
 							else {
-								JOptionPane.showMessageDialog(null, "Usuario inscipto con éxito!", "Usuario inscripto", JOptionPane.OK_OPTION);
+								JOptionPane.showMessageDialog(null, "Usuario inscipto con éxito!", "Usuario inscripto", JOptionPane.INFORMATION_MESSAGE);
 								limpiarCampos();
 								cargarDptos();
 							}
@@ -291,7 +290,7 @@ public class InscripcionASalida extends JInternalFrame {
 		listaActs.setSelectedItem(null);
 		listaSals.setSelectedItem(null);
 		textFieldUser.setText("");
-		spinnerCantUsers.setValue(1);	
+		spinnerCantUsers.setValue(1);
 	}
 	
 	private boolean checkCampos() {

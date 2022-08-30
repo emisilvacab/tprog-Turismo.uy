@@ -1,4 +1,4 @@
-package datatypes;
+package logica.datatypes;
 
 public class DTPaquete{
 	

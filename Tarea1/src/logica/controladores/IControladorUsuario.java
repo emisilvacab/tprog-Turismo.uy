@@ -3,8 +3,8 @@ package logica.controladores;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
-import datatypes.DTUsuario;
-import datatypes.DTSalida;
+import logica.datatypes.DTUsuario;
+import logica.datatypes.DTSalida;
 import excepciones.usuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
@@ -16,7 +16,7 @@ public interface IControladorUsuario {
 	
 	public abstract String[] obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException;
 
-	public abstract String[] mostrarActividadesOfrecidas(String nickname) throws usuarioNoExisteException;
+	public abstract String[] obtenerActividadesOfrecidas(String nickname) throws usuarioNoExisteException;
 
 	public abstract void altaUsuario(DTUsuario user) throws UsuarioRepetidoException;
 	

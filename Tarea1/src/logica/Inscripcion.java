@@ -10,16 +10,13 @@ public class Inscripcion{
 	
 	private Salida salida;
 	private Turista turista;
-	private Compra pagoConPaquete;//Ver otro nombre o para Compra o para este atributo
 	
 	public Inscripcion(GregorianCalendar fecha, int cantTuristas, Salida salida, Turista turista) {
 		this.fecha = fecha;
 		this.cantTuristas = cantTuristas;
 		this.salida = salida;
 		this.turista = turista;
-		this.costo = salida.getCostoActividad() * cantTuristas; 
-		this.pagoConPaquete = null;
-	}
+		this.costo = salida.getCostoActividad() * cantTuristas; 	}
 
 
 	public GregorianCalendar getFecha() {
@@ -64,17 +61,6 @@ public class Inscripcion{
 	public void setTurista(Turista turista) {
 		this.turista = turista;
 	}
-
-
-	public Compra getPagoPaquete() {
-		return pagoConPaquete;
-	}
-
-
-	public void setPagoPaquete(Compra pagoConPaquete) {
-		this.pagoConPaquete = pagoConPaquete;
-	}
-
 
 	public String getNicknameInscripto() {
 		return turista.getNickname();

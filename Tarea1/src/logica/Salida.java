@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.Vector;
 //import java.util.Map;
 
-import datatypes.DTSalida;
+import logica.datatypes.DTSalida;
 
 public class Salida{
 	

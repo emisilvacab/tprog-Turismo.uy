@@ -4,8 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import logica.Proveedor;
-import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,12 +23,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import datatypes.DTProveedor;
-import datatypes.DTSalida;
-import datatypes.DTTurista;
-import datatypes.DTUsuario;
+<<<<<<< HEAD
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTSalida;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
+=======
+>>>>>>> refs/heads/master
 import excepciones.usuarioNoExisteException;
 import javax.swing.JButton;
 
@@ -38,7 +43,6 @@ public class ConsultarUsuario extends JInternalFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario contUser;
-	private IControladorPaquete conPaq;
 	private JComboBox<String> listaUsuarios;
 	private JLabel nicknameText;
 	private JLabel nombreText;
@@ -62,9 +66,8 @@ public class ConsultarUsuario extends JInternalFrame{
 	
 	
 
-	public ConsultarUsuario(IControladorUsuario icu, IControladorPaquete icp) {
+	public ConsultarUsuario(IControladorUsuario icu) {
 		contUser = icu;
-		conPaq = icp;
 		
 		setResizable(true);
         setIconifiable(true);
@@ -366,7 +369,7 @@ public class ConsultarUsuario extends JInternalFrame{
 				tipoUsuarioText.setVisible(true);
 				DTProveedor prov = (DTProveedor) user;
 				cargarActividadesOfrecidas(user.getNickname());
-				cargarSalidasAsociadas();
+				//cargarSalidasAsociadas();
 				actividadesOfrecidasBox.setVisible(true);
 				actividadesOfrecidasTag.setVisible(true);
 				salidasAsociadasTag.setVisible(true);
@@ -414,8 +417,12 @@ public class ConsultarUsuario extends JInternalFrame{
 	public void cargarActividadesOfrecidas(String nickname) {
         DefaultComboBoxModel<String> model;
         try {
+<<<<<<< HEAD
         	actividadesOfrecidasBox.removeAllItems();
         	actividadesOfrecidas = contUser.mostrarActividadesOfrecidas(nickname);
+=======
+        	actividadesOfrecidas = contUser.obtenerActividadesOfrecidas(nickname);
+>>>>>>> refs/heads/master
 			model = new DefaultComboBoxModel<String>(actividadesOfrecidas);
 			actividadesOfrecidasBox.setModel(model);
 		} catch (usuarioNoExisteException e) {
@@ -435,8 +442,12 @@ public class ConsultarUsuario extends JInternalFrame{
 			
 		}
 	}
+<<<<<<< HEAD
 	
 	
+=======
+	*/
+>>>>>>> refs/heads/master
 	public void cargarSalidasInscripto(String nickname) {
 		DefaultComboBoxModel<String> model;
         try {
