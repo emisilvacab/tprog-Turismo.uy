@@ -67,8 +67,10 @@ public class ConsultarUsuario extends JInternalFrame{
         listaUsuarios = new JComboBox<String>();
         listaUsuarios.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
-        		cargarUsuarios();
+	        	if(listaUsuarios.getSelectedItem()!=null) {	
+        			cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
+	        		cargarUsuarios();
+	        	}
         	}
         });
         
