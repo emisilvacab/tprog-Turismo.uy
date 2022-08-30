@@ -172,23 +172,18 @@ public class ControladorUsuario implements IControladorUsuario {
 		if(proveedor == null)
 			throw new usuarioNoExisteException("No se encontr� un proveedor con el nickname ingresado.");
 		Map<String,Actividad> actividades = proveedor.getActividades();
-		if(actividades == null)
-			throw new actividadNoExisteException("No se encontr� una actividad con el nombre ingresado.");
+		boolean encontro = false;
 		for(Map.Entry<String, Actividad> act : actividades.entrySet()) {
 			if(act.getKey() == nombreAct) {
+				encontro = true;
 				Map<String,Salida> salidas = act.getValue().getSalidas();
 				for(Map.Entry<String,Salida> sal : salidas.entrySet()) {
-					res.add(sal.getKey());
-					
+					res.add(sal.getKey());	
 				}
-				
-				
 			}
-			
-			
+		if(!encontro)
+			throw new actividadNoExisteException("No se encontr� una actividad con el nombre ingresado.");
 		}
-		
-		
 		return res.toArray(new String[res.size()]);
 	}
 	

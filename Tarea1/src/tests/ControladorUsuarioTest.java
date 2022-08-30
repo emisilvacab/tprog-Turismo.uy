@@ -298,5 +298,18 @@ class ControladorUsuarioTest {
 		assertThrows(salidaNoExisteException.class, ()->{String problema = icu.ingresarDatosInscripcion("leomel2", "Rio", 10, new GregorianCalendar(2022,8,29));});
 	}
 	@Test
-	void obtenerConsultaUsuario() {}
+	void obtenerConsultaUsuario() {
+		//test de obtenerSalidasDeActividad
+		String[] ans;
+		try {
+			ans = icu.obtenerSalidasDeActividad("wason", "Paseo por Parque Rodo");
+			assertEquals(ans[0], "Juegos");
+			assertEquals(ans[1], "Juegos_vencida");
+		} catch (usuarioNoExisteException | actividadNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertThrows(usuarioNoExisteException.class, ()->{String[] erroneo = icu.obtenerSalidasDeActividad(null, "Paseo por Parque Rodo");});
+		assertThrows(actividadNoExisteException.class, ()->{String[] erroneo = icu.obtenerSalidasDeActividad("wason", "cosopum");});
+	}
 }
