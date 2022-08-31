@@ -3,7 +3,6 @@ package Presentacion;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
-import logica.Proveedor;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTProveedor;
@@ -12,9 +11,6 @@ import logica.datatypes.DTUsuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.HashSet;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -25,12 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 
-import logica.datatypes.DTProveedor;
-import logica.datatypes.DTSalida;
-import logica.datatypes.DTTurista;
-import logica.datatypes.DTUsuario;
 import excepciones.actividadNoExisteException;
-import excepciones.departamentoNoExisteException;
 
 import excepciones.usuarioNoExisteException;
 import javax.swing.JButton;

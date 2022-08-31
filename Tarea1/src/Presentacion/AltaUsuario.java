@@ -7,24 +7,17 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
-import org.jdatepicker.JDatePicker;
-import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -33,11 +26,6 @@ import excepciones.UsuarioRepetidoException;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-
-import java.awt.Color;
-import javax.swing.SwingConstants;
-import javax.swing.SpringLayout;
 
 public class AltaUsuario extends JInternalFrame{
 

@@ -2,10 +2,8 @@ package logica;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 import excepciones.actividadNoExisteException;
-import excepciones.departamentoNoExisteException;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
 

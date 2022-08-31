@@ -4,55 +4,26 @@ import javax.swing.JInternalFrame;
 
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
-import logica.datatypes.DTActividad;
-import logica.datatypes.DTProveedor;
-import logica.datatypes.DTTurista;
-import logica.datatypes.DTUsuario;
 
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.Properties;
 import java.util.Set;
 
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
-import org.jdatepicker.JDatePicker;
-import org.jdatepicker.impl.DateComponentFormatter;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
-
-import excepciones.UsuarioRepetidoException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
-import excepciones.salidaNoExisteException;
-import excepciones.usuarioNoExisteException;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 
-import java.awt.Color;
 import javax.swing.SwingConstants;
-import javax.swing.SpringLayout;
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
 

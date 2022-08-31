@@ -1,7 +1,6 @@
 package logica.controladores;
 
 import java.util.GregorianCalendar;
-import java.util.Set;
 
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTActividad;

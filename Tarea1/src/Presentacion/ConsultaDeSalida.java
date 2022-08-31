@@ -1,12 +1,9 @@
 package Presentacion;
 
 import excepciones.departamentoNoExisteException;
-import excepciones.salidaNoExisteException;
 import excepciones.actividadNoExisteException;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JFrame;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -18,22 +15,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import java.util.Vector;
 
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import excepciones.departamentoNoExisteException;
 import logica.controladores.IControladorDepartamento;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
