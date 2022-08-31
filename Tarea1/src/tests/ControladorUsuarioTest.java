@@ -17,8 +17,11 @@ import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
+import logica.Actividad;
 import logica.Departamento;
 import logica.Fabrica;
+import logica.Proveedor;
+import logica.Salida;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 
@@ -359,21 +362,45 @@ class ControladorUsuarioTest {
 		
 		assertThrows(usuarioNoExisteException.class, ()->{DTActividad act = icu.obtenerDatoActividadProveedor("Diegu", "Paseo por Parque Rodo");});
 		assertThrows(actividadNoExisteException.class, ()->{DTActividad act = icu.obtenerDatoActividadProveedor("wason", "Ir al estadio del Huesca");});
-
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	void clasesTest() {
+		Proveedor provPrueba = new Proveedor("elProser", "Jose", "Artigas", "pepe@gmail.com", new GregorianCalendar(2001,6,5), "El de la Batalla de Las Piedras");
+		assertEquals(provPrueba.getNickname(), "elProser");
+		assertEquals(provPrueba.getNombre(), "Jose");
+		assertEquals(provPrueba.getApellido(), "Artigas");
+		assertEquals(provPrueba.getCorreo(), "pepe@gmail.com");
+		assertEquals(provPrueba.getNacimiento().get(Calendar.DAY_OF_MONTH),5);
+		assertEquals(provPrueba.getNacimiento().get(Calendar.MONTH),6);
+		assertEquals(provPrueba.getNacimiento().get(Calendar.YEAR),2001);
+		assertEquals(provPrueba.getDescripcion(), "El de la Batalla de Las Piedras");
+		Departamento pruebaDep = new Departamento("Tacuarembo", "Carpinchos", "capibara.com");
+		Actividad pruebaAct = new Actividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012,11,1), pruebaDep, provPrueba);
+		assertEquals(pruebaAct.getDescripcion(), "Recorrido");
+		assertEquals(pruebaAct.getDuracion(), 4);
+		assertEquals(pruebaAct.getDepartamento(), pruebaDep);
+		assertEquals(pruebaAct.getCiudad(), "Parque Rodo");
+		assertEquals(pruebaAct.getAlta().get(Calendar.DAY_OF_MONTH),1);
+		assertEquals(pruebaAct.getAlta().get(Calendar.MONTH),11);
+		assertEquals(pruebaAct.getAlta().get(Calendar.YEAR),2012);
+		assertEquals(pruebaAct.getProveedor(), provPrueba);
+		provPrueba.addActividad(pruebaAct);
+		assertEquals(provPrueba.getActividades().get("Paseo por Parque Rodo") != null, true);
+		pruebaDep.addActividad(pruebaAct);
+		assertEquals(pruebaDep.getActividades().get("Paseo por Parque Rodo") != null, true);
+		assertEquals(pruebaDep.getUrl(),"capibara.com");
+		assertEquals(pruebaDep.getDescripcion(),"Carpinchos");
+		
+		Salida pruebaSalida = new Salida("Tirarse al lago", 4, new GregorianCalendar(2023,6,5), new GregorianCalendar(2023,6,7), 12, "Puerta del liceo Zorrilla", pruebaAct);
+		pruebaAct.addSalida(pruebaSalida);
+		assertEquals(pruebaAct.existeSalida(pruebaSalida.getNombre()), true);
+		assertEquals(pruebaSalida.getMaxTuristas(), 4);
+		assertEquals(pruebaSalida.getAlta().get(Calendar.DAY_OF_MONTH),5);
+		assertEquals(pruebaSalida.getAlta().get(Calendar.MONTH),6);
+		assertEquals(pruebaSalida.getAlta().get(Calendar.YEAR),2023);
+		assertEquals(pruebaSalida.getLugarSalida(), "Puerta del liceo Zorrilla");
+		assertEquals(pruebaSalida.getHora(), 12);
+		assertEquals(pruebaSalida.getActividad(), pruebaAct);
+	}
+
 }
