@@ -11,6 +11,7 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
+import logica.manejadores.ManejadorUsuario;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
@@ -20,8 +21,10 @@ import excepciones.usuarioNoExisteException;
 import logica.Actividad;
 import logica.Departamento;
 import logica.Fabrica;
+import logica.Inscripcion;
 import logica.Proveedor;
 import logica.Salida;
+import logica.Turista;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 
@@ -32,6 +35,7 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 class ControladorUsuarioTest {
 	static //si agregan algun usuario avisenme joaco
@@ -401,6 +405,18 @@ class ControladorUsuarioTest {
 		assertEquals(pruebaSalida.getLugarSalida(), "Puerta del liceo Zorrilla");
 		assertEquals(pruebaSalida.getHora(), 12);
 		assertEquals(pruebaSalida.getActividad(), pruebaAct);
+	}
+	
+	
+	@Test
+	void obtenerSalidaInscripto() {
+		DTSalida sal = icu.obtenerSalidaInscripto("Juegos" , "pepe");
+		assertEquals(sal.getNombre(), "Juegos");
+		assertEquals(sal.getHora(), 15);
+		assertEquals(sal.getLugarDTSalida(), "Playa Ramirez");
+		assertEquals(sal.getMaxTuristas(), 6);
+		assertEquals(sal.getFechaDTSalida(), new GregorianCalendar(2022,11,8));
+		assertEquals(sal.getAlta(), new GregorianCalendar(2015,10,2));
 	}
 
 }

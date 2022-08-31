@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,12 +15,16 @@ import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
+import logica.Actividad;
+import logica.Departamento;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTActividad;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
+import logica.manejadores.ManejadorDepartamento;
 
 class ControladorDepartamentoTest {
 	
@@ -88,7 +93,7 @@ class ControladorDepartamentoTest {
 		String proveedores[] = {"artaud123","elPadrino","balonDeOro", "bocanada1999", "gardelito"};
 		
 		int j;
-		//test de obtenerProveedores
+		//test obtenerProveedores
 		String provs[] = icu.obtenerProveedores();
 		for (String sal: provs) {
 			j = 0;
@@ -99,19 +104,39 @@ class ControladorDepartamentoTest {
 			}
 			assertEquals(j <= 5, true);
 		}
-		
+		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		boolean ingresado;
 		try {
-			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", GregorianCalendar.from(ZonedDateTime.now()), "gardelito", "Maldonado");
+			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
 			assertEquals(ingresado, false);
 			
-			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", GregorianCalendar.from(ZonedDateTime.now()), "gardelito", "Maldonado");
+			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "Maldonado");
 			assertEquals(ingresado, true);
 		} catch (proveedorNoExisteException | departamentoNoExisteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		
+		//test obtenerDatosActividad
+		try {
+			DTActividad obt = icd.obtenerDatosActividad("Caza de brujas");
+			assertEquals(obt.getNombre(), "Caza de brujas");
+			assertEquals(obt.getDescripcion(), "Como en la inquisicion pero en 2022");
+			assertEquals(obt.getDuracion(), 2);
+			assertEquals(obt.getCosto(), 1);
+			assertEquals(obt.getCiudad(), "Cadiz");
+			assertEquals(obt.getAlta(), fechaAlta);
+		}
+		catch (actividadNoExisteException anee) {
+			fail(anee.getMessage());
+			anee.printStackTrace();
+		}
+		assertThrows(actividadNoExisteException.class, ()->{icd.obtenerDatosActividad("Ir al estadio del Huesca");});
+		
+		
+		//test obtenerDeptoActividad
+		String nomDep = icd.obtenerDeptoActividad("Caza de brujas");
+		assertEquals(nomDep, "Maldonado");
 	}
-	
+		
 }
