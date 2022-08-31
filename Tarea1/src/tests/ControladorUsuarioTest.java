@@ -11,7 +11,6 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
-import logica.manejadores.ManejadorUsuario;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
@@ -21,21 +20,15 @@ import excepciones.usuarioNoExisteException;
 import logica.Actividad;
 import logica.Departamento;
 import logica.Fabrica;
-import logica.Inscripcion;
 import logica.Proveedor;
 import logica.Salida;
-import logica.Turista;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 
-import java.lang.reflect.Array;
-import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.Vector;
 
 class ControladorUsuarioTest {
 	static //si agregan algun usuario avisenme joaco

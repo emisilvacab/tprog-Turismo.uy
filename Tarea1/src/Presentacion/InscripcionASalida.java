@@ -40,7 +40,6 @@ import javax.swing.JSpinner;
 import java.awt.event.ItemListener;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
-import javax.swing.JFrame;
 
 public class InscripcionASalida extends JInternalFrame {
 	

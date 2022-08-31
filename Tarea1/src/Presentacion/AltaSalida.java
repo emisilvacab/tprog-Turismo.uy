@@ -2,26 +2,20 @@ package Presentacion;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 
-import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.Insets;
 import javax.swing.SwingConstants;
 
 import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTActividad;
 
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -31,8 +25,6 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
-import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -46,10 +38,7 @@ import org.jdatepicker.impl.UtilDateModel;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
-import excepciones.salidaNoExisteException;
-import excepciones.usuarioNoExisteException;
 
-import java.awt.Button;
 import javax.swing.JSpinner;
 import javax.swing.SpringLayout;
 

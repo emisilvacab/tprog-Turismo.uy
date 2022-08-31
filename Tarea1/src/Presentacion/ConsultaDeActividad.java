@@ -8,16 +8,11 @@ import logica.controladores.IControladorDepartamento;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
-import java.awt.GridBagLayout;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -30,9 +25,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
-import excepciones.usuarioNoExisteException;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;

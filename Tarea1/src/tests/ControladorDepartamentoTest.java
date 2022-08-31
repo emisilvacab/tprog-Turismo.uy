@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -15,16 +13,12 @@ import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
-import logica.Actividad;
-import logica.Departamento;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTProveedor;
-import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
-import logica.manejadores.ManejadorDepartamento;
 
 class ControladorDepartamentoTest {
 	
