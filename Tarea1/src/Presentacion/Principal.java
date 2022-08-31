@@ -94,7 +94,8 @@ public class Principal {
         // Se crea el Frame con las dimensiones indicadas.
         frmReservas_UY = new JFrame();
         frmReservas_UY.setTitle("Reservas_UY admin");
-        frmReservas_UY.setBounds(100, 100, 569, 450);
+        frmReservas_UY.setBounds(150, 100, 1000, 1000);
+        //frmReservas_UY.setBounds(100, 100, 569, 450);
         frmReservas_UY.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
