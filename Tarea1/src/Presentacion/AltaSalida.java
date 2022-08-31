@@ -47,7 +47,6 @@ import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
-import excepciones.salidaYaExisteException;
 import excepciones.usuarioNoExisteException;
 
 import java.awt.Button;

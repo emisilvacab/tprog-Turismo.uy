@@ -11,7 +11,6 @@ import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
-import excepciones.salidaYaExisteException;
 import logica.Actividad;
 import logica.Departamento;
 import logica.Proveedor;
