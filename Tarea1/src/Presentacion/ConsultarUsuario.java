@@ -84,7 +84,7 @@ public class ConsultarUsuario extends JInternalFrame{
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consultar un Usuario");
-        setBounds(30, 30, 502, 424);
+        setBounds(70, 70, 800, 600);
         
         
         listaUsuarios = new JComboBox<String>();
@@ -142,12 +142,6 @@ public class ConsultarUsuario extends JInternalFrame{
         
         actividadesOfrecidasBox = new JComboBox<String>();
         actividadesOfrecidasBox.setVisible(false);
-        actividadesOfrecidasBox.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		//caso de uso consulta de actividad
-        	}
-        });
-        
         actividadesOfrecidasBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				try {
@@ -197,7 +191,10 @@ public class ConsultarUsuario extends JInternalFrame{
         salidasInscriptoBox.setVisible(false);
         salidasInscriptoBox.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//llamar caso de uso consulta salida
+        		if (salidasInscriptoBox.getSelectedItem() != null) {
+        			consultaDeSalida.setVisible(true);
+        			consultaDeSalida.mostrarDT(icu.obtenerSalidaInscripto((String)salidasInscriptoBox.getSelectedItem(), (String)listaUsuarios.getSelectedItem()));
+        		}
         	}
         });
         
@@ -241,77 +238,79 @@ public class ConsultarUsuario extends JInternalFrame{
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(136)
         			.addComponent(listaUsuarios, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(156, Short.MAX_VALUE))
+        			.addContainerGap(442, Short.MAX_VALUE))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(151)
-        			.addComponent(infoUsuario, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+        			.addComponent(infoUsuario, GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
         			.addGap(129))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(157)
         			.addComponent(tipoUsuarioText)
-        			.addContainerGap(288, Short.MAX_VALUE))
+        			.addContainerGap(558, Short.MAX_VALUE))
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(36)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addComponent(salidasInscriptoTag)
-        					.addGap(32)
-        					.addComponent(salidasInscriptoBox, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-        					.addComponent(cerrarButton, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+        				.addComponent(linkTag)
+        				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         					.addGroup(groupLayout.createSequentialGroup()
-        						.addComponent(nacimientoLabel)
-        						.addPreferredGap(ComponentPlacement.RELATED)
-        						.addComponent(nacimientoText, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
-        					.addGroup(groupLayout.createSequentialGroup()
-        						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        							.addGroup(groupLayout.createSequentialGroup()
-        								.addComponent(nicknameTag)
-        								.addPreferredGap(ComponentPlacement.RELATED)
-        								.addComponent(nicknameText, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE))
-        							.addGroup(groupLayout.createSequentialGroup()
-        								.addComponent(apellidoTag)
-        								.addGap(18)
-        								.addComponent(apellidoText)))
-        						.addGap(45)
-        						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        							.addGroup(groupLayout.createSequentialGroup()
-        								.addComponent(nombreTag)
-        								.addPreferredGap(ComponentPlacement.RELATED)
-        								.addComponent(nombreText))
-        							.addGroup(groupLayout.createSequentialGroup()
-        								.addComponent(correoTag)
-        								.addPreferredGap(ComponentPlacement.UNRELATED)
-        								.addComponent(correoText))))
-        					.addGroup(groupLayout.createSequentialGroup()
-        						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-        							.addGroup(groupLayout.createSequentialGroup()
-        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(salidasInscriptoTag)
+        						.addGap(18)
+        						.addComponent(salidasInscriptoBox, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+        					.addComponent(cerrarButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+        						.addGroup(groupLayout.createSequentialGroup()
+        							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        								.addGroup(groupLayout.createSequentialGroup()
+        									.addComponent(nicknameTag)
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addComponent(nicknameText, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE))
+        								.addGroup(groupLayout.createSequentialGroup()
+        									.addComponent(apellidoTag)
+        									.addGap(18)
+        									.addComponent(apellidoText)))
+        							.addGap(45)
+        							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        								.addGroup(groupLayout.createSequentialGroup()
+        									.addComponent(nombreTag)
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addComponent(nombreText))
+        								.addGroup(groupLayout.createSequentialGroup()
+        									.addComponent(correoTag)
+        									.addPreferredGap(ComponentPlacement.UNRELATED)
+        									.addComponent(correoText))))
+        						.addGroup(groupLayout.createSequentialGroup()
+        							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
         									.addComponent(descripcionTag)
-        									.addComponent(linkTag))
-        								.addPreferredGap(ComponentPlacement.RELATED)
-        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        									.addGroup(groupLayout.createSequentialGroup()
-        										.addComponent(linkText)
-        										.addGap(60)
-        										.addComponent(nacionalidadTag)
-        										.addPreferredGap(ComponentPlacement.RELATED)
-        										.addComponent(nacionalidadText, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
-        									.addComponent(descripcionText, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)))
-        							.addGroup(groupLayout.createSequentialGroup()
-        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        									.addComponent(actividadesOfrecidasTag)
-        									.addComponent(salidasAsociadasTag))
-        								.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-        								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-        									.addComponent(salidasAsociadasBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        									.addComponent(actividadesOfrecidasBox, 0, 170, Short.MAX_VALUE))))
-        						.addPreferredGap(ComponentPlacement.RELATED)
-        						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        							.addComponent(buttonSalida)
-        							.addComponent(buttonActividad)))))
-        			.addContainerGap())
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        										.addGroup(groupLayout.createSequentialGroup()
+        											.addComponent(linkText)
+        											.addGap(46)
+        											.addComponent(nacionalidadTag)
+        											.addGap(18)
+        											.addComponent(nacionalidadText, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
+        										.addComponent(descripcionText, GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)))
+        								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+        									.addComponent(nacimientoLabel)
+        									.addPreferredGap(ComponentPlacement.RELATED)
+        									.addComponent(nacimientoText, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
+        								.addGroup(groupLayout.createSequentialGroup()
+        									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+        										.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+        											.addComponent(salidasAsociadasTag)
+        											.addGap(18)
+        											.addComponent(salidasAsociadasBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        										.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+        											.addComponent(actividadesOfrecidasTag)
+        											.addGap(18)
+        											.addComponent(actividadesOfrecidasBox, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)))
+        									.addGap(43)
+        									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        										.addComponent(buttonSalida)
+        										.addComponent(buttonActividad))))
+        							.addGap(81)))))
+        			.addGap(148))
         );
         groupLayout.setVerticalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
@@ -341,34 +340,35 @@ public class ConsultarUsuario extends JInternalFrame{
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(descripcionTag)
-        				.addComponent(descripcionText))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        				.addComponent(descripcionText, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
+        			.addGap(75)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(linkTag)
         				.addComponent(linkText)
         				.addComponent(nacionalidadTag)
         				.addComponent(nacionalidadText))
-        			.addGap(18)
-        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(actividadesOfrecidasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(actividadesOfrecidasTag)
-        				.addComponent(buttonActividad))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(salidasAsociadasTag)
-        				.addComponent(salidasAsociadasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(buttonSalida))
+        			.addGap(19)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addGroup(groupLayout.createSequentialGroup()
-        					.addPreferredGap(ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+        					.addPreferredGap(ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
         					.addComponent(cerrarButton)
         					.addContainerGap())
         				.addGroup(groupLayout.createSequentialGroup()
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(actividadesOfrecidasTag)
+        						.addComponent(actividadesOfrecidasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(buttonActividad))
+        					.addGap(18)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(salidasAsociadasTag)
+        						.addComponent(salidasAsociadasBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(buttonSalida))
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
         						.addComponent(salidasInscriptoTag)
         						.addComponent(salidasInscriptoBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        					.addContainerGap())))
+        					.addGap(146))))
         );
         getContentPane().setLayout(groupLayout);
         
@@ -440,7 +440,7 @@ public class ConsultarUsuario extends JInternalFrame{
 			else {
 				tipoUsuarioText.setText("El usuario es turista!");
 				tipoUsuarioText.setVisible(true);
-				
+				//cargarSalidasInscripto(nickname);
 				actividadesOfrecidasBox.setVisible(false); //tiene que ocultar
 				actividadesOfrecidasTag.setVisible(false);
 				salidasAsociadasTag.setVisible(false);

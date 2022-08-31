@@ -240,6 +240,27 @@ public class ControladorUsuario implements IControladorUsuario {
 		return salida;
 		
 	}
+
+	@Override
+	public DTSalida obtenerSalidaInscripto(String nombreSalida, String nickname) {
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Turista tur = mu.getTurista(nickname);
+		Vector<Inscripcion> inscripciones = tur.getInscripciones();
+		DTSalida resu = null;
+		for (Inscripcion inscripcion: inscripciones) {
+			Salida sal = inscripcion.getSalida();
+			if (sal != null) {
+				if (sal.getNombre() == nombreSalida) {
+					resu = new DTSalida(nombreSalida, sal.getMaxTuristas(), sal.getAlta(), sal.getFechaSalida(), sal.getHora(), sal.getLugarSalida());
+					break;
+				}
+			}
+		}
+		return resu;
+
+	}
+	
+	
 	
 }
 

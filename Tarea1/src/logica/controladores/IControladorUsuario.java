@@ -30,5 +30,7 @@ public interface IControladorUsuario {
 	public abstract DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException;
 	
 	public abstract DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException;
+	
+	public abstract DTSalida obtenerSalidaInscripto(String nombreSalida, String nickname);
     
 }

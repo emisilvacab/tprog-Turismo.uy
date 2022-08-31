@@ -45,6 +45,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private JTextField textFieldAlta;
 	private JTextField textFieldSalida;
 	private JTextField textFieldLugar;
+	private JButton buttonCerrar;
 	
 	private JComboBox<String> comboBoxDepartamento;
 	private JComboBox<String> comboBoxActividad;
@@ -280,7 +281,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		
 		
 		
-		JButton buttonCerrar = new JButton("Cerrar");
+		buttonCerrar = new JButton("Cerrar");
 		
 		buttonCerrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -457,6 +458,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxActividad.removeAllItems();
 		comboBoxSalida.removeAllItems();
 		limpiarFormulario();
+		buttonCerrar.setVisible(true);
 		
 		tagDpto.setVisible(false);
 		tagActividad.setVisible(false);
