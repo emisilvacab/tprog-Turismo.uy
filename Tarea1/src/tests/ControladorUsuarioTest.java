@@ -311,6 +311,26 @@ class ControladorUsuarioTest {
 		}
 		assertThrows(usuarioNoExisteException.class, ()->{String[] erroneo = icu.obtenerSalidasDeActividad(null, "Paseo por Parque Rodo");});
 		assertThrows(actividadNoExisteException.class, ()->{String[] erroneo = icu.obtenerSalidasDeActividad("wason", "cosopum");});
+	
+		//test de obtenerSalidasDeActividad
+		try {
+			DTSalida datosSalida = icu.obtenerDatoSalidaProveedor("wason", "Paseo por Parque Rodo", "Juegos");
+			assertEquals(datosSalida.getNombre(), "Juegos");
+			assertEquals(datosSalida.getAlta().get(Calendar.DAY_OF_MONTH),2);
+			assertEquals(datosSalida.getAlta().get(Calendar.MONTH),10);
+			assertEquals(datosSalida.getAlta().get(Calendar.YEAR),2015);
+			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.DAY_OF_MONTH),8);
+			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.MONTH),11);
+			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.YEAR),2022);
+			assertEquals(datosSalida.getHora(),15);
+			assertEquals(datosSalida.getLugarDTSalida(),"Playa Ramirez");
+			//"Juegos", 6, new GregorianCalendar(2015,10,2),new GregorianCalendar(2022,11,8), 15,"Playa Ramirez", "Montevideo", "Paseo por Parque Rodo"
+		} catch (usuarioNoExisteException | actividadNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertThrows(usuarioNoExisteException.class, ()->{DTSalida erroneo = icu.obtenerDatoSalidaProveedor("joker", "Paseo por Parque Rodo", "Juegos");});
+		assertThrows(usuarioNoExisteException.class, ()->{DTSalida erroneo = icu.obtenerDatoSalidaProveedor("wason", "Paseo por lago ness", "Juegos");});
 	}
 	
 	@Test
