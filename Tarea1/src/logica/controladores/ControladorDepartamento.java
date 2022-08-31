@@ -91,20 +91,23 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	
 	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException {
 		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorSalida mSals = ManejadorSalida.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
 		if (dpto == null)
 			throw new proveedorNoExisteException("No se encontró un proveedor con el nombre ingresado.");
 		Actividad act = dpto.obtenerActividad(nombreAct);
 		if (act == null)
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado.");
-		boolean existeSalida = act.existeSalida(nombre);
-		if (!existeSalida) {
+		//boolean existeSalida = act.existeSalida(nombre);
+		Salida sal = mSals.getSalida(nombre);
+		if (sal == null) {
 			Salida nueva = new Salida(nombre, maxTuristas, fechaAlta, fechaSalida, horaSalida, lugarSalida, act);
 			act.addSalida(nueva);
 			ManejadorSalida msal = ManejadorSalida.getInstance();
 			msal.addSalida(nueva);
 		}
-		return existeSalida;
+		
+		return (sal != null);
 	}
 	
 	public void ingresarDepartamento(String nombre, String descripcion, String url) {
@@ -125,8 +128,6 @@ public class ControladorDepartamento implements IControladorDepartamento {
 			}
 			
 		}
-		//public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta) {
-
 		if (act == null) {
 			throw new actividadNoExisteException("actividad no encontrada");
 		}else {

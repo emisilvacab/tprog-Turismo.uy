@@ -138,7 +138,7 @@ public class CargarDatos {
 		try {
 			icu.ingresarDatosInscripcion("lachiqui","Degusta Agosto", 3, new GregorianCalendar(2022, 7, 15)); //costo 2400
 			icu.ingresarDatosInscripcion("elelvis","Degusta Agosto", 5, new GregorianCalendar(2022, 7, 16)); // costo 4000
-			icu.ingresarDatosInscripcion("lachiqui","Almuerzo 2", 3, new GregorianCalendar(2022, 7, 18)); //costo 1200
+			icu.ingresarDatosInscripcion("lachiqui","Tour Colonia del Sacramento 18-09", 3, new GregorianCalendar(2022, 7, 18)); //costo 1200
 			icu.ingresarDatosInscripcion("isabelita","Almuerzo 2", 1, new GregorianCalendar(2022, 7, 19));// costo 400
 			icu.ingresarDatosInscripcion("mastropiero","Almuerzo 4", 2, new GregorianCalendar(2022, 7, 19));// costo 1600
 			icu.ingresarDatosInscripcion("chino","Teatro con Sabores 1", 1, new GregorianCalendar(2022, 7, 19)); //costo 500
