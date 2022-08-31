@@ -90,12 +90,6 @@ public class ConsultarUsuario extends JInternalFrame{
         	public void actionPerformed(ActionEvent e) {
         		if (listaUsuarios.getSelectedItem()!=null) {
 	        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
-	        		try {
-	        		cargarSalidasAsociadas();
-	        		} catch(usuarioNoExisteException c){
-	        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
-	        		}
-        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
         		}
         	}
         });
@@ -153,7 +147,8 @@ public class ConsultarUsuario extends JInternalFrame{
         actividadesOfrecidasBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				try {
-					cargarSalidasAsociadas();
+					if(actividadesOfrecidasBox.getSelectedItem()!=null)
+						cargarSalidasAsociadas();
 				}catch (usuarioNoExisteException error) {
 					JOptionPane.showMessageDialog(null, error.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
 
@@ -414,15 +409,6 @@ public class ConsultarUsuario extends JInternalFrame{
 			if (user.getClass() == DTProveedor.class) {
 				tipoUsuarioText.setText("El usuario es proveedor!");
 				
-				try {
-    				
-	        		cargarSalidasAsociadas();
-	        		} catch(usuarioNoExisteException c){
-	        			JOptionPane.showMessageDialog(null, c.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
-
-	        			
-	        	}
-				
 				salidasInscriptoTag.setVisible(false);
 				salidasInscriptoBox.setVisible(false);
 				
@@ -487,6 +473,7 @@ public class ConsultarUsuario extends JInternalFrame{
 
 			model = new DefaultComboBoxModel<String>(actividadesOfrecidas);
 			actividadesOfrecidasBox.setModel(model);
+			cargarSalidasAsociadas();
 		} catch (usuarioNoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 		}
