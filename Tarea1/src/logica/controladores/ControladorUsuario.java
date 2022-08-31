@@ -163,6 +163,7 @@ public class ControladorUsuario implements IControladorUsuario {
     	return usersName.toArray(new String[usersName.size()]);
 	}
 	
+	
 	@Override
 	public String[] obtenerSalidasDeActividad(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException{
 		Set<String> res = new HashSet<String>();
@@ -170,20 +171,16 @@ public class ControladorUsuario implements IControladorUsuario {
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Proveedor proveedor = mu.getProveedor(nickname);
 		if(proveedor == null)
-			throw new usuarioNoExisteException("No se encontr� un proveedor con el nickname ingresado.");
+			throw new usuarioNoExisteException("No se encontró un proveedor con el nickname ingresado.");
 		Map<String,Actividad> actividades = proveedor.getActividades();
-		boolean encontro = false;
-		for(Map.Entry<String, Actividad> act : actividades.entrySet()) {
-			if(act.getKey() == nombreAct) {
-				encontro = true;
-				Map<String,Salida> salidas = act.getValue().getSalidas();
-				for(Map.Entry<String,Salida> sal : salidas.entrySet()) {
-					res.add(sal.getKey());	
-				}
-			}
-		if(!encontro)
-			throw new actividadNoExisteException("No se encontr� una actividad con el nombre ingresado.");
+		//boolean encontro = false;
+		Actividad act = actividades.get(nombreAct);
+		if(act == null) {
+			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado." );
 		}
+		Map<String,Salida> salidas = act.getSalidas();
+		res.addAll(salidas.keySet());
+		
 		return res.toArray(new String[res.size()]);
 	}
 	

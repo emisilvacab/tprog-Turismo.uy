@@ -490,10 +490,12 @@ public class ConsultarUsuario extends JInternalFrame{
 		salidasAsociadasBox.removeAllItems();
 		DefaultComboBoxModel<String> model;
 		try {
-        model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasDeActividad((String) listaUsuarios.getSelectedItem(), (String) actividadesOfrecidasBox.getSelectedItem()));
-        salidasAsociadasBox.setModel(model);
+			if (actividadesOfrecidasBox.getSelectedItem()!= null) {
+				model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasDeActividad((String) listaUsuarios.getSelectedItem(), (String) actividadesOfrecidasBox.getSelectedItem()));
+				salidasAsociadasBox.setModel(model);
+			}
 		}catch (usuarioNoExisteException | actividadNoExisteException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalidoRaro", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
