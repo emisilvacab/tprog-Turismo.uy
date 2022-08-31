@@ -38,7 +38,6 @@ import javax.swing.JComponent;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
-import net.miginfocom.swing.MigLayout;
 
 public class AltaUsuario extends JInternalFrame{
 

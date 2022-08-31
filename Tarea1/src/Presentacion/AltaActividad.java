@@ -53,7 +53,6 @@ import javax.swing.JFormattedTextField;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
-import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
 
