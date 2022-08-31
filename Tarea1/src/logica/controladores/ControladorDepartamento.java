@@ -136,6 +136,20 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		}
 	}
 
+	@Override
+	public String obtenerDeptoActividad(String actividad) {
+		String resu = null;
+		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		HashMap<String, Departamento> departamentos = mDptos.getDepartamentos();
+		for (Departamento depto: departamentos.values()) {
+			if (depto.getActividades().containsKey(actividad)) {
+				resu = depto.getNombre();
+				break;
+			}
+		}
+		return resu;
+	}
+
 }
 
 
