@@ -63,6 +63,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		
 		setMaximizable(true);
 		setClosable(true);
+		setResizable(true);
 		cDpto = icd;
 		setTitle("Consulta de Actividad");
 		setBounds(100, 100, 499, 511);

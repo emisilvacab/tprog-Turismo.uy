@@ -86,7 +86,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return encontro;
 	}
 	
-	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException {
+	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException{
 		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
 		ManejadorSalida mSals = ManejadorSalida.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);

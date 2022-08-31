@@ -66,7 +66,6 @@ public class AltaActividad extends JInternalFrame {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Alta de Actividad Turistica");
 		setResizable(true);
-		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
 		setBounds(0,0,500,350);
@@ -174,8 +173,9 @@ public class AltaActividad extends JInternalFrame {
 							JOptionPane.showMessageDialog(null, "Ya hay una actividad con el nombre "+ nombre + ". Cambie los datos para ingresar una nueva actividad.", "Actividad " + nombre + " ya existente", JOptionPane.ERROR_MESSAGE);
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "Actividad dada de alta con exito!", "Nueva activiad ingresada", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Actividad dada de alta con exito!", "Nueva actividad ingresada", JOptionPane.INFORMATION_MESSAGE);
 							limpiarFormulario();
+							setVisible(false);
 						}
 					}
 					catch(departamentoNoExisteException e1) {

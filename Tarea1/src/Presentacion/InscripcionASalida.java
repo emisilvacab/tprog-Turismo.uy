@@ -69,7 +69,7 @@ public class InscripcionASalida extends JInternalFrame {
 		
 		Dimension dmsInternal = new Dimension(700,350);
 		setMaximumSize(dmsInternal);
-		setMaximizable(false);
+		setMaximizable(true);
 		setResizable(true);
 	    setClosable(true);
 	    setTitle("Inscripción a salida");
@@ -174,7 +174,7 @@ public class InscripcionASalida extends JInternalFrame {
 							else {
 								JOptionPane.showMessageDialog(null, "Usuario inscipto con éxito!", "Usuario inscripto", JOptionPane.INFORMATION_MESSAGE);
 								limpiarCampos();
-								cargarDptos();
+			        			setVisible(false);
 							}
 						}
 					}

@@ -75,7 +75,6 @@ public class AltaSalida extends JInternalFrame{
 		icd = picd;
 		
 		setResizable(true);
-        setIconifiable(true);
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
@@ -186,7 +185,7 @@ public class AltaSalida extends JInternalFrame{
 						else {
 								JOptionPane.showMessageDialog(null, "Salida ingresada con éxito!", "Salida ingresada", JOptionPane.INFORMATION_MESSAGE);
 								limpiarCampos();
-								cargarDptos();
+								setVisible(false);
 						}
 						
 					}
@@ -195,7 +194,7 @@ public class AltaSalida extends JInternalFrame{
 					}
 					catch(proveedorNoExisteException e2) {
 						JOptionPane.showMessageDialog(null, e2.getMessage(), "El proveedor seleccionado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
-					}	
+					}
 				}
 			}
 		});

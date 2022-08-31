@@ -53,9 +53,9 @@ public class ConsultaDeSalida extends JInternalFrame {
 		cDpto = icd;
 		
 		setTitle("Consulta de Salida Turistica");
-		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
+		setResizable(true);
 		setBounds(100, 100, 338, 347);
 		
 		
