@@ -24,5 +24,7 @@ public interface IControladorDepartamento {
 	public abstract void ingresarDepartamento(String nombre, String descripcion, String url);
 
 	public abstract DTActividad obtenerDatosActividad(String actividadSeleccionada) throws actividadNoExisteException;
+
+	public abstract String obtenerDeptoActividad(String actividad);
 	
 }

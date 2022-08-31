@@ -18,6 +18,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.awt.GridBagLayout;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -30,6 +32,7 @@ import javax.swing.event.InternalFrameEvent;
 
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
+import excepciones.usuarioNoExisteException;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -54,6 +57,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 	private JLabel tagSalidas;
 	private JLabel tagDepartamento;
 	private JLabel tagActividad;
+	private String actividadSeleccionada;
+	private String departamentoSeleccionado;
 	
 	/**
 	 * Create the frame.
@@ -67,7 +72,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		setClosable(true);
 		cDpto = icd;
 		setTitle("Consulta de Actividad");
-		setBounds(100, 100, 499, 453);
+		setBounds(100, 100, 499, 511);
 		
 		addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -91,8 +96,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 		
 		comboBoxDepartamento = new JComboBox<String>();
 		
-		comboBoxDepartamento.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+		comboBoxDepartamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				comboBoxActividad.setEnabled(false);				
 				comboBoxActividad.removeAllItems();				
 				//comboBoxActividad.setSelectedItem(null);
@@ -101,7 +106,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 				comboBoxSalida.removeAllItems();				
 				//comboBoxSalida.setSelectedItem(null);
 				
-				
+				departamentoSeleccionado = (String) comboBoxDepartamento.getSelectedItem();
 				if(comboBoxDepartamento.getSelectedItem() != null) {
 					cargarActividades();
 					comboBoxActividad.setEnabled(true);
@@ -116,15 +121,24 @@ public class ConsultaDeActividad extends JInternalFrame {
 		tagActividad = new JLabel("Actividad");
 		tagActividad.setHorizontalAlignment(SwingConstants.RIGHT);
 		
+		
+//		listaUsuarios.addActionListener(new ActionListener() {
+//        	public void actionPerformed(ActionEvent e) {
+//        		if (listaUsuarios.getSelectedItem()!=null) {
+//	        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
+//        		}
+//        	}
+//        });
+		
 		comboBoxActividad = new JComboBox<String>();
-		comboBoxActividad.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+		comboBoxActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				
 				comboBoxSalida.setEnabled(false);
 				comboBoxSalida.setSelectedItem(null);
 				comboBoxSalida.removeAllItems();
-				
-				if(comboBoxActividad.getSelectedItem() != null) {
+				actividadSeleccionada = (String) comboBoxActividad.getSelectedItem();
+				if(actividadSeleccionada != null) {
 					mostrarActividad();
 					cargarSalidas();
 					comboBoxSalida.setEnabled(true);
@@ -317,13 +331,13 @@ public class ConsultaDeActividad extends JInternalFrame {
 	}
 	
 	private void mostrarActividad() {
-		if (comboBoxDepartamento.getSelectedItem() != null && comboBoxActividad.getSelectedItem() != null) {
+		if (comboBoxDepartamento.getSelectedItem() != null && actividadSeleccionada != null) {
 			try {
 				HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
 				DTActividad actividad = null;
 				
 				for(DTActividad it : acts) {
-					if(it.getNombre() == comboBoxActividad.getSelectedItem())
+					if(it.getNombre() == actividadSeleccionada)
 						actividad = it;
 				}
 				
@@ -333,7 +347,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 				textFieldDuracion.setText(duracion.toString());
 				textFieldCosto.setText(Float.toString(actividad.getCosto()));
 				textFieldCiudad.setText(actividad.getCiudad());
-				
+				cargarSalidas();
+				comboBoxSalida.setVisible(true);
 				GregorianCalendar fechaAlta = actividad.getAlta();
 		        
 		       
@@ -355,13 +370,19 @@ public class ConsultaDeActividad extends JInternalFrame {
 		}
 	}
 	
+	
 	private void cargarSalidas() {
-		//try
-		if (comboBoxActividad.getSelectedItem() != null) {
+		comboBoxSalida.removeAllItems();
+		DefaultComboBoxModel<String> model;
+		if (actividadSeleccionada != null) {
 			try {
-				HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes((String) comboBoxActividad.getSelectedItem(),(String) comboBoxDepartamento.getSelectedItem());
-				for (DTSalida s : sals)
-					comboBoxSalida.addItem(s.getNombre());
+				String departamento = departamentoSeleccionado;
+				if (actividadSeleccionada!=null && departamento!=null) {
+					HashSet<DTSalida> salidas = cDpto.obtenerDatosSalidasVigentes(actividadSeleccionada, departamento);
+					model = new DefaultComboBoxModel<String>(obtenerNombreSalidas(salidas));
+					comboBoxSalida.setModel(model);
+					
+				}
 			}catch(actividadNoExisteException | departamentoNoExisteException e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);
 			}
@@ -370,9 +391,23 @@ public class ConsultaDeActividad extends JInternalFrame {
 				
 	}
 	
+	private String[] obtenerNombreSalidas(HashSet<DTSalida> salidas) {
+		HashSet<String> resu = new HashSet<String>();
+		for (DTSalida salida: salidas) {
+			resu.add(salida.getNombre());
+		}
+		return resu.toArray(String[]::new);
+	
+	}
+
 	private void mostrarInfo() {
 		consultaDeSalida.setVisible(true);
-		consultaDeSalida.mostrar((String) comboBoxDepartamento.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(),(String) comboBoxSalida.getSelectedItem());
+		String departamento = departamentoSeleccionado;
+		String actividad = actividadSeleccionada;
+		String salida = (String) comboBoxSalida.getSelectedItem();
+		if (departamento!=null && actividad!=null && salida!=null) {
+			consultaDeSalida.mostrar(departamento, actividad, salida);
+		}
 			
 	}
 	
@@ -388,8 +423,13 @@ public class ConsultaDeActividad extends JInternalFrame {
 		textFieldCiudad.setText(actividad.getCiudad());
 		
 		GregorianCalendar fechaAlta = actividad.getAlta();
-        
-        
+		
+
+		actividadSeleccionada = actividad.getNombre();
+		departamentoSeleccionado = cDpto.obtenerDeptoActividad(actividadSeleccionada);
+		comboBoxSalida.setEnabled(true);
+		comboBoxSalida.setVisible(true);
+		cargarSalidas();
         
         Integer diaA = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
         Integer mesA = fechaAlta.get(fechaAlta.MONTH) + 1;
@@ -400,12 +440,10 @@ public class ConsultaDeActividad extends JInternalFrame {
 		
 		comboBoxDepartamento.setVisible(false);
 		comboBoxActividad.setVisible(false);
-		comboBoxSalida.setVisible(false);
 		
 		tagDepartamento.setVisible(false);
 		tagActividad.setVisible(false);
-		tagSalidas.setVisible(false);
-		buttonInfo.setVisible(false);
+
 		
 		
 	}
