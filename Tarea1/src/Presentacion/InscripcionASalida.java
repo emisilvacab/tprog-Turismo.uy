@@ -68,7 +68,7 @@ public class InscripcionASalida extends JInternalFrame {
 		icu = picu;
 		icd = picd;
 		
-		Dimension dmsInternal = new Dimension(500,500);
+		Dimension dmsInternal = new Dimension(700,350);
 		setMaximumSize(dmsInternal);
 		setMaximizable(false);
 		setResizable(true);
@@ -318,6 +318,8 @@ public class InscripcionASalida extends JInternalFrame {
 	}	
 	
 }
+
+
 
 
 
