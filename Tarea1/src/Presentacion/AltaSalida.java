@@ -66,6 +66,9 @@ public class AltaSalida extends JInternalFrame{
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	private SpringLayout springLayout;
+	private JLabel lblNewLabel;
+	private JSpinner spinnerMin1;
+	private JSpinner spinnerMin2;
 	
 	
 	
@@ -154,6 +157,16 @@ public class AltaSalida extends JInternalFrame{
 		datePicker.setShowYearButtons(true);
 		datePicker.setVisible(true);
 		
+		lblNewLabel = new JLabel(":");
+		
+		spinnerMin1 = new JSpinner();
+		spinnerMin1.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		spinnerMin1.setToolTipText("Ingrese un número entre 0 y 5");
+		
+		spinnerMin2 = new JSpinner();
+		spinnerMin2.setModel(new SpinnerNumberModel(0, 0, 9, 1));
+		spinnerMin2.setToolTipText("Ingrese un número entre 0 y 9");
+		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -171,7 +184,8 @@ public class AltaSalida extends JInternalFrame{
 						
 						String nombreSalida = textNombre.getText();
 						int cantTuristas = (int) spinnerCant.getValue();
-						int horaSalida = (int) spinnerHora.getValue();
+						int minutos = ((int) spinnerMin1.getValue()) * 10 + (int) spinnerMin2.getValue();
+						int horaSalida = ((int) spinnerHora.getValue()) * 100 + minutos;
 						String lugarSalida = textLugar.getText();
 						String nombreDep = (String) listaDep.getSelectedItem();
 						String nombreAct = (String) listaAct.getSelectedItem();
@@ -199,6 +213,7 @@ public class AltaSalida extends JInternalFrame{
 				}
 			}
 		});
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -206,38 +221,37 @@ public class AltaSalida extends JInternalFrame{
 					.addGap(7)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblDep)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(listaDep, 0, 254, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblFecha)
-							.addGap(67)
-							.addComponent(datePicker, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
 							.addGap(4)
 							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblFecha)
 								.addComponent(lblNombre)
 								.addComponent(lblCant)
-								.addComponent(lblAct))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(listaAct, 0, 255, Short.MAX_VALUE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(spinnerCant, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(textNombre, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))))
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(lblLugar)
-								.addGap(65)
-								.addComponent(textLugar))
-							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblAct)
 								.addComponent(lblHora)
-								.addGap(72)
-								.addComponent(spinnerHora, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblLugar))
+								.addComponent(lblDep))
+							.addGap(6)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(listaDep, 0, 251, Short.MAX_VALUE)
+								.addComponent(textLugar, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(spinnerHora, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(spinnerMin1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(spinnerMin2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
+									.addComponent(datePicker, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(listaAct, 0, 251, Short.MAX_VALUE)
+								.addComponent(spinnerCant, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -246,7 +260,7 @@ public class AltaSalida extends JInternalFrame{
 					.addGap(11)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDep)
-						.addComponent(listaDep, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(listaDep, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 					.addGap(8)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblAct)
@@ -271,8 +285,12 @@ public class AltaSalida extends JInternalFrame{
 							.addComponent(lblHora))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(4)
-							.addComponent(spinnerHora, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(6)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(spinnerHora, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel)
+								.addComponent(spinnerMin1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(spinnerMin2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textLugar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblLugar))

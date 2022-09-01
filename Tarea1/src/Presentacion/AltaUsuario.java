@@ -54,7 +54,6 @@ public class AltaUsuario extends JInternalFrame{
 	public AltaUsuario(IControladorUsuario icu) {
 		contrUsers = icu;
 		setResizable(true);
-        setIconifiable(true);
         setMaximizable(true);
         setClosable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -213,7 +212,6 @@ public class AltaUsuario extends JInternalFrame{
         			}else {
         				user = new DTProveedor(nickname, nombre, apellido, correo, fecha, descripcion, link);
         			}
-        			limpiarFormulario();
         			try {
 						contrUsers.altaUsuario(user);
 					} catch (UsuarioRepetidoException e1) {
@@ -222,6 +220,7 @@ public class AltaUsuario extends JInternalFrame{
 					}
         			JOptionPane.showMessageDialog(null, "Usuario cargado con éxito!", "Alta de usuario",
                             JOptionPane.INFORMATION_MESSAGE);
+        			limpiarFormulario();
         			setVisible(false);
         			
         		}else {
@@ -248,7 +247,7 @@ public class AltaUsuario extends JInternalFrame{
 				return nacionalidad.length()!=0;
 			}else {
 				if (proveedorButton.isSelected()) {
-					return descripcion.length()!=0 && link.length()!=0;
+					return descripcion.length()!=0;
 				}else return false;
 			}
 		}

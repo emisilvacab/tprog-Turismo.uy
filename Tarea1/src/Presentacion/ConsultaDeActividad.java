@@ -63,6 +63,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		
 		setMaximizable(true);
 		setClosable(true);
+		setResizable(true);
 		cDpto = icd;
 		setTitle("Consulta de Actividad");
 		setBounds(100, 100, 499, 511);
@@ -347,7 +348,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		       
 		        
 		        Integer diaA = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
-		        Integer mesA = fechaAlta.get(fechaAlta.MONTH);
+		        Integer mesA = fechaAlta.get(fechaAlta.MONTH) + 1;
 		        Integer anioA = fechaAlta.get(fechaAlta.YEAR);
 		        String fechaAltaString = diaA.toString()+"/"+mesA.toString()+"/"+anioA.toString();
 				

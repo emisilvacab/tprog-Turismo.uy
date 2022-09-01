@@ -70,7 +70,6 @@ public class ConsultarUsuario extends JInternalFrame{
 		this.getContentPane().add(consultaDeActividad);
 		
 		setResizable(true);
-        setIconifiable(true);
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
