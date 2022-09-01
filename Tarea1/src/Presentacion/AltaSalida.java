@@ -209,7 +209,7 @@ public class AltaSalida extends JInternalFrame{
 					catch(actividadNoExisteException e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "La actividad seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
 					}
-					catch(proveedorNoExisteException e2) {
+					catch(departamentoNoExisteException e2) {
 						JOptionPane.showMessageDialog(null, e2.getMessage(), "El proveedor seleccionado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 					}	
 				}
