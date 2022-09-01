@@ -24,11 +24,7 @@ class ControladorDepartamentoTest {
 	
 	private static IControladorUsuario icu;
 	private static IControladorDepartamento icd;
-	private static DTTurista userTurista1;
-	private static DTTurista userTurista2;
-	private static DTTurista userTurista3;
-	private static DTTurista userTurista4;
-	private static DTTurista userTurista5;
+
 	private static DTProveedor userProveedor1;
 	private static DTProveedor userProveedor2;
 	private static DTProveedor userProveedor3;
@@ -40,11 +36,6 @@ class ControladorDepartamentoTest {
 		Fabrica fabrica = Fabrica.getInstance();
 		icu = fabrica.getIControladorUsuario();
 		icd = fabrica.getIControladorDepartamento();
-		userTurista1 = new DTTurista("gardelito", "Carlos", "Gardel", "porunacabeza@gmail.com", new GregorianCalendar(2001,6,5), "Desconocida");
-		userTurista2 = new DTTurista("artaud123", "Luis", "Spinetta", "muchacha@gmail.com", new GregorianCalendar(2001,6,5), "Argentino");
-		userTurista3 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-		userTurista4 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-		userTurista5 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
 		userProveedor1 = new DTProveedor("artaud123", "Luis", "Spinetta", "muchacha@gmail.com", new GregorianCalendar(2001,6,5), "Argentino");
 		userProveedor2 = new DTProveedor("elPadrino", "Marlon", "Brando", "marBra@gmail.com", new GregorianCalendar(2001,6,5), "Italiana");
 		userProveedor3 = new DTProveedor("balonDeOro", "Lionel", "Messi", "lio@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
