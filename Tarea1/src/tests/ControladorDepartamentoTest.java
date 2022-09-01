@@ -13,6 +13,7 @@ import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
+import excepciones.salidaNoExisteException;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
@@ -93,9 +94,11 @@ class ControladorDepartamentoTest {
 		try {
 			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
 			assertEquals(ingresado, false);
-			
+			assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "CABA");});
+			assertThrows(proveedorNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "sinProv", "Maldonado");});
 			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "Maldonado");
 			assertEquals(ingresado, true);
+		
 		} catch (proveedorNoExisteException | departamentoNoExisteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -130,6 +133,7 @@ class ControladorDepartamentoTest {
 			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
 			try {
 				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas");
+				
 			} catch (actividadNoExisteException e) {
 				e.printStackTrace();
 			}
@@ -142,6 +146,31 @@ class ControladorDepartamentoTest {
 		} catch (actividadNoExisteException e) {
 			e.printStackTrace();
 		}
+		assertThrows(actividadNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "No actividad");});
+		assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "No", "Caza de brujas");});
+	}
+	
+	@Test
+	void testobtenerlugaresDisponibles() {
+		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
+		icd.ingresarDepartamento("Maldonado","Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
+		try {
+			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
+			try {
+				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas");
+			} catch (actividadNoExisteException e) {
+				e.printStackTrace();
+			}
+		} catch (proveedorNoExisteException | departamentoNoExisteException e) {
+			e.printStackTrace();
+		}
+		assertThrows(salidaNoExisteException.class, () -> {icd.obtenerlugaresDisponibles("Salida inexistente");});
+		try {
+			assertEquals(icd.obtenerlugaresDisponibles("salida de prueba"), 5);
+		} catch (salidaNoExisteException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 		

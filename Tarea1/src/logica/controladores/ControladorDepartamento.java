@@ -109,12 +109,12 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return encontro;
 	}
 	
-	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.proveedorNoExisteException, actividadNoExisteException{
+	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.departamentoNoExisteException, actividadNoExisteException{
 		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
 		ManejadorSalida mSals = ManejadorSalida.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
 		if (dpto == null)
-			throw new proveedorNoExisteException("No se encontró un proveedor con el nombre ingresado.");
+			throw new departamentoNoExisteException("No se encontró un departamento con el nombre ingresado.");
 		Actividad act = dpto.obtenerActividad(nombreAct);
 		if (act == null)
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado.");
