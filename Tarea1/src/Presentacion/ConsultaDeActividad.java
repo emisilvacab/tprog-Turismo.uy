@@ -162,6 +162,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		textFieldNombre.setColumns(10);
 		
 		textAreaDescripcion = new JTextArea();
+		textAreaDescripcion.setWrapStyleWord(true);
 		textAreaDescripcion.setLineWrap(true);
 		textAreaDescripcion.setEditable(false);
 		textAreaDescripcion.setColumns(10);
