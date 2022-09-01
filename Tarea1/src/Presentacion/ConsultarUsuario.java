@@ -119,6 +119,7 @@ public class ConsultarUsuario extends JInternalFrame{
         descripcionTag.setVisible(false);
         
         descripcionText = new JTextArea("New label");
+        descripcionText.setWrapStyleWord(true);
         descripcionText.setVisible(false);
 		descripcionText.setLineWrap(true);
 		descripcionText.setEditable(false);
