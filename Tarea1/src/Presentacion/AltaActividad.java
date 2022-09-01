@@ -171,7 +171,7 @@ public class AltaActividad extends JInternalFrame {
 						String dur = (String) txfDuracion.getText();
 						int duracion = Integer.parseInt(dur);
 						String cos = (String) txfCosto.getText();
-						float costo = Float.parseFloat(cos);						
+						float costo = Float.parseFloat(cos);
 						String ciudad = txfCiudad.getText();
 						String departamento = (String) comboDepartamento.getSelectedItem();
 						String proveedor = (String) comboProveedor.getSelectedItem();
@@ -215,24 +215,66 @@ public class AltaActividad extends JInternalFrame {
 		String nombreAct = txfNombre.getText();
 		String ciudadAct = txfCiudad.getText();
 		String descripcionAct = txfDescripcion.getText();
+		String duracionAct = txfDuracion.getText();
+		String costoAct = txfCosto.getText();
+		
+		boolean ans = true;
 		//fijarse que duración sea int y sea mayor que 0 y luego que costo sea un numero tambien
 		
-		if (comboDepartamento.getSelectedItem() == null)
+		if (comboDepartamento.getSelectedItem() == null) {
 			JOptionPane.showMessageDialog(null, "Seleccione un departamento.", "Departamento no seleccionado", JOptionPane.ERROR_MESSAGE);
-		else
-			if (comboProveedor.getSelectedItem() == null)
+			ans = false;
+		} else
+			if (comboProveedor.getSelectedItem() == null) {
 				JOptionPane.showMessageDialog(null, "Seleccione un proveedor.", "Proveedor no seleccionado", JOptionPane.ERROR_MESSAGE);
-			else
-				if (nombreAct.length() == 0)
+				ans = false;
+			} else
+				if (nombreAct.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Ingrese el nombre de la actividad.", "Nombre no ingresado", JOptionPane.ERROR_MESSAGE);
-				else
-					if (descripcionAct.length() == 0)
-						JOptionPane.showMessageDialog(null, "Ingrese el descripción de la actividad.", "Descripción no ingresado", JOptionPane.ERROR_MESSAGE);
-					else
-						if (ciudadAct.length() == 0)
-							JOptionPane.showMessageDialog(null, "Ingrese una ciudad.", "Ciudad no ingresada", JOptionPane.ERROR_MESSAGE);
-
-		return (nombreAct.length() != 0 && comboProveedor.getSelectedItem() != null && comboDepartamento.getSelectedItem() != null && ciudadAct.length() != 0 && descripcionAct.length() != 0);
+					ans = false;
+				} else
+					if (duracionAct.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Ingrese la duracion de la actividad.", "Duracion no ingresada", JOptionPane.ERROR_MESSAGE);
+						ans = false;
+					} else
+						if (costoAct.isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Ingrese el costo de la actividad.", "Costo no ingresado", JOptionPane.ERROR_MESSAGE);
+							ans = false;
+						} else
+							if (descripcionAct.isEmpty()) {
+								JOptionPane.showMessageDialog(null, "Ingrese el descripción de la actividad.", "Descripción no ingresado", JOptionPane.ERROR_MESSAGE);
+								ans = false;
+							} else
+								if (ciudadAct.isEmpty()) {
+									JOptionPane.showMessageDialog(null, "Ingrese una ciudad.", "Ciudad no ingresada", JOptionPane.ERROR_MESSAGE);
+									ans = false;
+								} else {
+									try {
+								            int dur = Integer.parseInt(duracionAct);
+								            if (dur <= 0) {
+								            	JOptionPane.showMessageDialog(this, "La duración de la actividad debe ser un numero entero mayor que 0",  "Duracion no ingresada",
+									                    JOptionPane.ERROR_MESSAGE);
+								            	ans = false;
+								            }
+								        } catch (NumberFormatException e) {
+								            JOptionPane.showMessageDialog(this, "La duración de la actividad debe ser un numero entero mayor que 0", "Duracion no ingresada",
+								                    JOptionPane.ERROR_MESSAGE);
+								            ans = false;
+								        }
+									try {
+							            float cos = Float.parseFloat(costoAct);
+							            if (cos < 0.0) {
+							            	JOptionPane.showMessageDialog(this, "La duración de la actividad debe ser un numero mayor o igual que 0.0", "Costo no ingresado",
+								                    JOptionPane.ERROR_MESSAGE);
+							            	ans = false;
+							            }
+							        } catch (NumberFormatException e) {
+							            JOptionPane.showMessageDialog(this, "El costo de la actividad debe ser un numero mayor o igual a 0.0", "Costo no ingresado",
+							                    JOptionPane.ERROR_MESSAGE);
+							            ans = false;
+							        }
+								}
+		return (ans);
 	}
 	
 	private void limpiarFormulario() {
