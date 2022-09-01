@@ -77,7 +77,6 @@ public class AltaSalida extends JInternalFrame{
 		icd = picd;
 		
 		setResizable(true);
-        setIconifiable(true);
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
@@ -203,7 +202,7 @@ public class AltaSalida extends JInternalFrame{
 						else {
 								JOptionPane.showMessageDialog(null, "Salida ingresada con éxito!", "Salida ingresada", JOptionPane.INFORMATION_MESSAGE);
 								limpiarCampos();
-								cargarDptos();
+			        			setVisible(false);
 						}
 						
 					}
