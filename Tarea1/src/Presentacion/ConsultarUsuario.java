@@ -437,6 +437,8 @@ public class ConsultarUsuario extends JInternalFrame{
 				linkText.setVisible(true);
 				descripcionText.setVisible(true);
 				
+				nacionalidadText.setVisible(false);
+				nacionalidadTag.setVisible(false);
 			}
 			else {
 				tipoUsuarioText.setText("El usuario es turista!");
@@ -457,6 +459,11 @@ public class ConsultarUsuario extends JInternalFrame{
 				nacionalidadTag.setVisible(true);
 				salidasInscriptoTag.setVisible(true);
 				salidasInscriptoBox.setVisible(true);
+				
+				linkText.setVisible(false);
+				linkTag.setVisible(false);
+				linkText.setVisible(false);
+				descripcionText.setVisible(false);
 				
 			}
 		} catch (usuarioNoExisteException e) {
