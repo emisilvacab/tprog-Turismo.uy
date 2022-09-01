@@ -53,9 +53,9 @@ public class ConsultaDeSalida extends JInternalFrame {
 		cDpto = icd;
 		
 		setTitle("Consulta de Salida Turistica");
+		setIconifiable(true);
 		setMaximizable(true);
 		setClosable(true);
-		setResizable(true);
 		setBounds(100, 100, 338, 347);
 		
 		
@@ -382,8 +382,17 @@ public class ConsultaDeSalida extends JInternalFrame {
 	        
 	        textFieldSalida.setText(fechaSalidaString);
 	        textFieldAlta.setText(fechaAltaString);
-	        textFieldLugar.setText(salida.getLugarDTSalida());	
-	        textFieldHora.setText(salida.getHora()+"hs");
+	        textFieldLugar.setText(salida.getLugarDTSalida());
+	        String minS, horaS;
+	        int min = salida.getHora() % 100;
+	        int hora = (salida.getHora() - min) / 100;
+	        if (min < 10)
+	        	minS = "0" +  min;
+	        else minS = String.valueOf(min);
+	        if (hora < 10)
+	        	horaS = "0" + hora;
+	        else horaS = String.valueOf(hora);
+	        textFieldHora.setText(horaS + ":" + minS + "hs");
 	        
 		}catch(actividadNoExisteException | departamentoNoExisteException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);
@@ -478,8 +487,17 @@ public class ConsultaDeSalida extends JInternalFrame {
         
         textFieldSalida.setText(fechaSalidaString);
         textFieldAlta.setText(fechaAltaString);
-        textFieldLugar.setText(salida.getLugarDTSalida());	
-        textFieldHora.setText(salida.getHora()+"hs");
+        textFieldLugar.setText(salida.getLugarDTSalida());
+        String minS, horaS;
+        int min = salida.getHora() % 100;
+        int hora = (salida.getHora() - min) / 100;
+        if (min < 10)
+        	minS = "0" +  min;
+        else minS = String.valueOf(min);
+        if (hora < 10)
+        	horaS = "0" + hora;
+        else horaS = String.valueOf(hora);
+        textFieldHora.setText(horaS + ":" + minS + "hs");
 		mostrarSalida();
 		
 	}
