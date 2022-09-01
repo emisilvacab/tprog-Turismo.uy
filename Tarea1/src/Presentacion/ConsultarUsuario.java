@@ -1,30 +1,27 @@
 package Presentacion;
 
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-
-import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorUsuario;
-import logica.datatypes.DTProveedor;
-import logica.datatypes.DTTurista;
-import logica.datatypes.DTUsuario;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-
 import excepciones.actividadNoExisteException;
-
 import excepciones.usuarioNoExisteException;
-import javax.swing.JButton;
+import logica.controladores.IControladorDepartamento;
+import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
 
 public class ConsultarUsuario extends JInternalFrame{
 	private ConsultaDeSalida consultaDeSalida;
@@ -43,7 +40,7 @@ public class ConsultarUsuario extends JInternalFrame{
 	private JLabel nacimientoText;
 	private JLabel tipoUsuarioText;
 	private JLabel descripcionTag;
-	private JLabel descripcionText;
+	private JTextArea descripcionText;
 	private JLabel linkTag;
 	private JLabel linkText;
 	private JComboBox<String> actividadesOfrecidasBox;
@@ -121,8 +118,12 @@ public class ConsultarUsuario extends JInternalFrame{
         descripcionTag = new JLabel("Descripción: ");
         descripcionTag.setVisible(false);
         
-        descripcionText = new JLabel("New label");
+        descripcionText = new JTextArea("New label");
         descripcionText.setVisible(false);
+		descripcionText.setLineWrap(true);
+		descripcionText.setEditable(false);
+		descripcionText.setColumns(10);
+    
         
         linkTag = new JLabel("Link: ");
         linkTag.setVisible(false);

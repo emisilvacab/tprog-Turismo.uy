@@ -105,8 +105,8 @@ public class ControladorUsuario implements IControladorUsuario {
 	@Override
 	public void altaUsuario(DTUsuario user) throws UsuarioRepetidoException {
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		if (mu.getProveedor(user.getNickname())!=null || mu.getTurista(user.getNickname())!=null) {
-			throw new UsuarioRepetidoException("Ya existe un usuario con el nickname ingresado");
+		if (mu.getProveedor(user.getNickname())!=null || mu.getTurista(user.getNickname())!=null || existeUsuarioConCorreo(user.getCorreo())){
+			throw new UsuarioRepetidoException("Ya existe un usuario con el nickname o correo ingresado");
 		}else {
 			if (user.getClass() == DTTurista.class) {
 				DTTurista dttur = (DTTurista)user;
@@ -121,6 +121,22 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 
 	
+	private boolean existeUsuarioConCorreo(String correo) {
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		boolean resu = false;
+		for (Turista tur: mu.getTuristas().values()) {
+			if (tur.getCorreo().equals(correo)) {
+				resu = true;
+			}
+		}
+		for (Proveedor prov: mu.getProveedores().values()) {
+			if (prov.getCorreo().equals(correo)) {
+				resu = true;
+			}
+		}
+		return resu;
+	}
+
 	public String ingresarDatosInscripcion(String nickname,String nombre,int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException{
 		
 		ManejadorSalida mSalida = ManejadorSalida.getInstance();
