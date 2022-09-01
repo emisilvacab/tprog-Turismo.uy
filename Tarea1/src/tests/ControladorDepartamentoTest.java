@@ -18,7 +18,6 @@ import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTProveedor;
-import logica.datatypes.DTTurista;
 
 class ControladorDepartamentoTest {
 	
@@ -123,5 +122,27 @@ class ControladorDepartamentoTest {
 		String nomDep = icd.obtenerDeptoActividad("Caza de brujas");
 		assertEquals(nomDep, "Maldonado");
 	}
+	@Test
+	void testobtenerDatosSalidasParaActividad() {
+		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
+		icd.ingresarDepartamento("Maldonado","Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
+		try {
+			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
+			try {
+				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas");
+			} catch (actividadNoExisteException e) {
+				e.printStackTrace();
+			}
+		} catch (proveedorNoExisteException | departamentoNoExisteException e) {
+			e.printStackTrace();
+		}
+		try {
+			icd.obtenerDatosSalidasParaActividad("Caza de brujas");
+			assertThrows(actividadNoExisteException.class, () -> {icd.obtenerDatosSalidasParaActividad("No Existe"); });
+		} catch (actividadNoExisteException e) {
+			e.printStackTrace();
+		}
+	}
+	
 		
 }
