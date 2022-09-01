@@ -24,6 +24,9 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
 import javax.swing.SwingConstants;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
 
@@ -70,6 +73,13 @@ public class AltaActividad extends JInternalFrame {
 		setClosable(true);
 		setBounds(0,0,500,350);
 		getContentPane().setLayout(new GridLayout(8, 3, 3, 15));
+		
+	    addInternalFrameListener(new InternalFrameAdapter(){
+            public void internalFrameClosing(InternalFrameEvent e) {
+            	limpiarFormulario();
+				setVisible(false);
+            }
+        });
 		
 		labelDepartamento = new JLabel("Departamento:");
 		labelDepartamento.setHorizontalAlignment(SwingConstants.RIGHT);

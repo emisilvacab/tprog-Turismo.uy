@@ -26,6 +26,8 @@ import org.jdatepicker.impl.UtilDateModel;
 import excepciones.UsuarioRepetidoException;
 
 import javax.swing.JTextField;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.JButton;
 
 public class AltaUsuario extends JInternalFrame{
@@ -60,6 +62,13 @@ public class AltaUsuario extends JInternalFrame{
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Agregar un usuario");
         setBounds(30, 30, 530, 330);
+        
+	    addInternalFrameListener(new InternalFrameAdapter(){
+            public void internalFrameClosing(InternalFrameEvent e) {
+            	limpiarFormulario();
+				setVisible(false);
+            }
+        });
         
         JLabel tipoUserLabel = new JLabel("Indique el tipo de usuario");
         tipoUserLabel.setBounds(135, 12, 159, 14);
