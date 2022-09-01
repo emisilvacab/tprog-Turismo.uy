@@ -341,11 +341,11 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private void cargarSalidas() {
 		if (comboBoxActividad.getSelectedItem() != null) {
 			try {
-				HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes((String) comboBoxActividad.getSelectedItem(),(String) comboBoxDepartamento.getSelectedItem());
+				HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasParaActividad((String) comboBoxActividad.getSelectedItem());
 				for (DTSalida s : sals)
 					comboBoxSalida.addItem(s.getNombre());
-			}catch(actividadNoExisteException | departamentoNoExisteException e1) {
-				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);
+			}catch(actividadNoExisteException e1) {
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad invalida", JOptionPane.ERROR_MESSAGE);
 			}
 									
 		}
@@ -355,7 +355,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private void mostrarSalida() {
 		if(comboBoxDepartamento.getSelectedItem() != null && comboBoxActividad.getSelectedItem() != null && comboBoxSalida.getSelectedItem() != null) {
 		try {
-			HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes((String) comboBoxActividad.getSelectedItem(),(String) comboBoxDepartamento.getSelectedItem());
+			HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasParaActividad((String) comboBoxActividad.getSelectedItem());
 			DTSalida salida = null;
 		    
 			for(DTSalida it : sals) {
@@ -385,8 +385,8 @@ public class ConsultaDeSalida extends JInternalFrame {
 	        textFieldLugar.setText(salida.getLugarDTSalida());	
 	        textFieldHora.setText(salida.getHora()+"hs");
 	        
-		}catch(actividadNoExisteException | departamentoNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);
+		}catch(actividadNoExisteException e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad invalida", JOptionPane.ERROR_MESSAGE);
 		}
 		}
 	}

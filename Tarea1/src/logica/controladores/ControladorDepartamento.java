@@ -40,6 +40,28 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return dpto.obtenerDatosActividades();
 	}
 	
+	public HashSet<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException {
+		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		HashMap<String,Departamento> dptos = mDptos.getDepartamentos();
+		HashMap<String,Salida> sals = new HashMap<String,Salida>(); 
+		boolean encontro = false;
+		for (Departamento dpto : dptos.values()) {
+			for (Actividad a : dpto.getActividades().values()) {
+				if (a.getNombre().equals(nombreAct)) {
+					sals = (HashMap<String, Salida>) a.getSalidas();
+					encontro = true;
+				} 		
+			}
+		}
+		if (!encontro)
+			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");
+		HashSet<DTSalida> res = new HashSet<DTSalida>();
+		for (Salida s : sals.values()) {
+			res.add(s.getDatos());
+		}
+		return res;
+	}
+	
 	public HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct, String nombreDpto) throws departamentoNoExisteException, actividadNoExisteException {
 		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
@@ -95,7 +117,6 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		Actividad act = dpto.obtenerActividad(nombreAct);
 		if (act == null)
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado.");
-		//boolean existeSalida = act.existeSalida(nombre);
 		Salida sal = mSals.getSalida(nombre);
 		if (sal == null) {
 			Salida nueva = new Salida(nombre, maxTuristas, fechaAlta, fechaSalida, horaSalida, lugarSalida, act);
@@ -103,7 +124,6 @@ public class ControladorDepartamento implements IControladorDepartamento {
 			ManejadorSalida msal = ManejadorSalida.getInstance();
 			msal.addSalida(nueva);
 		}
-		
 		return (sal != null);
 	}
 	

@@ -26,5 +26,7 @@ public interface IControladorDepartamento {
 	public abstract DTActividad obtenerDatosActividad(String actividadSeleccionada) throws actividadNoExisteException;
 
 	public abstract String obtenerDeptoActividad(String actividad);
+
+	public abstract HashSet<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException;
 	
 }
