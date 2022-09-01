@@ -40,6 +40,7 @@ import javax.swing.JSpinner;
 import java.awt.event.ItemListener;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
+import java.awt.Color;
 
 public class InscripcionASalida extends JInternalFrame {
 	
@@ -59,6 +60,7 @@ public class InscripcionASalida extends JInternalFrame {
 	private JTextField textFieldUser;
 	private JLabel lblCantUsers;
 	private JSpinner spinnerCantUsers;
+	private JTextField textFieldCantUsers;
 	
 	
 
@@ -67,13 +69,13 @@ public class InscripcionASalida extends JInternalFrame {
 		icu = picu;
 		icd = picd;
 		
-		Dimension dmsInternal = new Dimension(700,350);
+		Dimension dmsInternal = new Dimension(700,417);
 		setMaximumSize(dmsInternal);
 		setMaximizable(true);
 		setResizable(true);
 	    setClosable(true);
 	    setTitle("Inscripción a salida");
-	    setBounds(0, 0, 410, 350);
+	    setBounds(0, 0, 410, 417);
 	    
 	    addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -132,7 +134,37 @@ public class InscripcionASalida extends JInternalFrame {
 			}
 		});
 		
-		//Definicion de textField de usuario
+		//Evento en listaSals que carga cantidad de lugares disponibles en salida 
+		listaSals.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(listaSals.getSelectedItem() != null) {
+					try {
+						
+						String datosSalida = (String) listaSals.getSelectedItem();
+						
+						//Separación del nombre de la salida del resto de datos
+						int pos = datosSalida.indexOf("(");
+						String nombreSalida = datosSalida.substring(0,pos-1);
+						
+						int cant = icd.obtenerlugaresDisponibles(nombreSalida);
+						
+						if (cant == 0) {
+							textFieldCantUsers.setBackground(new Color(240, 128, 128));
+							textFieldCantUsers.setText("No quedan lugares disponibles para esta salida!");
+						}
+						if (cant > 0) {
+							textFieldCantUsers.setBackground(new Color(152, 251, 152));
+							textFieldCantUsers.setText("Aún quedan " + cant + " lugares disponibles en esta salida");
+						}
+					} catch (salidaNoExisteException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "La salida seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+					
+			}
+		});
+		
+		//Definicion de textFieldd de usuario
 		lblIngresarUser = new JLabel("Nickname del usuario:");
 		textFieldUser = new JTextField();
 		textFieldUser.setColumns(10);
@@ -161,6 +193,7 @@ public class InscripcionASalida extends JInternalFrame {
 						//Separación del nombre de la salida del resto de datos
 						int pos = datosSalida.indexOf("(");
 						String nombreSalida = datosSalida.substring(0,pos-1);
+						
 						GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
 						String problema = icu.ingresarDatosInscripcion(nombreUsuario,nombreSalida,cant,fechaActual);
 					
@@ -198,78 +231,86 @@ public class InscripcionASalida extends JInternalFrame {
 			}
 		});
 		
+		//Definicion de textField que indica cantidad de usuarios restantes
+		textFieldCantUsers = new JTextField();
+		textFieldCantUsers.setBackground(Color.WHITE);
+		textFieldCantUsers.setColumns(10);
+		textFieldCantUsers.setEditable(false);
+		
+		
 		
 		//Ingreso de todos los componentes en el groupLayout (realizado con el window design)
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(12)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(126)
-							.addComponent(lblSeleccionarSals, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(124))
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblSeleccionarDpto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblSeleccionarAct, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(listaActs, 0, 162, Short.MAX_VALUE)
+								.addComponent(listaDptos, 0, 162, Short.MAX_VALUE)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(12)
+							.addGap(25)
+							.addComponent(botonCancelar, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+							.addGap(75)
+							.addComponent(botonContinuar, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+							.addGap(12))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblSeleccionarDpto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(lblSeleccionarAct, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(listaActs, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(listaDptos, 0, 175, Short.MAX_VALUE)))
-								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblCantUsers, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblIngresarUser, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textFieldUser, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(spinnerCantUsers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(textFieldCantUsers, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(25)
-											.addComponent(botonCancelar, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-											.addGap(75))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblCantUsers, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addGap(18)))
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(botonContinuar, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(spinnerCantUsers)
-											.addGap(27)))
-									.addGap(12)))
-							.addGap(14))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(listaSals, 0, 382, Short.MAX_VALUE)))
-					.addGap(5))
+											.addComponent(lblIngresarUser, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textFieldUser, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
+									.addGap(6)))))
+					.addGap(19))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(122)
+					.addComponent(lblSeleccionarSals, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(126))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(3)
+					.addComponent(listaSals, 0, 377, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(25)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(listaDptos)
+						.addComponent(listaDptos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSeleccionarDpto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(listaActs, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSeleccionarAct, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(18)
-					.addComponent(lblSeleccionarSals, GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(listaSals, GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+					.addComponent(lblSeleccionarSals, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(listaSals, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblIngresarUser, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textFieldCantUsers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(8)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textFieldUser)
-						.addComponent(lblIngresarUser, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(spinnerCantUsers, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-						.addComponent(lblCantUsers, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(18)
+						.addComponent(lblCantUsers, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(spinnerCantUsers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(botonCancelar, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
 						.addComponent(botonContinuar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -289,6 +330,8 @@ public class InscripcionASalida extends JInternalFrame {
 		listaActs.setSelectedItem(null);
 		listaSals.setSelectedItem(null);
 		textFieldUser.setText("");
+		textFieldCantUsers.setText("");
+		textFieldCantUsers.setBackground(Color.WHITE);
 		spinnerCantUsers.setValue(1);
 	}
 	
@@ -315,7 +358,6 @@ public class InscripcionASalida extends JInternalFrame {
 		listaActs.setSelectedItem(null);
 		listaSals.setSelectedItem(null);
 	}	
-	
 }
 
 

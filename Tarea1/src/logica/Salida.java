@@ -119,5 +119,13 @@ public class Salida{
 	public void setHora(int hora) {
 		this.hora = hora;
 	}
+
+	public int obtenerlugaresDisponibles() {
+		int total = 0;
+		for(int i = 0; i < inscripciones.size(); i++) {
+			total += inscripciones.get(i).getCantTuristas();
+		}
+		return (maxTuristas - total);
+	}
 	
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
+import excepciones.salidaNoExisteException;
 import logica.Actividad;
 import logica.Departamento;
 import logica.Proveedor;
@@ -165,6 +166,14 @@ public class ControladorDepartamento implements IControladorDepartamento {
 			}
 		}
 		return resu;
+	}
+	
+	public int obtenerlugaresDisponibles(String nombreSal) throws salidaNoExisteException {
+		ManejadorSalida mSals = ManejadorSalida.getInstance();
+		Salida sal = mSals.getSalida(nombreSal);
+		if (sal == null)
+			throw new salidaNoExisteException("Salida no encontrada");
+		return sal.obtenerlugaresDisponibles();
 	}
 
 }
