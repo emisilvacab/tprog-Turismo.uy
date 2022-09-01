@@ -9,6 +9,7 @@ import logica.datatypes.DTUsuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 
@@ -74,7 +75,7 @@ public class AltaUsuario extends JInternalFrame{
         nombreLabel.setBounds(11, 65, 88, 14);
         
         nombreField = new JTextField();
-        nombreField.setBounds(99, 59, 96, 20);
+        nombreField.setBounds(99, 59, 132, 20);
         nombreField.setColumns(10);
         
         JLabel apellidoLabel = new JLabel("Apellido: ");
@@ -88,48 +89,48 @@ public class AltaUsuario extends JInternalFrame{
         nicknameLabel.setBounds(11, 95, 88, 14);
         
         nicknameField = new JTextField();
-        nicknameField.setBounds(99, 89, 96, 20);
+        nicknameField.setBounds(99, 89, 132, 20);
         nicknameField.setColumns(10);
         
         JLabel correoLabel = new JLabel("Correo: ");
         correoLabel.setBounds(11, 125, 88, 14);
         
         correoField = new JTextField();
-        correoField.setBounds(99, 119, 96, 20);
+        correoField.setBounds(99, 119, 132, 20);
         correoField.setColumns(10);
         
         JLabel nacionalidadLabel = new JLabel("Nacionalidad: ");
-        nacionalidadLabel.setBounds(11, 155, 88, 14);
+        nacionalidadLabel.setBounds(11, 155, 105, 14);
         nacionalidadLabel.setVisible(false);
         
         nacionalidadField = new JTextField();
-        nacionalidadField.setBounds(99, 149, 96, 20);
+        nacionalidadField.setBounds(109, 152, 122, 20);
         nacionalidadField.setVisible(false);
         nacionalidadField.setColumns(10);
         
         JLabel descripcionLabel = new JLabel("Descripcion: ");
-        descripcionLabel.setBounds(298, 125, 81, 14);
+        descripcionLabel.setBounds(22, 194, 94, 14);
         descripcionLabel.setVisible(false);
         
         descripcionField = new JTextField();
-        descripcionField.setBounds(387, 119, 96, 20);
+        descripcionField.setBounds(119, 189, 343, 24);
         descripcionField.setColumns(10);
         descripcionField.setVisible(false);
         
         JLabel linkLabel = new JLabel("Link: ");
-        linkLabel.setBounds(298, 155, 81, 14);
+        linkLabel.setBounds(308, 130, 81, 14);
         linkLabel.setVisible(false);
         
         linkField = new JTextField();
-        linkField.setBounds(387, 149, 96, 20);
+        linkField.setBounds(387, 127, 96, 20);
         linkField.setColumns(10);
         linkField.setVisible(false);
         
         JButton cancelarButton = new JButton("Cancelar");
-        cancelarButton.setBounds(298, 181, 185, 23);
+        cancelarButton.setBounds(298, 255, 185, 23);
         
         JButton confirmarButton = new JButton("Confirmar");
-        confirmarButton.setBounds(11, 181, 184, 23);
+        confirmarButton.setBounds(6, 255, 184, 23);
         
         ButtonGroup turOProv = new ButtonGroup();
         turOProv.add(proveedorButton);
@@ -248,7 +249,7 @@ public class AltaUsuario extends JInternalFrame{
 				return nacionalidad.length()!=0;
 			}else {
 				if (proveedorButton.isSelected()) {
-					return descripcion.length()!=0 && link.length()!=0;
+					return descripcion.length()!=0;
 				}else return false;
 			}
 		}
@@ -279,7 +280,9 @@ public class AltaUsuario extends JInternalFrame{
 		nicknameField.setText("");
 		apellidoField.setText("");
 		correoField.setText("");
-		datePicker.getModel().setDate(GregorianCalendar.DAY_OF_MONTH, GregorianCalendar.MONTH ,GregorianCalendar.YEAR);
+		LocalDate date = LocalDate.now();
+		datePicker.getModel().setDate(date.getYear(), date.getMonthValue() -1, date.getDayOfMonth());
+		datePicker.getModel().setSelected(true);
 		proveedorButton.setSelected(false);
 		turistaButton.setSelected(false);
 		nacionalidadField.setText("");

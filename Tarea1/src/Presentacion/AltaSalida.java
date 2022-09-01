@@ -65,7 +65,6 @@ public class AltaSalida extends JInternalFrame{
 	
 	private JButton btnAceptar;
 	private JButton btnCancelar;
-	private SpringLayout springLayout;
 	
 	
 	
@@ -150,7 +149,7 @@ public class AltaSalida extends JInternalFrame{
 		textLugar.setColumns(10);
 		datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 		datePicker.getJFormattedTextField().setHorizontalAlignment(SwingConstants.LEFT);
-		springLayout = (SpringLayout) datePicker.getLayout();
+		//springLayout = (SpringLayout) datePicker.getLayout();
 		datePicker.setShowYearButtons(true);
 		datePicker.setVisible(true);
 		
