@@ -162,10 +162,14 @@ public class AltaSalida extends JInternalFrame{
 		spinnerMin1 = new JSpinner();
 		spinnerMin1.setModel(new SpinnerNumberModel(0, 0, 5, 1));
 		spinnerMin1.setToolTipText("Ingrese un número entre 0 y 5");
+		JFormattedTextField txtSpinner3=((JSpinner.DefaultEditor)spinnerMin1.getEditor()).getTextField(); 
+		txtSpinner3.setEditable(false);
 		
 		spinnerMin2 = new JSpinner();
 		spinnerMin2.setModel(new SpinnerNumberModel(0, 0, 9, 1));
 		spinnerMin2.setToolTipText("Ingrese un número entre 0 y 9");
+		JFormattedTextField txtSpinner4=((JSpinner.DefaultEditor)spinnerMin2.getEditor()).getTextField(); 
+		txtSpinner4.setEditable(false);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
