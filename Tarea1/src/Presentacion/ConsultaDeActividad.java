@@ -1,13 +1,5 @@
 package Presentacion;
 
-import javax.swing.JInternalFrame;
-
-import excepciones.actividadNoExisteException;
-
-import logica.controladores.IControladorDepartamento;
-import logica.datatypes.DTActividad;
-import logica.datatypes.DTSalida;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
@@ -17,21 +9,30 @@ import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-import javax.swing.JComboBox;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
+import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
-
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import logica.controladores.IControladorDepartamento;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTSalida;
 
 public class ConsultaDeActividad extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private ConsultaDeSalida consultaDeSalida;
 	
 	private IControladorDepartamento cDpto;

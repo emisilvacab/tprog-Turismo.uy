@@ -1,6 +1,5 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -33,11 +32,11 @@ import java.util.Set;
 class ControladorUsuarioTest {
 	static //si agregan algun usuario avisenme joaco
 	DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-	static DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-	static DTProveedor userU3 = new DTProveedor("joaco", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "lol", "superlol");
+	static DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel2@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
+	static DTProveedor userU3 = new DTProveedor("joaco", "Leonardo", "Melgar", "joaco@gmail.com", new GregorianCalendar(2001,6,5), "lol", "superlol");
 	String[] usuariosCargados = new String[]{"leomel", "leomel2", "joaco", "wason", "pepe"};
 	static DTProveedor userP1 = new DTProveedor("wason","Ignacio","Nunez","wason@gmail.com", new GregorianCalendar(2001,3,2),"Proveedor desde 2010");
-	static DTTurista userU4 = new DTTurista("pepe", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
+	static DTTurista userU4 = new DTTurista("pepe", "Leonardo", "Melgar", "pepe@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
 	
 
 	
@@ -109,6 +108,7 @@ class ControladorUsuarioTest {
 	void testAltaUsuario() {
 		GregorianCalendar nacimiento = new GregorianCalendar(2001,6,5);
 				try {
+					assertThrows(UsuarioRepetidoException.class, () -> {icu.altaUsuario(new DTTurista("gervasio", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya"));});
 					DTUsuario userObtenido = icu.obtenerUsuario("leomel");
 					DTUsuario userObtenido2 = icu.obtenerUsuario("joaco");
 					DTTurista turObtenido = (DTTurista) userObtenido;
@@ -122,7 +122,7 @@ class ControladorUsuarioTest {
 					assertEquals(provObtenido.getNickname(), "joaco");
 					assertEquals(provObtenido.getNombre(), "Leonardo");
 					assertEquals(provObtenido.getApellido(), "Melgar");
-					assertEquals(provObtenido.getCorreo(), "leomel@gmail.com");
+					assertEquals(provObtenido.getCorreo(), "joaco@gmail.com");
 					assertEquals(provObtenido.getNacimiento(), nacimiento);
 					assertEquals(provObtenido.getDescripcion(), "lol");
 					assertEquals(provObtenido.getLink(), "superlol");
@@ -362,11 +362,11 @@ class ControladorUsuarioTest {
 	}
 	@Test
 	void clasesTest() {
-		Proveedor provPrueba = new Proveedor("elProser", "Jose", "Artigas", "pepe@gmail.com", new GregorianCalendar(2001,6,5), "El de la Batalla de Las Piedras");
+		Proveedor provPrueba = new Proveedor("elProser", "Jose", "Artigas", "artigas@gmail.com", new GregorianCalendar(2001,6,5), "El de la Batalla de Las Piedras");
 		assertEquals(provPrueba.getNickname(), "elProser");
 		assertEquals(provPrueba.getNombre(), "Jose");
 		assertEquals(provPrueba.getApellido(), "Artigas");
-		assertEquals(provPrueba.getCorreo(), "pepe@gmail.com");
+		assertEquals(provPrueba.getCorreo(), "artigas@gmail.com");
 		assertEquals(provPrueba.getNacimiento().get(Calendar.DAY_OF_MONTH),5);
 		assertEquals(provPrueba.getNacimiento().get(Calendar.MONTH),6);
 		assertEquals(provPrueba.getNacimiento().get(Calendar.YEAR),2001);
