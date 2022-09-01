@@ -172,7 +172,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		gbc_comboBoxSalida.gridy = 3;
 		getContentPane().add(comboBoxSalida, gbc_comboBoxSalida);
 		
-		JLabel tagInfo = new JLabel("Informaci\u00F3n");
+		JLabel tagInfo = new JLabel("Información");
 		GridBagConstraints gbc_tagInfo = new GridBagConstraints();
 		gbc_tagInfo.insets = new Insets(0, 0, 5, 0);
 		gbc_tagInfo.gridwidth = 4;
@@ -331,7 +331,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 				for (DTActividad a : acts)
 					comboBoxActividad.addItem(a.getNombre());
 			}catch(departamentoNoExisteException e1) {
-				JOptionPane.showMessageDialog(null, e1.getMessage(), "Departamento invalido", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "Departamento inválido", JOptionPane.ERROR_MESSAGE);
 			}
 									
 		}	
@@ -345,7 +345,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 				for (DTSalida s : sals)
 					comboBoxSalida.addItem(s.getNombre());
 			}catch(actividadNoExisteException | departamentoNoExisteException e1) {
-				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento inválido", JOptionPane.ERROR_MESSAGE);
 			}
 									
 		}
@@ -395,7 +395,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 	        textFieldHora.setText(horaS + ":" + minS + "hs");
 	        
 		}catch(actividadNoExisteException | departamentoNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento inválido", JOptionPane.ERROR_MESSAGE);
 		}
 		}
 	}

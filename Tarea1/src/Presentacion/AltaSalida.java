@@ -109,7 +109,7 @@ public class AltaSalida extends JInternalFrame{
 					}
 				}
 				catch(departamentoNoExisteException e1){
-					JOptionPane.showMessageDialog(null, e1.getMessage(), "El departamento seleccionado no est· registrado en el sistema", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "El departamento seleccionado no est√° registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
@@ -121,7 +121,7 @@ public class AltaSalida extends JInternalFrame{
 		
 		lblCant = new JLabel("Cantidad de Turistas:");
 		spinnerCant = new JSpinner();
-		spinnerCant.setToolTipText("Ingrese un n˙mero mayor a 0.");
+		spinnerCant.setToolTipText("Ingrese un n√∫mero mayor a 0.");
 		SpinnerNumberModel snm = new SpinnerNumberModel(1,1,10000,1);
 		spinnerCant.setModel(snm);
 		JFormattedTextField txtSpinner=((JSpinner.DefaultEditor)spinnerCant.getEditor()).getTextField(); 
@@ -132,7 +132,7 @@ public class AltaSalida extends JInternalFrame{
 		lblHora.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		spinnerHora = new JSpinner();
-		spinnerHora.setToolTipText("Ingrese un n\u00FAmero entre 0 y 23");
+		spinnerHora.setToolTipText("Ingrese un n√∫mero entre 0 y 23");
 		spinnerHora.setModel(new SpinnerNumberModel(0, 0, 23, 1));
 		JFormattedTextField txtSpinner1=((JSpinner.DefaultEditor)spinnerHora.getEditor()).getTextField(); 
 		txtSpinner1.setEditable(false);
@@ -161,11 +161,11 @@ public class AltaSalida extends JInternalFrame{
 		
 		spinnerMin1 = new JSpinner();
 		spinnerMin1.setModel(new SpinnerNumberModel(0, 0, 5, 1));
-		spinnerMin1.setToolTipText("Ingrese un n\u00FAmero entre 0 y 5");
+		spinnerMin1.setToolTipText("Ingrese un n√∫mero entre 0 y 5");
 		
 		spinnerMin2 = new JSpinner();
 		spinnerMin2.setModel(new SpinnerNumberModel(0, 0, 9, 1));
-		spinnerMin2.setToolTipText("Ingrese un n\u00FAmero entre 0 y 9");
+		spinnerMin2.setToolTipText("Ingrese un n√∫mero entre 0 y 9");
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
@@ -198,17 +198,17 @@ public class AltaSalida extends JInternalFrame{
 							JOptionPane.showMessageDialog(null, "Ya existe una salida con el mismo nombre reingrese los datos.", "Ya existe", JOptionPane.ERROR_MESSAGE);
 						}
 						else {
-								JOptionPane.showMessageDialog(null, "Salida ingresada con Èxito!", "Salida ingresada", JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Salida ingresada con √©xito!", "Salida ingresada", JOptionPane.INFORMATION_MESSAGE);
 								limpiarCampos();
 								cargarDptos();
 						}
 						
 					}
 					catch(actividadNoExisteException e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage(), "La actividad seleccionada no est· registrada en el sistema", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "La actividad seleccionada no est√° registrada en el sistema", JOptionPane.ERROR_MESSAGE);
 					}
 					catch(proveedorNoExisteException e2) {
-						JOptionPane.showMessageDialog(null, e2.getMessage(), "El proveedor seleccionado no est· registrado en el sistema", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, e2.getMessage(), "El proveedor seleccionado no est√° registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 					}	
 				}
 			}
@@ -323,7 +323,7 @@ public class AltaSalida extends JInternalFrame{
 		if (lugarSalida.isEmpty())
 			JOptionPane.showMessageDialog(null, "Ingrese un lugar.", "Lugar no ingresado", JOptionPane.ERROR_MESSAGE);
 		if ((int)spinnerCant.getValue() < 1)
-			JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inv·lida", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inv√°lida", JOptionPane.ERROR_MESSAGE);
 		return (!nombreSalida.isEmpty() && listaAct.getSelectedItem() != null && (int)spinnerCant.getValue() >= 1 && !lugarSalida.isEmpty());
 	}
 	
