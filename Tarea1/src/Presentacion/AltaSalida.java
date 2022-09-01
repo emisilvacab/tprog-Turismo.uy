@@ -325,15 +325,21 @@ public class AltaSalida extends JInternalFrame{
 		String nombreSalida = textNombre.getText();
 		String lugarSalida = textLugar.getText();
 		
-		if (nombreSalida.isEmpty())
-			JOptionPane.showMessageDialog(null, "Ingrese el nombre de la salida.", "Salida no ingresada", JOptionPane.ERROR_MESSAGE);
-		if (listaAct.getSelectedItem() == null)
-			JOptionPane.showMessageDialog(null, "Seleccione una actividad.", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
-		if (lugarSalida.isEmpty())
-			JOptionPane.showMessageDialog(null, "Ingrese un lugar.", "Lugar no ingresado", JOptionPane.ERROR_MESSAGE);
-		if ((int)spinnerCant.getValue() < 1)
-			JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
-		return (!nombreSalida.isEmpty() && listaAct.getSelectedItem() != null && (int)spinnerCant.getValue() >= 1 && !lugarSalida.isEmpty());
+		if (listaDep.getSelectedItem() == null)
+			JOptionPane.showMessageDialog(null, "Seleccione un departamento.", "Departamento no seleccionado", JOptionPane.ERROR_MESSAGE);
+		else
+			if (listaAct.getSelectedItem() == null)
+				JOptionPane.showMessageDialog(null, "Seleccione una actividad.", "Actividad no seleccionada", JOptionPane.ERROR_MESSAGE);
+			else
+				if (nombreSalida.isEmpty())
+				JOptionPane.showMessageDialog(null, "Ingrese el nombre de la salida.", "Salida no ingresada", JOptionPane.ERROR_MESSAGE);
+				else
+					if (lugarSalida.isEmpty())
+						JOptionPane.showMessageDialog(null, "Ingrese un lugar.", "Lugar no ingresado", JOptionPane.ERROR_MESSAGE);
+					else
+						if ((int)spinnerCant.getValue() < 1)
+							JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
+		return (listaDep.getSelectedItem() != null && !nombreSalida.isEmpty() && listaAct.getSelectedItem() != null && (int)spinnerCant.getValue() >= 1 && !lugarSalida.isEmpty());
 	}
 	
 	public void cargarDptos() {

@@ -78,10 +78,10 @@ public class AltaUsuario extends JInternalFrame{
         nombreField.setColumns(10);
         
         JLabel apellidoLabel = new JLabel("Apellido: ");
-        apellidoLabel.setBounds(298, 65, 79, 14);
+        apellidoLabel.setBounds(280, 65, 97, 14);
         
         apellidoField = new JTextField();
-        apellidoField.setBounds(387, 59, 96, 20);
+        apellidoField.setBounds(387, 59, 120, 20);
         apellidoField.setColumns(10);
         
         JLabel nicknameLabel = new JLabel("Nickname: ");
@@ -103,11 +103,11 @@ public class AltaUsuario extends JInternalFrame{
         nacionalidadLabel.setVisible(false);
         
         nacionalidadField = new JTextField();
-        nacionalidadField.setBounds(109, 152, 122, 20);
+        nacionalidadField.setBounds(99, 152, 132, 20);
         nacionalidadField.setVisible(false);
         nacionalidadField.setColumns(10);
         
-        JLabel descripcionLabel = new JLabel("Descripcion: ");
+        JLabel descripcionLabel = new JLabel("Descripción: ");
         descripcionLabel.setBounds(22, 194, 94, 14);
         descripcionLabel.setVisible(false);
         
@@ -116,12 +116,12 @@ public class AltaUsuario extends JInternalFrame{
         descripcionField.setColumns(10);
         descripcionField.setVisible(false);
         
-        JLabel linkLabel = new JLabel("Link: ");
-        linkLabel.setBounds(308, 130, 81, 14);
+        JLabel linkLabel = new JLabel("Link (opcional): ");
+        linkLabel.setBounds(280, 130, 97, 14);
         linkLabel.setVisible(false);
         
         linkField = new JTextField();
-        linkField.setBounds(387, 127, 96, 20);
+        linkField.setBounds(387, 127, 120, 20);
         linkField.setColumns(10);
         linkField.setVisible(false);
         
@@ -179,7 +179,7 @@ public class AltaUsuario extends JInternalFrame{
         getContentPane().add(nombreField);
         
         JLabel nacimientoLabel = new JLabel("Nacimiento:");
-        nacimientoLabel.setBounds(298, 95, 79, 14);
+        nacimientoLabel.setBounds(280, 92, 97, 23);
         getContentPane().add(nacimientoLabel);
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datePicker.setBounds(387, 89, 120, 26);

@@ -202,7 +202,27 @@ public class AltaActividad extends JInternalFrame {
 	}
 	
 	private boolean checkFormulario() {
-		return true;
+		String nombreAct = txfNombre.getText();
+		String ciudadAct = txfCiudad.getText();
+		String descripcionAct = txfDescripcion.getText();
+		//fijarse que duración sea int y sea mayor que 0 y luego que costo sea un numero tambien
+		
+		if (comboDepartamento.getSelectedItem() == null)
+			JOptionPane.showMessageDialog(null, "Seleccione un departamento.", "Departamento no seleccionado", JOptionPane.ERROR_MESSAGE);
+		else
+			if (comboProveedor.getSelectedItem() == null)
+				JOptionPane.showMessageDialog(null, "Seleccione un proveedor.", "Proveedor no seleccionado", JOptionPane.ERROR_MESSAGE);
+			else
+				if (nombreAct.length() == 0)
+					JOptionPane.showMessageDialog(null, "Ingrese el nombre de la actividad.", "Nombre no ingresado", JOptionPane.ERROR_MESSAGE);
+				else
+					if (descripcionAct.length() == 0)
+						JOptionPane.showMessageDialog(null, "Ingrese el descripción de la actividad.", "Descripción no ingresado", JOptionPane.ERROR_MESSAGE);
+					else
+						if (ciudadAct.length() == 0)
+							JOptionPane.showMessageDialog(null, "Ingrese una ciudad.", "Ciudad no ingresada", JOptionPane.ERROR_MESSAGE);
+
+		return (nombreAct.length() != 0 && comboProveedor.getSelectedItem() != null && comboDepartamento.getSelectedItem() != null && ciudadAct.length() != 0 && descripcionAct.length() != 0);
 	}
 	
 	private void limpiarFormulario() {

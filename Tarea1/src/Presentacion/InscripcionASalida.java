@@ -30,7 +30,7 @@ import excepciones.usuarioNoExisteException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-
+import javax.swing.JFrame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -74,6 +74,7 @@ public class InscripcionASalida extends JInternalFrame {
 		setMaximizable(true);
 		setResizable(true);
 	    setClosable(true);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	    setTitle("Inscripción a salida");
 	    setBounds(0, 0, 410, 417);
 	    

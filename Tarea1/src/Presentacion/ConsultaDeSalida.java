@@ -20,6 +20,7 @@ import java.util.Set;
 import java.awt.event.ItemEvent;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
@@ -57,6 +58,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		setMaximizable(true);
 		setClosable(true);
 		setBounds(100, 100, 338, 347);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		
 		addInternalFrameListener(new InternalFrameAdapter(){

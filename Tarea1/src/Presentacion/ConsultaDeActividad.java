@@ -11,6 +11,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -65,6 +66,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		setMaximizable(true);
 		setClosable(true);
 		setResizable(true);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		cDpto = icd;
 		setTitle("Consulta de Actividad");
 		setBounds(100, 100, 499, 511);
@@ -116,14 +118,6 @@ public class ConsultaDeActividad extends JInternalFrame {
 		tagActividad = new JLabel("Actividad");
 		tagActividad.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		
-//		listaUsuarios.addActionListener(new ActionListener() {
-//        	public void actionPerformed(ActionEvent e) {
-//        		if (listaUsuarios.getSelectedItem()!=null) {
-//	        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
-//        		}
-//        	}
-//        });
 		
 		comboBoxActividad = new JComboBox<String>();
 		comboBoxActividad.addActionListener(new ActionListener() {
@@ -372,15 +366,14 @@ public class ConsultaDeActividad extends JInternalFrame {
 		DefaultComboBoxModel<String> model;
 		if (actividadSeleccionada != null) {
 			try {
-				String departamento = departamentoSeleccionado;
-				if (actividadSeleccionada!=null && departamento!=null) {
-					HashSet<DTSalida> salidas = cDpto.obtenerDatosSalidasVigentes(actividadSeleccionada, departamento);
+				if (actividadSeleccionada!=null) {
+					HashSet<DTSalida> salidas = cDpto.obtenerDatosSalidasParaActividad(actividadSeleccionada);
 					model = new DefaultComboBoxModel<String>(obtenerNombreSalidas(salidas));
 					comboBoxSalida.setModel(model);
 					
 				}
-			}catch(actividadNoExisteException | departamentoNoExisteException e1) {
-				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad o departamento invalido", JOptionPane.ERROR_MESSAGE);
+			}catch(actividadNoExisteException e1) {
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad inválida", JOptionPane.ERROR_MESSAGE);
 			}
 									
 		}
