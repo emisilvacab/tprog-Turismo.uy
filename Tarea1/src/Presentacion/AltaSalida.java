@@ -20,6 +20,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -311,6 +312,12 @@ public class AltaSalida extends JInternalFrame{
 		listaAct.setSelectedItem(null);
 		textNombre.setText("");
 		spinnerCant.setValue(1);
+		spinnerHora.setValue(0);
+		spinnerMin1.setValue(0);
+		spinnerMin2.setValue(0);
+		LocalDate date = LocalDate.now();
+		datePicker.getModel().setDate(date.getYear(), date.getMonthValue() -1, date.getDayOfMonth());
+		datePicker.getModel().setSelected(true);
 		textLugar.setText("");
 	}
 	
