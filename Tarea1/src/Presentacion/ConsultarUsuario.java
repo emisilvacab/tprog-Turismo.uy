@@ -1,5 +1,6 @@
 package Presentacion;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,6 +26,10 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URL;
+import java.awt.Color;
 
 public class ConsultarUsuario extends JInternalFrame{
 	private ConsultaDeSalida consultaDeSalida;
@@ -141,6 +146,24 @@ public class ConsultarUsuario extends JInternalFrame{
         linkTag.setVisible(false);
         
         linkText = new JLabel("New label");
+        linkText.setForeground(Color.BLUE);
+        linkText.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		String link = linkText.getText();
+        		if (!(link.isEmpty())) {
+        			openWebpage(link);
+        		}
+        	}
+        	@Override
+        	public void mouseEntered(MouseEvent e) {
+        		linkText.setForeground(new Color(32, 133, 255));
+        	}
+        	@Override
+        	public void mouseExited(MouseEvent e) {
+        		linkText.setForeground(Color.BLUE);
+        	}
+        });
         linkText.setVisible(false);
         
         actividadesOfrecidasBox = new JComboBox<String>();
@@ -517,5 +540,13 @@ public class ConsultarUsuario extends JInternalFrame{
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 			
 		}
+	}
+	
+	public static void openWebpage(String urlString) {
+	    try {
+	        Desktop.getDesktop().browse(new URL(urlString).toURI());
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 }
