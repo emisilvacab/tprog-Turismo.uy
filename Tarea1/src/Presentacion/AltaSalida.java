@@ -60,7 +60,6 @@ public class AltaSalida extends JInternalFrame{
 	private JLabel lblHora;
 	private JSpinner spinnerHora;
 	private JLabel lblCant;
-	private JSpinner spinnerCant;
 	private JLabel lblLugar;
 	private JTextField textLugar;
 	
@@ -69,6 +68,7 @@ public class AltaSalida extends JInternalFrame{
 	private JLabel lblNewLabel;
 	private JSpinner spinnerMin1;
 	private JSpinner spinnerMin2;
+	private JTextField txfCant;
 	
 	
 	
@@ -119,12 +119,6 @@ public class AltaSalida extends JInternalFrame{
 		textNombre.setColumns(10);
 		
 		lblCant = new JLabel("Cantidad de Turistas:");
-		spinnerCant = new JSpinner();
-		spinnerCant.setToolTipText("Ingrese un número mayor a 0.");
-		SpinnerNumberModel snm = new SpinnerNumberModel(1,1,10000,1);
-		spinnerCant.setModel(snm);
-		JFormattedTextField txtSpinner=((JSpinner.DefaultEditor)spinnerCant.getEditor()).getTextField(); 
-		txtSpinner.setEditable(false);
 		
 		
 		lblHora = new JLabel("Hora de Salida:");
@@ -186,7 +180,7 @@ public class AltaSalida extends JInternalFrame{
 					try {
 						
 						String nombreSalida = textNombre.getText();
-						int cantTuristas = (int) spinnerCant.getValue();
+						int cantTuristas = Integer.parseInt(txfCant.getText());
 						int minutos = ((int) spinnerMin1.getValue()) * 10 + (int) spinnerMin2.getValue();
 						int horaSalida = ((int) spinnerHora.getValue()) * 100 + minutos;
 						String lugarSalida = textLugar.getText();
@@ -216,6 +210,9 @@ public class AltaSalida extends JInternalFrame{
 				}
 			}
 		});
+		
+		txfCant = new JTextField();
+		txfCant.setColumns(10);
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -254,7 +251,7 @@ public class AltaSalida extends JInternalFrame{
 									.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
 									.addComponent(datePicker, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addComponent(listaAct, 0, 251, Short.MAX_VALUE)
-								.addComponent(spinnerCant, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(txfCant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -275,7 +272,7 @@ public class AltaSalida extends JInternalFrame{
 					.addGap(7)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCant)
-						.addComponent(spinnerCant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txfCant, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -311,7 +308,7 @@ public class AltaSalida extends JInternalFrame{
 		listaDep.setSelectedItem(null);
 		listaAct.setSelectedItem(null);
 		textNombre.setText("");
-		spinnerCant.setValue(1);
+		txfCant.setText("");
 		spinnerHora.setValue(0);
 		spinnerMin1.setValue(0);
 		spinnerMin2.setValue(0);
@@ -325,6 +322,8 @@ public class AltaSalida extends JInternalFrame{
 		String nombreSalida = textNombre.getText();
 		String lugarSalida = textLugar.getText();
 		
+		boolean ans = true;
+		
 		if (listaDep.getSelectedItem() == null)
 			JOptionPane.showMessageDialog(null, "Seleccione un departamento.", "Departamento no seleccionado", JOptionPane.ERROR_MESSAGE);
 		else
@@ -336,10 +335,19 @@ public class AltaSalida extends JInternalFrame{
 				else
 					if (lugarSalida.isEmpty())
 						JOptionPane.showMessageDialog(null, "Ingrese un lugar.", "Lugar no ingresado", JOptionPane.ERROR_MESSAGE);
-					else
-						if ((int)spinnerCant.getValue() < 1)
-							JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
-		return (listaDep.getSelectedItem() != null && !nombreSalida.isEmpty() && listaAct.getSelectedItem() != null && (int)spinnerCant.getValue() >= 1 && !lugarSalida.isEmpty());
+					else {
+						try {
+				            int cant = Integer.parseInt(txfCant.getText());
+				            if (cant <= 1) {
+				            	JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
+				            	ans = false;
+				            }
+				        } catch (NumberFormatException e) {
+				        	JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
+				            ans = false;
+				        }
+					}
+		return (listaDep.getSelectedItem() != null && !nombreSalida.isEmpty() && listaAct.getSelectedItem() != null && ans && !lugarSalida.isEmpty());
 	}
 	
 	public void cargarDptos() {

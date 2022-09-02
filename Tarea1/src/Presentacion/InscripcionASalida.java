@@ -59,8 +59,8 @@ public class InscripcionASalida extends JInternalFrame {
 	private JLabel lblIngresarUser;
 	private JTextField textFieldUser;
 	private JLabel lblCantUsers;
-	private JSpinner spinnerCantUsers;
 	private JTextField textFieldCantUsers;
+	private JTextField txfPersonas;
 	
 	
 
@@ -170,14 +170,7 @@ public class InscripcionASalida extends JInternalFrame {
 		textFieldUser = new JTextField();
 		textFieldUser.setColumns(10);
 		
-		//Definicion de spinner de cantidad de personas
 		lblCantUsers = new JLabel("Cantidad de personas a registrar:");
-		spinnerCantUsers = new JSpinner();
-		spinnerCantUsers.setToolTipText("Ingrese un número mayor a 1.");
-		SpinnerNumberModel snm = new SpinnerNumberModel(1,1,10000,1);
-		spinnerCantUsers.setModel(snm);
-		JFormattedTextField txtSpinner=((JSpinner.DefaultEditor)spinnerCantUsers.getEditor()).getTextField(); 
-		txtSpinner.setEditable(false);
 		
 		//Apretar botón continuar
 		botonContinuar = new JButton("Continuar");
@@ -188,7 +181,7 @@ public class InscripcionASalida extends JInternalFrame {
 					try {
 						
 						String nombreUsuario = textFieldUser.getText();
-						int cant = (int) spinnerCantUsers.getValue();
+						int cant = Integer.parseInt(txfPersonas.getText());
 						String datosSalida = (String) listaSals.getSelectedItem();
 					
 						//Separación del nombre de la salida del resto de datos
@@ -238,6 +231,9 @@ public class InscripcionASalida extends JInternalFrame {
 		textFieldCantUsers.setColumns(10);
 		textFieldCantUsers.setEditable(false);
 		
+		txfPersonas = new JTextField();
+		txfPersonas.setColumns(10);
+		
 		
 		
 		//Ingreso de todos los componentes en el groupLayout (realizado con el window design)
@@ -249,41 +245,42 @@ public class InscripcionASalida extends JInternalFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblSeleccionarDpto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblSeleccionarAct, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+								.addComponent(lblSeleccionarDpto, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+								.addComponent(lblSeleccionarAct, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(listaActs, 0, 162, Short.MAX_VALUE)
-								.addComponent(listaDptos, 0, 162, Short.MAX_VALUE)))
+								.addComponent(listaActs, 0, 167, Short.MAX_VALUE)
+								.addComponent(listaDptos, 0, 167, Short.MAX_VALUE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(25)
-							.addComponent(botonCancelar, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+							.addComponent(botonCancelar, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
 							.addGap(75)
-							.addComponent(botonContinuar, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+							.addComponent(botonContinuar, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
 							.addGap(12))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblCantUsers, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(spinnerCantUsers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addComponent(txfPersonas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(43))
+								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(textFieldCantUsers, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+										.addComponent(textFieldCantUsers, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblIngresarUser, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+											.addComponent(lblIngresarUser, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textFieldUser, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
+											.addComponent(textFieldUser, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
 									.addGap(6)))))
 					.addGap(19))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(122)
-					.addComponent(lblSeleccionarSals, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(lblSeleccionarSals, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
 					.addGap(126))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(3)
-					.addComponent(listaSals, 0, 377, Short.MAX_VALUE)
+					.addComponent(listaSals, 0, 381, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -310,7 +307,7 @@ public class InscripcionASalida extends JInternalFrame {
 					.addGap(8)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCantUsers, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addComponent(spinnerCantUsers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txfPersonas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(botonCancelar, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
@@ -333,21 +330,44 @@ public class InscripcionASalida extends JInternalFrame {
 		textFieldUser.setText("");
 		textFieldCantUsers.setText("");
 		textFieldCantUsers.setBackground(Color.WHITE);
-		spinnerCantUsers.setValue(1);
+		txfPersonas.setText("");
 	}
 	
 	private boolean checkCampos() {
 		String nombreUsuario = textFieldUser.getText();
+		
+		boolean ans = true;
 		
 		if (nombreUsuario.isEmpty())
 			JOptionPane.showMessageDialog(null, "Ingrese el nickname de un usuario.", "Nickname no ingresado", JOptionPane.ERROR_MESSAGE);
 		else
 			if (listaSals.getSelectedItem() == null)
 				JOptionPane.showMessageDialog(null, "Seleccione una salida.", "Salida no seleccionada", JOptionPane.ERROR_MESSAGE);
-			else
-				if ((int)spinnerCantUsers.getValue() < 1)
-					JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
-		return (!nombreUsuario.isEmpty() && listaSals.getSelectedItem() != null && (int)spinnerCantUsers.getValue() >= 1);
+			else {
+				String datosSalida = (String) listaSals.getSelectedItem();
+				int pos = datosSalida.indexOf("(");
+				String nombreSalida = datosSalida.substring(0,pos-1);
+				try {
+					int cant = icd.obtenerlugaresDisponibles(nombreSalida);
+					try {
+			            int pers = Integer.parseInt(txfPersonas.getText());
+			            if (pers <= 0) {
+			            	JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
+			            	ans = false;
+			            } else
+			            	if (pers > cant) {
+			            		JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar menor o igual que la cantidad disponible.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
+				            	ans = false;
+			            	}
+			        } catch (NumberFormatException e) {
+			        	JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
+			            ans = false;
+			        }
+				} catch (salidaNoExisteException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage(), "La salida seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		return (!nombreUsuario.isEmpty() && listaSals.getSelectedItem() != null && ans);
 	}
 
 
