@@ -20,7 +20,8 @@ public class Actividad{
 	
 	private Departamento departamento;
 	private Proveedor proveedor;
-	private Map<String, Salida> salidas;	
+	private Map<String, Salida> salidas;
+	private Map<String, Paquete> paquetes;
 	
 	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor) {
 		this.setNombre(nombre);
@@ -32,6 +33,7 @@ public class Actividad{
 		this.setDepartamento(departamento);
 		this.setProveedor(proveedor);
 		this.setSalidas(new HashMap<String, Salida>());
+		this.setPaquetes(new HashMap<String,Paquete>());
 	}
 
 	public String getNombre() {
@@ -108,6 +110,18 @@ public class Actividad{
 
 	public void addSalida(Salida salida) {
 		this.salidas.put(salida.getNombre(), salida);
+	}
+
+	public Map<String, Paquete> getPaquetes() {
+		return paquetes;
+	}
+
+	public void setPaquetes(Map<String, Paquete> paquetes) {
+		this.paquetes = paquetes;
+	}
+	
+	public void addPaquete(Paquete paquete) {
+		this.paquetes.put(paquete.getNombre(), paquete);
 	}
 
 	public DTActividad getDatos() {
