@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
+import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 
 /**
@@ -23,6 +24,7 @@ public class Principal {
 	private JFrame frmReservas_UY;
 	private IControladorUsuario ICU;
 	private IControladorDepartamento ICD;
+	private IControladorPaquete ICP;
 	private ConsultarUsuario conUsrInternalFrame;
 	private AltaUsuario crearUsrInternalFrame;
 	private InscripcionASalida inscASalInternalFrame;
@@ -54,6 +56,7 @@ public class Principal {
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIControladorUsuario();
         ICD = fabrica.getIControladorDepartamento();
+        ICP = fabrica.getIControladorPaquete();
         
         frmReservas_UY.getContentPane().setLayout(null);
         
@@ -124,7 +127,7 @@ public class Principal {
         menuCargarDatos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 // Cargo los datos
-            	CargarDatos carga = new CargarDatos(ICU, ICD);
+            	CargarDatos carga = new CargarDatos(ICU, ICD, ICP);
             }
         });
         menuSistema.add(menuCargarDatos);

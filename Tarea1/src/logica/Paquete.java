@@ -58,5 +58,9 @@ public class Paquete {
 	public void setActividades(HashMap<String, Actividad> actividades) {
 		this.actividades = actividades;
 	}
+	
+	public void addActividad(Actividad act) {
+		actividades.put(act.getNombre(), act);
+	}
 
 }

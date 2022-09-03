@@ -1,8 +1,10 @@
 package logica;
 
 import logica.controladores.ControladorDepartamento;
+import logica.controladores.ControladorPaquete;
 import logica.controladores.ControladorUsuario;
 import logica.controladores.IControladorDepartamento;
+import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 
 public class Fabrica {
@@ -24,6 +26,10 @@ public class Fabrica {
 
     public IControladorDepartamento getIControladorDepartamento() {
     	return new ControladorDepartamento();
+    }
+    
+    public IControladorPaquete getIControladorPaquete() {
+        return new ControladorPaquete();
     }
 
 }

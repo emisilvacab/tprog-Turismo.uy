@@ -12,6 +12,7 @@ import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
 import logica.controladores.IControladorDepartamento;
+import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
@@ -20,10 +21,13 @@ import logica.datatypes.DTUsuario;
 public class CargarDatos {
 	private IControladorUsuario icu;
 	private IControladorDepartamento icd;
+	private IControladorPaquete icp;
+	
 	//Estan todas las fechas con el mes 1 menos porque enero = 0
-	public CargarDatos(IControladorUsuario picu, IControladorDepartamento picd) {
+	public CargarDatos(IControladorUsuario picu, IControladorDepartamento picd, IControladorPaquete picp) {
 		icd = picd;
 		icu = picu;
+		icp = picp;
 		DTUsuario user;
 		user = new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23), "argentina");
 		try {
@@ -154,6 +158,11 @@ public class CargarDatos {
 		catch(usuarioNoExisteException e2) {
 			JOptionPane.showMessageDialog(null, e2.getMessage(), "El usuario ingresado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 		}	
+		
+		//crear paquetes
+		
+		//agregar salidas a paquetes
+		
 		
 		JOptionPane.showMessageDialog(null, "Datos cargados con éxito!", "Cargar datos", JOptionPane.INFORMATION_MESSAGE);
 		
