@@ -50,8 +50,10 @@ class ControladorDepartamentoTest {
 		icd.ingresarDepartamento("Canelones","Segundo departamento mas poblado", "can.com.uy");
 		icd.ingresarDepartamento("Artigas","En honor al proser", "artigas.com.uy");
 		icd.ingresarDepartamento("Rocha","Donde esta la Pedrera", "rocha.com.uy");
+		icd.ingresarDepartamento("Colonia", "La propuesta del Departamento de Colonia divide en cuatro actos su espectáculo anual. Cada acto tiene su magia. Desde su naturaleza y playas hasta sus tradiciones y el patrimonio	mundial. Todo el año se disfruta.", "https://colonia.gub.uy/turismo/");
+
 		
-		String departamentos[] = {"Montevideo","Maldonado","Canelones", "Artigas", "Rocha"};
+		String departamentos[] = {"Montevideo","Maldonado","Canelones", "Artigas", "Rocha", "Colonia"};
 		
 		//test de obtenerDepartamentos()
 		Set<String> dptos = icd.obtenerDepartamentos();
@@ -59,7 +61,7 @@ class ControladorDepartamentoTest {
 			assertEquals(dptos.contains(d),true);
 		}
 		
-		assertEquals(dptos.size(),5);
+		assertEquals(dptos.size(),6);
 		
 		try {
 			icu.altaUsuario(userProveedor1);

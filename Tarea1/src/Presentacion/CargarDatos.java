@@ -3,6 +3,8 @@ package Presentacion;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
+import excepciones.paqueteNoExisteException;
+import excepciones.paqueteYaExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
@@ -159,11 +161,31 @@ public class CargarDatos {
 			JOptionPane.showMessageDialog(null, e2.getMessage(), "El usuario ingresado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 		}	
 		
-		//crear paquetes
+		try {
+			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10));
+			icp.ingresarDatosPaquete("Un día en Colonia", "Paseos por el casco histórico y se puede terminar con Almuerzo en la Plaza de Toros", 45, 15, new GregorianCalendar(2022, 7, 1));
 		
-		//agregar salidas a paquetes
+		}
+		catch(paqueteYaExisteException ep) {
+			JOptionPane.showMessageDialog(null, ep.getMessage(), "Paquete ya existe", JOptionPane.ERROR_MESSAGE);
+
+		}
 		
-		
+		try {
+			icp.agregarActividadPaquete("Rocha", "Disfrutar Rocha", "Degusta");
+			icp.agregarActividadPaquete("Rocha", "Disfrutar Rocha", "Teatro con Sabores");
+			icp.agregarActividadPaquete("Colonia", "Un día en Colonia", "Tour por Colonia del Sacramento");
+			icp.agregarActividadPaquete("Colonia", "Un día en Colonia", "Almuerzo en el Real de San Carlos");
+		}
+		catch(paqueteNoExisteException e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "Paquete no existe", JOptionPane.ERROR_MESSAGE);
+		}
+		catch(departamentoNoExisteException e2 ) {
+			JOptionPane.showMessageDialog(null, e2.getMessage(), "Departamento no existe", JOptionPane.ERROR_MESSAGE);
+		}
+		catch(actividadNoExisteException e3) {
+			JOptionPane.showMessageDialog(null, e3.getMessage(), "Actividad no existe", JOptionPane.ERROR_MESSAGE);
+		}
 		JOptionPane.showMessageDialog(null, "Datos cargados con éxito!", "Cargar datos", JOptionPane.INFORMATION_MESSAGE);
 		
 	}

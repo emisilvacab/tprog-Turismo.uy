@@ -1,11 +1,17 @@
 package logica.controladores;
 
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.paqueteNoExisteException;
+import excepciones.paqueteYaExisteException;
 import logica.Actividad;
 import logica.Departamento;
 import logica.Paquete;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTPaquete;
 import logica.manejadores.ManejadorDepartamento;
 import logica.manejadores.ManejadorPaquete;
 
@@ -30,4 +36,23 @@ public class ControladorPaquete implements IControladorPaquete {
 		paq.addActividad(act);
 		act.addPaquete(paq);
 	}
+	
+	public void ingresarDatosPaquete(String nombrePaq, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) throws paqueteYaExisteException{
+		ManejadorPaquete mp = ManejadorPaquete.getInstance();
+		Paquete existe = mp.getPaquete(nombrePaq);
+		if (existe != null)
+			throw new paqueteYaExisteException("Ya existe el paquete ingresado");
+		Paquete nuevo = new Paquete(nombrePaq, descripcion, validez, descuento, fechaAlta);
+		mp.addPaquete(nuevo);
+	}
+	
+	public DTPaquete obtenerDatosPaquete(String nombrePaq) throws paqueteNoExisteException{
+		ManejadorPaquete mp = ManejadorPaquete.getInstance();
+		Paquete paq = mp.getPaquete(nombrePaq);
+		if (paq == null)
+			throw new paqueteNoExisteException("No existe el paquete ingresado");
+		DTPaquete datos = new DTPaquete(paq.getNombre(), paq.getDescripcion(), paq.getValidez(), paq.getDescuento(), paq.getFechaAlta());
+		return datos;
+	}
+
 }

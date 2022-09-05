@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 public class Paquete {
@@ -8,15 +9,25 @@ public class Paquete {
 	public String descripcion;
 	public int validez;
 	public float descuento;
+	public GregorianCalendar fechaAlta;
 	
 	public HashMap<String,Actividad> actividades;
 	
-	public Paquete(String nombre, String descripcion, int validez, float descuento,HashMap<String, Actividad> actividades) {
-		setNombre(nombre);
-		setDescripcion(descripcion);
-		setValidez (validez);
-		setDescuento (descuento);
-		setActividades (actividades);
+	public Paquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) {
+		this.setNombre(nombre);
+		this.setDescripcion(descripcion);
+		this.setValidez (validez);
+		this.setDescuento (descuento);
+		this.setActividades (new HashMap<String, Actividad>());
+		this.setFechaAlta(fechaAlta);
+	}
+
+	public GregorianCalendar getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(GregorianCalendar fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 
 	public String getNombre() {
