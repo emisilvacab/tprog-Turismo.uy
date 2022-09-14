@@ -5,7 +5,6 @@
 	padding: 20px;
 }
 
-
 .sidebar {
   position: fixed;
   top: 60px;
@@ -21,12 +20,22 @@
   background-color: #fbf7f0;
 }
 
+.ref {
+	text-decoration: none;
+	color: #2f3131;
+}
+
 .accordion{
-	 padding-left: 20px;
+   padding-left: 20px;
 }
 
 .logopic{
-position: fixed;
-  width: 120px;
-  height: 40px;
+  width: 116px;
+  height: 39px;
+  padding-left: 5px;
+  
+}
+
+.cerrarSesion-item{
+	padding-top: 20px;
 }
