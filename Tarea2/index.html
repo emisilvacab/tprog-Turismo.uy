@@ -2,73 +2,85 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>Turismo.uy</title>
-	  <link rel="stylesheet" href="resources/css/style.css" >
-	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turismo.uy</title>
+  <link rel="stylesheet" href="resources/css/style.css" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="icon" href="resources/img/icono.png"> <!-- Hacer logo para parte de arriba de pag T.uy?-->
 </head>
 
 <body>
 
-	<header id="header" class="d-flex align-items-center justify-content-between">
-	
-		<div class="logo">
-			<a href="index.html" class="logoref">
-				<img src="resources/img/logo.png" alt="Turismo.uy" class="logopic">
-			</a>
-		</div>
-	
-	
-		<div class="search-bar">
-			<form class="search-form" method="POST">
-				<input type="text" name="query" placeholder="Search" title="Ingresar palabra a buscar"><!-- form o input? -->
-		        <button type="submit" title="Buscar"><i class="search-button"></i></button>
-			</form>
-		</div>
-		
-		<div class="header-nav ms-auto" href="perfil.html">
-			<ul class="header-user-opc">
-		        <li class="user">
-		          <a class="perfil-access" href="perfil.html">
-		            <img src="resources/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-		            <span class="nombre-usuario">NombreUsuarioLogeado</span>
-		          </a>
-		        </li>
-			</ul>
-		</div>
-		
-	</header>
-	
-	<aside id="sidebar" class="sidebar">
-		<ul class="opciones-sidebar">
-		
-			<li class="itemsb">
-				<a class="itemsb-text" aria-expanded="true">Opciones</a>
-				<ul class="opciones-sidebar">
-					<a class="Inscripción a Salida" href=inscripcionASalida.html>Inscripción a Salida</a>
-				</ul>
-			</li>
-		
-			<li class="itemsb">
-				<a class="itemsb-text" aria-expanded="true">Departamentos</a>
-				<ul class="opciones-sidebar">
-					<a class="Rocha" href="rocha.html">Rocha</a>
-				</ul>
-			</li>
-			
-			<li class="itemsb">
-				<a class="itemsb-text" aria-expanded="true">Categorías</a>
-				<ul class="opciones-sidebar">
-					<a class="Gastronomía" href="gastronomia.html">Gastronomía</a>
-				</ul>
-			</li>
-			
-			<li class="itemsb">
-				<button type="cerrarSesion">Cerrar Sesión</button>
-			</li>
-			
-		</ul>
-	</aside>
-	
+  <nav class="navbar">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="index.html">
+      Turismo.uy
+        <!-- <img src="resources/img/logo.png" alt="Turismo.uy" class="logopic">  -->
+      </a>
+
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+        <button class="btn btn-outline-secondary" type="Buscar">Buscar</button>
+      </form>
+
+      <a class="navbar-brand" href="index.html">Perfil</a>
+
+    </div>
+  </nav>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            Opciones
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body" href="index.html">
+            <a href="index.html">Inscripción a Salida</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+            Departamentos
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+              <a href="index.html">Rocha</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+            Categorías
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
+          <div class="accordion-body">
+              <a href="index.html">Gastronomía</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-outline-secondary" type="cerrarSesion">Cerrar Sesión</button>
+
+    </div>  
+  </aside>
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
 </body>
+
 </html>
