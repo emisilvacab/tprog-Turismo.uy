@@ -39,3 +39,85 @@
 .cerrarSesion-item{
 	padding-top: 20px;
 }
+
+.section{
+	position: fixed;
+	top: 60px;
+	left: 230px;
+	bottom: 0;
+	width: 90%;
+	padding: 0px;
+	box-shadow: 10px 10px 10px rgba(1, 41, 112, 0.1) inset;
+	background-color: #fbf7f0;
+}
+
+
+/* ESTILOS PARA INSCRIPCION A SALIDA */
+
+/* PASO 1 */
+h1.section-header{
+	position: absolute; 
+	top: 6%; 
+	left: 4%; 
+	color: black; 
+}
+
+h2.instruction{
+	position: absolute; 
+	top: 19%; 
+	left: 4%; 
+	color: black; 
+}
+
+#title-form-select-dpto{
+	position: absolute; 
+	top: 32%; 
+	left: 4%; 
+	width: 70%;
+	color: black; 
+}
+
+#form-select-dpto{
+	position: absolute; 
+	top: 38%; 
+	left: 4%; 
+	width: 70%;
+}
+
+#title-form-select-cat{
+	position: absolute; 
+	top: 50%; 
+	left: 4%; 
+	width: 70%;
+	color: black; 
+}
+
+#form-select-cat{
+	position: absolute; 
+	top: 56%; 
+	left: 4%; 
+	width: 70%;
+	color: black; 
+}
+
+#button-continuar{
+	position: absolute; 
+	top: 70%; 
+	left: 4%; 
+	color: black; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
