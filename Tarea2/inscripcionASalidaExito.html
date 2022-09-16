@@ -4,15 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inscripción a salida</title>
+  <title>Turismo.uy</title>
   <link rel="stylesheet" href="resources/css/style.css" >
-  <script src="resources/js/controles_inscripcionASalida.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link rel="icon" href="resources/img/icono.png"> <!-- Hacer logo para parte de arriba de pag T.uy?-->
 </head>
 
 <body>
-	
+
   <nav class="navbar">
     <div class="container-fluid">
 
@@ -41,7 +40,7 @@
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
           <div class="accordion-body" href="index.html">
-            <a class="ref" href="index.html">Inscripción a Salida</a>
+            <a class="ref" href="inscripcionASalidaPaso1.html">Inscripción a Salida</a>
           </div>
         </div>
       </div>
@@ -81,39 +80,20 @@
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 	
-	<script src="resources/js/controles_inscripcionASalida.js"></script>
-	<section id="section-middle" class="section"> 
-		<h1 class="section-header" id="section-header-middle">
-		Inscripción a salida
+	<section id="section-middle" class="section">
+		<h1 class="section-header" id="title-exitoInsc">
+		Inscripción a salida realizada con éxito!
 		</h1>
 		
-		<h2 class="instruction" id="instruction_selectDptoCat">
-		Paso 1: Seleccione un departamento o una categoría
-		</h2>	
+		<div>
+			<img src="resources/img/tic.png" id="tic-img" class="img-fluid rounded-start" alt="tic">
+		</div>
 		
-		<h5 id="title-form-select-dpto">
-		  Departamento:
-		</h5>
-		<select class="form-select form-select-lg mb-3" id="form-select-dpto" aria-label=".form-select-lg example">
-		  <option selected></option>
-		  <option value="Dpto1">Rocha</option>
-		</select>
-	    
-		
-		<h5 id="title-form-select-cat">
-		  Categoría:
-		</h5>
-		<select class="form-select form-select-lg mb-3" id="form-select-cat" aria-label=".form-select-lg example">
-		  <option selected></option>
-		  <option value="Cat1">Gastronomía</option>
-		</select>
-		
-		<a class="navbar-brand" href="inscripcionASalidaPaso2.html">
-		<button class="btn btn-outline-dark" type="cerrarSesion" id="button-continuar">Continuar</button>
+		<a class="navbar-brand" href="index.html">
+		<button class="btn btn-outline-dark" type="cerrarSesion" id="button-continuarPE">Volver al inicio</button>
 		</a>
-
-
-	</section> 
+		
+	</section>
 
 </body>
 

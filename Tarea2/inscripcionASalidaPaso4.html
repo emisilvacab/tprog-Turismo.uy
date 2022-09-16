@@ -4,15 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inscripción a salida</title>
+  <title>Turismo.uy</title>
   <link rel="stylesheet" href="resources/css/style.css" >
-  <script src="resources/js/controles_inscripcionASalida.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link rel="icon" href="resources/img/icono.png"> <!-- Hacer logo para parte de arriba de pag T.uy?-->
 </head>
 
 <body>
-	
+
   <nav class="navbar">
     <div class="container-fluid">
 
@@ -41,7 +40,7 @@
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
           <div class="accordion-body" href="index.html">
-            <a class="ref" href="index.html">Inscripción a Salida</a>
+            <a class="ref" href="inscripcionASalidaPaso1.html">Inscripción a Salida</a>
           </div>
         </div>
       </div>
@@ -81,39 +80,38 @@
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 	
-	<script src="resources/js/controles_inscripcionASalida.js"></script>
-	<section id="section-middle" class="section"> 
+	<section id="section-middle" class="section">
 		<h1 class="section-header" id="section-header-middle">
 		Inscripción a salida
 		</h1>
 		
 		<h2 class="instruction" id="instruction_selectDptoCat">
-		Paso 1: Seleccione un departamento o una categoría
-		</h2>	
+		Paso 4: Ingrese cantidad de turistas y elija tipo de inscripción
+		</h2>
 		
-		<h5 id="title-form-select-dpto">
-		  Departamento:
-		</h5>
-		<select class="form-select form-select-lg mb-3" id="form-select-dpto" aria-label=".form-select-lg example">
-		  <option selected></option>
-		  <option value="Dpto1">Rocha</option>
-		</select>
-	    
+		<input class="form-control lg" id="form-cantTuristas" type="number" placeholder="Cantidad de turistas que desea inscribir">
 		
-		<h5 id="title-form-select-cat">
-		  Categoría:
-		</h5>
-		<select class="form-select form-select-lg mb-3" id="form-select-cat" aria-label=".form-select-lg example">
-		  <option selected></option>
-		  <option value="Cat1">Gastronomía</option>
-		</select>
+		<div class="eleccion-con-paquete">
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+			  <label class="form-check-label" for="flexRadioDefault1">
+			    <h5>Inscribirme utilizando paquete de actividades</h5>
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+			  <label class="form-check-label" for="flexRadioDefault2">
+			    <h5>Inscribirme SIN paquete de actividades</h5>
+			  </label>
+			</div>
+		</div>
 		
-		<a class="navbar-brand" href="inscripcionASalidaPaso2.html">
-		<button class="btn btn-outline-dark" type="cerrarSesion" id="button-continuar">Continuar</button>
+		<a class="navbar-brand" href="inscripcionASalidaPaso5.html">
+		<button class="btn btn-outline-dark" type="cerrarSesion" id="button-continuarP4">Continuar</button>
 		</a>
-
-
-	</section> 
+		
+		
+	</section>
 
 </body>
 
