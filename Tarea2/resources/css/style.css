@@ -41,6 +41,7 @@
 }
 
 .section{
+	overflow:scroll;
 	position: fixed;
 	top: 60px;
 	left: 230px;
@@ -199,6 +200,47 @@ h2.instruction{
 	left: 39.5%; 
 	color: black;
 }
+
+/*Estilos altaActividad y altaSalida*/
+
+.headerAltaActSal{
+	margin-bottom: 20px;
+	margin-left:70px;
+	margin-top: 40px;
+	color: #2f3131; 
+}
+
+.formAltaActSal{
+    margin-left: 70px;
+    margin-top: 30px;
+   	margin-right: 40%;
+}
+
+.lbltxt{
+	font-size: 20px;
+	color: #2f3131;
+
+}
+
+.inputbox{
+	width: 300px;
+	margin-top:10px;
+	margin-bottom:10px;
+	height: 30px;
+}
+
+#btnAceptar{
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
