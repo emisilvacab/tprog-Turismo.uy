@@ -9,7 +9,6 @@ function validarPaso1(){
 	return true;
 }
 
-
 function limpiarCat() {
 	document.getElementById("form-select-cat").value = "";
 }
