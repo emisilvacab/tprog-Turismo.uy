@@ -41,5 +41,6 @@ function validarAltaActividad(){
 		alert('Seleccione categoría(s)');
     	return false;
 	}
+	alert('Actividad dada de alta');
 	return true;
 }
