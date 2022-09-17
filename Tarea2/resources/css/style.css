@@ -234,6 +234,51 @@ h2.instruction{
 }
 
 
+/*COMPRA DE PAQUETE*/
+
+/*PASO 1*/
+.contenedor-paqCompra{
+	position: absolute;
+	top: 35%; 
+	left: 4%; 
+	width: 80%;
+	overflow: hidden;
+	overflow-y: scroll;
+	transition: transform .4s;
+}
+
+.contenedor-paqCompra:hover{
+	transform: scale(1.05);
+}
+/*PASO 2*/
+#form-cantTuristasPaq{
+	position: absolute; 
+	top: 35%;
+	width: 41%;
+	left: 4%;	
+}
+
+#button-confirmarCom{
+	position: absolute; 
+	top: 50%;
+	left: 4%;
+}
+/*PASO DE EXITO*/
+#button-inicioCom{
+	position: absolute; 
+	top: 80%; 
+	left: 22%; 
+	width: 20%;
+	color: black;
+}
+
+#button-repetirCom{
+	position: absolute; 
+	top: 80%; 
+	left: 48%; 
+	width: 20%;
+	color: black;
+}
 
 
 
