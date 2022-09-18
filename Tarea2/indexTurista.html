@@ -11,6 +11,14 @@
 </head>
 
 <body>
+	<script>
+	  	function cerrarSesion(){
+	  		var confirmoCerrarSesion = confirm("Seguro que desea cerrar sesión?");
+	  		if (confirmoCerrarSesion){
+	  			window.location.href = "index.html";
+	  		}
+	  	}
+  </script>
 
   <nav class="navbar">
     <div class="container-fluid">
@@ -24,7 +32,7 @@
         <button class="btn btn-outline-dark" type="Buscar">Buscar</button>
       </form>
 
-      <a class="navbar-brand" href="indexTurista.html">Perfil</a>
+      <a class="navbar-brand" href="detalleDeUsuarioTurista.html">Perfil</a>
 
     </div>
   </nav>
@@ -75,7 +83,7 @@
       </div>
 
 		<div class="cerrarSesion-item">
-	      <button class="btn btn-outline-dark" type="cerrarSesion">Cerrar Sesión</button>
+	      <button class="btn btn-outline-dark" type="cerrarSesion" onClick="cerrarSesion()">Cerrar Sesión</button>
 		</div>
     </div>  
   </aside>
