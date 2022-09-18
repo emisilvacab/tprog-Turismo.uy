@@ -11,6 +11,14 @@
 </head>
 
 <body>
+	<script>
+	  	function cerrarSesion(){
+	  		var confirmoCerrarSesion = confirm("Seguro que desea cerrar sesión?");
+	  		if (confirmoCerrarSesion){
+	  			window.location.href = "index.html";
+	  		}
+	  	}
+  </script>
 
   <nav class="navbar">
     <div class="container-fluid">
@@ -25,7 +33,6 @@
       </form>
 		
 	  <div>
-	  
 	  <div class="dropdown">
 		  <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 		    <img src="https://pbs.twimg.com/media/EOHAP9zWoAsnkiM?format=jpg&name=small" id="foto_usuario" class="rounded-circle" alt="foto de usuario" class="logopic">
@@ -34,12 +41,11 @@
 		  <ul class="dropdown-menu dropdown-menu-dark">
 		    <li><a class="dropdown-item" href="#">Ver mi perfil</a></li>
 		    <li><hr class="dropdown-divider"></li>
-		    <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+		    <li><a class="dropdown-item" onClick="cerrarSesion()">Cerrar sesión</a></li>
 		  </ul>
 	  </div>
-	  
-	
 	  </div>
+
     </div>
   </nav>
 
@@ -88,9 +94,6 @@
         </div>
       </div>
 
-		<div class="cerrarSesion-item">
-	      <button class="btn btn-outline-dark" type="cerrarSesion">Cerrar Sesión</button>
-		</div>
     </div>  
   </aside>
 

@@ -14,18 +14,17 @@
 
   <nav class="navbar">
     <div class="container-fluid">
-
       <a class="navbar-brand" href="index.html">
         <img src="resources/img/logo.png" alt="Turismo.uy" class="logopic">
       </a>
-
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
         <button class="btn btn-outline-dark" type="Buscar">Buscar</button>
       </form>
-
-      <a class="navbar-brand" href="index.html">Perfil</a>
-
+      <div id="ejemplo">
+	      <a class="navbar-text" href="altausuario.html">Registrarse</a>
+	      <a class="navbar-text" href="iniciarSesion.html">Iniciar sesión</a>
+  	</div>
     </div>
   </nav>
 
@@ -58,9 +57,9 @@
         </div>
       </div>
 
-		<div class="cerrarSesion-item">
+<!-- 		<div class="cerrarSesion-item">
 	      <button class="btn btn-outline-dark" type="cerrarSesion">Cerrar Sesión</button>
-		</div>
+		</div> -->
     </div>  
   </aside>
 
@@ -72,7 +71,7 @@
 	
 		<form class="formAltaActSal" id="formInSes" onsubmit = "return validarIniciarSesion()" action="indexTurista.html">
 			
-			<label class="lbltxt">Nickname de Usuario:</label><br>
+			<label class="lbltxt">Nickname o correo del Usuario:</label><br>
 			<input class="inputbox" type="text" id="nickname" name="nickname"><br>	
 			
 			<label class="lbltxt">Contraseña:</label><br>

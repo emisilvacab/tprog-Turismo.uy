@@ -14,20 +14,32 @@
 
   <nav class="navbar">
     <div class="container-fluid">
-
       <a class="navbar-brand" href="index.html">
         <img src="resources/img/logo.png" alt="Turismo.uy" class="logopic">
       </a>
-
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
         <button class="btn btn-outline-dark" type="Buscar">Buscar</button>
       </form>
-
-      <a class="navbar-brand" href="index.html">Perfil</a>
-
+      <div id="ejemplo">
+	      <a class="navbar-text" href="altausuario.html">Registrarse</a>
+	      <a class="navbar-text" href="iniciarSesion.html">Iniciar sesión</a>
+  	</div>
     </div>
   </nav>
+  <script>
+ 		var elem = document.getElementById("ejemplo");
+ 		console.log(elem);
+ 		console.log("hola");
+  </script>
+  <script>
+  	function cerrarSesion(){
+  		var confirmoCerrarSesion = confirm("Seguro que desea cerrar sesión?");
+  		if (confirmoCerrarSesion){
+  			window.location.href = "index.html";
+  		}
+  	}
+  </script>
 
   <aside id="sidebar" class="sidebar">
     <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -62,6 +74,25 @@
   </aside>
 
 	<section id="section-middle" class="section">
+		 <div class="modal fade" id="exampleModalCenterTitle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle">Seguro que desea cerrar sesión?</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      		Confirme.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Cerrar sesión</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	</section>
 	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
