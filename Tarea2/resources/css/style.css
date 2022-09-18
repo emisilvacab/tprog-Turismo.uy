@@ -201,6 +201,11 @@ h2.instruction{
   display: block;
 }
 
+#descripcionProv {
+        width: 300px;
+        height: 120px;
+      }
+
 
 
 

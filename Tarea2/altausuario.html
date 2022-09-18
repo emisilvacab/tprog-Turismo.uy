@@ -121,10 +121,10 @@
 			
 		<!-- <div class="column">	 -->	
 			<div class="esUsuarioOProveedor">
-			  <button type="button" class="js-button default-button" data-bs-toggle="button" id="turistaButton" onclick="myFunction(this, 'A')">
+			  <button type="button" class="js-button default-button" data-bs-toggle="button" id="turistaButton" onclick="cambiarTipoUsr(this, 'A')">
 			    Turista
 			  </button>
-			  <button type="button" class="js-button default-button" data-bs-toggle="button" id="proveedorBUtton" onclick="myFunction(this, 'B')">
+			  <button type="button" class="js-button default-button" data-bs-toggle="button" id="proveedorBUtton" onclick="cambiarTipoUsr(this, 'B')">
 			    Proveedor
 			  </button>
 			  <div class="tab-contents">
@@ -385,7 +385,7 @@
 			</div>
 			
 			<script>
-			function myFunction(elem, usr) {
+			function cambiarTipoUsr(elem, usr) {
 				  var buttons;
 				  var x = document.getElementById("js-description");
 				  algunoApretado = true;
@@ -417,7 +417,7 @@
 			</script>
 		</div 	
 	  </div>
-	  </form>
+	  
 	  </div>
 	
 			
