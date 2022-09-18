@@ -421,7 +421,67 @@ h2.instruction{
 
 
 
+/* ESTILOS PARA CONSULTA DE ACTIVIDAD */
 
+/* LISTAR ACTIVIDADES */
+
+h1.section-header-acts{
+	position: absolute; 
+	top: 40px;
+	left: 40px;
+	color: black;
+	z-index: 1;
+}
+
+.max-lines {
+	display: block;
+	display: -webkit-box;
+	height: 4.5em; /* calcular a partir de line-height por la cantidad de lineas */
+	line-height: 1.5em;
+	-webkit-line-clamp: 3; /* aca se pone cantidad de lineas */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.contenedor-actividad{
+	transition: transform .4s;
+}
+
+.contenedor-actividad:hover{
+	transform: scale(1.05);
+}
+
+/* VER DATOS ACTIVIDAD */
+#contenedor-verAct{
+	position: absolute;
+	top: 30px;
+	left: 50px;
+	right: 15px;
+}
+
+.contenedor-verSalPaq{
+	transition: transform .4s;
+}
+.contenedor-verSalPaq:hover{
+	transform: scale(1.05);
+}
+
+.columnSalPaq{
+	position: absolute;
+	top: 60px;
+	width: 230px;
+	overflow-y: auto;
+	scrollbar-width: thin;
+}
+
+.letra-agr{
+	transition: transform .4s;
+}
+
+.letra-agr:hover{
+	transform: scale(1.05);
+}
 
 
 
