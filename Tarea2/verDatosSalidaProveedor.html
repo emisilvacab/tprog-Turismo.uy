@@ -95,49 +95,66 @@
       
     </div>  
   </aside>
-  
-	
-  <section id="section-middle" class="section">
-	
-		<h1 class="headerAltaActSal" id="section-header-middle">Alta de Salida Turística</h1>		
-	
-		<form class="formAltaActSal" onsubmit = "return validarAltaSalida()">
-			   
-			<label class="lbltxt">Seleccionar Departamento:</label><br>
-			<select class="inputbox" id="depSal"name="depAct">
-				<option selected></option>
-				<option value="Dpto1">Rocha</option>
-			</select><br>	
-			
-			<label class="lbltxt">Seleccionar Actividad:</label><br>
-			<select class="inputbox" id="actSal"name="actSal">
-				<option selected></option>
-				<option value="Act1">Degusta</option>
-				<option value="Act1">Teatro con Sabores</option>
-			</select><br>	
-			
-			<label class="lbltxt">Nombre de Salida:</label><br>
-			<input class="inputbox" type="text" id="nombreSal" name="nombreSal"><br>	
-			
-			<label class="lbltxt">Fecha:</label><br>
-			<input class="inputbox" type="date" id="fechaSal" name="fechaSal"><br>
-			
-			<label class="lbltxt">Hora:</label><br>
-			<input class="inputbox" type="time" id="horaSal"name="horaSal"><br>
-			
-			<label class="lbltxt">Cantidad de Turistas:</label><br>
-			<input class="inputbox" type="number" id="cantTurSal"name="cantTurSal"><br>
 
-			<label class="lbltxt">Imagen:</label><br>
-			<input class="inputbox" type="file" id="imgSal" accept = "image/*" name="imgSal"><br>		
-			
-			<input class="btn btn-outline-dark" id="btnAceptar" type="submit" value="Aceptar">
-		</form>
+ 
+	<section id="section-middle" class="section">
+		<section id="contenedor-verAct">
+   		<div class="row">
+   			<div class="card mb-3" style="max-width: 99.5%; min-width: 300px;">
+				<div class="card-body" style="font-size: 110%;">
+					<h2 class="title">Degusta Setiembre</h2>
+				</div>
+			</div>
+   		</div>
+		<div class="row">
+		  <div class="col-sm-6" style="min-width: 300px;">
+				<div class="card mb-3" style="max-width: 100%;">
+					<div class="row">
+				      	<div class="col-md-6" style="min-width: 300px;">
+				   			<img src="https://s3.amazonaws.com/turismorocha/operadores/1/med/bahia-resto-053888900-1458674720.JPG" class="img-fluid rounded" style="max-width: 100%;" alt="Actividad">
+				      	</div>
+					     <div class="col-md-6" style="min-width: 300px;">
+					     	<div class="card-body" style="max-width: 100%;">
+								<ul class="list-group list-group-flush" style="font-size: 135%;">
+									<li class="list-group-item">Sociedad Agropecuaria de Rocha</li>
+									<li class="list-group-item">20/08/2022</li>
+									<li class="list-group-item">A las 17hs</li>
+									<li class="list-group-item">Hasta 20 turistas</li>
+								</ul>
+							</div>
+				  		</div>
+			     	</div>
+			  		<div class="row">
+			  				<p class="card-text mt-1 mb-2"><small class="text-muted">Dada de alta el 22/07/2022</small></p>
+			  		</div>
+			     </div>
+	    	</div>
+		  
 		
-  </section>
+		  <div class="col-sm-6" style="min-width: 300px;">
+			  	<h3 class="mb-3">Asociada a la actividad</h3>
+			  	<div class="card mb-3" style="max-width: 100%;">
+					<div class="row g-0">
+						<div class="col-md-4" style="min-width: 200px;">
+							<img src="https://s3.amazonaws.com/turismorocha/eventos/2569/cover/degusta-048968300-1659558891.jpg" class="img-fluid rounded-start" alt="Actividad">
+						</div>
+						<div class="col-md-8" style="min-width: 300px;">
+							<div class="card-body" style="max-width: 100%;">
+								<h4 class="card-title">Degusta</h4>
+								<div class="card-text">
+									Festival gastronómico de productos locales en Rocha
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		  </div>
+		 </div>
+		</section>
+	</section>
 	
-  <script src=resources/js/cerrarSesion.js type="text/javascript"></script>
-  <script src=resources/js/validarAltaSalida.js type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+	<script src=resources/js/cerrarSesion.js type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
+
 </html>

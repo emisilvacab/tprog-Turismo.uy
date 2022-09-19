@@ -21,7 +21,7 @@ function validarAltaUsuario(){
     	return false;
 	}
 	else if(document.getElementById('confirmacionContrasena').value != document.getElementById('contrasenaPersona').value){
-		alert('La contrasena debe coincidir con la confirmación');
+		alert('La contraseña debe coincidir con la confirmación');
 		return false;
 	}
     else if(!document.getElementById('nacimientoPersona').value){
@@ -40,5 +40,6 @@ function validarAltaUsuario(){
 		alert('Al ser Proveedor debe tener descripción');
 		return false;
 	}
+	alert("Usuario creado con éxito!");
 	return true;
 }
