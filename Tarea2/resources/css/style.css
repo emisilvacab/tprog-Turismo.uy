@@ -68,6 +68,34 @@
 	background-color: #fbf7f0;
 }
 
+#carouselExampleCaptions{
+	position: absolute;
+	top:33%;
+	width:40%;
+	left:25%;
+}
+
+#card-presentacion{
+	width:90%;
+	top: 5%;
+	left: 5%;
+	transition: transform .4s;
+}
+
+#card-presentacion:hover{
+	transform: scale(1.05);
+}
+
+.carousel-inner{
+	transition: transform .4s;
+}
+
+.carousel-inner:hover{
+	transform: scale(1.05);
+}
+
+
+
 
 /* ESTILOS PARA INSCRIPCION A SALIDA */
 
