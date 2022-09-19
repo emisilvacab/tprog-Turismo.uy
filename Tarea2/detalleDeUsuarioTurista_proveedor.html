@@ -22,36 +22,39 @@
 
   <nav class="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
+
+      <a class="navbar-brand" href="indexProveedor.html">
         <img src="resources/img/logo.png" alt="Turismo.uy" class="logopic">
       </a>
+
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
         <button class="btn btn-outline-dark" type="Buscar">Buscar</button>
       </form>
-      <div id="ejemplo">
-	      <a class="navbar-text" href="altausuario.html">Registrarse</a>
-	      <a class="navbar-text" href="iniciarSesion.html">Iniciar sesión</a>
-  	</div>
+      
+      <div>
+	  <div class="dropdown">
+		  <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+		    <img src="https://c.wallhere.com/photos/55/39/safe_house_cia_agent_tobin_frost_denzel_washington-584127.jpg!d" id="foto_usuario" class="rounded-circle" alt="foto de usuario" class="logopic">
+		    washington
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-dark">
+		    <li><a class="dropdown-item" href="detalleDeUsuarioProveedor_proveedor.html">Ver mi perfil</a></li>
+		    <li><hr class="dropdown-divider"></li>
+		    <li><a class="dropdown-item" onClick="cerrarSesion()">Cerrar sesión</a></li>
+		  </ul>
+	  </div>
+	  </div>
+
+      
+
     </div>
   </nav>
-  <script>
- 		var elem = document.getElementById("ejemplo");
- 		console.log(elem);
- 		console.log("hola");
-  </script>
-  <script>
-  	function cerrarSesion(){
-  		var confirmoCerrarSesion = confirm("Seguro que desea cerrar sesión?");
-  		if (confirmoCerrarSesion){
-  			window.location.href = "index.html";
-  		}
-  	}
-  </script>
 
   <aside id="sidebar" class="sidebar">
     <div class="accordion" id="accordionPanelsStayOpenExample">
-       <div class="accordion-item">
+		
+	  <div class="accordion-item">
 	    <h2 class="accordion-header" id="headingOne">
 	      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 	        Opciones
@@ -59,7 +62,17 @@
 	    </h2>
 	    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 	      <div class="accordion-body">
-	        <a class="ref" href="listadoDeUsuarios.html">Usuarios registrados</a>
+	        <a class="ref" href="altaActividad.html">Alta de actividad</a>
+	      </div>
+	    </div>
+	    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+	        <a class="ref" href="altaSalida.html">Alta de salida</a>
+	      </div>
+	    </div>
+	    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+	        <a class="ref" href="listadoDeUsuariosProveedor.html">Usuarios registrados</a>
 	      </div>
 	    </div>
 	  </div>
@@ -89,6 +102,7 @@
 	      </div>
        </div>
      </div>
+      
 
     </div>  
   </aside>
@@ -141,8 +155,7 @@
          			<p3 class="text">Apellido: Martínez</p3><br>
          			<p1 class="text-muted">E-Mail: mirtha.legrand.ok@hotmal.com.ar</p1><br>
          			<p3 class="text">Fecha de nacimiento: 23/2/1927</p3><br>
-         			<br>
-         			<a class="btn btn-outline-dark" href="modificarUsuarioTurista.html">Modificar datos</a>
+
          			
   				
   				</div>
