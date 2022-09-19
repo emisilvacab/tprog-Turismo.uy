@@ -36,7 +36,9 @@ function validarAltaUsuario(){
 		alert('El usuario debe ser Turista o Proveedor');
 		return false;
 	}
-	else if((!botonTurista) && (document.getElementById('descripcionProv').value.length == 0))
-	alert('Al ser Proveedor debe tener descripción');
+	else if((!botonTurista) && (document.getElementById('descripcionProv').value.length == 0)){
+		alert('Al ser Proveedor debe tener descripción');
+		return false;
+	}
 	return true;
 }
