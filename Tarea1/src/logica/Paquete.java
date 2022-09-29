@@ -5,13 +5,15 @@ import java.util.HashMap;
 
 public class Paquete {
 	
-	public String nombre;
-	public String descripcion;
-	public int validez;
-	public float descuento;
-	public GregorianCalendar fechaAlta;
+	private String nombre;
+	private  String descripcion;
+	private int validez;
+	private float descuento;
+	private GregorianCalendar fechaAlta;
 	
-	public HashMap<String,Actividad> actividades;
+	private HashMap<String,Actividad> actividades;
+	private HashMap<String,Categoria> categorias;
+	
 	
 	public Paquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) {
 		this.setNombre(nombre);
@@ -72,6 +74,14 @@ public class Paquete {
 	
 	public void addActividad(Actividad act) {
 		actividades.put(act.getNombre(), act);
+	}
+
+	public HashMap<String,Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(HashMap<String,Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 }

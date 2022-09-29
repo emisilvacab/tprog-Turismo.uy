@@ -121,7 +121,7 @@ public class InscripcionASalida extends JInternalFrame {
 				try {
 					if(listaActs.getSelectedItem() != null) {
 						listaSals.removeAllItems();
-						HashSet<DTSalida> sals = icd.obtenerDatosSalidasVigentes((String) listaActs.getSelectedItem(),(String) listaDptos.getSelectedItem());
+						HashSet<DTSalida> sals = icd.obtenerDatosSalidasVigentesDpto((String) listaActs.getSelectedItem(),(String) listaDptos.getSelectedItem());
 						for (DTSalida s : sals)
 							listaSals.addItem(s.getNombre() + " (desde: " + s.getLugarDTSalida() + ") " + s.getFechaDTSalida().get(Calendar.DAY_OF_MONTH) + "/" + (s.getFechaDTSalida().get(Calendar.MONTH)+1) + "/" + s.getFechaDTSalida().get(Calendar.YEAR));
 					}

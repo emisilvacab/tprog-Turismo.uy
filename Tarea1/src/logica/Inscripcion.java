@@ -10,13 +10,18 @@ public class Inscripcion{
 	
 	private Salida salida;
 	private Turista turista;
+	private Compra compra;
 	
-	public Inscripcion(GregorianCalendar fecha, int cantTuristas, Salida salida, Turista turista) {
+	public Inscripcion(GregorianCalendar fecha, int cantTuristas, Salida salida, Turista turista, Compra compra) {
 		this.setFecha(fecha);
 		this.setCantTuristas(cantTuristas);
 		this.setSalida(salida);
 		this.setTurista(turista);
-		this.costo  = (salida.getCostoActividad() * cantTuristas); 	
+		if (compra == null)
+			this.costo  = (salida.getCostoActividad() * cantTuristas); 
+		else 
+			this.costo  = (salida.getCostoActividad() * cantTuristas) - (compra.getPaquete().getDescuento()*(salida.getCostoActividad() * cantTuristas) / 100);
+		this.setCompra(compra);			
 	}
 
 
@@ -65,6 +70,16 @@ public class Inscripcion{
 
 	public String getNicknameInscripto() {
 		return turista.getNickname();
+	}
+
+
+	public Compra getCompra() {
+		return compra;
+	}
+
+
+	public void setCompra(Compra compra) {
+		this.compra = compra;
 	}
 
 	

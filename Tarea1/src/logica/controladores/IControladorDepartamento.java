@@ -16,7 +16,7 @@ public interface IControladorDepartamento {
 	
 	public abstract HashSet<DTActividad> obtenerDatosActividadesAsociadas(String nombreDpto) throws departamentoNoExisteException;
 	
-	public abstract HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct, String nombreDpto) throws departamentoNoExisteException, actividadNoExisteException;
+	public abstract HashSet<DTSalida> obtenerDatosSalidasVigentesDpto(String nombreAct, String nombreDpto) throws departamentoNoExisteException, actividadNoExisteException;
 	
 	public abstract boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep) throws excepciones.proveedorNoExisteException, departamentoNoExisteException;
 	
@@ -31,4 +31,7 @@ public interface IControladorDepartamento {
 	public abstract HashSet<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException;
 	
 	public abstract int obtenerlugaresDisponibles(String nombreSal) throws salidaNoExisteException; 
+	
+	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException;
+
 }

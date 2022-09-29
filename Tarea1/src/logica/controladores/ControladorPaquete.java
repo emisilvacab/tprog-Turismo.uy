@@ -12,13 +12,13 @@ import logica.Departamento;
 import logica.Paquete;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTPaquete;
-import logica.manejadores.ManejadorDepartamento;
+import logica.manejadores.ManejadorDepartamentoCategoria;
 import logica.manejadores.ManejadorPaquete;
 
 public class ControladorPaquete implements IControladorPaquete {
 	
 	public void agregarActividadPaquete(String nombreDpto, String nombrePaq, String nombreAct) throws paqueteNoExisteException, departamentoNoExisteException, actividadNoExisteException {
-		ManejadorDepartamento md = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria md = ManejadorDepartamentoCategoria.getInstance();
 		ManejadorPaquete mp = ManejadorPaquete.getInstance();
 		
 		Paquete paq = mp.getPaquete(nombrePaq);
