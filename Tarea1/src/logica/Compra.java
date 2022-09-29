@@ -1,14 +1,16 @@
 package logica;
 
 import java.util.GregorianCalendar;
+import java.util.Vector;
 
 public class Compra {
-	public GregorianCalendar fecha;
-	public int cantTuristas;
-	public GregorianCalendar vencimiento;
-	public float costo;
+	private GregorianCalendar fecha;
+	private int cantTuristas;
+	private GregorianCalendar vencimiento;
+	private float costo;
 	
-	public Paquete paquete;
+	private Paquete paquete;
+	private Vector<Cuponera> cuponeras;
 	
 
 	public Compra(GregorianCalendar fecha, int cantTuristas, GregorianCalendar vencimiento, float costo, Paquete paquete) {
@@ -17,6 +19,11 @@ public class Compra {
 		this.vencimiento = vencimiento;
 		this.costo = costo;
 		this.paquete = paquete;
+		for (Actividad act : paquete.getActividades().values()) {
+	        Cuponera cup = new Cuponera(cantTuristas,act);
+			cuponeras.add(cup);
+	        act.addCuponera(cup);
+	    }
 	}
 
 	public GregorianCalendar getFecha() {
@@ -57,6 +64,18 @@ public class Compra {
 
 	public void setPaquete(Paquete paquete) {
 		this.paquete = paquete;
+	}
+
+	public Vector<Cuponera> getCuponeras() {
+		return cuponeras;
+	}
+
+	public void setCuponeras(Vector<Cuponera> cuponeras) {
+		this.cuponeras = cuponeras;
+	}
+	
+	public void addCuponera(Cuponera cuponera) {
+		this.cuponeras.add(cuponera);
 	}
 	
 

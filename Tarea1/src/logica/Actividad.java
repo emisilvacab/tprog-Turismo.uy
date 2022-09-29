@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Vector;
 
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
@@ -23,6 +24,8 @@ public class Actividad{
 	private Proveedor proveedor;
 	private Map<String, Salida> salidas;
 	private Map<String, Paquete> paquetes;
+	private Vector<Cuponera> cuponeras;
+	private HashMap<String,Categoria> categorias;
 	
 	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor) {
 		this.setNombre(nombre);
@@ -154,6 +157,18 @@ public class Actividad{
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public void addCuponera(Cuponera cup) {
+		this.cuponeras.add(cup);
+	}
+
+	public Vector<Cuponera> getCuponeras() {
+		return cuponeras;
+	}
+
+	public void setCuponeras(Vector<Cuponera> cuponeras) {
+		this.cuponeras = cuponeras;
 	}
 	
 }

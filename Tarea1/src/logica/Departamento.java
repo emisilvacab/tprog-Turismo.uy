@@ -2,6 +2,7 @@ package logica;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Vector;
 
 import excepciones.actividadNoExisteException;
 import logica.datatypes.DTActividad;
@@ -76,6 +77,15 @@ public class Departamento{
 	
 	public Actividad obtenerActividad(String nombreAct) {
 		return actividades.get(nombreAct);
+	}  
+
+	public Vector<Actividad> getActividadesConfirmadas() {
+		Vector<Actividad> res = new Vector<Actividad>();
+		for (Actividad act : actividades.values()) {
+	        if (act.getEstado() == Estado.CONFIRMADA)
+	        	res.add(act);
+	    }
+		return res;
 	}
 	
 	public void modificarEstadoActividad(String nombreAct, Estado estado) {

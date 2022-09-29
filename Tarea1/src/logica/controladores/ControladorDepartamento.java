@@ -5,19 +5,22 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 import excepciones.actividadNoExisteException;
+import excepciones.categoriaNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
 import logica.Actividad;
+import logica.Categoria;
 import logica.Departamento;
 import logica.Estado;
 import logica.Proveedor;
 import logica.Salida;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
-import logica.manejadores.ManejadorDepartamento;
+import logica.manejadores.ManejadorDepartamentoCategoria;
 import logica.manejadores.ManejadorSalida;
 import logica.manejadores.ManejadorUsuario;
 
@@ -26,7 +29,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	public ControladorDepartamento() {}
 	
 	public HashSet<String> obtenerDepartamentos(){
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Departamento> dptos = (HashMap<String, Departamento>) mDptos.getDepartamentos();
 		HashSet<String> res = new HashSet<String>();
 		dptos.forEach((key,value)->{
@@ -36,7 +39,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	}
 	
 	public HashSet<DTActividad> obtenerDatosActividadesAsociadas(String nombreDpto) throws departamentoNoExisteException {
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
 		if (dpto == null) 
 			throw new departamentoNoExisteException("No se encontró un departamento con el nombre ingresado");
@@ -44,7 +47,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	}
 	
 	public HashSet<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException {
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String,Departamento> dptos = mDptos.getDepartamentos();
 		HashMap<String,Salida> sals = new HashMap<String,Salida>(); 
 		boolean encontro = false;
@@ -65,8 +68,8 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return res;
 	}
 	
-	public HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct, String nombreDpto) throws departamentoNoExisteException, actividadNoExisteException {
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+	public HashSet<DTSalida> obtenerDatosSalidasVigentesDpto(String nombreAct, String nombreDpto) throws departamentoNoExisteException, actividadNoExisteException {
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
 		if (dpto == null) 
 			throw new departamentoNoExisteException("No se encontró un departamento con el nombre ingresado");
@@ -81,7 +84,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	}
 	
 	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep) throws excepciones.proveedorNoExisteException, departamentoNoExisteException {
-		ManejadorDepartamento manDepartamento = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria manDepartamento = ManejadorDepartamentoCategoria.getInstance();
 		ManejadorUsuario manUsuario = ManejadorUsuario.getInstance();
 		
 		HashMap<String, Departamento> departamentos = manDepartamento.getDepartamentos();
@@ -112,7 +115,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	}
 	
 	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.departamentoNoExisteException, actividadNoExisteException{
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		ManejadorSalida mSals = ManejadorSalida.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
 		if (dpto == null)
@@ -131,7 +134,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	}
 	
 	public void ingresarDepartamento(String nombre, String descripcion, String url) {
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		Departamento nuevo = new Departamento(nombre, descripcion, url);
 		mDptos.addDepartamento(nuevo);
 	}
@@ -139,7 +142,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	@Override
 	public DTActividad obtenerDatosActividad(String actividadSeleccionada) throws actividadNoExisteException{
 		Actividad act = null;
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Departamento> departamentos = mDptos.getDepartamentos();
 		for (Departamento dep: departamentos.values()) {
 			act = dep.obtenerActividad(actividadSeleccionada);
@@ -159,7 +162,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	@Override
 	public String obtenerDeptoActividad(String actividad) {
 		String resu = null;
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Departamento> departamentos = mDptos.getDepartamentos();
 		for (Departamento depto: departamentos.values()) {
 			if (depto.getActividades().containsKey(actividad)) {
@@ -181,7 +184,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	@Override
 	public String[] obtenerActividadesAgregadas() {
 		HashSet<String> actividades = new HashSet<String>();
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Departamento> deptos = mDptos.getDepartamentos();
 		for (String dpto: deptos.keySet()) {
 			try {
@@ -202,12 +205,53 @@ public class ControladorDepartamento implements IControladorDepartamento {
 
 	@Override
 	public void modificarEstadoActividad(String actividadSeleccionada, Estado estado) {
-		ManejadorDepartamento mDptos = ManejadorDepartamento.getInstance();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		String nomDepto = obtenerDeptoActividad(actividadSeleccionada);
 		Departamento depto = mDptos.getDepartamento(nomDepto);
 		depto.modificarEstadoActividad(actividadSeleccionada, estado);
 	}
+
 	
+	public HashSet<DTActividad> obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException{
+		ManejadorDepartamentoCategoria mDpto = ManejadorDepartamentoCategoria.getInstance();
+		Departamento dpto = mDpto.getDepartamento(nombreDpto);
+		if (dpto == null)
+			throw new departamentoNoExisteException("Departamento no encontrado");
+		Vector<Actividad> actsConfi = dpto.getActividadesConfirmadas();
+		HashSet<DTActividad> res = new HashSet<DTActividad>();
+		for (Actividad act : actsConfi) {
+			res.add(act.getDatos());
+		}
+		return res;
+	}
+	
+	public HashSet<DTActividad> obtenerDatosActividadesConfirmadasCat(String nombreCat) throws categoriaNoExisteException{
+		ManejadorDepartamentoCategoria mCat = ManejadorDepartamentoCategoria.getInstance();
+		Categoria cat = mCat.getCategoria(nombreCat);
+		if (cat == null)
+			throw new categoriaNoExisteException("Categoria no encontrada");
+		Vector<Actividad> actsConfi = cat.getActividadesConfirmadas();
+		HashSet<DTActividad> res = new HashSet<DTActividad>();
+		for (Actividad act : actsConfi) {
+			res.add(act.getDatos());
+		}
+		return res;
+	}
+	
+	public HashSet<DTSalida> obtenerDatosSalidasVigentesCat(String nombreAct, String nombreCat) throws categoriaNoExisteException, actividadNoExisteException {
+		ManejadorDepartamentoCategoria mCat = ManejadorDepartamentoCategoria.getInstance();
+		Categoria cat = mCat.getCategoria(nombreCat);
+		if (cat == null)
+			throw new categoriaNoExisteException("Categoria no encontrada");
+		HashSet<DTSalida> res;
+		try {
+			res = cat.obtenerDatosSalidasVigentes(nombreAct);
+		}
+		catch(actividadNoExisteException e1){
+			throw new actividadNoExisteException("Actividad no encontrada");	
+		}
+		return res;
+	}
 
 }
 

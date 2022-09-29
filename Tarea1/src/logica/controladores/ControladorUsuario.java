@@ -152,7 +152,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		boolean hayLugar = salida.admiteCapacidad(capacidad);
 		boolean existe = salida.existeInscripcion(turista.getNickname());
 		if (hayLugar && !existe) {
-			Inscripcion insc = new Inscripcion(fechaAlta,capacidad,salida,turista);
+			Inscripcion insc = new Inscripcion(fechaAlta,capacidad,salida,turista,null);
 			salida.addInscripcion(insc);
 			turista.addInscripcion(insc);
 			return "no";
