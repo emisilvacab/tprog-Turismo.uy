@@ -17,6 +17,7 @@ public class Actividad{
 	private float costo;
 	private String ciudad;
 	private GregorianCalendar alta;
+	private Estado estado;
 	
 	private Departamento departamento;
 	private Proveedor proveedor;
@@ -34,6 +35,7 @@ public class Actividad{
 		this.setProveedor(proveedor);
 		this.setSalidas(new HashMap<String, Salida>());
 		this.setPaquetes(new HashMap<String,Paquete>());
+		this.setEstado(Estado.AGREGADA);
 	}
 
 	public String getNombre() {
@@ -144,6 +146,14 @@ public class Actividad{
 			return false;
 		else 
 			return true;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 	
 }
