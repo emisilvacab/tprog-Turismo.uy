@@ -130,7 +130,7 @@ public class Actividad{
 	}
 
 	public DTActividad getDatos() {
-		DTActividad res = new DTActividad(nombre,descripcion,duracion,costo,ciudad,alta);
+		DTActividad res = new DTActividad(nombre,descripcion,duracion,costo,ciudad,alta, estado);
 		return res;
 	}
 

@@ -1,5 +1,6 @@
 package logica.controladores;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import excepciones.salidaNoExisteException;
 import logica.Actividad;
 import logica.Categoria;
 import logica.Departamento;
+import logica.Estado;
 import logica.Proveedor;
 import logica.Salida;
 import logica.datatypes.DTActividad;
@@ -152,7 +154,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		if (act == null) {
 			throw new actividadNoExisteException("actividad no encontrada");
 		}else {
-			DTActividad res = new DTActividad(act.getNombre(), act.getDescripcion(), act.getDuracion(), act.getCosto(), act.getCiudad(), act.getAlta());
+			DTActividad res = new DTActividad(act.getNombre(), act.getDescripcion(), act.getDuracion(), act.getCosto(), act.getCiudad(), act.getAlta(), act.getEstado());
 			return res;
 		}
 	}
@@ -178,6 +180,37 @@ public class ControladorDepartamento implements IControladorDepartamento {
 			throw new salidaNoExisteException("Salida no encontrada");
 		return sal.obtenerlugaresDisponibles();
 	}
+
+	@Override
+	public String[] obtenerActividadesAgregadas() {
+		HashSet<String> actividades = new HashSet<String>();
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
+		HashMap<String, Departamento> deptos = mDptos.getDepartamentos();
+		for (String dpto: deptos.keySet()) {
+			try {
+				HashSet<DTActividad> actividadesEnDepto = obtenerDatosActividadesAsociadas(dpto);
+				for (DTActividad act: actividadesEnDepto) {
+					if (act.getEstado() == Estado.AGREGADA) {
+						actividades.add(act.getNombre());
+					}
+				}
+				
+			} catch (departamentoNoExisteException e) {
+				e.printStackTrace();
+			}
+		}
+		return actividades.toArray(new String[actividades.size()]);
+		
+	}
+
+	@Override
+	public void modificarEstadoActividad(String actividadSeleccionada, Estado estado) {
+		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
+		String nomDepto = obtenerDeptoActividad(actividadSeleccionada);
+		Departamento depto = mDptos.getDepartamento(nomDepto);
+		depto.modificarEstadoActividad(actividadSeleccionada, estado);
+	}
+
 	
 	public HashSet<DTActividad> obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException{
 		ManejadorDepartamentoCategoria mDpto = ManejadorDepartamentoCategoria.getInstance();
@@ -219,6 +252,8 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		}
 		return res;
 	}
+
+
 }
 
 

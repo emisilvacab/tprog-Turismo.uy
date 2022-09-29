@@ -88,4 +88,8 @@ public class Departamento{
 		return res;
 	}
 	
+	public void modificarEstadoActividad(String nombreAct, Estado estado) {
+		actividades.get(nombreAct).setEstado(estado);
+	}
+	
 }

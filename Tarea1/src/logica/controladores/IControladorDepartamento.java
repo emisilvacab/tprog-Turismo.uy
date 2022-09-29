@@ -5,8 +5,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.actividadNoExisteException;
+import excepciones.categoriaNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.salidaNoExisteException;
+import logica.Estado;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
 
@@ -32,6 +34,14 @@ public interface IControladorDepartamento {
 	
 	public abstract int obtenerlugaresDisponibles(String nombreSal) throws salidaNoExisteException; 
 	
+	public abstract String[] obtenerActividadesAgregadas();
+
+	public abstract void modificarEstadoActividad(String actividadSeleccionada, Estado estado);
+	
 	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException;
+
+	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasCat(String nombreCat) throws categoriaNoExisteException;
+
+	public abstract HashSet<DTSalida> obtenerDatosSalidasVigentesCat(String nombreAct, String nombreCat) throws categoriaNoExisteException, actividadNoExisteException;
 
 }
