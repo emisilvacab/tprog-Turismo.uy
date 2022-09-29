@@ -2,6 +2,8 @@ package logica.datatypes;
 
 import java.util.GregorianCalendar;
 
+import logica.Estado;
+
 public class DTActividad{
 	
 	private String nombre;
@@ -10,15 +12,25 @@ public class DTActividad{
 	private float costo;
 	private String ciudad;
 	private GregorianCalendar alta;
+	private Estado estado;
 	
 	
-	public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta) {
+	public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Estado estado) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setDuracion(duracion);
 		this.setCosto(costo);
 		this.setCiudad(ciudad);
 		this.setAlta(alta);
+		this.setEstado(estado);
+	}
+	
+	public Estado getEstado() {
+		return estado;
+	}
+	
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	public String getNombre() {

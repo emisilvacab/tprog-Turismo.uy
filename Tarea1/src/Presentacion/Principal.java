@@ -32,6 +32,7 @@ public class Principal {
 	private ConsultaDeSalida consultaSalidaInternalFrame;
 	private AltaActividad altaActividadInternalFrame;
 	private ConsultaDeActividad consultaActividadInternalFrame;
+	private AceptarORechazarActividad aceptarORechazarActividadInternalFrame;
 	
 	
 	
@@ -88,6 +89,11 @@ public class Principal {
         consultaActividadInternalFrame = new ConsultaDeActividad(ICD);
         consultaActividadInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(consultaActividadInternalFrame);
+        
+        aceptarORechazarActividadInternalFrame = new AceptarORechazarActividad(ICD);
+        aceptarORechazarActividadInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(aceptarORechazarActividadInternalFrame);
+        
         
     }
     
@@ -212,6 +218,20 @@ public class Principal {
             	consultaActividadInternalFrame.setVisible(true);
             }
         });
+        
+        JMenuItem menuItemAceptarORechazar = new JMenuItem("Aceptar/Rechazar Actividad");
+        menuItemAceptarORechazar.setToolTipText("Seleccione esta opción si desea cambiar el estado de una actividad");
+        menuItemAceptarORechazar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	aceptarORechazarActividadInternalFrame.cargarActividades();
+            	aceptarORechazarActividadInternalFrame.setVisible(true);
+            }
+        });
+        
+        
+        
+        
+        menuActividades.add(menuItemAceptarORechazar);
  		
     }
     

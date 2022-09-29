@@ -7,6 +7,7 @@ import java.util.Set;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.salidaNoExisteException;
+import logica.Estado;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
 
@@ -31,4 +32,8 @@ public interface IControladorDepartamento {
 	public abstract HashSet<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException;
 	
 	public abstract int obtenerlugaresDisponibles(String nombreSal) throws salidaNoExisteException; 
+	
+	public abstract String[] obtenerActividadesAgregadas();
+
+	public abstract void modificarEstadoActividad(String actividadSeleccionada, Estado estado);
 }
