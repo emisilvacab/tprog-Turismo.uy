@@ -1,7 +1,7 @@
 package logica.controladores;
 
 import java.util.GregorianCalendar;
-import java.util.HashMap;
+import java.util.HashSet;
 
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
@@ -10,10 +10,13 @@ import excepciones.paqueteYaExisteException;
 import logica.Actividad;
 import logica.Departamento;
 import logica.Paquete;
-import logica.datatypes.DTActividad;
+import logica.Turista;
+
 import logica.datatypes.DTPaquete;
+
 import logica.manejadores.ManejadorDepartamentoCategoria;
 import logica.manejadores.ManejadorPaquete;
+import logica.manejadores.ManejadorUsuario;
 
 public class ControladorPaquete implements IControladorPaquete {
 	
@@ -54,5 +57,35 @@ public class ControladorPaquete implements IControladorPaquete {
 		DTPaquete datos = new DTPaquete(paq.getNombre(), paq.getDescripcion(), paq.getValidez(), paq.getDescuento(), paq.getFechaAlta());
 		return datos;
 	}
+	
+	public HashSet<DTPaquete> obtenerPaquetesDisponibles(String nickname, String nombreSalida, int cantTuristas){
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Turista turista = mu.getTurista(nickname);
+		return turista.obtenerPaquetesDisponibles(nombreSalida, cantTuristas);	
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
