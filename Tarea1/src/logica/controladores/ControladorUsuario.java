@@ -9,9 +9,13 @@ import java.util.Vector;
 
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
+import excepciones.inscripcionExisteException;
+import excepciones.paqueteNoExisteException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
+import excepciones.limiteSuperadoException;
 import logica.Inscripcion;
+import logica.Paquete;
 import logica.Proveedor;
 import logica.Salida;
 import logica.Turista;
@@ -21,9 +25,11 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
+import logica.manejadores.ManejadorPaquete;
 import logica.manejadores.ManejadorSalida;
 import logica.manejadores.ManejadorUsuario;
 import logica.Actividad;
+import logica.Compra;
 
 public class ControladorUsuario implements IControladorUsuario {
 
@@ -267,10 +273,66 @@ public class ControladorUsuario implements IControladorUsuario {
 			}
 		}
 		return resu;
-
+	}
+	
+	public void ingresarDatosInscripcionPaq(String nickname, String nombreSal,int cantidad,GregorianCalendar fecha,String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException {
+		ManejadorSalida mSalida = ManejadorSalida.getInstance();
+		ManejadorUsuario mUsuario = ManejadorUsuario.getInstance();
+		
+		Salida salida = mSalida.getSalida(nombreSal);
+		if (salida == null)
+			throw new salidaNoExisteException("Salida no encontrada.");
+		Turista turista = mUsuario.getTurista(nickname);
+		if (turista == null) 
+			throw new usuarioNoExisteException("Usuario no encontrado.");
+		
+		Compra compra = null;
+		if (nombrePaq != null) {
+			Vector<Compra> compras = turista.getCompras();
+			for (Compra c : compras) {
+				if (c.getPaquete().getNombre() == nombrePaq) {
+					compra = c;
+					break;
+				}
+			}
+		}
+		
+		boolean hayLugar = salida.admiteCapacidad(cantidad);
+		boolean existe = salida.existeInscripcion(turista.getNickname());
+		if (hayLugar && !existe) {
+			Inscripcion insc = new Inscripcion(fecha,cantidad,salida,turista,compra);
+			salida.addInscripcion(insc);
+			turista.addInscripcion(insc);
+			if(compra != null) {
+				compra.descontarCupos(salida,cantidad);
+			}
+		}
+		else {
+			if(!hayLugar)
+				throw new limiteSuperadoException("Capacidad de inscripciones a salida superada");
+			else 
+				throw new inscripcionExisteException("Inscripcion ya existente");
+		}
 	}
 	
 	
-	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

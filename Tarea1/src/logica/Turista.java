@@ -1,7 +1,12 @@
 package logica;
 
+import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Vector;
+
+import logica.datatypes.DTPaquete;
+import logica.manejadores.ManejadorSalida;
 
 public class Turista extends Usuario{
 	
@@ -45,4 +50,41 @@ public class Turista extends Usuario{
 	public void setCompras(Vector<Compra> compras) {
 		this.compras = compras;
 	}
+
+	public HashSet<DTPaquete> obtenerPaquetesDisponibles(String nombreSalida, int cantTuristas) {
+		ManejadorSalida mSal = ManejadorSalida.getInstance();
+		Salida salida = mSal.getSalida(nombreSalida);
+		HashSet<DTPaquete> res = new HashSet<DTPaquete>();
+		for (Compra compra : compras) {
+			if (compra.getVencimiento().after(GregorianCalendar.from(ZonedDateTime.now()))) {
+				Vector<Cuponera> cuponeras = compra.getCuponeras();
+				for(Cuponera cuponera : cuponeras) {
+					if (cuponera.getActividad().getNombre() == salida.getActividad().getNombre() && cuponera.getCuposRestantes() >= cantTuristas) {
+						res.add(compra.getPaquete().getDatos());
+						break;
+					}
+				}
+			}	
+		}
+		return res;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

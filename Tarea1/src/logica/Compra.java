@@ -77,6 +77,15 @@ public class Compra {
 	public void addCuponera(Cuponera cuponera) {
 		this.cuponeras.add(cuponera);
 	}
+
+	public void descontarCupos(Salida salida, int cantidad) {
+		String nombreAct = salida.getActividad().getNombre();
+		for(Cuponera cuponera : cuponeras) {
+			if(cuponera.getActividad().getNombre() == nombreAct) {
+				cuponera.setCuposRestantes(cuponera.getCuposRestantes() - cantidad);
+			}
+		}
+	}
 	
 
 }

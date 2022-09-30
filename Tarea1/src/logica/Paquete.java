@@ -3,6 +3,8 @@ package logica;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
+import logica.datatypes.DTPaquete;
+
 public class Paquete {
 	
 	private String nombre;
@@ -82,6 +84,10 @@ public class Paquete {
 
 	public void setCategorias(HashMap<String,Categoria> categorias) {
 		this.categorias = categorias;
+	}
+
+	public DTPaquete getDatos() {
+		return new DTPaquete(nombre,descripcion,validez,descuento,fechaAlta);
 	}
 
 }
