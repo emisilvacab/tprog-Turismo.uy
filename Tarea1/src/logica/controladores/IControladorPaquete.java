@@ -9,6 +9,7 @@ import excepciones.departamentoNoExisteException;
 import excepciones.paqueteNoExisteException;
 import excepciones.paqueteYaExisteException;
 import excepciones.usuarioNoExisteException;
+import logica.datatypes.DTActividad;
 import logica.datatypes.DTPaquete;
 
 public interface IControladorPaquete {
@@ -24,5 +25,9 @@ public interface IControladorPaquete {
 	public abstract HashSet<DTPaquete> obtenerPaquetesConActividades();
 	
 	public abstract void comprarPaquete(String nickname, String nombrePaq, GregorianCalendar fechaCompra, int cantidadTuristas) throws usuarioNoExisteException, paqueteNoExisteException, compraExisteException;
+	
+	public abstract HashSet<DTPaquete> obtenerPaquetesNoComprados();
+	
+	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasNoPaquete(String nombreDpto, String nombrePaq) throws departamentoNoExisteException, paqueteNoExisteException;
 
 }
