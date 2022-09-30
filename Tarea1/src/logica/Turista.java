@@ -68,6 +68,21 @@ public class Turista extends Usuario{
 		}
 		return res;
 	}
+
+	public boolean existeCompra(String nombrePaq) {
+		boolean res = false;
+		for(Compra c : compras) {
+			if (c.getPaquete().getNombre() == nombrePaq) {
+				res = true;
+				break;
+			}
+		}
+		return res;
+	}
+
+	public void addCompra(Compra compra) {
+		compras.add(compra);
+	}
 }
 
 

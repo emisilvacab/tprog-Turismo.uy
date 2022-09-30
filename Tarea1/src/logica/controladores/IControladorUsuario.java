@@ -8,6 +8,10 @@ import logica.datatypes.DTSalida;
 import excepciones.usuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
+import excepciones.inscripcionExisteException;
+import excepciones.limiteSuperadoException;
+import excepciones.paqueteNoExisteException;
+import excepciones.salidaNoExisteException;
 
 public interface IControladorUsuario {
 	public abstract String[] obtenerUsuarios();
@@ -31,5 +35,8 @@ public interface IControladorUsuario {
 	public abstract DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException;
 	
 	public abstract DTSalida obtenerSalidaInscripto(String nombreSalida, String nickname);
+	
+	public abstract void ingresarDatosInscripcionPaq(String nickname, String nombreSal,int cantidad,GregorianCalendar fecha,String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException;
+
     
 }
