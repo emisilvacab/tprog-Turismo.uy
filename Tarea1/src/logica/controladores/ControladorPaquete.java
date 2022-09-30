@@ -1,13 +1,17 @@
 package logica.controladores;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import excepciones.actividadNoExisteException;
+import excepciones.compraExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.paqueteNoExisteException;
 import excepciones.paqueteYaExisteException;
+import excepciones.usuarioNoExisteException;
 import logica.Actividad;
+import logica.Compra;
 import logica.Departamento;
 import logica.Paquete;
 import logica.Turista;
@@ -58,11 +62,51 @@ public class ControladorPaquete implements IControladorPaquete {
 		return datos;
 	}
 	
-	public HashSet<DTPaquete> obtenerPaquetesDisponibles(String nickname, String nombreSalida, int cantTuristas){
+	public HashSet<DTPaquete> obtenerPaquetesDisponibles(String nickname, String nombreSalida, int cantTuristas) throws usuarioNoExisteException{ 
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Turista turista = mu.getTurista(nickname);
+		if (turista == null) throw new usuarioNoExisteException("Usuario no encontrado.");
 		return turista.obtenerPaquetesDisponibles(nombreSalida, cantTuristas);	
 	}
+	
+	public HashSet<DTPaquete> obtenerPaquetesConActividades(){
+		HashSet<DTPaquete> res = new HashSet<DTPaquete>();
+		ManejadorPaquete mp = ManejadorPaquete.getInstance();
+		HashMap<String,Paquete> paquetes = mp.getPaquetes();
+		
+		for (Paquete paquete : paquetes.values()) {
+			if(paquete.getActividades().size() > 0)
+				res.add(paquete.getDatos());
+	    }
+		return res;
+	}
+	
+	public void comprarPaquete(String nickname, String nombrePaq, GregorianCalendar fechaCompra, int cantidadTuristas) throws usuarioNoExisteException, paqueteNoExisteException, compraExisteException {
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		ManejadorPaquete mp= ManejadorPaquete.getInstance();
+		
+		Paquete paquete = mp.getPaquete(nombrePaq);
+		Turista turista = mu.getTurista(nickname);
+		
+		if (paquete == null) throw new paqueteNoExisteException("Paquete no encontrado");
+		if (turista == null) throw new usuarioNoExisteException("Usuario no encontrado");
+		if (turista.existeCompra(paquete.getNombre())) throw new compraExisteException("Compra de paquete ya realizada anteriormente");
+		
+		GregorianCalendar vencimiento = fechaCompra;
+		vencimiento.add(GregorianCalendar.DAY_OF_MONTH, paquete.getValidez());
+		
+		float costo = 0;
+		for (Actividad act : paquete.getActividades().values()) {
+			costo = costo + act.getCosto();
+		}
+		costo = costo * cantidadTuristas;
+		costo = costo - ((costo * paquete.getDescuento()) / 100);
+		
+		Compra compra = new Compra(fechaCompra,cantidadTuristas,vencimiento,costo,turista,paquete);
+		turista.addCompra(compra);
+		paquete.addCompra(compra);		
+	}
+
 
 }
 

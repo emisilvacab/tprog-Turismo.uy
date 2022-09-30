@@ -2,6 +2,7 @@ package logica;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Vector;
 
 import logica.datatypes.DTPaquete;
 
@@ -15,6 +16,7 @@ public class Paquete {
 	
 	private HashMap<String,Actividad> actividades;
 	private HashMap<String,Categoria> categorias;
+	private Vector<Compra> compras;
 	
 	
 	public Paquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) {
@@ -88,6 +90,18 @@ public class Paquete {
 
 	public DTPaquete getDatos() {
 		return new DTPaquete(nombre,descripcion,validez,descuento,fechaAlta);
+	}
+
+	public Vector<Compra> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(Vector<Compra> compras) {
+		this.compras = compras;
+	}
+
+	public void addCompra(Compra compra) {
+		compras.add(compra);
 	}
 
 }

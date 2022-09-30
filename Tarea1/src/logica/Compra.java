@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.Vector;
 
 public class Compra {
+	
 	private GregorianCalendar fecha;
 	private int cantTuristas;
 	private GregorianCalendar vencimiento;
@@ -11,14 +12,16 @@ public class Compra {
 	
 	private Paquete paquete;
 	private Vector<Cuponera> cuponeras;
+	private Turista turista;
 	
 
-	public Compra(GregorianCalendar fecha, int cantTuristas, GregorianCalendar vencimiento, float costo, Paquete paquete) {
-		this.fecha = fecha;
-		this.cantTuristas = cantTuristas;
-		this.vencimiento = vencimiento;
-		this.costo = costo;
-		this.paquete = paquete;
+	public Compra(GregorianCalendar fecha, int cantTuristas, GregorianCalendar vencimiento, float costo, Turista turista, Paquete paquete) {
+		this.setFecha(fecha); 
+		this.setCantTuristas(cantTuristas);
+		this.setVencimiento(vencimiento);
+		this.setCosto(costo);
+		this.setTurista(turista);
+		this.setPaquete(paquete);
 		for (Actividad act : paquete.getActividades().values()) {
 	        Cuponera cup = new Cuponera(cantTuristas,act);
 			cuponeras.add(cup);
@@ -76,6 +79,14 @@ public class Compra {
 	
 	public void addCuponera(Cuponera cuponera) {
 		this.cuponeras.add(cuponera);
+	}
+
+	public Turista getTurista() {
+		return turista;
+	}
+
+	public void setTurista(Turista turista) {
+		this.turista = turista;
 	}
 
 	public void descontarCupos(Salida salida, int cantidad) {
