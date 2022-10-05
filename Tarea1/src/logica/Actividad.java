@@ -39,6 +39,7 @@ public class Actividad{
 		this.setSalidas(new HashMap<String, Salida>());
 		this.setPaquetes(new HashMap<String,Paquete>());
 		this.setEstado(Estado.AGREGADA);
+		this.setCategorias(new HashMap<String, Categoria>());
 	}
 
 	public String getNombre() {
@@ -153,6 +154,18 @@ public class Actividad{
 
 	public Estado getEstado() {
 		return estado;
+	}
+
+	public HashMap<String, Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(HashMap<String, Categoria> categorias) {
+		this.categorias = categorias;
+	}
+	
+	public void addCategoria(Categoria categoria) {
+		this.categorias.put(categoria.getNombre(), categoria);
 	}
 
 	public void setEstado(Estado estado) {

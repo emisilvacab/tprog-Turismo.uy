@@ -25,6 +25,10 @@ function validarAltaSalida(){
 		alert('Seleccione una hora');
     	return false;
 	}
+	 else if(document.getElementById('lugarSal').value.length == 0 ){
+		alert('Ingrese un lugar');
+    	return false;
+	}
     else if(document.getElementById('cantTurSal').value.length == 0 ){
 		alert('Ingrese una cantidad de turistas');
     	return false;
