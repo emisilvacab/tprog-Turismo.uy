@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
+import excepciones.categoriaYaExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
@@ -173,6 +175,25 @@ class ControladorDepartamentoTest {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Test
+	void testIngresarDatosCategoria() {
+		try {
+			icd.ingresarDatosCategoria("Gastronomía");
+			icd.ingresarDatosCategoria("Fotografía");
+			icd.ingresarDatosCategoria("Paseos");
+			String categorias[] = {"Gastronomía","Fotografía","Paseos"};	
+			Set<String> cats = icd.obtenerCategorias();
+			for (String c : categorias) {
+				assertEquals(cats.contains(c),true);
+			}
+			
+		}
+		catch (categoriaYaExisteException e) {
+			e.printStackTrace();
+		}
+		assertThrows(categoriaYaExisteException.class, () -> {icd.ingresarDatosCategoria("Gastronomía");});
 	}
 	
 		

@@ -13,6 +13,12 @@ public class Categoria {
 	private HashMap<String,Actividad> actividades;
 	private HashMap<String,Paquete> paquetes;
 	
+	public Categoria(String nombre) {
+		this.setNombre(nombre);
+		this.setActividades(new HashMap<String, Actividad>());
+		this.setPaquetes(new HashMap<String, Paquete>());
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
