@@ -110,134 +110,48 @@ h1.section-header{
 	color: black; 
 }
 
-h2.instruction{
-	position: absolute; 
-	padding-top: 10%;
-	left: 4%; 
-	color: black; 
+.formInsc{
+    margin-left: 4%;
+    margin-top: 10%;
 }
 
-/* PASO 1 */
-
-#title-form-select-dpto{
-	position: absolute; 
-	top: 32%; 
-	left: 4%; 
-	width: 70%;
-	color: black; 
+.tittle-inst{
+	margin-top: 2%;
+	margin-bottom: 2%;
+	
 }
 
 #form-select-dpto{
-	position: absolute; 
-	top: 38%; 
-	left: 4%; 
-	width: 70%;
-}
-
-#title-form-select-cat{
-	position: absolute; 
-	top: 50%; 
-	left: 4%; 
-	width: 70%;
-	color: black; 
+	width:30%;
 }
 
 #form-select-cat{
-	position: absolute; 
-	top: 56%; 
-	left: 4%; 
-	width: 70%;
-	color: black; 
+	width:30%;
+}
+
+#form-select-act{
+	width:50%;
+}
+
+#form-select-sal{
+	width:50%;
+}
+
+#form-cantTuristas{
+	width: 35%;
+}
+
+#form-select-paq{
+	width:50%;
 }
 
 #button-continuar{
-	position: absolute; 
-	top: 70%; 
-	left: 4%; 
-	color: black; 
+	margin-top: 4%;
+	margin-bottom: 4%;
 }
 
-/*PASO 2, 3 y 5*/
 
-.texto-actsInsc{
-	display: block; /* Fallback for non-webkit */
-	display: -webkit-box;
-	height: 3.7em; /* Fallback for non-webkit, line-height * 5 */
-	line-height: 1.2em;
-	-webkit-line-clamp: 5; /* if you change this, make sure to change the fallback line-height and height */
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	overflow-y: scroll;
-}
-
-.contenedor-actSal{
-	position: absolute;
-	top: 35%; 
-	left: 4%; 
-	width: 65%;
-	overflow: hidden;
-	overflow-y: scroll;
-	transition: transform .4s;
-}
-
-.contenedor-actSal:hover{
-	transform: scale(1.05);
-}
-
-.contenedor-img-actSal{
-	text-align:center;	
-}
-
-.img-actSal{
-	width:100%;
-	text-align:center;
-}
-
-.item-listados{
-	display: block; /* Fallback for non-webkit */
-	display: -webkit-box;
-	height: 2.7em; /* Fallback for non-webkit, line-height * 5 */
-	line-height: 1.1em;
-	-webkit-line-clamp: 5; /* if you change this, make sure to change the fallback line-height and height */
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	overflow-y: scroll;
-}
-
-/* PASO 4 */
-
-#form-cantTuristas{
-	position: absolute; 
-	top: 35%;
-	width: 41%;
-	left: 4%;
-}
-
-.eleccion-con-paquete{
-	position: absolute; 
-	top: 50%;
-	left: 4%;
-}
-
-#button-continuarP4{
-	position: absolute; 
-	top: 70%; 
-	left: 4%; 
-	color: black; 
-}
-
-/*PASO EXITO*/
-#tic-img{
-	position: absolute; 
-	top: 25%; 
-	left: 33%; 
-	width:25%;
-}
-
-#title-exitoInsc{
-	position: absolute; 
-	left: 15%; 
-}
+/*Estilos altaUsuario?????????*/
 
 #button-continuarPE{
 	position: absolute; 
@@ -345,49 +259,19 @@ h2.instruction{
 
 /*COMPRA DE PAQUETE*/
 
-/*PASO 1*/
-.contenedor-paqCompra{
-	position: absolute;
-	top: 35%; 
-	left: 4%; 
-	width: 80%;
-	overflow: hidden;
-	overflow-y: scroll;
-	transition: transform .4s;
+.formCompra{
+	margin-left: 4%;
+    margin-top: 10%;
 }
 
-.contenedor-paqCompra:hover{
-	transform: scale(1.05);
+#form-select-compraPaq{
+	width: 50%;
 }
-/*PASO 2*/
+
 #form-cantTuristasPaq{
-	position: absolute; 
-	top: 35%;
-	width: 41%;
-	left: 4%;	
+	width: 50%;
 }
 
-#button-confirmarCom{
-	position: absolute; 
-	top: 50%;
-	left: 4%;
-}
-/*PASO DE EXITO*/
-#button-inicioCom{
-	position: absolute; 
-	top: 80%; 
-	left: 22%; 
-	width: 20%;
-	color: black;
-}
-
-#button-repetirCom{
-	position: absolute; 
-	top: 80%; 
-	left: 48%; 
-	width: 20%;
-	color: black;
-}
 
 /* ESTILOS PARA CONSULTA Y LISTADO DE PAQUETE */
 
