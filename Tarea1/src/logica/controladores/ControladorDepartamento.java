@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import excepciones.actividadNoExisteException;
 import excepciones.categoriaNoExisteException;
+import excepciones.categoriaYaExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
@@ -253,6 +254,26 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return res;
 	}
 
+	public void ingresarDatosCategoria(String nombre) throws categoriaYaExisteException{
+		ManejadorDepartamentoCategoria mCat = ManejadorDepartamentoCategoria.getInstance();
+		Categoria existe = mCat.getCategoria(nombre);
+		if (existe != null)
+			throw new categoriaYaExisteException("Categoria ya existe");
+		else {
+			Categoria nueva = new Categoria(nombre);
+			mCat.addCategoria(nueva);
+		}
+	}
+	
+	public Set<String> obtenerCategorias(){
+		ManejadorDepartamentoCategoria mCat = ManejadorDepartamentoCategoria.getInstance();
+		HashMap<String, Categoria> cats = mCat.getCategorias();
+		HashSet<String> res = new HashSet<String>();
+		cats.forEach((key,value)->{
+			res.add(key);
+		});
+		return res;
+	}
 	
 }
 

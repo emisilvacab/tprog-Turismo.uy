@@ -7,5 +7,6 @@ public class actividadNoExisteException extends Exception {
 	public actividadNoExisteException(String string) {
         super(string);
     }
+	
 
 }

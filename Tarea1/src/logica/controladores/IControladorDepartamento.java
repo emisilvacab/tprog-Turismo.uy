@@ -6,6 +6,7 @@ import java.util.Set;
 
 import excepciones.actividadNoExisteException;
 import excepciones.categoriaNoExisteException;
+import excepciones.categoriaYaExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.salidaNoExisteException;
 import logica.Estado;
@@ -44,4 +45,7 @@ public interface IControladorDepartamento {
 
 	public abstract HashSet<DTSalida> obtenerDatosSalidasVigentesCat(String nombreAct, String nombreCat) throws categoriaNoExisteException, actividadNoExisteException;
 
+	public abstract void ingresarDatosCategoria(String nombre) throws categoriaYaExisteException;
+	
+	public abstract Set<String> obtenerCategorias();
 }
