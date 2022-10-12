@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logica.Fabrica;
+import logica.controladores.IControladorDepartamento;
+import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTUsuario;
 import model.EstadoSesion;
 
@@ -26,7 +29,12 @@ public class Sesion extends HttpServlet {
     }
     
     protected void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	DTUsuario usr = null; //operacion de iniciar sesion
+    	Fabrica fact = Fabrica.getInstance();
+    	IControladorUsuario cu = fact.getIControladorUsuario();
+    	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
+    	
+    	DTUsuario usr = cu.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password")); //operacion de iniciar sesion
+    	request.setAttribute("cats",cd.obtenerCategorias());
     	if (usr==null) {
     		request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_INCORRECTO);
     		request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
@@ -38,8 +46,13 @@ public class Sesion extends HttpServlet {
     	}
     }
     
-    protected void cerrarSesion(HttpServletRequest request, HttpServletResponse response) {
+    protected void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Fabrica fact = Fabrica.getInstance();
+    	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
+    	request.setAttribute("cats",cd.obtenerCategorias());
     	request.getSession().setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
+    	request.getSession().setAttribute("usuario_logueado", null);
+    	request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
 	/**
@@ -47,11 +60,14 @@ public class Sesion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("iniciar");
-		if (accion == "si") //si iniciar es si entonces vamos a iniciar Sesion
-			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
+		if (accion != null && accion.equals("si")) { //si iniciar es si entonces vamos a iniciar Sesion 
+			Fabrica fact = Fabrica.getInstance();
+    		IControladorDepartamento cd = fact.getIControladorDepartamento(); 
+    		request.setAttribute("cats",cd.obtenerCategorias());
+			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response); 
+		}
 		else
 			cerrarSesion(request,response);
-			
 	}
 
 	/**

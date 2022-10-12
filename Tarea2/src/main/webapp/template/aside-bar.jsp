@@ -3,7 +3,7 @@
 <%@ page import ="logica.datatypes.DTUsuario"%>
 <%@ page import ="logica.datatypes.DTTurista"%>
 <%@ page import ="logica.datatypes.DTProveedor"%>
-<%@page import="java.util.Vector"%>
+<%@page import="java.util.Set"%>
 
 <!-- FALTA LINKEAR BIEN CON CADA PAGINA -->
 
@@ -12,13 +12,12 @@
        <div class="accordion-item">
 	    <h2 class="accordion-header" id="headingOne">
 	      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-	        Opciones</button>
+	        Opciones
+	      </button>
 	    </h2>
-	    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-	      <div class="accordion-body">
 	      	<%
 				DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
-				if (usr != null && usr.getClass().getName()=="DTProveedor") {
+				if (usr != null && usr.getClass().getName().equals("logica.datatypes.DTProveedor")) {
 	  		%>
 	        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
@@ -31,7 +30,7 @@
 		      </div>
 		    </div>
 		    <% 
-		    	} else if (usr != null && usr.getClass().getName()=="DTTurista") {  
+		    	} else if (usr != null && usr.getClass().getName().equals("logica.datatypes.DTTurista")) {  
 		    %>
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
@@ -46,9 +45,11 @@
 	      	<%
 	      		}
 			%>
-	        <a class="ref" href="listadoDeUsuarios.html">Usuarios registrados</a>
+		  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	         <div class="accordion-body">
+	        	<a class="ref" href="listadoDeUsuarios.html">Usuarios registrados</a>
+	         </div>
 	      </div>
-	    </div>
 	  </div>
 
       <div class="accordion-item">
@@ -76,7 +77,7 @@
 	        Categorías</button>
 	    </h2>
 	    <% 
-			Vector<String> cats = (Vector<String>) request.getAttribute("cats");
+			Set<String> cats = (Set<String>) request.getAttribute("cats");
 	    	if(cats != null)
 				for(String cat: cats){
 		%>

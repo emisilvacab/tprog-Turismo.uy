@@ -6,7 +6,7 @@
 	<nav class="navbar">
      <div class="container-fluid">
     
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.jsp">
         <img src="resources/img/logo.png" alt="Turismo.uy" class="logopic">
       </a>
       
@@ -20,7 +20,7 @@
 		if (usr == null) {
 	  %>
       <div>
-	      <a class="navbar-text" href="altausuario.html">Registrarse</a>
+	      <a class="navbar-text" href="/Tarea2/registrar">Registrarse</a>
 	      <a class="navbar-text" href="/Tarea2/log?iniciar=si">Iniciar sesión</a>
   	  </div>
   	  
@@ -30,7 +30,17 @@
 		<div>
 		 <div class="dropdown">
 		 	<button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-		  	<img src="https://c.wallhere.com/photos/55/39/safe_house_cia_agent_tobin_frost_denzel_washington-584127.jpg!d" id="foto_usuario" class="rounded-circle" alt="foto de usuario" class="logopic">
+		  	 <%
+				if (usr.getFigura() == null) {
+	 		 %>
+		  		<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" id="foto_usuario" class="rounded-circle" alt="foto de usuario" class="logopic">
+		  	<%
+				} else { 
+		  	%>
+		  		<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" id="foto_usuario" class="rounded-circle" alt="foto de usuario" class="logopic">
+		  	<%
+		  		} 
+		  	%>
 		  	<%=usr.getNickname()%>
 			</button>
 			<ul class="dropdown-menu dropdown-menu-dark">

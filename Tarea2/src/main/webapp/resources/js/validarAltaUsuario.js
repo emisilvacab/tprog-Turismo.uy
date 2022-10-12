@@ -40,6 +40,5 @@ function validarAltaUsuario(){
 		alert('Al ser Proveedor debe tener descripción');
 		return false;
 	}
-	alert("Usuario creado con éxito!");
 	return true;
 }
