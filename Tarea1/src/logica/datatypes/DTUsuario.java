@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import java.awt.Image;
 import java.util.GregorianCalendar;
 
 public class DTUsuario{
@@ -9,13 +10,17 @@ public class DTUsuario{
 	private String apellido;
 	private String correo;
 	private GregorianCalendar nacimiento;
+	private String contrasena;
+	private Image figura;
 	
-	public DTUsuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento) {
+	public DTUsuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena) {
 		this.setNickname(nickname);
 		this.setNombre(nombre);
 		this.setApellido(apellido);
 		this.setCorreo(correo);
 		this.setNacimiento(nacimiento);
+		this.setContrasena(contrasena);
+		this.setFigura(null);
 	}
 	
 	public String getNickname() {
@@ -56,6 +61,22 @@ public class DTUsuario{
 
 	public void setNacimiento(GregorianCalendar nacimiento) {
 		this.nacimiento = nacimiento;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
+	public Image getFigura() {
+		return figura;
+	}
+
+	public void setFigura(Image figura) {
+		this.figura = figura;
 	}
 	
 }

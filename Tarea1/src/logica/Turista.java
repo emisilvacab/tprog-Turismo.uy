@@ -16,8 +16,8 @@ public class Turista extends Usuario{
 	private Vector<Compra> compras;
 	
 	
-	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String nacionalidad) {
-		super(nickname, nombre, apellido, correo, nacimiento);
+	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena,String nacionalidad) {
+		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
 		this.setNacionalidad(nacionalidad);
 		this.setInscripciones(new Vector<Inscripcion>());
 		this.setCompras(new Vector<Compra>());

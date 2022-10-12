@@ -8,17 +8,21 @@ public abstract class Usuario{
 	private String nickname;
 	private String nombre;
 	private String apellido;
+	private String contrasena;
 	private String correo;
 	private GregorianCalendar nacimiento;
 	private Image figura;
 	
-	public Usuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento) {
+	public Usuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena) {
 		this.setNickname(nickname);
 		this.setNombre(nombre);
 		this.setApellido(apellido);
 		this.setCorreo(correo);
 		this.setNacimiento(nacimiento);
+		this.setContrasena(contrasena);
+		this.setFigura(null);
 	}
+	
 	
 	public String getNickname() {
 		return nickname;
@@ -66,5 +70,13 @@ public abstract class Usuario{
 
 	public void setFigura(Image figura) {
 		this.figura = figura;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 }

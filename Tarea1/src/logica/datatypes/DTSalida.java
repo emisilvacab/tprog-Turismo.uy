@@ -22,16 +22,6 @@ public class DTSalida{
 		this.setLugarDTSalida(lugarDTSalida);
 		this.setFigura(null);
 	}
-	
-	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, int hora, String lugarDTSalida, Image figura) {
-		this.setNombre(nombre);
-		this.setMaxTuristas(maxTuristas);
-		this.setAlta(alta);
-		this.setFechaDTSalida(fechaDTSalida);
-		this.setHora(hora);
-		this.setLugarDTSalida(lugarDTSalida);
-		this.setFigura(figura);
-	}
 
 	public String getNombre() {
 		return nombre;

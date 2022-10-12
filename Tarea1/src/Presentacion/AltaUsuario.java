@@ -7,17 +7,27 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
 
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
+import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -29,6 +39,7 @@ import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 
 public class AltaUsuario extends JInternalFrame{
 
@@ -49,10 +60,18 @@ public class AltaUsuario extends JInternalFrame{
 	private String nickname;
 	private String apellido;
 	private String correo;
+	private String contrasena;
 	private GregorianCalendar fecha;
 	private String nacionalidad;
 	private String link;
 	private String descripcion;
+	private JPasswordField contrasenaField;
+	private JButton btnAbrir;
+	private JButton btnBorrar;
+	private Image imagenUsr = null;
+	private JLabel txfImagen;
+
+
 	
 	public AltaUsuario(IControladorUsuario icu) {
 		contrUsers = icu;
@@ -126,11 +145,11 @@ public class AltaUsuario extends JInternalFrame{
         descripcionField.setVisible(false);
         
         JLabel linkLabel = new JLabel("Link (opcional): ");
-        linkLabel.setBounds(280, 130, 97, 14);
+        linkLabel.setBounds(19, 220, 97, 14);
         linkLabel.setVisible(false);
         
         linkField = new JTextField();
-        linkField.setBounds(387, 127, 120, 20);
+        linkField.setBounds(119, 220, 334, 23);
         linkField.setColumns(10);
         linkField.setVisible(false);
         
@@ -212,15 +231,76 @@ public class AltaUsuario extends JInternalFrame{
         getContentPane().add(proveedorButton);
         getContentPane().add(apellidoField);
         
+        btnBorrar = new JButton("Borrar");
+        btnBorrar.setBounds(341, 149, 75, 29);
+        getContentPane().add(btnBorrar);
+        
+        btnAbrir = new JButton("Abrir");
+        btnAbrir.setBounds(425, 149, 75, 29);
+        getContentPane().add(btnAbrir);
+		btnAbrir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFileChooser selector = new JFileChooser(); // esta clase se importo
+				int respuesta = selector.showOpenDialog(null); // selecciona archivo a abrir
+				if (respuesta == JFileChooser.APPROVE_OPTION) {
+					File archivo = new File(selector.getSelectedFile().getAbsolutePath()); // creo el archivo a partir de la ruta
+					String nombreArchivo = archivo.getName();
+					String extension = nombreArchivo.substring(nombreArchivo.lastIndexOf(".") + 1); // obtengo la extension del archivo y me fijo que sea una imagen
+					if (extension.equals("jpeg") || extension.equals("jpg") || extension.equals("png")) {
+						try {
+							imagenUsr = ImageIO.read(archivo); // seteo el valor de imagenAct (de clase Image) leyendo el archivo. imagenAct la voy a usar despues para crear la actividad
+							txfImagen.setText(nombreArchivo);
+							txfImagen.setIcon(new ImageIcon(imagenUsr.getScaledInstance(txfImagen.getHeight(), -1, 1))); // esto se puede hacer porque es un JLabel, por el setIcon
+							// Le paso al atributo del icono una instancia de ImageIcon que es el imagenAct pero con otro tamaño para no modificarlo
+							// Le seteo la altura del JLabel para que quede del tamaño del campo, -1 para que la altura mantenga relacion de aspecto y el ultimo campo es para flags
+						} catch (IOException e1) {
+							JOptionPane.showMessageDialog(null, e1.getMessage(), "Error al leer imagen", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Debe ingresar una imagen (formato JPG, JPEG o PNG)", "No se ingresó archivo imagen", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
+			}
+		});
+				
+		btnBorrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				imagenUsr = null; // si no hay imagen le seteamos null al valor
+				txfImagen.setText("Sin imagen");
+				txfImagen.setIcon(null); // si no hay imagen le seteamos null al valor
+			}
+		});
+        
+        JLabel contrasenaLabel = new JLabel("Contraseña: ");
+        contrasenaLabel.setBounds(280, 127, 88, 16);
+        getContentPane().add(contrasenaLabel);
+        
+        contrasenaField = new JPasswordField();
+        contrasenaField.setBounds(370, 119, 130, 26);
+        getContentPane().add(contrasenaField);
+        contrasenaField.setColumns(10);
+        
+        JLabel imagenLabel = new JLabel("Imagen: ");
+        imagenLabel.setBounds(280, 154, 61, 16);
+        getContentPane().add(imagenLabel);
+        
+        txfImagen = new JLabel("Sin imagen");
+        txfImagen.setBounds(280, 173, 120, 16);
+        getContentPane().add(txfImagen);
+       
+        
         confirmarButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		getDatosFromUser();
         		if (chequearDatos()) {
         			DTUsuario user;
         			if (esTurista) {
-        				user = new DTTurista(nickname, nombre, apellido, correo, fecha, nacionalidad);
+        				user = new DTTurista(nickname, nombre, apellido, correo, fecha, contrasena, nacionalidad);
         			}else {
-        				user = new DTProveedor(nickname, nombre, apellido, correo, fecha, descripcion, link);
+        				user = new DTProveedor(nickname, nombre, apellido, correo, fecha, contrasena, descripcion, link);
         			}
         			try {
 						contrUsers.altaUsuario(user);
@@ -250,7 +330,7 @@ public class AltaUsuario extends JInternalFrame{
 	}
 	
 	private Boolean chequearDatos() {
-		if (nombre.length()==0 || apellido.length()==0|| nickname.length()==0 || correo.length()==0) {
+		if (nombre.length()==0 || apellido.length()==0|| nickname.length()==0 || correo.length()==0 || contrasena.length()==0) {
 			return false;
 		}else {
 			if (turistaButton.isSelected()) {
@@ -269,6 +349,7 @@ public class AltaUsuario extends JInternalFrame{
 		nickname = nicknameField.getText();
 		apellido = apellidoField.getText();
 		correo = correoField.getText();
+		contrasena = contrasenaField.getText();
 		fecha =  new GregorianCalendar(datePicker.getModel().getYear(), datePicker.getModel().getMonth(), datePicker.getModel().getDay());
 		if (turistaButton.isSelected()) {
 			nacionalidad = nacionalidadField.getText();
@@ -288,6 +369,7 @@ public class AltaUsuario extends JInternalFrame{
 		nicknameField.setText("");
 		apellidoField.setText("");
 		correoField.setText("");
+		contrasenaField.setText("");
 		LocalDate date = LocalDate.now();
 		datePicker.getModel().setDate(date.getYear(), date.getMonthValue() -1, date.getDayOfMonth());
 		datePicker.getModel().setSelected(true);
@@ -297,6 +379,4 @@ public class AltaUsuario extends JInternalFrame{
 		linkField.setText("");
 		descripcionField.setText("");
 	}
-		
-	
 }
