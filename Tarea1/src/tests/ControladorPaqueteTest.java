@@ -87,9 +87,9 @@ class ControladorPaqueteTest {
 	void ingresarObtenerDatosPaqueteTest() {
 	
 		try {
-			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10));
-			icp.ingresarDatosPaquete("Disfrutar", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10));
-			icp.ingresarDatosPaquete("Un día en Colonia", "Paseos por el casco histórico y se puede terminar con Almuerzo en la Plaza de Toros", 45, 15, new GregorianCalendar(2022, 7, 1));
+			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null);
+			icp.ingresarDatosPaquete("Disfrutar", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null);
+			icp.ingresarDatosPaquete("Un día en Colonia", "Paseos por el casco histórico y se puede terminar con Almuerzo en la Plaza de Toros", 45, 15, new GregorianCalendar(2022, 7, 1), null);
 		}
 		catch(paqueteYaExisteException ep) {
 			JOptionPane.showMessageDialog(null, ep.getMessage(), "Paquete ya existe", JOptionPane.ERROR_MESSAGE);
@@ -114,7 +114,7 @@ class ControladorPaqueteTest {
 		catch(paqueteNoExisteException ep) {
 			JOptionPane.showMessageDialog(null, ep.getMessage(), "Paquete no existe", JOptionPane.ERROR_MESSAGE);
 		}
-		assertThrows(paqueteYaExisteException.class, () -> {icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10)); });
+		assertThrows(paqueteYaExisteException.class, () -> {icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null); });
 	}
 		
 	/* @Test

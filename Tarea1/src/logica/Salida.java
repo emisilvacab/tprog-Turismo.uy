@@ -28,6 +28,7 @@ public class Salida{
 		this.setLugarSalida(lugarSalida);
 		this.setActividad(actividad);
 		this.setInscripciones(new Vector<Inscripcion>());
+		this.setFigura(null);
 	}
 
 	public String getNombre() {

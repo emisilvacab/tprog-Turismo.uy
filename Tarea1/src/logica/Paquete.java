@@ -28,6 +28,7 @@ public class Paquete {
 		this.setDescuento (descuento);
 		this.setActividades (new HashMap<String, Actividad>());
 		this.setFechaAlta(fechaAlta);
+		this.setFigura(null);
 	}
 
 	public GregorianCalendar getFechaAlta() {

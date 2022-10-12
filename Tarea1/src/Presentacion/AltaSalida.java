@@ -16,6 +16,8 @@ import logica.datatypes.DTActividad;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JButton;
+
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -188,8 +190,9 @@ public class AltaSalida extends JInternalFrame{
 						String nombreAct = (String) listaAct.getSelectedItem();
 						GregorianCalendar fechaSalida = new GregorianCalendar(datePicker.getModel().getYear(), datePicker.getModel().getMonth(), datePicker.getModel().getDay());						
 						GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
+						Image imageAct = null;
 						
-						boolean existeSalida = icd.ingresarDatosSalida(nombreSalida, cantTuristas, fechaActual, fechaSalida, horaSalida, lugarSalida, nombreDep, nombreAct);
+						boolean existeSalida = icd.ingresarDatosSalida(nombreSalida, cantTuristas, fechaActual, fechaSalida, horaSalida, lugarSalida, nombreDep, nombreAct, imageAct);
 					
 						if (existeSalida) {
 							JOptionPane.showMessageDialog(null, "Ya existe una salida con el mismo nombre reingrese los datos.", "Ya existe", JOptionPane.ERROR_MESSAGE);

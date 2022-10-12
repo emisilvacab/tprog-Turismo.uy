@@ -1,16 +1,18 @@
 package logica.datatypes;
 
 
+import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 public class DTPaquete {
 	
-	public String nombre;
-	public String descripcion;
-	public int validez;
-	public float descuento;
-	public GregorianCalendar fechaAlta;
+	private String nombre;
+	private String descripcion;
+	private int validez;
+	private float descuento;
+	private GregorianCalendar fechaAlta;
+	private Image figura;
 	
 	public DTPaquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) {
 		this.setNombre(nombre);
@@ -18,6 +20,15 @@ public class DTPaquete {
 		this.setValidez (validez);
 		this.setDescuento (descuento);
 		this.setFechaAlta(fechaAlta);
+		this.setFigura(null);
+	}
+
+	public Image getFigura() {
+		return figura;
+	}
+
+	public void setFigura(Image figura) {
+		this.figura = figura;
 	}
 
 	public GregorianCalendar getFechaAlta() {

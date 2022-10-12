@@ -1,5 +1,6 @@
 package logica.controladores;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -115,7 +116,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return encontro;
 	}
 	
-	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct) throws excepciones.departamentoNoExisteException, actividadNoExisteException{
+	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct, Image figura) throws excepciones.departamentoNoExisteException, actividadNoExisteException{
 		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		ManejadorSalida mSals = ManejadorSalida.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
@@ -127,6 +128,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		Salida sal = mSals.getSalida(nombre);
 		if (sal == null) {
 			Salida nueva = new Salida(nombre, maxTuristas, fechaAlta, fechaSalida, horaSalida, lugarSalida, act);
+			nueva.setFigura(figura);
 			act.addSalida(nueva);
 			ManejadorSalida msal = ManejadorSalida.getInstance();
 			msal.addSalida(nueva);

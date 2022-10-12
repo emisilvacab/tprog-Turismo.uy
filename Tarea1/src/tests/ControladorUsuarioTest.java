@@ -79,8 +79,8 @@ class ControladorUsuarioTest {
 		}
 		
 		try {
-			icd.ingresarDatosSalida("Juegos", 6, new GregorianCalendar(2015,10,2),new GregorianCalendar(2022,11,8), 15,"Playa Ramirez", "Montevideo", "Paseo por Parque Rodo");
-			icd.ingresarDatosSalida("Juegos_vencida",6, new GregorianCalendar(2015,10,2), new GregorianCalendar(2021,8,13), 15, "Playa Ramirez", "Montevideo", "Paseo por Parque Rodo");
+			icd.ingresarDatosSalida("Juegos", 6, new GregorianCalendar(2015,10,2),new GregorianCalendar(2022,11,8), 15,"Playa Ramirez", "Montevideo", "Paseo por Parque Rodo", null);
+			icd.ingresarDatosSalida("Juegos_vencida",6, new GregorianCalendar(2015,10,2), new GregorianCalendar(2021,8,13), 15, "Playa Ramirez", "Montevideo", "Paseo por Parque Rodo", null);
 		}
 		catch(departamentoNoExisteException e) {
 			fail(e.getMessage());

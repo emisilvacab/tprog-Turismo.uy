@@ -136,7 +136,7 @@ class ControladorDepartamentoTest {
 		try {
 			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
 			try {
-				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas");
+				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas", null);
 				
 			} catch (actividadNoExisteException e) {
 				e.printStackTrace();
@@ -150,8 +150,8 @@ class ControladorDepartamentoTest {
 		} catch (actividadNoExisteException e) {
 			e.printStackTrace();
 		}
-		assertThrows(actividadNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "No actividad");});
-		assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "No", "Caza de brujas");});
+		assertThrows(actividadNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "No actividad", null);});
+		assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "No", "Caza de brujas", null);});
 	}
 	
 	@Test
@@ -161,7 +161,7 @@ class ControladorDepartamentoTest {
 		try {
 			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
 			try {
-				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas");
+				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas", null);
 			} catch (actividadNoExisteException e) {
 				e.printStackTrace();
 			}

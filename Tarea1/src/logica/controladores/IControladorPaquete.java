@@ -1,5 +1,6 @@
 package logica.controladores;
 
+import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 
@@ -16,7 +17,7 @@ public interface IControladorPaquete {
 	
 	public abstract void agregarActividadPaquete(String nombreDpto, String nombrePaq, String nombreAct) throws paqueteNoExisteException, departamentoNoExisteException, actividadNoExisteException;
 
-	public abstract void ingresarDatosPaquete(String nombrePaq, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) throws paqueteYaExisteException;
+	public abstract void ingresarDatosPaquete(String nombrePaq, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, Image figura) throws paqueteYaExisteException;
 	
 	public abstract DTPaquete obtenerDatosPaquete(String nombrePaq) throws paqueteNoExisteException;
 	
