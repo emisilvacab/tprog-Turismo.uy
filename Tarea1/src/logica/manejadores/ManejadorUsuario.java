@@ -45,6 +45,24 @@ public class ManejadorUsuario{
 	public Map<String, Turista> getTuristas(){
 			return turistas;
 	}
+
+	public Turista getTuristaPorEmail(String email) {
+		for (Turista tur: turistas.values()) {
+			if (tur.getCorreo().equals(email)) {
+				return tur;
+			}
+		}
+		return null;
+	}
+
+	public Proveedor getProveedorPorEmail(String email) {
+		for (Proveedor pro: proveedores.values()) {
+			if (pro.getCorreo().equals(email)) {
+				return pro;
+			}
+		}
+		return null;
+	}
 	
 	
 }

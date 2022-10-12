@@ -4,6 +4,10 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
+
 public class Proveedor extends Usuario{
 	
 	private String descripcion;
@@ -52,5 +56,9 @@ public class Proveedor extends Usuario{
 	
 	public void addActividad(Actividad actividad) {
 		this.actividades.put(actividad.getNombre(), actividad);
+	}
+
+	public DTUsuario getDatos() {
+		return new DTProveedor(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),descripcion,link);
 	}
 }

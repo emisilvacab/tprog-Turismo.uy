@@ -1,0 +1,94 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import ="logica.datatypes.DTUsuario"%>
+<%@ page import ="logica.datatypes.DTTurista"%>
+<%@ page import ="logica.datatypes.DTProveedor"%>
+<%@page import="java.util.Vector"%>
+
+<!-- FALTA LINKEAR BIEN CON CADA PAGINA -->
+
+<aside id="sidebar" class="sidebar">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+       <div class="accordion-item">
+	    <h2 class="accordion-header" id="headingOne">
+	      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+	        Opciones</button>
+	    </h2>
+	    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+	      	<%
+				DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
+				if (usr != null && usr.getClass().getName()=="DTProveedor") {
+	  		%>
+	        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		      <div class="accordion-body">
+		        <a class="ref" href="altaActividad.html">Alta de actividad</a>
+		      </div>
+		    </div>    
+		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		      <div class="accordion-body">
+		        <a class="ref" href="altaSalida.html">Alta de salida</a>
+		      </div>
+		    </div>
+		    <% 
+		    	} else if (usr != null && usr.getClass().getName()=="DTTurista") {  
+		    %>
+		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		      <div class="accordion-body">
+		        <a class="ref" href="inscripcionASalidaPaso1.html">Inscripción a salida</a>
+		      </div>
+		    </div>
+		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		      <div class="accordion-body">
+		        <a class="ref" href="compraPaquetePaso1.html">Compra de paquete</a>
+		      </div>
+		    </div>
+	      	<%
+	      		}
+			%>
+	        <a class="ref" href="listadoDeUsuarios.html">Usuarios registrados</a>
+	      </div>
+	    </div>
+	  </div>
+
+      <div class="accordion-item">
+	    <h2 class="accordion-header" id="headingTwo">
+	      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	        Departamentos</button>
+	    </h2>
+	    <% 
+			//Vector<String> dptos = (Vector<String>) request.getAttribute("dptos");
+			//for(String dpto: dptos){
+		%>
+	    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+	       <a class="ref" href="listarActividades.html">dpto</a>
+	      </div>
+   		</div>
+  	  	<% 
+			//}
+  	  	%>
+  	  	</div>
+  	  
+  	  <div class="accordion-item">
+	    <h2 class="accordion-header" id="headingThree">
+	      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+	        Categorías</button>
+	    </h2>
+	    <% 
+			Vector<String> cats = (Vector<String>) request.getAttribute("cats");
+	    	if(cats != null)
+				for(String cat: cats){
+		%>
+	    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+	       <a class="ref" href="listarActividades.html"><%=cat%></a>
+	      </div>
+   		</div>
+  	  	
+  	  	<% 
+			}
+  	  	%>
+      </div>
+    </div> 
+</aside>

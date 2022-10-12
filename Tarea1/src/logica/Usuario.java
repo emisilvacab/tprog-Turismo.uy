@@ -9,6 +9,7 @@ public abstract class Usuario{
 	private String apellido;
 	private String correo;
 	private GregorianCalendar nacimiento;
+	private String password;
 	
 	public Usuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento) {
 		this.setNickname(nickname);
@@ -16,6 +17,7 @@ public abstract class Usuario{
 		this.setApellido(apellido);
 		this.setCorreo(correo);
 		this.setNacimiento(nacimiento);
+		//this.setPassword(password);
 	}
 	
 	public String getNickname() {
@@ -56,5 +58,13 @@ public abstract class Usuario{
 
 	public void setNacimiento(GregorianCalendar nacimiento) {
 		this.nacimiento = nacimiento;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

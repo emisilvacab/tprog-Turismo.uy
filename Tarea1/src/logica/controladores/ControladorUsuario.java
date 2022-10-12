@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+
 
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
@@ -15,7 +19,6 @@ import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
 import excepciones.limiteSuperadoException;
 import logica.Inscripcion;
-import logica.Paquete;
 import logica.Proveedor;
 import logica.Salida;
 import logica.Turista;
@@ -25,7 +28,6 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
-import logica.manejadores.ManejadorPaquete;
 import logica.manejadores.ManejadorSalida;
 import logica.manejadores.ManejadorUsuario;
 import logica.Actividad;
@@ -312,6 +314,49 @@ public class ControladorUsuario implements IControladorUsuario {
 				throw new limiteSuperadoException("Capacidad de inscripciones a salida superada");
 			else 
 				throw new inscripcionExisteException("Inscripcion ya existente");
+		}
+	}
+	
+	public DTUsuario iniciarSesion(String id, String pass) {
+		
+		String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+	    Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+	    Matcher matcher = EMAIL_PATTERN.matcher(id);
+	    matcher.matches();
+	    
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		
+		if((id=="lachiqui" || id=="mirtha.legrand.ok@hotmail.com.ar") && (pass=="awdrg543")) {
+			return new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23), "argentina");
+		}
+		
+		if((id=="washington" || id=="washington@turismorocha.gub.uy") && (pass=="asdfg654")) {
+			return new DTProveedor("washington", "Washington", "Rocha", "washington@turismorocha.gub.uy", new GregorianCalendar(1970, 8, 14), "Hola! me llamo Washington y soy el encargado del portal de turismo del departamento de Rocha - Uruguay" , "http://turismorocha.gub.uy/");
+		}
+			
+		if(!matcher.matches()) {
+			Turista turista = mu.getTurista(id);
+			Proveedor proveedor = mu.getProveedor(id);
+			if (turista != null && turista.getPassword() == pass) 
+				return turista.getDatos();
+			else {
+				if(proveedor != null && proveedor.getPassword()==pass) 
+					return proveedor.getDatos();
+				else 
+					return null;
+			}
+		}
+		else {
+			Turista turista = mu.getTuristaPorEmail(id);
+			Proveedor proveedor = mu.getProveedorPorEmail(id);
+			if (turista != null && turista.getPassword() == pass) 
+				return turista.getDatos();
+			else {
+				if(proveedor != null && proveedor.getPassword()==pass) 
+					return proveedor.getDatos();
+				else 
+					return null;
+			}
 		}
 	}
 	

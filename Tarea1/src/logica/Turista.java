@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Vector;
 
 import logica.datatypes.DTPaquete;
+import logica.datatypes.DTTurista;
+import logica.datatypes.DTUsuario;
 import logica.manejadores.ManejadorSalida;
 
 public class Turista extends Usuario{
@@ -82,6 +84,10 @@ public class Turista extends Usuario{
 
 	public void addCompra(Compra compra) {
 		compras.add(compra);
+	}
+
+	public DTUsuario getDatos() {
+		return new DTTurista(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),nacionalidad);
 	}
 }
 
