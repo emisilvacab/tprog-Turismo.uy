@@ -33,7 +33,7 @@ public class Principal {
 	private AltaActividad altaActividadInternalFrame;
 	private ConsultaDeActividad consultaActividadInternalFrame;
 	private AceptarORechazarActividad aceptarORechazarActividadInternalFrame;
-	
+	private AltaCategoria altaCategoriaInternalFrame;
 	
 	
 	
@@ -94,7 +94,9 @@ public class Principal {
         aceptarORechazarActividadInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(aceptarORechazarActividadInternalFrame);
         
-        
+        altaCategoriaInternalFrame = new AltaCategoria(ICD);
+        altaCategoriaInternalFrame.setVisible(false);
+        frmReservas_UY.getContentPane().add(altaCategoriaInternalFrame);
     }
     
     
@@ -232,6 +234,14 @@ public class Principal {
         
         
         menuActividades.add(menuItemAceptarORechazar);
+        
+        JMenuItem menuItemAltaCategoria = new JMenuItem("Alta de Categoria");
+        menuActividades.add(menuItemAltaCategoria);
+        menuItemAltaCategoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	altaCategoriaInternalFrame.setVisible(true);
+            }
+        });
  		
     }
     
