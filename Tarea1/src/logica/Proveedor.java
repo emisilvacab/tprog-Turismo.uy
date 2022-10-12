@@ -15,15 +15,15 @@ public class Proveedor extends Usuario{
 	
 	private Map<String, Actividad> actividades;
 	
-	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String descripcion) {
-		super(nickname, nombre, apellido, correo, nacimiento);
+	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena,String descripcion) {
+		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
 		this.setDescripcion(descripcion);
 		this.setLink(new String());
 		this.setActividades(new HashMap<String, Actividad>());
 	}
 
-	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String descripcion, String link) {
-		super(nickname, nombre, apellido, correo, nacimiento);
+	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena,String descripcion, String link) {
+		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
 		this.setDescripcion(descripcion);
 		this.setLink(link);
 		this.setActividades(new HashMap<String, Actividad>());

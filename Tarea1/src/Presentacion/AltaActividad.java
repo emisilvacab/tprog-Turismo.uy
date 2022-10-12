@@ -7,14 +7,19 @@ import logica.controladores.IControladorUsuario;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
@@ -28,13 +33,23 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
+import java.awt.Component;
+import javax.swing.JSplitPane;
+import java.awt.Insets;
+import java.awt.Dimension;
+import java.awt.Graphics;
 
 public class AltaActividad extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario iCtrlUsuario;
 	private IControladorDepartamento iCtrlDepartamento;
+	private Image imagenAct = null;
 	
 	private JTextField txfNombre;
 	private JTextField txfDescripcion;
@@ -57,9 +72,17 @@ public class AltaActividad extends JInternalFrame {
 	private JLabel lblNewLabel_1_3_3;
 	private JLabel labelCiudad;
 	private JLabel lblNewLabel_1_3_4;
-	private JLabel lblNewLabel_3;
+	private JLabel labelImagen;
 	private JButton btnAceptar;
 	private JButton btnCancelar;
+	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_6;
+	private JLabel lblNewLabel_7;
+	private JLabel lblNewLabel_2;
+	private JSplitPane splitPane;
+	private JButton btnAbrir;
+	private JButton btnBorrar;
+	private JLabel txfImagen;
 	
 	public AltaActividad(IControladorDepartamento IConD, IControladorUsuario IConU) {
 		
@@ -71,8 +94,8 @@ public class AltaActividad extends JInternalFrame {
 		setResizable(true);
 		setMaximizable(true);
 		setClosable(true);
-		setBounds(0,0,500,350);
-		getContentPane().setLayout(new GridLayout(8, 3, 3, 15));
+		setBounds(0,0,499,421);
+		getContentPane().setLayout(new GridLayout(10, 3, 3, 15));
 		
 	    addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -158,8 +181,9 @@ public class AltaActividad extends JInternalFrame {
 		lblNewLabel_1_3_4 = new JLabel("");
 		getContentPane().add(lblNewLabel_1_3_4);
 		
-		lblNewLabel_3 = new JLabel("");
-		getContentPane().add(lblNewLabel_3);
+		labelImagen = new JLabel("Imagen:");
+		labelImagen.setHorizontalAlignment(SwingConstants.RIGHT);
+		getContentPane().add(labelImagen);
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
@@ -197,6 +221,68 @@ public class AltaActividad extends JInternalFrame {
 				}
 			}
 		});
+		
+		txfImagen = new JLabel("Sin imagen");
+		txfImagen.setIcon(null);
+		getContentPane().add(txfImagen);
+		
+		splitPane = new JSplitPane();
+		getContentPane().add(splitPane);
+		
+		btnAbrir = new JButton("Abrir");
+		btnAbrir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFileChooser selector = new JFileChooser(); // esta clase se importo
+				int respuesta = selector.showOpenDialog(null); // selecciona archivo a abrir
+				if (respuesta == JFileChooser.APPROVE_OPTION) {
+					File archivo = new File(selector.getSelectedFile().getAbsolutePath()); // creo el archivo a partir de la ruta
+					String nombreArchivo = archivo.getName();
+					String extension = nombreArchivo.substring(nombreArchivo.lastIndexOf(".") + 1); // obtengo la extension del archivo y me fijo que sea una imagen
+					if (extension.equals("jpeg") || extension.equals("jpg") || extension.equals("png")) {
+						try {
+							imagenAct = ImageIO.read(archivo); // seteo el valor de imagenAct (de clase Image) leyendo el archivo. imagenAct la voy a usar despues para crear la actividad
+							txfImagen.setText(nombreArchivo);
+							txfImagen.setIcon(new ImageIcon(imagenAct.getScaledInstance(txfImagen.getHeight(), -1, 1))); // esto se puede hacer porque es un JLabel, por el setIcon
+							// Le paso al atributo del icono una instancia de ImageIcon que es el imagenAct pero con otro tamaño para no modificarlo
+							// Le seteo la altura del JLabel para que quede del tamaño del campo, -1 para que la altura mantenga relacion de aspecto y el ultimo campo es para flags
+						} catch (IOException e1) {
+							JOptionPane.showMessageDialog(null, e1.getMessage(), "Error al leer imagen", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Debe ingresar una imagen (formato JPG, JPEG o PNG)", "No se ingresó archivo imagen", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
+			}
+		});
+		
+		btnAbrir.setMinimumSize(new Dimension(70, 23));
+		splitPane.setLeftComponent(btnAbrir);
+		
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				imagenAct = null; // si no hay imagen le seteamos null al valor
+				txfImagen.setText("Sin imagen");
+				txfImagen.setIcon(null); // si no hay imagen le seteamos null al valor
+			}
+		});
+		btnBorrar.setMinimumSize(new Dimension(61, 23));
+		splitPane.setRightComponent(btnBorrar);
+		
+		lblNewLabel_2 = new JLabel("");
+		getContentPane().add(lblNewLabel_2);
+		
+		lblNewLabel_5 = new JLabel("");
+		getContentPane().add(lblNewLabel_5);
+		
+		lblNewLabel_6 = new JLabel("");
+		getContentPane().add(lblNewLabel_6);
+		
+		lblNewLabel_7 = new JLabel("");
+		getContentPane().add(lblNewLabel_7);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");

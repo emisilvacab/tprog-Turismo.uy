@@ -18,8 +18,8 @@ public class Turista extends Usuario{
 	private Vector<Compra> compras;
 	
 	
-	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String nacionalidad) {
-		super(nickname, nombre, apellido, correo, nacimiento);
+	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena,String nacionalidad) {
+		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
 		this.setNacionalidad(nacionalidad);
 		this.setInscripciones(new Vector<Inscripcion>());
 		this.setCompras(new Vector<Compra>());
@@ -87,7 +87,7 @@ public class Turista extends Usuario{
 	}
 
 	public DTUsuario getDatos() {
-		return new DTTurista(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),nacionalidad);
+		return new DTTurista(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),this.getContrasena(),nacionalidad);
 	}
 }
 

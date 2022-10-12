@@ -1,5 +1,6 @@
 package logica.datatypes;
 
+import java.awt.Image;
 import java.util.GregorianCalendar;
 
 public class DTSalida{
@@ -10,6 +11,7 @@ public class DTSalida{
 	private GregorianCalendar fechaDTSalida;
 	private int hora;
 	private String lugarDTSalida;
+	private Image figura;
 	
 	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, int hora, String lugarDTSalida) {
 		this.setNombre(nombre);
@@ -18,10 +20,19 @@ public class DTSalida{
 		this.setFechaDTSalida(fechaDTSalida);
 		this.setHora(hora);
 		this.setLugarDTSalida(lugarDTSalida);
+		this.setFigura(null);
 	}
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public Image getFigura() {
+		return figura;
+	}
+
+	public void setFigura(Image figura) {
+		this.figura = figura;
 	}
 
 	public void setNombre(String nombre) {

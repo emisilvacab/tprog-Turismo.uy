@@ -38,5 +38,6 @@ public interface IControladorUsuario {
 	
 	public abstract void ingresarDatosInscripcionPaq(String nickname, String nombreSal,int cantidad,GregorianCalendar fecha,String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException;
 
-    
+	public abstract DTUsuario iniciarSesion(String id, String pass);
+
 }

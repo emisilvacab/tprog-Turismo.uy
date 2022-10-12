@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
@@ -13,6 +14,7 @@ public class Salida{
 	private GregorianCalendar fechaSalida;
 	private int hora;
 	private String lugarSalida;
+	private Image figura;
 	
 	private Actividad actividad;
 	private Vector<Inscripcion> inscripciones;
@@ -26,6 +28,7 @@ public class Salida{
 		this.setLugarSalida(lugarSalida);
 		this.setActividad(actividad);
 		this.setInscripciones(new Vector<Inscripcion>());
+		this.setFigura(null);
 	}
 
 	public String getNombre() {
@@ -126,6 +129,14 @@ public class Salida{
 			total += inscripciones.get(i).getCantTuristas();
 		}
 		return (maxTuristas - total);
+	}
+
+	public Image getFigura() {
+		return figura;
+	}
+
+	public void setFigura(Image figura) {
+		this.figura = figura;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.Image;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ public class Actividad{
 	private String ciudad;
 	private GregorianCalendar alta;
 	private Estado estado;
+	private Image figura;
 	
 	private Departamento departamento;
 	private Proveedor proveedor;
@@ -182,6 +184,14 @@ public class Actividad{
 
 	public void setCuponeras(Vector<Cuponera> cuponeras) {
 		this.cuponeras = cuponeras;
+	}
+
+	public Image getFigura() {
+		return figura;
+	}
+
+	public void setFigura(Image figura) {
+		this.figura = figura;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package logica.controladores;
 
+import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -46,12 +47,13 @@ public class ControladorPaquete implements IControladorPaquete {
 		act.addPaquete(paq);
 	}
 	
-	public void ingresarDatosPaquete(String nombrePaq, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) throws paqueteYaExisteException{
+	public void ingresarDatosPaquete(String nombrePaq, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, Image figura) throws paqueteYaExisteException{
 		ManejadorPaquete mp = ManejadorPaquete.getInstance();
 		Paquete existe = mp.getPaquete(nombrePaq);
 		if (existe != null)
 			throw new paqueteYaExisteException("Ya existe el paquete ingresado");
 		Paquete nuevo = new Paquete(nombrePaq, descripcion, validez, descuento, fechaAlta);
+		nuevo.setFigura(figura);
 		mp.addPaquete(nuevo);
 	}
 	

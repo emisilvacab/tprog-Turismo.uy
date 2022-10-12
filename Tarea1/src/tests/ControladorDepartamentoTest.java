@@ -38,11 +38,11 @@ class ControladorDepartamentoTest {
 		Fabrica fabrica = Fabrica.getInstance();
 		icu = fabrica.getIControladorUsuario();
 		icd = fabrica.getIControladorDepartamento();
-		userProveedor1 = new DTProveedor("artaud123", "Luis", "Spinetta", "muchacha@gmail.com", new GregorianCalendar(2001,6,5), "Argentino");
-		userProveedor2 = new DTProveedor("elPadrino", "Marlon", "Brando", "marBra@gmail.com", new GregorianCalendar(2001,6,5), "Italiana");
-		userProveedor3 = new DTProveedor("balonDeOro", "Lionel", "Messi", "lio@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-		userProveedor4 = new DTProveedor("bocanada1999", "Gustavo", "Cerati", "dietetico@gmail.com", new GregorianCalendar(2001,6,5), "Uruguaya");
-		userProveedor5 = new DTProveedor("gardelito", "Carlos", "Gardel", "porunacabeza@gmail.com", new GregorianCalendar(2001,6,5), "Desconocida");
+		userProveedor1 = new DTProveedor("artaud123", "Luis", "Spinetta", "muchacha@gmail.com", new GregorianCalendar(2001,6,5), "12345", "Argentino");
+		userProveedor2 = new DTProveedor("elPadrino", "Marlon", "Brando", "marBra@gmail.com", new GregorianCalendar(2001,6,5), "12345", "Italiana");
+		userProveedor3 = new DTProveedor("balonDeOro", "Lionel", "Messi", "lio@gmail.com", new GregorianCalendar(2001,6,5), "12345", "Uruguaya");
+		userProveedor4 = new DTProveedor("bocanada1999", "Gustavo", "Cerati", "dietetico@gmail.com", new GregorianCalendar(2001,6,5), "12345", "Uruguaya");
+		userProveedor5 = new DTProveedor("gardelito", "Carlos", "Gardel", "porunacabeza@gmail.com", new GregorianCalendar(2001,6,5), "12345", "Desconocida");
 	}
 	
 	@Test
@@ -136,7 +136,7 @@ class ControladorDepartamentoTest {
 		try {
 			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
 			try {
-				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas");
+				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas", null);
 				
 			} catch (actividadNoExisteException e) {
 				e.printStackTrace();
@@ -150,8 +150,8 @@ class ControladorDepartamentoTest {
 		} catch (actividadNoExisteException e) {
 			e.printStackTrace();
 		}
-		assertThrows(actividadNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "No actividad");});
-		assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "No", "Caza de brujas");});
+		assertThrows(actividadNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "No actividad", null);});
+		assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "No", "Caza de brujas", null);});
 	}
 	
 	@Test
@@ -161,7 +161,7 @@ class ControladorDepartamentoTest {
 		try {
 			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
 			try {
-				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas");
+				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas", null);
 			} catch (actividadNoExisteException e) {
 				e.printStackTrace();
 			}

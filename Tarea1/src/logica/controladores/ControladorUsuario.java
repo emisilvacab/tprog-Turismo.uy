@@ -67,10 +67,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		}else {
 			if (user.getClass() == Turista.class) {
 				Turista tur = (Turista)user;
-				return new DTTurista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), tur.getNacionalidad());
+				return new DTTurista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena() ,tur.getNacionalidad());
 			}else {
 				Proveedor prov = (Proveedor)user;
-				return new DTProveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), prov.getDescripcion(), prov.getLink());
+				return new DTProveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(),prov.getDescripcion(), prov.getLink());
 			}
 	
 		}
@@ -118,10 +118,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		}else {
 			if (user.getClass() == DTTurista.class) {
 				DTTurista dttur = (DTTurista)user;
-				mu.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), dttur.getNacionalidad()));
+				mu.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), dttur.getNacionalidad()));
 			}else {
 				DTProveedor dtprov = (DTProveedor)user;
-				mu.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), dtprov.getDescripcion(), dtprov.getLink()));
+				mu.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena() ,dtprov.getDescripcion(), dtprov.getLink()));
 				
 			}
 		}
@@ -327,20 +327,20 @@ public class ControladorUsuario implements IControladorUsuario {
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		
 		if((id=="lachiqui" || id=="mirtha.legrand.ok@hotmail.com.ar") && (pass=="awdrg543")) {
-			return new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23), "argentina");
+			return new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23),"awdrg543", "argentina");
 		}
 		
 		if((id=="washington" || id=="washington@turismorocha.gub.uy") && (pass=="asdfg654")) {
-			return new DTProveedor("washington", "Washington", "Rocha", "washington@turismorocha.gub.uy", new GregorianCalendar(1970, 8, 14), "Hola! me llamo Washington y soy el encargado del portal de turismo del departamento de Rocha - Uruguay" , "http://turismorocha.gub.uy/");
+			return new DTProveedor("washington", "Washington", "Rocha", "washington@turismorocha.gub.uy", new GregorianCalendar(1970, 8, 14),"asdfg654", "Hola! me llamo Washington y soy el encargado del portal de turismo del departamento de Rocha - Uruguay" , "http://turismorocha.gub.uy/");
 		}
 			
 		if(!matcher.matches()) {
 			Turista turista = mu.getTurista(id);
 			Proveedor proveedor = mu.getProveedor(id);
-			if (turista != null && turista.getPassword() == pass) 
+			if (turista != null && turista.getContrasena() == pass) 
 				return turista.getDatos();
 			else {
-				if(proveedor != null && proveedor.getPassword()==pass) 
+				if(proveedor != null && proveedor.getContrasena()==pass) 
 					return proveedor.getDatos();
 				else 
 					return null;
@@ -349,10 +349,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		else {
 			Turista turista = mu.getTuristaPorEmail(id);
 			Proveedor proveedor = mu.getProveedorPorEmail(id);
-			if (turista != null && turista.getPassword() == pass) 
+			if (turista != null && turista.getContrasena() == pass) 
 				return turista.getDatos();
 			else {
-				if(proveedor != null && proveedor.getPassword()==pass) 
+				if(proveedor != null && proveedor.getContrasena()==pass) 
 					return proveedor.getDatos();
 				else 
 					return null;

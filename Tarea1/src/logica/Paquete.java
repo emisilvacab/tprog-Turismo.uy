@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Vector;
@@ -13,6 +14,7 @@ public class Paquete {
 	private int validez;
 	private float descuento;
 	private GregorianCalendar fechaAlta;
+	private Image figura;
 	
 	private HashMap<String,Actividad> actividades;
 	private HashMap<String,Categoria> categorias;
@@ -26,6 +28,7 @@ public class Paquete {
 		this.setDescuento (descuento);
 		this.setActividades (new HashMap<String, Actividad>());
 		this.setFechaAlta(fechaAlta);
+		this.setFigura(null);
 	}
 
 	public GregorianCalendar getFechaAlta() {
@@ -102,6 +105,14 @@ public class Paquete {
 
 	public void addCompra(Compra compra) {
 		compras.add(compra);
+	}
+
+	public Image getFigura() {
+		return figura;
+	}
+
+	public void setFigura(Image figura) {
+		this.figura = figura;
 	}
 
 }
