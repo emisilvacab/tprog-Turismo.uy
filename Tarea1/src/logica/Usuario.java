@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.Image;
 import java.util.GregorianCalendar;
 
 public abstract class Usuario{
@@ -9,6 +10,7 @@ public abstract class Usuario{
 	private String apellido;
 	private String correo;
 	private GregorianCalendar nacimiento;
+	private Image figura;
 	
 	public Usuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento) {
 		this.setNickname(nickname);
@@ -56,5 +58,13 @@ public abstract class Usuario{
 
 	public void setNacimiento(GregorianCalendar nacimiento) {
 		this.nacimiento = nacimiento;
+	}
+
+	public Image getFigura() {
+		return figura;
+	}
+
+	public void setFigura(Image figura) {
+		this.figura = figura;
 	}
 }
