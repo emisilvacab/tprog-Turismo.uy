@@ -21,7 +21,7 @@
 	  		%>
 	        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
-		        <a class="ref" href="altaActividad.html">Alta de actividad</a>
+		        <a class="ref" href="/Tarea2/altaActividad">Alta de actividad</a>
 		      </div>
 		    </div>    
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
