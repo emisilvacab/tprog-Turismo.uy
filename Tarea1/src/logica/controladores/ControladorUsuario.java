@@ -337,10 +337,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		if(!matcher.matches()) {
 			Turista turista = mu.getTurista(id);
 			Proveedor proveedor = mu.getProveedor(id);
-			if (turista != null && turista.getContrasena() == pass) 
+			if (turista != null && turista.getContrasena().equals(pass)) 
 				return turista.getDatos();
 			else {
-				if(proveedor != null && proveedor.getContrasena()==pass) 
+				if(proveedor != null && proveedor.getContrasena().equals(pass)) 
 					return proveedor.getDatos();
 				else 
 					return null;
@@ -349,10 +349,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		else {
 			Turista turista = mu.getTuristaPorEmail(id);
 			Proveedor proveedor = mu.getProveedorPorEmail(id);
-			if (turista != null && turista.getContrasena() == pass) 
+			if (turista != null && turista.getContrasena().equals(pass)) 
 				return turista.getDatos();
 			else {
-				if(proveedor != null && proveedor.getContrasena()==pass) 
+				if(proveedor != null && proveedor.getContrasena().equals(pass)) 
 					return proveedor.getDatos();
 				else 
 					return null;

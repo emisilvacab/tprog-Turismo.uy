@@ -13,19 +13,6 @@
 	<jsp:include page="/template/header.jsp"/>
 	<jsp:include page="/template/aside-bar.jsp"/>
 	
-	<%
-		EstadoSesion estado = (EstadoSesion) session.getAttribute("estado_sesion");
-		if (estado != null && estado == EstadoSesion.LOGIN_INCORRECTO) {
-			session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
-		
-	%>
-	<script type="text/javascript">
-		alert("Datos de usuario inválido");	
-	</script>
-	<%
-		}
-	%>
-	
 	<section id="section-middle" class="section">
 		<h1 class="headerAltaActSal" id="section-header-middle">Inicio de Sesión</h1>		
 	
@@ -36,6 +23,17 @@
 			
 			<label class="lbltxt">Contraseña:</label><br>
 			<input class="inputbox" id="password" type="password" name="password"><br>
+			
+			<%
+				EstadoSesion estado = (EstadoSesion) session.getAttribute("estado_sesion");
+				if (estado != null && estado == EstadoSesion.LOGIN_INCORRECTO) {
+					session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
+				
+			%>
+			<p style="color:#FF0000">Los datos ingresados son inválidos. Por favor inténtelo de nuevo.</p>
+			<%
+				}
+			%>
 						
 			<input class="btn btn-outline-dark" id="btnAceptar" type="submit" value="Aceptar">
 			
