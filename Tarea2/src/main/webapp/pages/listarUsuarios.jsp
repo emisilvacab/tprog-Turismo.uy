@@ -29,15 +29,17 @@
 			<%
 				HashSet<DTUsuario> listaUsuarios = (HashSet<DTUsuario>) request.getAttribute("usuarios");
 				for (DTUsuario usuario: listaUsuarios) {
+					String nick = usuario.getNickname();
 			%>
 	
 			<div id="usuario-card" class="card" style="width: 18rem;">
   				<img id="card-img-usuario" src="https://pbs.twimg.com/media/EOHAP9zWoAsnkiM?format=jpg&name=small" class="card-img-top" alt="...">
   				<div class="card-body" id="card-body-paquete">
-    				<h3 class="card-title"><%=usuario.getNickname()%></h3>
+
+    				<h3 class="card-title"><%=nick%></h3>
     				<p class="card-text"><%=usuario.getApellido()%>, <%=usuario.getNombre()%></p>
         			<p class="card-text"><small class="text-muted"><%=usuario.getCorreo()%></small></p>
-    				<a href="detalleDeUsuarioTurista.html" class="stretched-link"></a>
+    				<a href="DetalleUsuario?usuarioDetalleNickname=<%=nick%>" class="stretched-link"></a>
     			
   				</div>  						
 			</div>

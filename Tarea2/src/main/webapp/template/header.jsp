@@ -44,7 +44,7 @@
 		  	<%=usr.getNickname()%>
 			</button>
 			<ul class="dropdown-menu dropdown-menu-dark">
-				<li><a class="dropdown-item" href="detalleDeUsuarioProveedor_proveedor.html">Ver mi perfil</a></li>
+				<li><a class="dropdown-item" href="DetalleUsuario?usuarioDetalleNickname=<%=usr.getNickname()%>">Ver mi perfil</a></li>
 				<li><hr class="dropdown-divider"></li>
 			 	<li><a class="dropdown-item" onClick="cerrarSesion()" href="/Tarea2/log">Cerrar sesión</a></li>
 			</ul>
