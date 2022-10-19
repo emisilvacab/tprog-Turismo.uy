@@ -121,16 +121,13 @@ public class InscripcionASalida extends JInternalFrame {
 				try {
 					if(listaActs.getSelectedItem() != null) {
 						listaSals.removeAllItems();
-						HashSet<DTSalida> sals = icd.obtenerDatosSalidasVigentesDpto((String) listaActs.getSelectedItem(),(String) listaDptos.getSelectedItem());
+						HashSet<DTSalida> sals = icd.obtenerDatosSalidasVigentes((String) listaActs.getSelectedItem());
 						for (DTSalida s : sals)
 							listaSals.addItem(s.getNombre() + " (desde: " + s.getLugarDTSalida() + ") " + s.getFechaDTSalida().get(Calendar.DAY_OF_MONTH) + "/" + (s.getFechaDTSalida().get(Calendar.MONTH)+1) + "/" + s.getFechaDTSalida().get(Calendar.YEAR));
 					}
 				}
 				catch (actividadNoExisteException e2) {	
 					JOptionPane.showMessageDialog(null, e2.getMessage(), "La actividad seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
-				}
-				catch (departamentoNoExisteException e1) {
-					JOptionPane.showMessageDialog(null, e1.getMessage(), "El departamento seleccionado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

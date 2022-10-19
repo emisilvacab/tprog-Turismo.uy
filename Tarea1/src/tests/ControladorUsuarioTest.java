@@ -219,7 +219,7 @@ class ControladorUsuarioTest {
 		
 		//testeo de si se devuelve unicamente la salida vigente
 		try {
-			HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentesDpto("Paseo por Parque Rodo", "Montevideo");
+			HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentes("Paseo por Parque Rodo");
 			for (DTSalida s : salidasVigentes) {
 				assertEquals(s.getNombre(),"Juegos");
 				assertEquals(s.getMaxTuristas(),6);
@@ -229,22 +229,15 @@ class ControladorUsuarioTest {
 				assertEquals(s.getLugarDTSalida(),"Playa Ramirez");
 			}
 		}
-		catch (departamentoNoExisteException e) {
-			fail(e.getMessage());
-			e.printStackTrace();
-		}
 		catch (actividadNoExisteException e) {
 			fail(e.getMessage());
 			e.printStackTrace();
 		}
 	
 		
-		//testeo de si se devuelven excepciones en obtenerDatosSalidasVigentesDpto
+		//testeo de si se devuelven excepciones en obtenerDatosSalidasVigentes
 		//actividad erronea
-		assertThrows(actividadNoExisteException.class, ()->{HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentesDpto("Bus turistico", "Montevideo");});
-		
-		//departamento erroneo
-		assertThrows(departamentoNoExisteException.class, ()->{HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentesDpto("Paseo por Parque Rodo", "Canelones");});
+		assertThrows(actividadNoExisteException.class, ()->{HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentes("Bus turistico");});
 		
 		
 		//TESTEO DE ingresarDatosInscripcion

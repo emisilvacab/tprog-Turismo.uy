@@ -70,19 +70,14 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return res;
 	}
 	
-	public HashSet<DTSalida> obtenerDatosSalidasVigentesDpto(String nombreAct, String nombreDpto) throws departamentoNoExisteException, actividadNoExisteException {
+	public HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
 		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
-		Departamento dpto = mDptos.getDepartamento(nombreDpto);
-		if (dpto == null) 
-			throw new departamentoNoExisteException("No se encontró un departamento con el nombre ingresado");
-		HashSet<DTSalida> res;
-		try {
-			res = dpto.obtenerDatosSalidasVigentes(nombreAct);
+		HashMap<String, Departamento> dptos = mDptos.getDepartamentos();
+		for (Departamento dpto : dptos.values()) {
+			if (dpto.getActividades().get(nombreAct) != null)
+				return dpto.getActividades().get(nombreAct).obtenerSalidasVigentes();
 		}
-		catch(actividadNoExisteException e1){
-			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");	
-		}
-		return res;
+		throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");
 	}
 	
 	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep) throws excepciones.proveedorNoExisteException, departamentoNoExisteException {
@@ -237,21 +232,6 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		HashSet<DTActividad> res = new HashSet<DTActividad>();
 		for (Actividad act : actsConfi) {
 			res.add(act.getDatos());
-		}
-		return res;
-	}
-	
-	public HashSet<DTSalida> obtenerDatosSalidasVigentesCat(String nombreAct, String nombreCat) throws categoriaNoExisteException, actividadNoExisteException {
-		ManejadorDepartamentoCategoria mCat = ManejadorDepartamentoCategoria.getInstance();
-		Categoria cat = mCat.getCategoria(nombreCat);
-		if (cat == null)
-			throw new categoriaNoExisteException("Categoria no encontrada");
-		HashSet<DTSalida> res;
-		try {
-			res = cat.obtenerDatosSalidasVigentes(nombreAct);
-		}
-		catch(actividadNoExisteException e1){
-			throw new actividadNoExisteException("Actividad no encontrada");	
 		}
 		return res;
 	}

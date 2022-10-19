@@ -34,7 +34,7 @@
 		    %>
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
-		        <a class="ref" href="inscripcionASalidaPaso1.html">Inscripción a salida</a>
+		        <a class="ref" href="/Tarea2/inscribir?cambio=iniciar">Inscripción a salida</a>
 		      </div>
 		    </div>
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
