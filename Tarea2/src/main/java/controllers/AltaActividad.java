@@ -3,6 +3,8 @@ package controllers;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,7 +58,8 @@ public class AltaActividad extends HttpServlet {
     	String nicknameProv = "";//Sacar el nickname del proveedor que tiene la sesion inciada
     	
     	try {
-			boolean existe = cd.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), fechaAct, nicknameProv, request.getParameter("depAct"));
+			HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
+			boolean existe = cd.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), fechaAct, nicknameProv, request.getParameter("depAct"), categorias);
 			if (existe) {
 				//Tirar excepcion de que ya existe actividad
 			}

@@ -47,6 +47,8 @@ class ControladorDepartamentoTest {
 	
 	@Test
 	void testAltaActividad() {
+		HashSet<String> categorias = new HashSet<String>();//HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
+
 		icd.ingresarDepartamento("Montevideo","Capital de Uruguay", "mvdeo.com.uy");
 		icd.ingresarDepartamento("Maldonado","Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
 		icd.ingresarDepartamento("Canelones","Segundo departamento mas poblado", "can.com.uy");
@@ -95,12 +97,12 @@ class ControladorDepartamentoTest {
 		}
 		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		boolean ingresado;
-		try {
-			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
+		try {			
+			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado", categorias);
 			assertEquals(ingresado, false);
-			assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "CABA");});
-			assertThrows(proveedorNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "sinProv", "Maldonado");});
-			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "Maldonado");
+			assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "CABA", categorias);});
+			assertThrows(proveedorNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "sinProv", "Maldonado", categorias);});
+			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "Maldonado", categorias);
 			assertEquals(ingresado, true);
 		
 		} catch (proveedorNoExisteException | departamentoNoExisteException e) {
@@ -131,10 +133,12 @@ class ControladorDepartamentoTest {
 	}
 	@Test
 	void testobtenerDatosSalidasParaActividad() {
+		HashSet<String> categorias = new HashSet<String>();//HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
+
 		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		icd.ingresarDepartamento("Maldonado","Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
 		try {
-			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
+			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado", categorias);
 			try {
 				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas", null);
 				
@@ -156,10 +160,12 @@ class ControladorDepartamentoTest {
 	
 	@Test
 	void testobtenerlugaresDisponibles() {
+		HashSet<String> categorias = new HashSet<String>();//HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
+
 		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		icd.ingresarDepartamento("Maldonado","Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
 		try {
-			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado");
+			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado", categorias);
 			try {
 				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas", null);
 			} catch (actividadNoExisteException e) {
