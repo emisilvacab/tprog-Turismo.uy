@@ -8,11 +8,6 @@ function validarAltaActividad(){
 		alert('Ingrese un nombre para la actividad');
     	return false;
 	}
-	/*se va a cambiar cuando sea dinamico*/
-    else if(document.getElementById('nombreAct').value == "Degusta" || document.getElementById('nombreAct').value == "Teatro con Sabores"){
-		alert('Ya existe una actividad con ese nombre');
-    	return false;
-	}
     else if(document.getElementById('descripcionAct').value.length == 0 ){
 		alert('Ingrese una descripción');
     	return false;

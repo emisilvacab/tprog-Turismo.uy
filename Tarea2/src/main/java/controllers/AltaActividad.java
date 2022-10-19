@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
@@ -21,7 +22,7 @@ import logica.controladores.IControladorUsuario;
 /**
  * Servlet implementation class AltaActividad
  */
-@WebServlet("/AltaActividad")
+@WebServlet("/altaActividad")
 public class AltaActividad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +42,9 @@ public class AltaActividad extends HttpServlet {
 		Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
     	request.setAttribute("cats",cd.obtenerCategorias());
-		request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);	}
+    	request.setAttribute("dptos",cd.obtenerDepartamentos());
+		request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -59,10 +62,18 @@ public class AltaActividad extends HttpServlet {
     	
     	try {
 			HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
+			//String catSeleccionadas = request.getParameter("catsAct");
+			String[] cates = request.getParameterValues("catsAct");
+			System.out.println(cates[0]);
+			System.out.println(cates[1]);
+			System.out.println(cates[2]);
 			boolean existe = cd.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), fechaAct, nicknameProv, request.getParameter("depAct"), categorias);
 			if (existe) {
 				//Tirar excepcion de que ya existe actividad
+				request.setAttribute("error", "actividad-repetida");
+				request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);
 			}
+			request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);
     	} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -340,7 +340,7 @@ public class CargarDatos extends HttpServlet {
 			request.setAttribute("error", "Actividad no existe");
 		}
 		
-		try {
+		/*try {
 			icp.comprarPaquete("lachiqui", "Disfrutar Rocha", new GregorianCalendar(2022, 7, 15), 2);//costo = 2080 vencimiento = 14/10/2022
 			icp.comprarPaquete("lachiqui", "Un día en Colonia", new GregorianCalendar(2022, 7, 20), 5);//costo = 5100 vencimiento = 04/10/2022
 			
@@ -395,7 +395,7 @@ public class CargarDatos extends HttpServlet {
 		catch(limiteSuperadoException e1) {
 			request.setAttribute("error", "Límite superado");
 		}
-		
+		*/
 		request.setAttribute("dptos", icd.obtenerDepartamentos());
 		
 		request.setAttribute("cats", icd.obtenerCategorias());

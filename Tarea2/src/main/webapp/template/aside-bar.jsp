@@ -82,7 +82,7 @@
 	    	if(cats != null)
 				for(String cat: cats){
 		%>
-	    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+	    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 	      <div class="accordion-body">
 	       <a class="ref" href="listarActividades.html"><%=cat%></a>
 	      </div>

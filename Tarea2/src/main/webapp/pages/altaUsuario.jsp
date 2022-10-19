@@ -371,7 +371,7 @@
 	
 
 	
-	<script src=resources/js/validarAltaUsuario.js type="text/javascript"></script>
+	<script src=../resources/js/validarAltaUsuario.js type="text/javascript"></script>
 
 </body>
 </html>

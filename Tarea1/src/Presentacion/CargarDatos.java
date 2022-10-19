@@ -316,7 +316,7 @@ public class CargarDatos {
 		catch(actividadNoExisteException e3) {
 			JOptionPane.showMessageDialog(null, e3.getMessage(), "Actividad no existe", JOptionPane.ERROR_MESSAGE);
 		}
-		
+		/*
 		try {
 			icp.comprarPaquete("lachiqui", "Disfrutar Rocha", new GregorianCalendar(2022, 7, 15), 2);//costo = 2080 vencimiento = 14/10/2022
 			icp.comprarPaquete("lachiqui", "Un día en Colonia", new GregorianCalendar(2022, 7, 20), 5);//costo = 5100 vencimiento = 04/10/2022
@@ -373,7 +373,7 @@ public class CargarDatos {
 		catch(limiteSuperadoException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage(), "Límite superado", JOptionPane.ERROR_MESSAGE);
 		}
-		
+		*/
 		JOptionPane.showMessageDialog(null, "Datos cargados con éxito!", "Cargar datos", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
