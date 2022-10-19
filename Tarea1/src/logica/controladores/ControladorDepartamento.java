@@ -114,6 +114,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
     		for(String nomCat : categorias) {
     			Categoria cat = manDepartamento.getCategoria(nomCat);
     			cats.put(nomCat, cat);
+    			cat.addActividad(nuevaActividad);
     		}
     		nuevaActividad.setCategorias(cats);
     		depAsignado.getActividades().put(nombreAct, nuevaActividad);

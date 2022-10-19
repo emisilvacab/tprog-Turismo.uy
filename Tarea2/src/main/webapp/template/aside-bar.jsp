@@ -64,7 +64,7 @@
 		%>
 	    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 	      <div class="accordion-body">
-	       <a class="ref" href="listarActividades.html"><%=dpto%></a>
+	       <a class="ref" href="ListarActividades?tipoPedidoActividad=departamento&nombreTipoActividad=<%=dpto%>"><%=dpto%></a>
 	      </div>
    		</div>
   	  	<% 
@@ -84,7 +84,7 @@
 		%>
 	    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 	      <div class="accordion-body">
-	       <a class="ref" href="listarActividades.html"><%=cat%></a>
+	       <a class="ref" href="ListarActividades?tipoPedidoActividad=categoria&nombreTipoActividad=<%=cat%>"><%=cat%></a>
 	      </div>
    		</div>
   	  	

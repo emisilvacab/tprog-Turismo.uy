@@ -50,7 +50,7 @@ public class ListarActividades extends HttpServlet {
     	
     	String tipo = request.getParameter("tipoPedidoActividad");
     	HashSet<DTActividad> actividades = null;
-    	if (tipo == "departamento") {
+    	if (tipo.equals("departamento")) {
     		try {
 				actividades = ctrlDepartamentos.obtenerDatosActividadesConfirmadasDpto(request.getParameter("nombreTipoActividad"));
 			} catch (departamentoNoExisteException deptoNoExiste) {
@@ -59,8 +59,12 @@ public class ListarActividades extends HttpServlet {
 				//request.getRequestDispatcher("/pages/algo.jsp").forward(request, response);
 			}
     		request.setAttribute("actividades", actividades);
+    		
+    		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
+    		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());
+    		
     		request.getRequestDispatcher("/pages/listarActividades.jsp").forward(request, response);
-    	} else if (tipo == "categoria") {
+    	} else if (tipo.equals("categoria")) {
     		try {
 				actividades = ctrlDepartamentos.obtenerDatosActividadesConfirmadasCat(request.getParameter("nombreTipoActividad"));
 			} catch (categoriaNoExisteException catNoExiste) {
@@ -69,6 +73,11 @@ public class ListarActividades extends HttpServlet {
 				//request.getRequestDispatcher("/pages/algo.jsp").forward(request, response);
 			}
     		request.setAttribute("actividades", actividades);
+    		
+    		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
+    		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());
+    		
+
 			request.getRequestDispatcher("/pages/listarActividades.jsp").forward(request, response);
     	}
     }

@@ -27,7 +27,7 @@
 			<div class="col">
 				
 				<h1 class="mb-4">
-					Actividades turísticas 
+					Actividades turísticas de <%=request.getParameter("nombreTipoActividad")%>
 				</h1>
 				
 				<%
