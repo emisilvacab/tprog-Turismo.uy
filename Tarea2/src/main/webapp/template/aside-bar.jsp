@@ -47,7 +47,7 @@
 			%>
 		  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 	         <div class="accordion-body">
-	        	<a class="ref" href="listadoDeUsuarios.html">Usuarios registrados</a>
+	        	<a class="ref" href="ListarUsuarios">Usuarios registrados</a>
 	         </div>
 	      </div>
 	  </div>
