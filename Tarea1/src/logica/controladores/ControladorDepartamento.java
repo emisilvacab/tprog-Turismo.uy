@@ -80,7 +80,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");
 	}
 	
-	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep) throws excepciones.proveedorNoExisteException, departamentoNoExisteException {
+	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias) throws excepciones.proveedorNoExisteException, departamentoNoExisteException {
 		ManejadorDepartamentoCategoria manDepartamento = ManejadorDepartamentoCategoria.getInstance();
 		ManejadorUsuario manUsuario = ManejadorUsuario.getInstance();
 		
@@ -105,6 +105,13 @@ public class ControladorDepartamento implements IControladorDepartamento {
     			throw new excepciones.proveedorNoExisteException("No existe proveedor");
     		}
     		Actividad nuevaActividad = new Actividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, depAsignado, proveedor);
+    		HashMap<String, Categoria> cats = new HashMap<String, Categoria>();
+    		for(String nomCat : categorias) {
+    			Categoria cat = manDepartamento.getCategoria(nomCat);
+    			cats.put(nomCat, cat);
+    			cat.addActividad(nuevaActividad);
+    		}
+    		nuevaActividad.setCategorias(cats);
     		depAsignado.getActividades().put(nombreAct, nuevaActividad);
     		proveedor.getActividades().put(nombreAct, nuevaActividad);
     	}

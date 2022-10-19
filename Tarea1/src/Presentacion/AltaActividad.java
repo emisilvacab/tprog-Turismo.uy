@@ -199,9 +199,11 @@ public class AltaActividad extends JInternalFrame {
 						String ciudad = txfCiudad.getText();
 						String departamento = (String) comboDepartamento.getSelectedItem();
 						String proveedor = (String) comboProveedor.getSelectedItem();
-						GregorianCalendar fecha = GregorianCalendar.from(ZonedDateTime.now());				
+						GregorianCalendar fecha = GregorianCalendar.from(ZonedDateTime.now());
 						
-						boolean existeAct = iCtrlDepartamento.ingresarDatosActividad(nombre,  descripcion, duracion, costo, ciudad, fecha, proveedor, departamento);
+						//Agregar Set<String> con nombres de categorias que van a esa actividad
+						
+						boolean existeAct = iCtrlDepartamento.ingresarDatosActividad(nombre,  descripcion, duracion, costo, ciudad, fecha, proveedor, departamento, null);
 					
 						if (existeAct) {
 							JOptionPane.showMessageDialog(null, "Ya hay una actividad con el nombre "+ nombre + ". Cambie los datos para ingresar una nueva actividad.", "Actividad " + nombre + " ya existente", JOptionPane.ERROR_MESSAGE);

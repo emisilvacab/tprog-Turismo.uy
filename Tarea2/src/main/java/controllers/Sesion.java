@@ -35,6 +35,8 @@ public class Sesion extends HttpServlet {
     	
     	DTUsuario usr = cu.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password")); //operacion de iniciar sesion
     	request.setAttribute("cats",cd.obtenerCategorias());
+    	request.setAttribute("dptos",cd.obtenerDepartamentos());
+
     	if (usr==null) {
     		request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_INCORRECTO);
     		request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
@@ -64,6 +66,7 @@ public class Sesion extends HttpServlet {
 			Fabrica fact = Fabrica.getInstance();
     		IControladorDepartamento cd = fact.getIControladorDepartamento(); 
     		request.setAttribute("cats",cd.obtenerCategorias());
+        	request.setAttribute("dptos",cd.obtenerDepartamentos());
 			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response); 
 		}
 		else

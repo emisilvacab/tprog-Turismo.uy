@@ -6,7 +6,7 @@
 	<nav class="navbar">
      <div class="container-fluid">
     
-      <a class="navbar-brand" href="index.jsp">
+      <a class="navbar-brand" href="/Tarea2/Home">
         <img src="resources/img/logo.png" alt="Turismo.uy" class="logopic">
       </a>
       

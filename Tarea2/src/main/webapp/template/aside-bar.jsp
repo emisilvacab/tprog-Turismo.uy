@@ -58,16 +58,17 @@
 	        Departamentos</button>
 	    </h2>
 	    <% 
-			//Vector<String> dptos = (Vector<String>) request.getAttribute("dptos");
-			//for(String dpto: dptos){
+			Set<String> dptos = (Set<String>) request.getAttribute("dptos");
+	    	if(dptos != null)
+	    		for(String dpto: dptos){
 		%>
 	    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 	      <div class="accordion-body">
-	       <a class="ref" href="listarActividades.html">dpto</a>
+	       <a class="ref" href="ListarActividades?tipoPedidoActividad=departamento&nombreTipoActividad=<%=dpto%>"><%=dpto%></a>
 	      </div>
    		</div>
   	  	<% 
-			//}
+			}
   	  	%>
   	  	</div>
   	  
@@ -81,9 +82,9 @@
 	    	if(cats != null)
 				for(String cat: cats){
 		%>
-	    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+	    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 	      <div class="accordion-body">
-	       <a class="ref" href="listarActividades.html"><%=cat%></a>
+	       <a class="ref" href="ListarActividades?tipoPedidoActividad=categoria&nombreTipoActividad=<%=cat%>"><%=cat%></a>
 	      </div>
    		</div>
   	  	
@@ -91,5 +92,8 @@
 			}
   	  	%>
       </div>
+
+      <a  href="/Tarea2/CargarDatos" class="btn btn-primary">Cargar Datos</a>
+      
     </div> 
 </aside>

@@ -45,6 +45,8 @@ class ControladorUsuarioTest {
 	
 	@BeforeAll
 	public static void iniciar() {
+		HashSet<String> categorias = new HashSet<String>();//HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
+
 		Fabrica fabrica = Fabrica.getInstance();
 		icu = fabrica.getIControladorUsuario();
 		icd = fabrica.getIControladorDepartamento();
@@ -67,7 +69,7 @@ class ControladorUsuarioTest {
 			e.printStackTrace();
 		}
 		try {
-			icd.ingresarDatosActividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012,11,1), "wason", "Montevideo");
+			icd.ingresarDatosActividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012,11,1), "wason", "Montevideo", categorias);
 		}
 		catch(proveedorNoExisteException e) {
 			fail(e.getMessage());

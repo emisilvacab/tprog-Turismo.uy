@@ -1,4 +1,16 @@
-package Presentacion;
+package controllers;
+
+import java.io.IOException;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
@@ -12,31 +24,46 @@ import excepciones.paqueteYaExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
-
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-
-import javax.swing.JOptionPane;
-
 import logica.Estado;
+import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
+import logica.controladores.IControladorPaquete;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
 
-public class CargarDatos {
-	private IControladorUsuario icu;
-	private IControladorDepartamento icd;
-	private IControladorPaquete icp;
-	
-	//Estan todas las fechas con el mes 1 menos porque enero = 0
-	public CargarDatos(IControladorUsuario picu, IControladorDepartamento picd, IControladorPaquete picp) {
-		icd = picd;
+/**
+ * Servlet implementation class CargarDatos
+ */
+@WebServlet("/CargarDatos")
+public class CargarDatos extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CargarDatos() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    
+    private void ejecutarCargar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	Fabrica fact = Fabrica.getInstance();
+    	IControladorDepartamento icd = fact.getIControladorDepartamento();
+    	IControladorUsuario icu = fact.getIControladorUsuario();
+    	IControladorPaquete icp = fact.getIControladorPaquete();
+    	//CargarDatos cacaDatos = new CargarDatos(ctrlUsuario, ctrlDepartamentos, ctrlPaquete);
+    	/* icd = picd;
 		icu = picu;
-		icp = picp;
-		DTUsuario user;
+		icp = picp; */
+		
+    	DTUsuario user;
 		user = new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23), "awdrg543", "argentina");
 		try {
 			icu.altaUsuario(user);
@@ -94,8 +121,7 @@ public class CargarDatos {
 
 			
 		} catch (UsuarioRepetidoException e) {
-			JOptionPane.showMessageDialog( null, "Los datos ya fueron cargados previamente", "Cargar datos", JOptionPane.ERROR_MESSAGE);
-			return;
+			request.setAttribute("error", "Los datos ya fueron cargados previamente");
 		}
 		
 		
@@ -128,7 +154,7 @@ public class CargarDatos {
 			icd.ingresarDatosCategoria("Turismo Playas");
 			
 		} catch (categoriaYaExisteException e4) {
-			JOptionPane.showMessageDialog(null, e4.getMessage(),"La categoría ingresada ya está en el sistema", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "La categoría ingresada ya está en el sistema");
 		}
 		
 		try { 
@@ -195,10 +221,10 @@ public class CargarDatos {
 //			A10 tinyurl.com/y4vbc4xc
 		}
 		catch(departamentoNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "El departamento seleccionado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "El departamento seleccionado no está registrado en el sistema");
 		}
 		catch(proveedorNoExisteException e2) {
-			JOptionPane.showMessageDialog(null, e2.getMessage(), "El proveedor ingresado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "El proveedor ingresado no está registrado en el sistema");
 		}
 
 		try {
@@ -250,14 +276,11 @@ public class CargarDatos {
 
 		}
 		catch(actividadNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "La actividad seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "La actividad seleccionada no está registrada en el sistema");
 		}
 		catch(departamentoNoExisteException e2) {
-			JOptionPane.showMessageDialog(null, e2.getMessage(), "El proveedor seleccionado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "El proveedor seleccionado no está registrado en el sistema");
 		}	
-		
-		
-		
 		
 		try {
 			icu.ingresarDatosInscripcion("lachiqui","Degusta Agosto", 3, new GregorianCalendar(2022, 7, 15)); //costo 2400
@@ -277,10 +300,10 @@ public class CargarDatos {
 			
 		}
 		catch(salidaNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "La salida seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "La salida seleccionada no está registrada en el sistema");
 		}
 		catch(usuarioNoExisteException e2) {
-			JOptionPane.showMessageDialog(null, e2.getMessage(), "El usuario ingresado no está registrado en el sistema", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "El usuario ingresado no está registrado en el sistema");
 		}	
 		
 		try {
@@ -291,10 +314,10 @@ public class CargarDatos {
 //			tinyurl.com/3ppwdca4
 //			tinyurl.com/4yzrdt8b
 //			tinyurl.com/mvteyv6y
+
 		}
 		catch(paqueteYaExisteException ep) {
-			JOptionPane.showMessageDialog(null, ep.getMessage(), "Paquete ya existe", JOptionPane.ERROR_MESSAGE);
-
+			request.setAttribute("error", "Paquete ya existe");
 		}
 		
 		try {
@@ -308,16 +331,16 @@ public class CargarDatos {
 			icp.agregarActividadPaquete("Rivera", "Valle del Lunarejo", "Cabalgata en Valle del Lunarejo");
 		}
 		catch(paqueteNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Paquete no existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Paquete no existe");
 		}
 		catch(departamentoNoExisteException e2 ) {
-			JOptionPane.showMessageDialog(null, e2.getMessage(), "Departamento no existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Departamento no existe");
 		}
 		catch(actividadNoExisteException e3) {
-			JOptionPane.showMessageDialog(null, e3.getMessage(), "Actividad no existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Actividad no existe");
 		}
-		/*
-		try {
+		
+		/*try {
 			icp.comprarPaquete("lachiqui", "Disfrutar Rocha", new GregorianCalendar(2022, 7, 15), 2);//costo = 2080 vencimiento = 14/10/2022
 			icp.comprarPaquete("lachiqui", "Un día en Colonia", new GregorianCalendar(2022, 7, 20), 5);//costo = 5100 vencimiento = 04/10/2022
 			
@@ -328,15 +351,15 @@ public class CargarDatos {
 			icp.comprarPaquete("mastropiero", "Un día en Colonia", new GregorianCalendar(2022, 8, 2), 6);//costo = 6120  vencimiento = 17/10/2022
 		}
 		catch(usuarioNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Usuario no existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Usuario no existe");
 		}
 		catch(paqueteNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Paquete no existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Paquete no existe");
 		}
 		catch(compraExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Compra ya existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Compra ya existe");
 		}
-	
+				
 		try {
 			icu.ingresarDatosInscripcionPaq("lachiqui", "Degusta Noviembre", 2, new GregorianCalendar(2022, 8, 15), "Disfrutar Rocha");//costo = 1280
 			icu.ingresarDatosInscripcionPaq("lachiqui", "Teatro con Sabores 3", 2, new GregorianCalendar(2022, 8, 15), "Disfrutar Rocha");//costo = 800
@@ -358,25 +381,38 @@ public class CargarDatos {
 			
 		}
 		catch(salidaNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Salida no existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Salida no existe");
 		}
 		catch(usuarioNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Usuario no existe", JOptionPane.ERROR_MESSAGE);
-
+			request.setAttribute("error", "Usuario no existe");
 		}
 		catch(paqueteNoExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Paquete no existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Paquete no existe");
 		}
 		catch(inscripcionExisteException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Inscripción ya existe", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Inscripción ya existe");
 		}
 		catch(limiteSuperadoException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Límite superado", JOptionPane.ERROR_MESSAGE);
+			request.setAttribute("error", "Límite superado");
 		}
 		*/
-		JOptionPane.showMessageDialog(null, "Datos cargados con éxito!", "Cargar datos", JOptionPane.INFORMATION_MESSAGE);
+		request.setAttribute("dptos", icd.obtenerDepartamentos());
 		
+		request.setAttribute("cats", icd.obtenerCategorias());
+		
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		ejecutarCargar(request, response);
 	}
-	
-	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		ejecutarCargar(request, response);
+	}
+
 }
