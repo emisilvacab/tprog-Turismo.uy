@@ -86,7 +86,7 @@
 			</h5>
 			<input class="form-control lg" name="cant"  <%if (request.getAttribute("cant") != null){ String cant = (String) request.getAttribute("cant");%> value="<%=cant%>" <%}%> id="form-cantTuristasPaq" type="number" placeholder="Cantidad de turistas que desea incluir en el paquete">
 			
-			<button class="btn btn-outline-dark" type="button" id="button-continuar">Volver a inicio</button>
+			<a class="btn btn-outline-dark" href="/Tarea2/Home" id="button-continuar">Volver a inicio</a>
 			<button class="btn btn-outline-dark" type="submit" type="button" id="button-continuar">Comprar</button>
 	
 		</form>
