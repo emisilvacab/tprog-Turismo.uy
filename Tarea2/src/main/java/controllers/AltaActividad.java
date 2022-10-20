@@ -82,6 +82,11 @@ public class AltaActividad extends HttpServlet {
     	GregorianCalendar fechaAct = GregorianCalendar.from(ZonedDateTime.now());//Fecha actual
 		HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
 		String[] cates = request.getParameterValues("catsAct");
+		for (String cat: cates) {
+			cat = cat.replace("+"," ");
+			categorias.add(cat);
+			System.out.println(cat);
+		}
 		//String catSeleccionadas = request.getParameter("catsAct");
 
     	try {

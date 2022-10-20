@@ -69,8 +69,9 @@
 				Set<String> cats = (Set<String>) request.getAttribute("cats");
 		    	if(cats != null)
 					for(String cat: cats){
+						 String val = cat.replace(" ","+");
 			%>
-						<option value=<%=cat%>><%=cat%></option>
+						<option value=<%=val%>><%=cat%></option>
 			<%		}
 		    %>
 			</select><br>

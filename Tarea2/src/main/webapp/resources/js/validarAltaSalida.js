@@ -32,7 +32,6 @@ function validarAltaSalida(){
 		alert('Ingrese una cantidad de turistas mayor que 0');
     	return false;
 	}
-	alert('Salida dada de alta');
 	return true;
 }
 

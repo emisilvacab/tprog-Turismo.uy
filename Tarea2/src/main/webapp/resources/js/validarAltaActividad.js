@@ -36,6 +36,5 @@ function validarAltaActividad(){
 		alert('Seleccione al menos una categoría');
     	return false;
 	}
-	alert('Actividad dada de alta');
 	return true;
 }
