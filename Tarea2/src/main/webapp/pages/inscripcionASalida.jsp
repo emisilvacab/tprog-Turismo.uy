@@ -29,6 +29,19 @@
 	<jsp:include page="/template/aside-bar.jsp"/>
 	
 	<section id="section-middle" class="section">
+	
+		<%  //CARTEL DE EXITO 
+			String exito = (String) request.getAttribute("exito");
+			if (exito != null && exito.equals("inscripto")) {
+		%>
+		<div class="alert alert-success alert-dismissible" id="alert-exito" role="alert">
+	       <div>Inscripción realizada con éxito.</div>
+	       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+		<%
+			}
+		%>
+		
 	  	<h1 class="section-header" id="section-header-middle">
 			Inscripción a salida
 		</h1>

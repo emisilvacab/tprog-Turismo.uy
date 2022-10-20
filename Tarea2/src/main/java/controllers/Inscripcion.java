@@ -245,7 +245,8 @@ public class Inscripcion extends HttpServlet {
 		
 		try {
 			cUsu.ingresarDatosInscripcionPaq(usr.getNickname(), request.getParameter("sal"),  Integer.parseInt(request.getParameter("cant")), GregorianCalendar.from(ZonedDateTime.now()), request.getParameter("paq"));
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.setAttribute("exito","inscripto"); //seteamos el exito
+			request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
 		} catch (salidaNoExisteException e) {
 			e.printStackTrace(); //solo pasaría con datos desactualizados 
 		} catch (usuarioNoExisteException e) {

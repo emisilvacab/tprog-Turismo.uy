@@ -34,7 +34,7 @@ public class CompraPaquete extends HttpServlet {
     public CompraPaquete() {
         super();
     }
-    
+     
     protected void comprar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete cPaq = fact.getIControladorPaquete();
@@ -51,9 +51,10 @@ public class CompraPaquete extends HttpServlet {
 		request.setAttribute("paqsCompra",paqsCompra); //volvemos a cargar los paquetes 
 		
 		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
-    	
+    	 
     	try {
 			cPaq.comprarPaquete(usr.getNickname(), request.getParameter("paq"), GregorianCalendar.from(ZonedDateTime.now()), Integer.parseInt(request.getParameter("cant")));
+			request.setAttribute("exito","comprado"); //seteamos el exito
 			request.getRequestDispatcher("/pages/comprarPaquete.jsp").forward(request, response);
     	} catch (usuarioNoExisteException e) {
     		e.printStackTrace(); //solo pasaría con datos desactualizados
