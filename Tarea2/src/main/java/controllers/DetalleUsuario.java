@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import excepciones.actividadNoExisteException;
 import excepciones.categoriaNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.usuarioNoExisteException;
@@ -21,6 +22,8 @@ import logica.datatypes.DTUsuario;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTSalida;
+import logica.datatypes.DTActividad;
+
 
 
 import java.util.Set;
@@ -58,17 +61,50 @@ public class DetalleUsuario extends HttpServlet {
     	
     	if (usuario instanceof DTTurista) {	
     		
-    		String[] salidas = null;
+    		String[] salidasNombres = null;
     		try {
-    			salidas = ctrlUsr.obtenerSalidasInscripto(nickname);
+    			salidasNombres = ctrlUsr.obtenerSalidasInscripto(nickname);
     		} catch (usuarioNoExisteException usuarioNoExiste) {
 				request.setAttribute("error", "usuario-no-existe"); 
     		}
-    		    		    		
+    		    	
+    		Set<DTSalida> salidas = new HashSet<DTSalida>();
+    		for(String sal : salidasNombres) {
+    			DTSalida nuevo = ctrlUsr.obtenerSalidaInscripto(sal, nickname);
+    			salidas.add(nuevo);
+    			
+    		}
+    		
     		request.setAttribute("usuarioDetalle", usuario);
     		request.setAttribute("usuarioDetalleTipo", "turista");
     		request.setAttribute("usuarioDetalleSalidas", salidas);
     	}else {
+    		
+    		String[] actividadesNombres = {};
+    		
+    		try {
+    			actividadesNombres = ctrlUsr.obtenerActividadesOfrecidas(nickname);
+    		} catch (usuarioNoExisteException usuarioNoExiste) {
+				request.setAttribute("error", "usuario-no-existe"); 
+    		}
+    		
+    		Set<DTActividad> actividades = new HashSet<DTActividad>();
+    		
+    		for(String act : actividadesNombres) {
+    			
+    			DTActividad aux = null;
+    			try {
+    				aux = ctrlUsr.obtenerDatoActividadProveedor(nickname, act);
+    			} catch (usuarioNoExisteException | actividadNoExisteException ex) {
+    				request.setAttribute("error", "usuario-actividad-no-existe"); 		
+    				
+    			}
+    			actividades.add(aux);
+    			
+    		}
+    		request.setAttribute("usuarioDetalleActividadesNombres", actividadesNombres);
+
+    		request.setAttribute("usuarioDetalleActividades", actividades);
     		request.setAttribute("usuarioDetalle", usuario);
     		request.setAttribute("usuarioDetalleTipo", "proveedor");
     	}
