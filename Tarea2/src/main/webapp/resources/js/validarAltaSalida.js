@@ -12,11 +12,6 @@ function validarAltaSalida(){
 		alert('Ingrese un nombre para la salida');
     	return false;
 	}
-	/*se va a cambiar cuando sea dinamico*/
-    else if(document.getElementById('nombreSal').value == "Degusta Setiembre" || document.getElementById('nombreSal').value == "Degusta Agosto"){
-		alert('Ya existe una salida con ese nombre');
-    	return false;
-	}
     else if(document.getElementById('fechaSal').value.length == 0 ){
 		alert('Seleccione una Fecha');
     	return false;
@@ -39,4 +34,28 @@ function validarAltaSalida(){
 	}
 	alert('Salida dada de alta');
 	return true;
+}
+
+
+function limpiar(select){
+	if(select == "dpto"){
+		if(document.getElementById("form-select-dpto").options[document.getElementById("form-select-dpto").selectedIndex].text == ""){
+	    	document.querySelectorAll('#form-select-act option').forEach(o => o.remove());
+		}
+	}
+}
+
+function getURL(cambio) {
+	if (cambio == "dpto"){
+		var dpto = document.getElementById("form-select-dpto").options[document.getElementById("form-select-dpto").selectedIndex].text;
+		return "/Tarea2/altaSalida?cambio=dpto&dpto=" + encodeURIComponent(dpto);
+	}
+	if (cambio == "act") {
+		var dpto = document.getElementById("form-select-dpto").options[document.getElementById("form-select-dpto").selectedIndex].text;
+    	var act = document.getElementById("form-select-act").options[document.getElementById("form-select-act").selectedIndex].text;
+		if(dpto.length != 0){
+			return "/Tarea2/altaSalida?cambio=act&dpto=" + encodeURIComponent(dpto) + "&act=" + encodeURIComponent(act);
+		}
+	}
+	return "";
 }

@@ -32,8 +32,8 @@ function validarAltaActividad(){
 		alert('Ingrese una ciudad');
     	return false;
 	}
-    else if(document.getElementById('catAct').value.length == 0 ){
-		alert('Seleccione categoría(s)');
+    else if(document.getElementById('catsAct').value.length == 0 ){
+		alert('Seleccione al menos una categoría');
     	return false;
 	}
 	alert('Actividad dada de alta');

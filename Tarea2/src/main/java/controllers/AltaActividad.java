@@ -17,7 +17,10 @@ import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
+import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTUsuario;
 
 /**
  * Servlet implementation class AltaActividad
@@ -33,12 +36,29 @@ public class AltaActividad extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-        
+    
+    protected void errorActividad(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      	Fabrica fact = Fabrica.getInstance();
+    	IControladorDepartamento cd = fact.getIControladorDepartamento();
+		request.setAttribute("depAct", request.getParameter("depAct"));
+		request.setAttribute("nombreAct", request.getParameter("nombreAct"));
+		request.setAttribute("descripcionAct", request.getParameter("descripcionAct"));
+		request.setAttribute("durAct", request.getParameter("durAct"));
+		request.setAttribute("costoAct", request.getParameter("costoAct"));
+		request.setAttribute("ciudadAct", request.getParameter("ciudadAct"));
+		request.setAttribute("imgAct", request.getParameter("imgAct"));
+		request.setAttribute("catsAct", request.getParameter("catsAct"));
+		request.setAttribute("dptos",cd.obtenerDepartamentos());
+		request.setAttribute("cats",cd.obtenerCategorias());
+		request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);
+
+    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
     	request.setAttribute("cats",cd.obtenerCategorias());
@@ -50,38 +70,33 @@ public class AltaActividad extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
+    	IControladorDepartamento cd = fact.getIControladorDepartamento();
+    	
     	request.setAttribute("cats",cd.obtenerCategorias());
+    	request.setAttribute("dptos",cd.obtenerDepartamentos());
     	
-    	//Pedir y mostrar lista de departamentos
-    	
+		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
+		String nicknameProv = usr.getNickname();//Sacar el nickname del proveedor que tiene la sesion inciada
     	GregorianCalendar fechaAct = GregorianCalendar.from(ZonedDateTime.now());//Fecha actual
-    	String nicknameProv = "";//Sacar el nickname del proveedor que tiene la sesion inciada
-    	
+		HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
+		String[] cates = request.getParameterValues("catsAct");
+		//String catSeleccionadas = request.getParameter("catsAct");
+
     	try {
-			HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
-			//String catSeleccionadas = request.getParameter("catsAct");
-			String[] cates = request.getParameterValues("catsAct");
-			System.out.println(cates[0]);
-			System.out.println(cates[1]);
-			System.out.println(cates[2]);
 			boolean existe = cd.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), fechaAct, nicknameProv, request.getParameter("depAct"), categorias);
 			if (existe) {
-				//Tirar excepcion de que ya existe actividad
 				request.setAttribute("error", "actividad-repetida");
-				request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);
+				errorActividad(request,response);
 			}
-			request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);
+			else
+				request.getRequestDispatcher("index.jsp").forward(request, response);
     	} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (proveedorNoExisteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (departamentoNoExisteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	//Falta asociar categorias

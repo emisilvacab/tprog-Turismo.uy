@@ -26,7 +26,7 @@
 		    </div>    
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
-		        <a class="ref" href="altaSalida.html">Alta de salida</a>
+		        <a class="ref" href="/Tarea2/altaSalida?cambio=iniciar">Alta de salida</a>
 		      </div>
 		    </div>
 		    <% 
