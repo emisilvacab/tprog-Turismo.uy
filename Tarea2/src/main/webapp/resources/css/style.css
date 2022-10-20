@@ -101,6 +101,10 @@
 	transform: scale(1.05);
 }
 
+#button-cargarDatos{
+	margin-top: 10%;
+}
+
 /* ESTILOS PARA INSCRIPCION A SALIDA */
 
 h1.section-header{
@@ -112,7 +116,7 @@ h1.section-header{
 
 .formInsc{
     margin-left: 4%;
-    margin-top: 10%;
+    margin-top: 9%;
 }
 
 .tittle-inst{

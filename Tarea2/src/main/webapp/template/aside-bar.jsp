@@ -39,7 +39,7 @@
 		    </div>
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
-		        <a class="ref" href="compraPaquetePaso1.html">Compra de paquete</a>
+		        <a class="ref" href="/Tarea2/comprar">Compra de paquete</a>
 		      </div>
 		    </div>
 	      	<%
@@ -92,8 +92,14 @@
 			}
   	  	%>
       </div>
-
-      <a  href="/Tarea2/CargarDatos" class="btn btn-primary">Cargar Datos</a>
+	  <%  
+		String carga = (String) session.getAttribute("carga-datos");
+		if (carga == null || !carga.equals("lista")) {
+	  %>
+	  <a  href="/Tarea2/CargarDatos" id="button-cargarDatos" class="btn btn-primary">Cargar Datos</a>
+	  <% 
+	    }
+	  %>
       
     </div> 
 </aside>

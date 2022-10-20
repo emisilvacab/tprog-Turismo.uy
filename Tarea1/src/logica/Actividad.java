@@ -40,6 +40,7 @@ public class Actividad{
 		this.setProveedor(proveedor);
 		this.setSalidas(new HashMap<String, Salida>());
 		this.setPaquetes(new HashMap<String,Paquete>());
+		this.setCuponeras(new Vector<Cuponera>());
 		this.setEstado(Estado.AGREGADA);
 		this.setCategorias(new HashMap<String, Categoria>());
 	}

@@ -292,7 +292,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		if (nombrePaq != null) {
 			Vector<Compra> compras = turista.getCompras();
 			for (Compra c : compras) {
-				if (c.getPaquete().getNombre() == nombrePaq) {
+				if (c.getPaquete().getNombre().equals(nombrePaq)) {
 					compra = c;
 					break;
 				}
@@ -325,14 +325,6 @@ public class ControladorUsuario implements IControladorUsuario {
 	    matcher.matches();
 	    
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		
-		if((id.equals("lachiqui") || id.equals("mirtha.legrand.ok@hotmail.com.ar")) && (pass.equals("awdrg543"))) {
-			return new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23),"awdrg543", "argentina");
-		}
-		
-		if((id.equals("washington") || id.equals("washington@turismorocha.gub.uy")) && (pass.equals("asdfg654"))) {
-			return new DTProveedor("washington", "Washington", "Rocha", "washington@turismorocha.gub.uy", new GregorianCalendar(1970, 8, 14),"asdfg654", "Hola! me llamo Washington y soy el encargado del portal de turismo del departamento de Rocha - Uruguay" , "http://turismorocha.gub.uy/");
-		}
 			
 		if(!matcher.matches()) {
 			Turista turista = mu.getTurista(id);

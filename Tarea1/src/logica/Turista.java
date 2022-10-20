@@ -61,7 +61,7 @@ public class Turista extends Usuario{
 			if (compra.getVencimiento().after(GregorianCalendar.from(ZonedDateTime.now()))) {
 				Vector<Cuponera> cuponeras = compra.getCuponeras();
 				for(Cuponera cuponera : cuponeras) {
-					if (cuponera.getActividad().getNombre() == salida.getActividad().getNombre() && cuponera.getCuposRestantes() >= cantTuristas) {
+					if (cuponera.getActividad().getNombre().equals(salida.getActividad().getNombre())  && cuponera.getCuposRestantes() >= cantTuristas) {
 						res.add(compra.getPaquete().getDatos());
 						break;
 					}
@@ -74,7 +74,7 @@ public class Turista extends Usuario{
 	public boolean existeCompra(String nombrePaq) {
 		boolean res = false;
 		for(Compra c : compras) {
-			if (c.getPaquete().getNombre() == nombrePaq) {
+			if (c.getPaquete().getNombre().equals(nombrePaq)) {
 				res = true;
 				break;
 			}

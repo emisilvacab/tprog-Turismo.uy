@@ -27,6 +27,8 @@ public class Paquete {
 		this.setValidez (validez);
 		this.setDescuento (descuento);
 		this.setActividades (new HashMap<String, Actividad>());
+		this.setCategorias(new HashMap<String,Categoria>());
+		this.setCompras(new Vector<Compra>());
 		this.setFechaAlta(fechaAlta);
 		this.setFigura(null);
 	}

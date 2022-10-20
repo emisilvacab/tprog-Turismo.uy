@@ -18,7 +18,7 @@
 	
 		<form class="formAltaActSal" id="formInSes" onsubmit = "return validarIniciarSesion()" action="log" method="post">
 			
-			<label class="lbltxt">Nickname o correo del Usuario:</label><br>
+			<label class="lbltxt">Nickname o correo del usuario:</label><br>
 			<input class="inputbox" type="text" id="nickname" name="id_logging"><br>	
 			
 			<label class="lbltxt">Contraseña:</label><br>

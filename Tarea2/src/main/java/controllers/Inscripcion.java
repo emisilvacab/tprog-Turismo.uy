@@ -53,6 +53,7 @@ public class Inscripcion extends HttpServlet {
 		else 
 			request.setAttribute("cat", request.getParameter("cat"));
 		request.setAttribute("act", request.getParameter("act"));
+		request.setAttribute("cant", request.getParameter("cant"));
 		request.setAttribute("sal", request.getParameter("sal"));
 		request.setAttribute("paq", request.getParameter("paq"));
 		
@@ -147,18 +148,33 @@ public class Inscripcion extends HttpServlet {
     	    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
     	    		
     	    		HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
-					Set<String> res = new HashSet<String>();
+					Set<String> salsInsc = new HashSet<String>();
 					for (DTSalida sal : sals) {
-						res.add(sal.getNombre());
-					}
-					if (request.getParameter("dpto") != null)
+						salsInsc.add(sal.getNombre());
+					} 
+					request.setAttribute("salsInsc", salsInsc); // relleno las salidas
+					
+					if (request.getParameter("dpto") != null) { 
 						request.setAttribute("dpto", request.getParameter("dpto"));
-					else 
+						HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+						Set<String> actsInsc = new HashSet<String>();
+						for (DTActividad act : acts) {
+							actsInsc.add(act.getNombre());
+						}
+						request.setAttribute("actsInsc", actsInsc); // relleno las actividades por Dpto
+					}
+					else {
 						request.setAttribute("cat", request.getParameter("cat"));
+						HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
+						Set<String> actsInsc = new HashSet<String>();
+						for (DTActividad act : acts) {
+							actsInsc.add(act.getNombre());
+						}
+						request.setAttribute("actsInsc", actsInsc); // relleno las actividades por cat
+					}
 					request.setAttribute("act", request.getParameter("act"));
-					request.setAttribute("salsInsc", res);
 					request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
-	    		} catch (actividadNoExisteException exc1) {
+	    		} catch (actividadNoExisteException | departamentoNoExisteException | categoriaNoExisteException exc1) {
 	    			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 				}
 				break;
@@ -170,20 +186,43 @@ public class Inscripcion extends HttpServlet {
     	    		
     	    		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
     	    		Set<DTPaquete> paqs = cPaq.obtenerPaquetesDisponibles(usr.getNickname(), request.getParameter("sal"), Integer.parseInt(request.getParameter("cant")));
-					Set<String> res = new HashSet<String>();
+					Set<String> paqsInsc = new HashSet<String>();
 					for (DTPaquete paq : paqs) {
-						res.add(paq.getNombre());
+						paqsInsc.add(paq.getNombre());
+					}
+					request.setAttribute("paqsInsc", paqsInsc); //relleno los paquetes
+					
+					HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
+					Set<String> salsInsc = new HashSet<String>();
+					for (DTSalida sal : sals) {
+						salsInsc.add(sal.getNombre());
+					} 
+					request.setAttribute("salsInsc", salsInsc); // relleno las salidas
+					
+					if (request.getParameter("dpto") != null) { 
+						request.setAttribute("dpto", request.getParameter("dpto"));
+						HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+						Set<String> actsInsc = new HashSet<String>();
+						for (DTActividad act : acts) {
+							actsInsc.add(act.getNombre());
+						}
+						request.setAttribute("actsInsc", actsInsc); // relleno las actividades por Dpto
+					}
+					else {
+						request.setAttribute("cat", request.getParameter("cat"));
+						HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
+						Set<String> actsInsc = new HashSet<String>();
+						for (DTActividad act : acts) {
+							actsInsc.add(act.getNombre());
+						}
+						request.setAttribute("actsInsc", actsInsc); // relleno las actividades por cat
 					}
 					
-					if (request.getParameter("dpto") != null)
-						request.setAttribute("dpto", request.getParameter("dpto"));
-					else 
-						request.setAttribute("cat", request.getParameter("cat"));
 					request.setAttribute("act", request.getParameter("act"));
+					request.setAttribute("cant", request.getParameter("cant"));
 					request.setAttribute("sal", request.getParameter("sal"));
-					request.setAttribute("paqsInsc", res);
 					request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
-	    		} catch (usuarioNoExisteException exc1) {
+	    		} catch (usuarioNoExisteException | departamentoNoExisteException | categoriaNoExisteException | actividadNoExisteException exc1) {
 	    			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 				}
 				break;
@@ -206,6 +245,7 @@ public class Inscripcion extends HttpServlet {
 		
 		try {
 			cUsu.ingresarDatosInscripcionPaq(usr.getNickname(), request.getParameter("sal"),  Integer.parseInt(request.getParameter("cant")), GregorianCalendar.from(ZonedDateTime.now()), request.getParameter("paq"));
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} catch (salidaNoExisteException e) {
 			e.printStackTrace(); //solo pasaría con datos desactualizados 
 		} catch (usuarioNoExisteException e) {
@@ -226,6 +266,7 @@ public class Inscripcion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String cambio = request.getParameter("cambio");
 		if (cambio.equals("iniciar")) {
 			Fabrica fact = Fabrica.getInstance();
@@ -243,8 +284,8 @@ public class Inscripcion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		inscribir(request,response);
 	}
 
 }

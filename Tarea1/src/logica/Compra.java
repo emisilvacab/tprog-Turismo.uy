@@ -22,6 +22,7 @@ public class Compra {
 		this.setCosto(costo);
 		this.setTurista(turista);
 		this.setPaquete(paquete);
+		this.setCuponeras(new Vector<Cuponera>());
 		for (Actividad act : paquete.getActividades().values()) {
 	        Cuponera cup = new Cuponera(cantTuristas,act);
 			cuponeras.add(cup);
@@ -92,7 +93,7 @@ public class Compra {
 	public void descontarCupos(Salida salida, int cantidad) {
 		String nombreAct = salida.getActividad().getNombre();
 		for(Cuponera cuponera : cuponeras) {
-			if(cuponera.getActividad().getNombre() == nombreAct) {
+			if(cuponera.getActividad().getNombre().equals(nombreAct)) {
 				cuponera.setCuposRestantes(cuponera.getCuposRestantes() - cantidad);
 			}
 		}
