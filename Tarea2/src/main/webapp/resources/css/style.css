@@ -219,6 +219,11 @@ h1.section-header{
 	height: 30px;
 }
 
+#descripcionAct {
+	height: 25%;
+	width: 90%;
+}
+
 #btnAceptar{
 	margin-top: 10px;
 }

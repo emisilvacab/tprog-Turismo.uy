@@ -40,6 +40,14 @@ public class AltaActividad extends HttpServlet {
     protected void errorActividad(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       	Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento cd = fact.getIControladorDepartamento();
+    	
+    	HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
+		String[] cates = request.getParameterValues("catsAct");
+		for (String cat: cates) {
+			cat = cat.replace("+"," ");
+			categorias.add(cat);
+		}
+		request.setAttribute("catsMarcadas", categorias);
 		request.setAttribute("depAct", request.getParameter("depAct"));
 		request.setAttribute("nombreAct", request.getParameter("nombreAct"));
 		request.setAttribute("descripcionAct", request.getParameter("descripcionAct"));
