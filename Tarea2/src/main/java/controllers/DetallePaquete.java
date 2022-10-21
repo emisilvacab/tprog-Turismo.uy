@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import excepciones.paqueteNoExisteException;
 import logica.Fabrica;
+import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.datatypes.DTPaquete;
 
@@ -35,8 +36,9 @@ public class DetallePaquete extends HttpServlet {
     protected void cargarPaquete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
+    	IControladorDepartamento ctrlDep = fact.getIControladorDepartamento();
     	
-    	String nombre = (String) request.getAttribute("detallePaqueteNombre");
+    	String nombre = (String) request.getParameter("detallePaqueteNombre");
     	
     	DTPaquete paquete = null;
     	try {
@@ -45,6 +47,9 @@ public class DetallePaquete extends HttpServlet {
     	} catch (paqueteNoExisteException paqueteNoExiste) {
 			request.setAttribute("error", "paquete-no-existe");
     	}
+    	
+    	request.setAttribute("dptos", ctrlDep.obtenerDepartamentos());
+		request.setAttribute("cats", ctrlDep.obtenerCategorias());
     	
     	request.setAttribute("detallePaquete",paquete);
 		request.getRequestDispatcher("/pages/detallePaquete.jsp").forward(request, response);
