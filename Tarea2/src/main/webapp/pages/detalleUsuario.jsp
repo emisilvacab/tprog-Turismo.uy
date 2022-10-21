@@ -164,7 +164,7 @@
     								<!--   class="card-text"><strong>Departamento:</strong> Rocha</p>-->
     								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
     			
-    								<a href="verDatosActividad.html" class="stretched-link"></a>
+    								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>" class="stretched-link"></a>
    		
   								</div>  						
 							</div>
