@@ -43,7 +43,7 @@ public class AltaCategoria extends JInternalFrame {
 		setResizable(true);
 		setMaximizable(true);
 		setClosable(true);
-		setBounds(0,0,420,240);
+		setBounds(0, 0, 420, 240);
 		
 	    addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {

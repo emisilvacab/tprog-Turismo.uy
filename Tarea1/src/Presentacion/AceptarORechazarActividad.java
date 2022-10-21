@@ -10,7 +10,6 @@ import logica.controladores.IControladorDepartamento;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashSet;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -77,11 +76,11 @@ public class AceptarORechazarActividad extends JInternalFrame{
 	    					JOptionPane.showMessageDialog(null, "Actividad rechazada", "Aceptar/rechazar actividad", JOptionPane.INFORMATION_MESSAGE);
 	        				
 	        			}else {
-	    					JOptionPane.showMessageDialog(null, "Debe seleccionara un estado para la actividad" ,"Aceptar/rechazar actividad", JOptionPane.ERROR_MESSAGE);
+	    					JOptionPane.showMessageDialog(null, "Debe seleccionara un estado para la actividad", "Aceptar/rechazar actividad", JOptionPane.ERROR_MESSAGE);
 	        			}
 	        		}
         		}else {
-					JOptionPane.showMessageDialog(null, "Debe seleccionara una actividad","Aceptar/rechazar actividad", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Debe seleccionara una actividad", "Aceptar/rechazar actividad", JOptionPane.ERROR_MESSAGE);
         		}
         		aceptarORechazar.clearSelection();
             	cargarActividades();

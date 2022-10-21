@@ -4,7 +4,6 @@ import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Vector;
 
 import excepciones.actividadNoExisteException;
 import excepciones.compraExisteException;
@@ -137,8 +136,8 @@ public class ControladorPaquete implements IControladorPaquete {
 			throw new paqueteNoExisteException("Paquete no encontrado");
 		
 		HashSet<DTActividad> res = new HashSet<DTActividad>();
-		for (Actividad act : paquete.getActividades().values()) {
-			if(act.getEstado() == Estado.CONFIRMADA)
+		for (Actividad act : dpto.getActividades().values()) {
+			if(act.getEstado() == Estado.CONFIRMADA && !act.getPaquetes().containsKey(nombrePaq))
 				res.add(act.getDatos());
 		}
 		return res;

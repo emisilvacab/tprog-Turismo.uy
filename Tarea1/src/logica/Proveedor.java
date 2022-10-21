@@ -4,8 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import logica.datatypes.DTProveedor;
-import logica.datatypes.DTTurista;
+import logica.datatypes.DTProveedor; 
 import logica.datatypes.DTUsuario;
 
 public class Proveedor extends Usuario{
@@ -59,6 +58,6 @@ public class Proveedor extends Usuario{
 	}
 
 	public DTUsuario getDatos() {
-		return new DTProveedor(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),descripcion,link);
+		return new DTProveedor(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),this.getContrasena(),this.getDescripcion(),this.getLink());
 	}
 }

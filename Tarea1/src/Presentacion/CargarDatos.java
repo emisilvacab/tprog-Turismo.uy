@@ -3,10 +3,7 @@ package Presentacion;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.categoriaYaExisteException;
-import excepciones.compraExisteException;
 import excepciones.departamentoNoExisteException;
-import excepciones.inscripcionExisteException;
-import excepciones.limiteSuperadoException;
 import excepciones.paqueteNoExisteException;
 import excepciones.paqueteYaExisteException;
 import excepciones.proveedorNoExisteException;
@@ -68,7 +65,7 @@ public class CargarDatos {
 			user = new DTTurista("mastropiero", "Johann Sebastian", "Mastropiero", "johann.sebastian@gmail.com", new GregorianCalendar(1922, 1, 07), "qpwoei586", "austríaca");
 			icu.altaUsuario(user);
 			
-			user = new DTProveedor("washington", "Washington", "Rocha", "washington@turismorocha.gub.uy", new GregorianCalendar(1970, 8, 14), "asdfg654", "Hola! me llamo Washington y soy el encargado del portal de turismo del departamento de Rocha - Uruguay" , "http://turismorocha.gub.uy/");
+			user = new DTProveedor("washington", "Washington", "Rocha", "washington@turismorocha.gub.uy", new GregorianCalendar(1970, 8, 14), "asdfg654", "Hola! me llamo Washington y soy el encargado del portal de turismo del departamento de Rocha - Uruguay", "http://turismorocha.gub.uy/");
 			icu.altaUsuario(user);
 			
 			user = new DTProveedor("eldiez", "Pablo", "Bengoechea", "eldiez@socfomturriv.org.uy", new GregorianCalendar(1965, 5, 27), "ytrewq10", "Pablo es el presidente de la Sociedad de Fomento Turístico de Rivera (conocida como Socfomturriv)", "http://wwww.socfomturriv.org.uy");
