@@ -129,7 +129,7 @@
 		  	%>
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem;">
-		  		<a href="verDatosSalida.html">
+		  		<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=salida.getNombre()%>">
 			  	<img class="card-img-top" src="https://s3.amazonaws.com/turismorocha/operadores/1/med/bahia-resto-053888900-1458674720.JPG" alt="Card image cap">
 			  	</a>
 			  <div class="card-body">
