@@ -4,8 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import logica.datatypes.DTProveedor;
-import logica.datatypes.DTTurista;
+import logica.datatypes.DTProveedor; 
 import logica.datatypes.DTUsuario;
 
 public class Proveedor extends Usuario{

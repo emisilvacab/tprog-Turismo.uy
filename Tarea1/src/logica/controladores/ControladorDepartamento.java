@@ -1,7 +1,6 @@
 package logica.controladores;
 
 import java.awt.Image;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,7 +11,6 @@ import excepciones.actividadNoExisteException;
 import excepciones.categoriaNoExisteException;
 import excepciones.categoriaYaExisteException;
 import excepciones.departamentoNoExisteException;
-import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
 import logica.Actividad;
 import logica.Categoria;

@@ -19,7 +19,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
@@ -38,11 +37,8 @@ import java.awt.Image;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 
-import java.awt.Component;
 import javax.swing.JSplitPane;
-import java.awt.Insets;
 import java.awt.Dimension;
-import java.awt.Graphics;
 
 public class AltaActividad extends JInternalFrame {
 

@@ -40,10 +40,8 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
-import excepciones.proveedorNoExisteException;
 
 import javax.swing.JSpinner;
-import javax.swing.SpringLayout;
 
 public class AltaSalida extends JInternalFrame{
 	

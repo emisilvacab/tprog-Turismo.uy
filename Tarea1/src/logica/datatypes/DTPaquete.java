@@ -3,7 +3,6 @@ package logica.datatypes;
 
 import java.awt.Image;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 
 public class DTPaquete {
 	
