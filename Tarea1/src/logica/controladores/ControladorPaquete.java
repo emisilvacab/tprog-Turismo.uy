@@ -137,8 +137,8 @@ public class ControladorPaquete implements IControladorPaquete {
 			throw new paqueteNoExisteException("Paquete no encontrado");
 		
 		HashSet<DTActividad> res = new HashSet<DTActividad>();
-		for (Actividad act : paquete.getActividades().values()) {
-			if(act.getEstado() == Estado.CONFIRMADA)
+		for (Actividad act : dpto.getActividades().values()) {
+			if(act.getEstado() == Estado.CONFIRMADA && !act.getPaquetes().containsKey(nombrePaq))
 				res.add(act.getDatos());
 		}
 		return res;

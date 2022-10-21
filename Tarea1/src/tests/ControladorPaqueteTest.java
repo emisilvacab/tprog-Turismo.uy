@@ -13,6 +13,7 @@ import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
+import excepciones.compraExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.paqueteNoExisteException;
 import excepciones.paqueteYaExisteException;
@@ -21,6 +22,7 @@ import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
 import logica.Actividad;
 import logica.Departamento;
+import logica.Estado;
 import logica.Fabrica;
 import logica.Proveedor;
 import logica.Salida;
@@ -28,6 +30,7 @@ import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -57,6 +60,7 @@ class ControladorPaqueteTest {
 			
 			user = new DTProveedor("meche", "Mercedes", "Venn", "meche@colonia.gub.uy", new GregorianCalendar(1990, 11, 31), "Departamento de Turismo del Departamento de Colonia", "https://colonia.gub.uy/turismo/");
 			icu.altaUsuario(user);
+
 		} catch (UsuarioRepetidoException e) {
 			JOptionPane.showMessageDialog( null, "Los datos ya fueron cargados previamente", "Cargar datos", JOptionPane.ERROR_MESSAGE);
 		}
@@ -98,6 +102,10 @@ class ControladorPaqueteTest {
 		}
 		
 		try {
+			Set<String> paquetes = new HashSet<String>();
+			paquetes.add("Disfrutar Rocha");
+			paquetes.add("Disfrutar");
+			paquetes.add("Un día en Colonia");
 			DTPaquete paq1 = icp.obtenerDatosPaquete("Disfrutar Rocha");
 			DTPaquete paq2 = icp.obtenerDatosPaquete("Un día en Colonia");
 			assertEquals(paq1.getNombre(), "Disfrutar Rocha");
@@ -111,22 +119,34 @@ class ControladorPaqueteTest {
 			assertEquals(paq2.getDescuento(),(float) 15);
 			assertEquals(paq2.getFechaAlta(), new GregorianCalendar(2022, 7, 1));
 			assertThrows(paqueteNoExisteException.class, () -> {icp.obtenerDatosPaquete("A");});
+			HashSet<DTPaquete> paquetesDT = icp.obtenerPaquetesNoComprados();
+			for (DTPaquete p : paquetesDT) {
+				assertEquals(paquetes.contains(p.getNombre()), true);
+			}
 
 		}
 		catch(paqueteNoExisteException ep) {
 			JOptionPane.showMessageDialog(null, ep.getMessage(), "Paquete no existe", JOptionPane.ERROR_MESSAGE);
 		}
 		assertThrows(paqueteYaExisteException.class, () -> {icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null); });
-	}
 		
-	/* @Test
+	}
+	
+	@Test
 	void agregarActividadPaqueteTest() {
-		 FALTA HACER ESTE PORQUE NO TENEMOS UN OBTENER ACTIVIDADES DE PAQUETE O ALGO ASI XD
 		try {
+			Set<String> paquetes = new HashSet<String>();
+			paquetes.add("Disfrutar Rocha");
+			paquetes.add("Un día en Colonia");
 			icp.agregarActividadPaquete("Rocha", "Disfrutar Rocha", "Degusta");
 			icp.agregarActividadPaquete("Rocha", "Disfrutar Rocha", "Teatro con Sabores");
 			icp.agregarActividadPaquete("Colonia", "Un día en Colonia", "Tour por Colonia del Sacramento");
 			icp.agregarActividadPaquete("Colonia", "Un día en Colonia", "Almuerzo en el Real de San Carlos");
+			HashSet<DTPaquete> paquetesDT = icp.obtenerPaquetesConActividades();
+			for (DTPaquete p : paquetesDT) {
+				assertEquals(paquetes.contains(p.getNombre()), true);
+			}
+			
 		}
 		catch(paqueteNoExisteException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage(), "Paquete no existe", JOptionPane.ERROR_MESSAGE);
@@ -137,5 +157,28 @@ class ControladorPaqueteTest {
 		catch(actividadNoExisteException e3) {
 			JOptionPane.showMessageDialog(null, e3.getMessage(), "Actividad no existe", JOptionPane.ERROR_MESSAGE);
 		}
-	}*/
+		//test obtenerDatosActividadesConfirmadasNoPaquete 
+		icd.modificarEstadoActividad("Degusta", Estado.CONFIRMADA);
+		try {
+			HashSet<DTActividad> actsConfNoPaq = icp.obtenerDatosActividadesConfirmadasNoPaquete("Rocha", "Un día en Colonia");
+			Set<String> actsConf = new HashSet<String>();
+			actsConf.add("Degusta");
+			for (DTActividad p : actsConfNoPaq) {
+				assertEquals(actsConf.contains(p.getNombre()), true);
+			}
+		} catch (departamentoNoExisteException | paqueteNoExisteException e) {
+			e.printStackTrace();
+		}
+		
+		//comprarPaquete
+		
+		try {
+			icp.comprarPaquete("leomel", "Disfrutar Rocha",  GregorianCalendar.from(ZonedDateTime.now()), 1);
+			assertThrows(compraExisteException.class, () -> {icp.comprarPaquete("leomel", "Disfrutar Rocha",  GregorianCalendar.from(ZonedDateTime.now()), 3); });
+
+		} catch (usuarioNoExisteException | paqueteNoExisteException | compraExisteException e) {
+			e.printStackTrace();
+		}
+
+	}
 }

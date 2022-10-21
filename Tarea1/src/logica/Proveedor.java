@@ -59,6 +59,6 @@ public class Proveedor extends Usuario{
 	}
 
 	public DTUsuario getDatos() {
-		return new DTProveedor(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),descripcion,link);
+		return new DTProveedor(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),this.getContrasena(),this.getDescripcion(),this.getLink());
 	}
 }

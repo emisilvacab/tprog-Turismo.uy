@@ -107,7 +107,7 @@ class ControladorUsuarioTest {
 	}
 	
 	@Test
-	void testAltaUsuario() {
+	void testAltaIniciarUsuario() {
 		GregorianCalendar nacimiento = new GregorianCalendar(2001,6,5);
 				try {
 					assertThrows(UsuarioRepetidoException.class, () -> {icu.altaUsuario(new DTTurista("gervasio", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "contra", "Uruguaya"));});
@@ -115,12 +115,19 @@ class ControladorUsuarioTest {
 					DTUsuario userObtenido2 = icu.obtenerUsuario("joaco");
 					DTTurista turObtenido = (DTTurista) userObtenido;
 					DTProveedor provObtenido = (DTProveedor) userObtenido2;
+					
+					DTUsuario usuarioIniciado = icu.iniciarSesion(userObtenido.getNickname(), userObtenido.getContrasena());
+					DTUsuario usuarioIniciado2 = icu.iniciarSesion(userObtenido2.getCorreo(), userObtenido2.getContrasena());
+					DTTurista turIniciado = (DTTurista) usuarioIniciado;
+					DTProveedor provIniciado = (DTProveedor) usuarioIniciado2;
+					
 					assertEquals(turObtenido.getNickname(), "leomel");
 					assertEquals(turObtenido.getNombre(), "Leonardo");
 					assertEquals(turObtenido.getApellido(), "Melgar");
 					assertEquals(turObtenido.getCorreo(), "leomel@gmail.com");
 					assertEquals(turObtenido.getNacimiento(), nacimiento);
 					assertEquals(turObtenido.getNacionalidad(), "Uruguaya");
+					
 					assertEquals(provObtenido.getNickname(), "joaco");
 					assertEquals(provObtenido.getNombre(), "Leonardo");
 					assertEquals(provObtenido.getApellido(), "Melgar");
@@ -128,6 +135,21 @@ class ControladorUsuarioTest {
 					assertEquals(provObtenido.getNacimiento(), nacimiento);
 					assertEquals(provObtenido.getDescripcion(), "lol");
 					assertEquals(provObtenido.getLink(), "superlol");
+					
+					assertEquals(turIniciado.getNickname(), "leomel");
+					assertEquals(turIniciado.getNombre(), "Leonardo");
+					assertEquals(turIniciado.getApellido(), "Melgar");
+					assertEquals(turIniciado.getCorreo(), "leomel@gmail.com");
+					assertEquals(turIniciado.getNacimiento(), nacimiento);
+					assertEquals(turIniciado.getNacionalidad(), "Uruguaya");
+					
+					assertEquals(provIniciado.getNickname(), "joaco");
+					assertEquals(provIniciado.getNombre(), "Leonardo");
+					assertEquals(provIniciado.getApellido(), "Melgar");
+					assertEquals(provIniciado.getCorreo(), "joaco@gmail.com");
+					assertEquals(provIniciado.getNacimiento(), nacimiento);
+					assertEquals(provIniciado.getDescripcion(), "lol");
+					assertEquals(provIniciado.getLink(), "superlol");
 				} catch (usuarioNoExisteException e) {
 					fail(e.getMessage());
 					e.printStackTrace();

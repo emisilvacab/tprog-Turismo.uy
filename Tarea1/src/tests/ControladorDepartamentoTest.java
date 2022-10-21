@@ -12,10 +12,12 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
+import excepciones.categoriaNoExisteException;
 import excepciones.categoriaYaExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
+import logica.Estado;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
@@ -48,6 +50,23 @@ class ControladorDepartamentoTest {
 	@Test
 	void testAltaActividad() {
 		HashSet<String> categorias = new HashSet<String>();//HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
+		
+		//testIngresarDatosCategoria()
+		try {
+			icd.ingresarDatosCategoria("Gastronomía");
+			icd.ingresarDatosCategoria("Fotografía");
+			icd.ingresarDatosCategoria("Paseos");
+			String categoriasArr[] = {"Gastronomía","Fotografía","Paseos"};	
+			Set<String> cats = icd.obtenerCategorias();
+			for (String c : categoriasArr) {
+				assertEquals(cats.contains(c),true);
+				categorias.add(c);
+			}
+		}
+		catch (categoriaYaExisteException e) {
+			e.printStackTrace();
+		}
+		assertThrows(categoriaYaExisteException.class, () -> {icd.ingresarDatosCategoria("Gastronomía");});	
 
 		icd.ingresarDepartamento("Montevideo","Capital de Uruguay", "mvdeo.com.uy");
 		icd.ingresarDepartamento("Maldonado","Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
@@ -56,7 +75,6 @@ class ControladorDepartamentoTest {
 		icd.ingresarDepartamento("Rocha","Donde esta la Pedrera", "rocha.com.uy");
 		icd.ingresarDepartamento("Colonia", "La propuesta del Departamento de Colonia divide en cuatro actos su espectáculo anual. Cada acto tiene su magia. Desde su naturaleza y playas hasta sus tradiciones y el patrimonio	mundial. Todo el año se disfruta.", "https://colonia.gub.uy/turismo/");
 
-		
 		String departamentos[] = {"Montevideo","Maldonado","Canelones", "Artigas", "Rocha", "Colonia"};
 		
 		//test de obtenerDepartamentos()
@@ -100,8 +118,8 @@ class ControladorDepartamentoTest {
 		try {			
 			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "Maldonado", categorias);
 			assertEquals(ingresado, false);
-			assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "gardelito", "CABA", categorias);});
-			assertThrows(proveedorNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz",fechaAlta , "sinProv", "Maldonado", categorias);});
+			assertThrows(departamentoNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "CABA", categorias);});
+			assertThrows(proveedorNoExisteException.class, () -> {icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "sinProv", "Maldonado", categorias);});
 			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "Maldonado", categorias);
 			assertEquals(ingresado, true);
 		
@@ -125,6 +143,27 @@ class ControladorDepartamentoTest {
 			anee.printStackTrace();
 		}
 		assertThrows(actividadNoExisteException.class, ()->{icd.obtenerDatosActividad("Ir al estadio del Huesca");});
+		
+		//test modificarEstadoActividad y obtenerDatosActividadesConfirmadasDpto
+		
+		try {
+			HashSet<DTActividad> actividadesConfirmadas = icd.obtenerDatosActividadesConfirmadasDpto("Maldonado");
+			assertEquals(actividadesConfirmadas.size(), 0);
+			
+			icd.modificarEstadoActividad("Caza de brujas", Estado.CONFIRMADA);
+			actividadesConfirmadas = icd.obtenerDatosActividadesConfirmadasDpto("Maldonado");
+			for (DTActividad a :actividadesConfirmadas) {
+				assertEquals(a.getNombre(), "Caza de brujas");
+			}
+			actividadesConfirmadas = icd.obtenerDatosActividadesConfirmadasCat("Gastronomía");
+			for (DTActividad a :actividadesConfirmadas) {
+				assertEquals(a.getNombre(), "Caza de brujas");
+			}
+			assertThrows(categoriaNoExisteException.class, ()->{icd.obtenerDatosActividadesConfirmadasCat("AAAA");});
+		} catch (departamentoNoExisteException | categoriaNoExisteException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 		//test obtenerDeptoActividad
@@ -161,7 +200,7 @@ class ControladorDepartamentoTest {
 	@Test
 	void testobtenerlugaresDisponibles() {
 		HashSet<String> categorias = new HashSet<String>();//HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
-
+		
 		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		icd.ingresarDepartamento("Maldonado","Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
 		try {
@@ -182,25 +221,7 @@ class ControladorDepartamentoTest {
 		}
 		
 	}
-	
-	@Test
-	void testIngresarDatosCategoria() {
-		try {
-			icd.ingresarDatosCategoria("Gastronomía");
-			icd.ingresarDatosCategoria("Fotografía");
-			icd.ingresarDatosCategoria("Paseos");
-			String categorias[] = {"Gastronomía","Fotografía","Paseos"};	
-			Set<String> cats = icd.obtenerCategorias();
-			for (String c : categorias) {
-				assertEquals(cats.contains(c),true);
-			}
-			
-		}
-		catch (categoriaYaExisteException e) {
-			e.printStackTrace();
-		}
-		assertThrows(categoriaYaExisteException.class, () -> {icd.ingresarDatosCategoria("Gastronomía");});
-	}
+
 	
 		
 }
