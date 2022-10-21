@@ -58,6 +58,15 @@ public class verDatosActividad extends HttpServlet {
     	
     	request.setAttribute("departamento", ctrlDepartamentos.obtenerDeptoActividad(NombreAct));
     	
+    	HashSet<String> listaCategorias;
+		try {
+			listaCategorias = ctrlDepartamentos.obtenerCategoriasActividad(NombreAct);
+			request.setAttribute("categorias", listaCategorias);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			request.setAttribute("error", "actividadNoExiste");
+		}
+    	
     	try {
 			HashSet<DTSalida> listaSalidas = ctrlDepartamentos.obtenerDatosSalidasParaActividad(NombreAct);
 			request.setAttribute("salidas", listaSalidas);

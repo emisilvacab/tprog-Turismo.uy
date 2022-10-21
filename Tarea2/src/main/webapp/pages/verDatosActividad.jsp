@@ -64,7 +64,27 @@
 							</div>
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item" style="font-size: 110%;">Departamento: <%=(String) request.getAttribute("departamento")%></li>
-								<li class="list-group-item" style="font-size: 110%;">Categoría: Gastronomía</li>
+								<li class="list-group-item" style="font-size: 110%;">
+								<%
+								HashSet<String> listaCategorias = (HashSet<String>) request.getAttribute("categorias");
+								if (!listaCategorias.isEmpty()) {
+									String categorias = String.join(", ", listaCategorias);
+									
+									if (listaCategorias.size() > 1) {
+								%>
+								Categorías:
+								<%
+									} else {
+								%>
+								Categoría:
+								<%
+									}
+								%>
+									<%=categorias%>
+								<%
+								}
+								%>
+								</li>
 								<li class="list-group-item" style="font-size: 110%;"><%=actividad.getEstado()%></li>
 							</ul>
 						</div>

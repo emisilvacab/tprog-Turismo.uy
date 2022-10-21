@@ -176,6 +176,21 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return resu;
 	}
 	
+	@Override
+	public HashSet<String> obtenerCategoriasActividad(String actividad) throws actividadNoExisteException {
+		HashSet<String> ans = new HashSet<String>();
+		ManejadorDepartamentoCategoria mDptosCat = ManejadorDepartamentoCategoria.getInstance();
+		HashMap<String, Categoria> categorias = mDptosCat.getCategorias();
+		for (Categoria cat: categorias.values()) {
+			if (cat.getActividades().containsKey(actividad)) {
+				ans.add(cat.getNombre());
+			}
+		}
+		if (ans.isEmpty())
+			throw new actividadNoExisteException("Actividad no existe");
+		return ans;
+	}
+	
 	public int obtenerlugaresDisponibles(String nombreSal) throws salidaNoExisteException {
 		ManejadorSalida mSals = ManejadorSalida.getInstance();
 		Salida sal = mSals.getSalida(nombreSal);
