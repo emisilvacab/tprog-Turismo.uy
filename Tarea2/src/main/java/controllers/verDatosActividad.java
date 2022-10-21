@@ -65,7 +65,7 @@ public class verDatosActividad extends HttpServlet {
 		try {
 			listaCategorias = ctrlDepartamentos.obtenerCategoriasActividad(NombreAct);
 			request.setAttribute("categorias", listaCategorias);
-		} catch (Exception e) {
+		} catch (Exception actNoExiste) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
 		}
@@ -87,7 +87,7 @@ public class verDatosActividad extends HttpServlet {
     	
 		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
 		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());
-		System.out.println();
+		
 		request.getRequestDispatcher("/pages/verDatosActividad.jsp").forward(request, response);
 		
 	}

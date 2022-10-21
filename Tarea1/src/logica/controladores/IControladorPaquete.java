@@ -9,9 +9,11 @@ import excepciones.compraExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.paqueteNoExisteException;
 import excepciones.paqueteYaExisteException;
+import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTPaquete;
+import logica.datatypes.DTSalida;
 
 public interface IControladorPaquete {
 	
@@ -32,4 +34,8 @@ public interface IControladorPaquete {
 	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasNoPaquete(String nombreDpto, String nombrePaq) throws departamentoNoExisteException, paqueteNoExisteException;
 
 	public abstract HashSet<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct);
+	
+	public abstract DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException;
+	
+	public abstract String obtenerNombreActivdadDeSalida(String nombreSalida) throws salidaNoExisteException;
 }
