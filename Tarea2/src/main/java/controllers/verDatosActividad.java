@@ -16,7 +16,9 @@ import excepciones.departamentoNoExisteException;
 import logica.Departamento;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
+import logica.controladores.IControladorPaquete;
 import logica.datatypes.DTActividad;
+import logica.datatypes.DTPaquete;
 import logica.datatypes.DTSalida;
 import logica.manejadores.ManejadorDepartamentoCategoria;
 
@@ -42,6 +44,7 @@ public class verDatosActividad extends HttpServlet {
 		// TODO Auto-generated method stub
 		Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento ctrlDepartamentos = fact.getIControladorDepartamento();
+    	IControladorPaquete ctrlPaquete = fact.getIControladorPaquete();
     	String NombreAct = (String) request.getParameter("actSeleccionada");
     	DTActividad actividad;
 		try {
@@ -73,6 +76,13 @@ public class verDatosActividad extends HttpServlet {
 		} catch (actividadNoExisteException noExisteAct) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
+		}
+    	
+    	HashSet<DTPaquete> listaPaquetes = ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
+    	if (listaPaquetes.isEmpty()) {
+    		request.setAttribute("error", "Actividad sin paquete");
+    	} else {
+    		request.setAttribute("paquetes", listaPaquetes);
 		}
     	
 		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());

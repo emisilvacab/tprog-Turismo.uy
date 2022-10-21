@@ -31,4 +31,5 @@ public interface IControladorPaquete {
 	
 	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasNoPaquete(String nombreDpto, String nombrePaq) throws departamentoNoExisteException, paqueteNoExisteException;
 
+	public abstract HashSet<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct);
 }

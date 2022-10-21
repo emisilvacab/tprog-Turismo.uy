@@ -142,8 +142,19 @@ public class ControladorPaquete implements IControladorPaquete {
 		}
 		return res;
 	}
-
-
+	
+	@Override
+	public HashSet<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct) {
+		HashSet<DTPaquete> ans = new HashSet<DTPaquete>();
+		ManejadorPaquete manPaquete = ManejadorPaquete.getInstance();
+		HashMap<String, Paquete> setPaquetes = manPaquete.getPaquetes();
+		for (Paquete paquete: setPaquetes.values()) {
+			if (paquete.getActividades().containsKey(nombreAct)) {
+				ans.add(paquete.getDatos());
+			}
+		}
+		return ans;
+	}
 }
 
 

@@ -3,6 +3,7 @@
 <%@page import="model.EstadoSesion"%>
 <%@page import="logica.datatypes.DTActividad"%>
 <%@page import="logica.datatypes.DTSalida"%>
+<%@page import="logica.datatypes.DTPaquete"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.GregorianCalendar"%>
 
@@ -150,15 +151,26 @@
 		  
 		  <div class="col-sm-3" style="min-width: 300px;">
 		  	<h3>Paquetes</h3>
+		  	
+		  	<%
+		  	HashSet<DTPaquete> listaPaquetes = (HashSet<DTPaquete>) request.getAttribute("paquetes");
+		  	for (DTPaquete paquete: listaPaquetes) {
+		  	%>
+		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem">
 		  		<a href="detalleDePaquete.html">
 			  		<img class="card-img-top" src="https://sites.google.com/site/areasprotegidasenuruguay/_/rsrc/1411660757953/algunas-de-las-areas-ingresadas-por-el-snap/laguna-de-rocha/Mapa_Rocha_BLOG.jpg?height=280&width=400" alt="Card image cap">
 			  	</a>
 			  <div class="card-body">
-			    <h5 class="card-title">Disfrutar Rocha</h5>
-			    <p class="card-text">Actividades para hacer en familia y disfrutar arte y gastronomía</p>
+			    <h5 class="card-title"><%=paquete.getNombre()%></h5>
+			    <p class="card-text"><%=paquete.getDescripcion()%></p>
 			  </div>
 			</div>
+			
+			<%
+			}
+			%>
+			
 		  </div>
 		  
 		 </div>
