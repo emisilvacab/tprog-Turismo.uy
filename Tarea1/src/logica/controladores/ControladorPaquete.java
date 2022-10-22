@@ -1,6 +1,5 @@
 package logica.controladores;
 
-import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,21 +9,17 @@ import excepciones.compraExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.paqueteNoExisteException;
 import excepciones.paqueteYaExisteException;
-import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
 import logica.Actividad;
 import logica.Compra;
 import logica.Departamento;
 import logica.Estado;
 import logica.Paquete;
-import logica.Salida;
 import logica.Turista;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTPaquete;
-import logica.datatypes.DTSalida;
 import logica.manejadores.ManejadorDepartamentoCategoria;
 import logica.manejadores.ManejadorPaquete;
-import logica.manejadores.ManejadorSalida;
 import logica.manejadores.ManejadorUsuario;
 
 public class ControladorPaquete implements IControladorPaquete {
@@ -49,13 +44,12 @@ public class ControladorPaquete implements IControladorPaquete {
 		act.addPaquete(paq);
 	}
 	
-	public void ingresarDatosPaquete(String nombrePaq, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, Image figura) throws paqueteYaExisteException{
+	public void ingresarDatosPaquete(String nombrePaq, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, String linkImagen) throws paqueteYaExisteException{
 		ManejadorPaquete mp = ManejadorPaquete.getInstance();
 		Paquete existe = mp.getPaquete(nombrePaq);
 		if (existe != null)
 			throw new paqueteYaExisteException("Ya existe el paquete ingresado");
-		Paquete nuevo = new Paquete(nombrePaq, descripcion, validez, descuento, fechaAlta);
-		nuevo.setFigura(figura);
+		Paquete nuevo = new Paquete(nombrePaq, descripcion, validez, descuento, fechaAlta, linkImagen);
 		mp.addPaquete(nuevo);
 	}
 	
@@ -64,7 +58,7 @@ public class ControladorPaquete implements IControladorPaquete {
 		Paquete paq = mp.getPaquete(nombrePaq);
 		if (paq == null)
 			throw new paqueteNoExisteException("No existe el paquete ingresado");
-		DTPaquete datos = new DTPaquete(paq.getNombre(), paq.getDescripcion(), paq.getValidez(), paq.getDescuento(), paq.getFechaAlta());
+		DTPaquete datos = paq.getDatos();
 		return datos;
 	}
 	
@@ -165,7 +159,7 @@ public class ControladorPaquete implements IControladorPaquete {
 		HashMap<String, Paquete> paquetes = manPaquete.getPaquetes();
 		
 		paquetes.forEach((nombre,paq) -> {
-			DTPaquete dato = new DTPaquete(paq.getNombre(), paq.getDescripcion(), paq.getValidez(), paq.getDescuento(), paq.getFechaAlta());
+			DTPaquete dato = paq.getDatos();
 			paquetesDT.add(dato);		
 		});
 		

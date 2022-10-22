@@ -1,6 +1,5 @@
 package logica;
 
-import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Vector;
@@ -14,14 +13,14 @@ public class Paquete {
 	private int validez;
 	private float descuento;
 	private GregorianCalendar fechaAlta;
-	private Image figura;
+	private String linkImagen;
 	
 	private HashMap<String, Actividad> actividades;
 	private HashMap<String, Categoria> categorias;
 	private Vector<Compra> compras;
 	
 	
-	public Paquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) {
+	public Paquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, String linkImagen) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setValidez(validez);
@@ -30,7 +29,7 @@ public class Paquete {
 		this.setCategorias(new HashMap<String, Categoria>());
 		this.setCompras(new Vector<Compra>());
 		this.setFechaAlta(fechaAlta);
-		this.setFigura(null);
+		this.setLinkImagen(linkImagen);
 	}
 
 	public GregorianCalendar getFechaAlta() {
@@ -94,7 +93,7 @@ public class Paquete {
 	}
 
 	public DTPaquete getDatos() {
-		return new DTPaquete(nombre, descripcion, validez, descuento, fechaAlta);
+		return new DTPaquete(nombre, descripcion, validez, descuento, fechaAlta, linkImagen);
 	}
 
 	public Vector<Compra> getCompras() {
@@ -109,12 +108,13 @@ public class Paquete {
 		compras.add(compra);
 	}
 
-	public Image getFigura() {
-		return figura;
+	public String getLinkImagen() {
+		return linkImagen;
 	}
 
-	public void setFigura(Image figura) {
-		this.figura = figura;
+	public void setLinkImagen(String linkImagen) {
+		this.linkImagen = linkImagen;
 	}
+
 
 }

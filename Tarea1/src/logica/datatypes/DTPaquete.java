@@ -1,7 +1,6 @@
 package logica.datatypes;
 
 
-import java.awt.Image;
 import java.util.GregorianCalendar;
 
 public class DTPaquete {
@@ -11,23 +10,15 @@ public class DTPaquete {
 	private int validez;
 	private float descuento;
 	private GregorianCalendar fechaAlta;
-	private Image figura;
+	private String linkImagen;
 	
-	public DTPaquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) {
+	public DTPaquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, String linkImagen) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setValidez(validez);
 		this.setDescuento(descuento);
 		this.setFechaAlta(fechaAlta);
-		this.setFigura(null);
-	}
-
-	public Image getFigura() {
-		return figura;
-	}
-
-	public void setFigura(Image figura) {
-		this.figura = figura;
+		this.setLinkImagen(linkImagen);
 	}
 
 	public GregorianCalendar getFechaAlta() {
@@ -68,6 +59,14 @@ public class DTPaquete {
 
 	public void setDescuento(float descuento) {
 		this.descuento = descuento;
+	}
+
+	public String getLinkImagen() {
+		return linkImagen;
+	}
+
+	public void setLinkImagen(String linkImagen) {
+		this.linkImagen = linkImagen;
 	}
 
 }
