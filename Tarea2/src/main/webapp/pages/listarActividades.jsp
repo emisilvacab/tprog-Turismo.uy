@@ -47,7 +47,7 @@
 					<div class="row g-0">
 						<div class="col-md-4">
 							<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
-							<img src="https://s3.amazonaws.com/turismorocha/eventos/2569/cover/degusta-048968300-1659558891.jpg" class="img-fluid rounded-start" alt="Actividad">
+							<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%}%> class="img-fluid rounded-start" alt="Actividad">
 							</a>
 						</div>
 						<div class="col-md-8">

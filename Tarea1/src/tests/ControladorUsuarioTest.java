@@ -428,7 +428,7 @@ class ControladorUsuarioTest {
 		assertEquals(pruebaDep.getUrl(), "capibara.com");
 		assertEquals(pruebaDep.getDescripcion(), "Carpinchos");
 		
-		Salida pruebaSalida = new Salida("Tirarse al lago", 4, new GregorianCalendar(2023, 6, 5), new GregorianCalendar(2023, 6, 7), 12, "Puerta del liceo Zorrilla", pruebaAct);
+		Salida pruebaSalida = new Salida("Tirarse al lago", 4, new GregorianCalendar(2023, 6, 5), new GregorianCalendar(2023, 6, 7), 12, "Puerta del liceo Zorrilla", pruebaAct, null);
 		pruebaAct.addSalida(pruebaSalida);
 		assertEquals(pruebaAct.existeSalida(pruebaSalida.getNombre()), true);
 		assertEquals(pruebaSalida.getMaxTuristas(), 4);

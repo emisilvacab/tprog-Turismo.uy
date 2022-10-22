@@ -1,6 +1,5 @@
 package logica;
 
-import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
@@ -14,12 +13,12 @@ public class Salida{
 	private GregorianCalendar fechaSalida;
 	private int hora;
 	private String lugarSalida;
-	private Image figura;
+	private String linkImagen;
 	
 	private Actividad actividad;
 	private Vector<Inscripcion> inscripciones;
 
-	public Salida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaSalida, int hora, String lugarSalida, Actividad actividad) {
+	public Salida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaSalida, int hora, String lugarSalida, Actividad actividad, String linkImagen) {
 		this.setNombre(nombre);
 		this.setMaxTuristas(maxTuristas);
 		this.setAlta(alta);
@@ -28,7 +27,7 @@ public class Salida{
 		this.setLugarSalida(lugarSalida);
 		this.setActividad(actividad);
 		this.setInscripciones(new Vector<Inscripcion>());
-		this.setFigura(null);
+		this.setLinkImagen(linkImagen);
 	}
 
 	public String getNombre() {
@@ -107,7 +106,7 @@ public class Salida{
 	}
 
 	public DTSalida getDatos() {
-		DTSalida res = new DTSalida(nombre, maxTuristas, alta, fechaSalida, hora, lugarSalida);
+		DTSalida res = new DTSalida(nombre, maxTuristas, alta, fechaSalida, hora, lugarSalida, linkImagen);
 		return res;
 	}
 
@@ -131,12 +130,13 @@ public class Salida{
 		return maxTuristas - total;
 	}
 
-	public Image getFigura() {
-		return figura;
+	public String getLinkImagen() {
+		return linkImagen;
 	}
 
-	public void setFigura(Image figura) {
-		this.figura = figura;
+	public void setLinkImagen(String linkImagen) {
+		this.linkImagen = linkImagen;
 	}
+
 	
 }

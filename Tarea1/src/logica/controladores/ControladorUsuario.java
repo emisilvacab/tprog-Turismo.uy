@@ -271,7 +271,7 @@ public class ControladorUsuario implements IControladorUsuario {
 			Salida sal = inscripcion.getSalida();
 			if (sal != null) {
 				if (sal.getNombre() == nombreSalida) {
-					resu = new DTSalida(nombreSalida, sal.getMaxTuristas(), sal.getAlta(), sal.getFechaSalida(), sal.getHora(), sal.getLugarSalida());
+					resu = sal.getDatos();
 					break;
 				}
 			}

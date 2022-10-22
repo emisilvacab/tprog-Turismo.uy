@@ -1,6 +1,5 @@
 package logica.controladores;
 
-import java.awt.Image;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +23,7 @@ public interface IControladorDepartamento {
 	
 	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias, String linkImagen) throws excepciones.proveedorNoExisteException, departamentoNoExisteException;
 	
-	public abstract boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct, Image figura) throws excepciones.departamentoNoExisteException, actividadNoExisteException;
+	public abstract boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct, String linkImagen) throws excepciones.departamentoNoExisteException, actividadNoExisteException;
 	
 	public abstract void ingresarDepartamento(String nombre, String descripcion, String url);
 
