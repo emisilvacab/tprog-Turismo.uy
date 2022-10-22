@@ -23,8 +23,7 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTActividad;
-
-
+import logica.datatypes.DTCompra;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -75,9 +74,17 @@ public class DetalleUsuario extends HttpServlet {
     			
     		}
     		
+    		HashSet<DTCompra> compras = new HashSet<DTCompra>();
+    		try {
+    			compras = ctrlUsr.obtenerComprasTurista(nickname);
+    		} catch (usuarioNoExisteException usuarioNoExiste) {
+				request.setAttribute("error", "usuario-no-existe"); 
+    		}
+    		   		
     		request.setAttribute("usuarioDetalle", usuario);
     		request.setAttribute("usuarioDetalleTipo", "turista");
     		request.setAttribute("usuarioDetalleSalidas", salidas);
+    		request.setAttribute("usuarioDetalleCompras", compras);
     	}else {
     		
     		String[] actividadesNombres = {};

@@ -6,6 +6,7 @@
 <%@page import="logica.datatypes.DTTurista"%>
 <%@page import="logica.datatypes.DTActividad"%>
 <%@page import="logica.datatypes.DTSalida"%>
+<%@page import="logica.datatypes.DTCompra"%>
 <%@page import="model.EstadoSesion"%>
 
 <%@page import="java.util.GregorianCalendar"%>
@@ -25,6 +26,7 @@
 	DTUsuario usr = (DTUsuario) request.getAttribute("usuarioDetalle");
 	String tipo = (String) request.getAttribute("usuarioDetalleTipo");
 	HashSet<DTSalida> salidas = (HashSet<DTSalida>) request.getAttribute("usuarioDetalleSalidas");
+	HashSet<DTCompra> compras = (HashSet<DTCompra>) request.getAttribute("usuarioDetalleCompras");
 	
 	String nick = null;
 	DTUsuario logged = (DTUsuario) session.getAttribute("usuario_logueado");
@@ -124,17 +126,24 @@
   					<div class="container" id="container-cards-paquete-usuario" style="max-width:950px;">
 	
 						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
-	
+							<%
+							
+							for(DTCompra comp : compras){
+								GregorianCalendar fechaCompra = comp.getFecha();
+							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<img id="card-img-paquete" src="https://sites.google.com/site/areasprotegidasenuruguay/_/rsrc/1411660757953/algunas-de-las-areas-ingresadas-por-el-snap/laguna-de-rocha/Mapa_Rocha_BLOG.jpg?height=280&width=400" class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
-    								<h3 class="card-title">Disfrutar Rocha</h3>
-     								<p class="card-text"><strong>Fecha de Compra:</strong> 15/8/2022</p>	
-      								<p class="card-text"><strong>Cantidad de turistas:</strong> 3</p>	
-    			 					<a href="detalleDePaquete.html" class="stretched-link"></a>
+    								<h3 class="card-title"><%=comp.getPaquete()%></h3>
+     								<p class="card-text"><strong>Fecha de Compra:</strong> <%=fechaCompra.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=fechaCompra.get(GregorianCalendar.MONTH)%>/<%=fechaCompra.get(GregorianCalendar.YEAR)%></p>	
+      								<p class="card-text"><strong>Cantidad de turistas: </strong><%=comp.getCantTuristas()%></p>
+      								<p class="card-text"><strong>Costo:</strong> $<%=comp.getCosto()%></p>	
+      								
+    			 					<a href="DetallePaquete?detallePaqueteNombre=<%=comp.getPaquete()%>" class="stretched-link"></a>
     			
   								</div>  								
 							</div>
+							<%} %>
 						</div>
   				
   					</div>
