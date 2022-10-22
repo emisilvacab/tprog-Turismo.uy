@@ -163,49 +163,49 @@ public class CargarDatos extends HttpServlet {
 			Estado estado = Estado.CONFIRMADA;
 			
 			categorias.add("Gastronomia");
-			icd.ingresarDatosActividad("Degusta",  "Festival gastronómico de productos locales en Rocha", 3, 800, "Rocha", new GregorianCalendar(2022, 6, 20), "washington", "Rocha", categorias);
+			icd.ingresarDatosActividad("Degusta",  "Festival gastronómico de productos locales en Rocha", 3, 800, "Rocha", new GregorianCalendar(2022, 6, 20), "washington", "Rocha", categorias, "resources/img/Degusta.jpeg");
 			icd.modificarEstadoActividad("Degusta", estado);
 					
 			categorias.add("Cultura y Patrimonio");
-			icd.ingresarDatosActividad("Teatro con Sabores",  "En el mes aniversario del Club Deportivo Unión de Rocha te invitamos a una merienda deliciosa.", 3, 500, "Rocha", new GregorianCalendar(2022, 6, 21), "washington", "Rocha", categorias);
+			icd.ingresarDatosActividad("Teatro con Sabores",  "En el mes aniversario del Club Deportivo Unión de Rocha te invitamos a una merienda deliciosa.", 3, 500, "Rocha", new GregorianCalendar(2022, 6, 21), "washington", "Rocha", categorias, "resources/img/Teatro con Sabores.jpeg");
 			icd.modificarEstadoActividad("Teatro con Sabores", estado);
 			
 			categorias.remove("Gastronomia");
-			icd.ingresarDatosActividad("Tour por Colonia del Sacramento",  "Con guía especializado y en varios idiomas. Varios circuitos posibles.", 2, 400, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias);
+			icd.ingresarDatosActividad("Tour por Colonia del Sacramento",  "Con guía especializado y en varios idiomas. Varios circuitos posibles.", 2, 400, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias, "resources/img/Tour por Colonia del Sacramento.jpeg");
 			icd.modificarEstadoActividad("Tour por Colonia del Sacramento", estado);
 			
 			categorias.add("Gastronomia");
 			categorias.remove("Cultura y Patrimonio");
-			icd.ingresarDatosActividad("Almuerzo en el Real de San Carlos",  "Restaurante en la renovada Plaza de Toros con menú internacional.", 2, 800, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias);
+			icd.ingresarDatosActividad("Almuerzo en el Real de San Carlos",  "Restaurante en la renovada Plaza de Toros con menú internacional.", 2, 800, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias, "resources/img/Almuerzo en el Real de San Carlos.jpeg");
 			icd.modificarEstadoActividad("Almuerzo en el Real de San Carlos", estado);
 			
 			categorias.add("Campo y Naturaleza");
-			icd.ingresarDatosActividad("Almuerzo en Valle del Lunarejo",  "Almuerzo en la Posada con ticket fijo. Menú que incluye bebida y postre casero.", 2, 300, "Tranqueras", new GregorianCalendar(2022, 7, 1), "eldiez", "Rivera", categorias);
+			icd.ingresarDatosActividad("Almuerzo en Valle del Lunarejo",  "Almuerzo en la Posada con ticket fijo. Menú que incluye bebida y postre casero.", 2, 300, "Tranqueras", new GregorianCalendar(2022, 7, 1), "eldiez", "Rivera", categorias, "resources/img/Almuerzo en Valle del Lunarejo.jpeg");
 			icd.modificarEstadoActividad("Almuerzo en Valle del Lunarejo", estado);
 			
 			categorias.remove("Gastronomia");
-			icd.ingresarDatosActividad("Cabalgata en Valle del Lunarejo",  "Cabalgata por el Área protegida. Varios recorridos para elegir.", 2, 150, "Tranqueras", new GregorianCalendar(2022, 7, 1), "eldiez", "Rivera", categorias);
+			icd.ingresarDatosActividad("Cabalgata en Valle del Lunarejo",  "Cabalgata por el Área protegida. Varios recorridos para elegir.", 2, 150, "Tranqueras", new GregorianCalendar(2022, 7, 1), "eldiez", "Rivera", categorias, "resources/img/Cabalgata en Valle del Lunarejo.jpeg");
 			icd.modificarEstadoActividad("Cabalgata en Valle del Lunarejo", estado);
 
 			categorias.add("Cultura y Patrimonio");
 			categorias.remove("Campo y Naturaleza");
-			icd.ingresarDatosActividad("Bus turístico Colonia",  "Recorrida por los principales atractivos de la ciudad", 3, 600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 1), "meche", "Colonia", categorias);
+			icd.ingresarDatosActividad("Bus turístico Colonia",  "Recorrida por los principales atractivos de la ciudad", 3, 600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 1), "meche", "Colonia", categorias, "resources/img/Bus turístico Colonia.jpeg");
 			estado = Estado.AGREGADA;
 			icd.modificarEstadoActividad("Teatro con Sabores", estado);
 			
-			icd.ingresarDatosActividad("Colonia Premium Tour",  "Visita lugares exclusivos y relevantes", 4, 2600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 3), "meche", "Colonia", categorias);
+			icd.ingresarDatosActividad("Colonia Premium Tour",  "Visita lugares exclusivos y relevantes", 4, 2600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 3), "meche", "Colonia", categorias, "resources/img/Colonia Premium Tour.jpeg");
 			estado = Estado.RECHAZADA;
 			icd.modificarEstadoActividad("Teatro con Sabores", estado);
 
 			categorias.add("Aventura y Deporte");
 			categorias.add("Turismo Playas");
 			categorias.remove("Cultura y Patrimonio");
-			icd.ingresarDatosActividad("Deportes náuticos sin uso de motor",  "kitsurf - windsurf - kayakismo - canotaje en Rocha", 3, 1200, "Rocha", new GregorianCalendar(2022, 8, 5), "washington", "Rocha", categorias);
+			icd.ingresarDatosActividad("Deportes náuticos sin uso de motor",  "kitsurf - windsurf - kayakismo - canotaje en Rocha", 3, 1200, "Rocha", new GregorianCalendar(2022, 8, 5), "washington", "Rocha", categorias, "resources/img/Deportes náuticos sin uso de motor.jpeg");
 			estado = Estado.AGREGADA;
 			icd.modificarEstadoActividad("Teatro con Sabores", estado);
 
 			categorias.remove("Turismo Playas");
-			icd.ingresarDatosActividad("Descubre Rivera",  "Rivera es un departamento de extraordinaria riqueza natural patrimonial y cultural con una ubicación geográfica privilegiada", 2, 650, "Rivera", new GregorianCalendar(2022, 8, 16), "eldiez", "Rivera", categorias);
+			icd.ingresarDatosActividad("Descubre Rivera",  "Rivera es un departamento de extraordinaria riqueza natural patrimonial y cultural con una ubicación geográfica privilegiada", 2, 650, "Rivera", new GregorianCalendar(2022, 8, 16), "eldiez", "Rivera", categorias, "resources/img/Descubre Rivera.jpeg");
 			estado = Estado.RECHAZADA;
 			icd.modificarEstadoActividad("Teatro con Sabores", estado);
 

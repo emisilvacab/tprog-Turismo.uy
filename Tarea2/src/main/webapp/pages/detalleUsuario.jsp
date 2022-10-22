@@ -155,7 +155,7 @@
   						%>
   						
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<img id="card-img-paquete" src="https://s3.amazonaws.com/turismorocha/eventos/2569/cover/degusta-048968300-1659558891.jpg" class="card-img-top" alt="...">
+  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=actividad.getNombre() %></h3>
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%></p>

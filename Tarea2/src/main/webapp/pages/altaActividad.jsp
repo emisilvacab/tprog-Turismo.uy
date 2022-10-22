@@ -17,7 +17,7 @@
 	
 		<h1 class="headerAltaActSal" id="section-header-middle">Alta de Actividad Turística</h1>	
 			
-		<form class="formAltaActSal" onsubmit = "return validarAltaActividad()" action="altaActividad" method="post">   
+		<form class="formAltaActSal" onsubmit = "return validarAltaActividad()" action="altaActividad" method="post" enctype="multipart/form-data">   
 			
 			<label class="lbltxt">Seleccionar Departamento*</label><br>
 			<select class="inputbox" id="depAct" name="depAct">

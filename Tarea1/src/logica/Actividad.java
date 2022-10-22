@@ -21,6 +21,7 @@ public class Actividad{
 	private GregorianCalendar alta;
 	private Estado estado;
 	private Image figura;
+	private String linkImagen;
 	
 	private Departamento departamento;
 	private Proveedor proveedor;
@@ -29,7 +30,7 @@ public class Actividad{
 	private Vector<Cuponera> cuponeras;
 	private HashMap<String,Categoria> categorias;
 	
-	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor) {
+	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor, String linkImagen) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setDuracion(duracion);
@@ -43,6 +44,7 @@ public class Actividad{
 		this.setCuponeras(new Vector<Cuponera>());
 		this.setEstado(Estado.AGREGADA);
 		this.setCategorias(new HashMap<String, Categoria>());
+		this.setLinkImagen(linkImagen);
 	}
 
 	public String getNombre() {
@@ -134,7 +136,7 @@ public class Actividad{
 	}
 
 	public DTActividad getDatos() {
-		DTActividad res = new DTActividad(nombre,descripcion,duracion,costo,ciudad,alta, estado);
+		DTActividad res = new DTActividad(nombre,descripcion,duracion,costo,ciudad,alta, estado, linkImagen);
 		return res;
 	}
 
@@ -193,6 +195,14 @@ public class Actividad{
 
 	public void setFigura(Image figura) {
 		this.figura = figura;
+	}
+
+	public String getLinkImagen() {
+		return linkImagen;
+	}
+
+	public void setLinkImagen(String linkImagen) {
+		this.linkImagen = linkImagen;
 	}
 	
 }

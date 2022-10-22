@@ -13,9 +13,10 @@ public class DTActividad{
 	private String ciudad;
 	private GregorianCalendar alta;
 	private Estado estado;
+	private String linkImagen;
 	
 	
-	public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Estado estado) {
+	public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Estado estado, String linkImagen) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setDuracion(duracion);
@@ -23,6 +24,7 @@ public class DTActividad{
 		this.setCiudad(ciudad);
 		this.setAlta(alta);
 		this.setEstado(estado);
+		this.setLinkImagen(linkImagen);
 	}
 	
 	public Estado getEstado() {
@@ -79,6 +81,14 @@ public class DTActividad{
 
 	public void setAlta(GregorianCalendar alta) {
 		this.alta = alta;
+	}
+
+	public String getLinkImagen() {
+		return linkImagen;
+	}
+
+	public void setLinkImagen(String linkImagen) {
+		this.linkImagen = linkImagen;
 	}
 	
 }
