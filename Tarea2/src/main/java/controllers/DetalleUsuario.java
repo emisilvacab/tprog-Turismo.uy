@@ -21,8 +21,8 @@ import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
-import logica.datatypes.DTSalida;
 import logica.datatypes.DTActividad;
+import logica.datatypes.DTInscripcion;
 import logica.datatypes.DTCompra;
 
 import java.util.Set;
@@ -59,19 +59,12 @@ public class DetalleUsuario extends HttpServlet {
     	}
     	
     	if (usuario instanceof DTTurista) {	
-    		
-    		String[] salidasNombres = null;
+    		    	
+    		Set<DTInscripcion> inscripciones = new HashSet<DTInscripcion>();
     		try {
-    			salidasNombres = ctrlUsr.obtenerSalidasInscripto(nickname);
+    			inscripciones = ctrlUsr.obtenerInscripcionesTurista(nickname);
     		} catch (usuarioNoExisteException usuarioNoExiste) {
 				request.setAttribute("error", "usuario-no-existe"); 
-    		}
-    		    	
-    		Set<DTSalida> salidas = new HashSet<DTSalida>();
-    		for(String sal : salidasNombres) {
-    			DTSalida nuevo = ctrlUsr.obtenerSalidaInscripto(sal, nickname);
-    			salidas.add(nuevo);
-    			
     		}
     		
     		HashSet<DTCompra> compras = new HashSet<DTCompra>();
@@ -83,7 +76,7 @@ public class DetalleUsuario extends HttpServlet {
     		   		
     		request.setAttribute("usuarioDetalle", usuario);
     		request.setAttribute("usuarioDetalleTipo", "turista");
-    		request.setAttribute("usuarioDetalleSalidas", salidas);
+    		request.setAttribute("usuarioDetalleInscripciones", inscripciones);
     		request.setAttribute("usuarioDetalleCompras", compras);
     	}else {
     		
