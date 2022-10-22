@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
 <%@page import="logica.datatypes.DTSalida"%>
+<%@page import="logica.datatypes.DTUsuario"%>
 <%@page import="java.util.GregorianCalendar"%>
 <!DOCTYPE html>
 <html>
@@ -82,12 +83,18 @@
 			     	</div>
 			  		<div class="row">
 			  			<div class="col-md-12">
+			  				<%
+			  				DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
+			  				if (usr != null && usr.getClass().getName().equals("logica.datatypes.DTTurista")) {
+			  				%>
 				  			<div class="card-body mb-0 mt-0 pt-2 pb-1" style="max-width: 100%;">
 					  			<div class="row">
 				  					<button type="button" class="btn btn-primary btn-block">Inscribirse a salida</button>
 				  				</div>
-								
 			  				</div>
+			  				<%
+			  				}
+			  				%>
 			  				<p class="card-text mb-1" style="margin-left: 4px;"><small class="text-muted">Dada de alta el <%=diaAlta%>/<%=mesAlta%>/<%=anioAlta%></small></p>
 		  				</div>
 			  		</div>

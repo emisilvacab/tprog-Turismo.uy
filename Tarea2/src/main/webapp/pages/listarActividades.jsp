@@ -32,7 +32,15 @@
 				
 				<%
 					HashSet<DTActividad> listaActividades = (HashSet<DTActividad>) request.getAttribute("actividades");
-					for (DTActividad actividad: listaActividades) {
+					
+					if (listaActividades.isEmpty()) {
+				%>
+						<h3 class="mb-4 text-muted" style="margin-top: 35px; margin-left: 10px">
+						No se encuentran actividades turísticas disponibles
+						</h3>
+				<%
+					} else {
+						for (DTActividad actividad: listaActividades) {
 				%>
 				
 				<div class="card mb-4 contenedor-actividad" style="max-width: 1000px;">
@@ -55,7 +63,8 @@
 					</div>
 				</div>
 				<%
-				}
+						}
+					}
 				%>
 			</div>
 		</div>
