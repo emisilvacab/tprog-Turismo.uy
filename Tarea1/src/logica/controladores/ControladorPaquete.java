@@ -159,6 +159,20 @@ public class ControladorPaquete implements IControladorPaquete {
 		return ans;
 	}
 	
+	public HashSet<DTPaquete> obtenerPaquetesAll(){
+		HashSet<DTPaquete> paquetesDT = new HashSet<DTPaquete>();
+		ManejadorPaquete manPaquete = ManejadorPaquete.getInstance();
+		HashMap<String, Paquete> paquetes = manPaquete.getPaquetes();
+		
+		paquetes.forEach((nombre,paq) -> {
+			DTPaquete dato = new DTPaquete(paq.getNombre(), paq.getDescripcion(), paq.getValidez(), paq.getDescuento(), paq.getFechaAlta());
+			paquetesDT.add(dato);		
+		});
+		
+		return paquetesDT;
+	}
+
+	
 }
 
 
