@@ -159,24 +159,6 @@ public class ControladorPaquete implements IControladorPaquete {
 		return ans;
 	}
 	
-	@Override
-	public DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException {
-		ManejadorSalida manSalida = ManejadorSalida.getInstance();
-		DTSalida salida = manSalida.getSalida(nombreSalida).getDatos();
-		if (salida == null)
-			 new salidaNoExisteException("Salida no encontrada");
-		return salida;
-	}
-	
-	@Override
-	public String obtenerNombreActivdadDeSalida(String nombreSalida) throws salidaNoExisteException {
-		ManejadorSalida manSalida = ManejadorSalida.getInstance();
-		Salida salida = manSalida.getSalida(nombreSalida);
-		if (salida == null) {
-			new salidaNoExisteException("Salida no encontrada");
-		}
-		return salida.getActividad().getNombre();
-	}
 }
 
 

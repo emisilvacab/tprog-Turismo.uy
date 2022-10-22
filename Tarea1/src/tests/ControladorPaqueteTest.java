@@ -179,5 +179,11 @@ class ControladorPaqueteTest {
 			e.printStackTrace();
 		}
 
+		//obtenerDatosPaquetesParaActividad
+		
+		HashSet<DTPaquete> paquetesParaAct = icp.obtenerDatosPaquetesParaActividad("Degusta");
+		for (DTPaquete p : paquetesParaAct) {
+			assertEquals(p.getNombre(), "Disfrutar Rocha");
+		}
 	}
 }

@@ -18,9 +18,9 @@ public interface IControladorDepartamento {
 	
 	public abstract Set<String> obtenerDepartamentos();
 	
-	public abstract HashSet<DTActividad> obtenerDatosActividadesAsociadas(String nombreDpto) throws departamentoNoExisteException;
+	public abstract Set<DTActividad> obtenerDatosActividadesAsociadas(String nombreDpto) throws departamentoNoExisteException;
 	
-	public abstract HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException;
+	public abstract Set<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException;
 	
 	public abstract boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias) throws excepciones.proveedorNoExisteException, departamentoNoExisteException;
 	
@@ -34,7 +34,7 @@ public interface IControladorDepartamento {
 	
 	public abstract HashSet<String> obtenerCategoriasActividad(String actividad) throws actividadNoExisteException;
 
-	public abstract HashSet<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException;
+	public abstract Set<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException;
 	
 	public abstract int obtenerlugaresDisponibles(String nombreSal) throws salidaNoExisteException; 
 	
@@ -42,11 +42,15 @@ public interface IControladorDepartamento {
 
 	public abstract void modificarEstadoActividad(String actividadSeleccionada, Estado estado);
 	
-	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException;
+	public abstract Set<DTActividad> obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException;
 
-	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasCat(String nombreCat) throws categoriaNoExisteException;
+	public abstract Set<DTActividad> obtenerDatosActividadesConfirmadasCat(String nombreCat) throws categoriaNoExisteException;
 
 	public abstract void ingresarDatosCategoria(String nombre) throws categoriaYaExisteException;
 	
 	public abstract Set<String> obtenerCategorias();
+	
+	public abstract DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException;
+
+	public abstract String obtenerNombreActividadDeSalida(String nombreSalida) throws salidaNoExisteException;
 }

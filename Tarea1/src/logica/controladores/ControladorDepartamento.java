@@ -28,7 +28,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	
 	public ControladorDepartamento() {}
 	
-	public HashSet<String> obtenerDepartamentos(){
+	public Set<String> obtenerDepartamentos(){
 		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Departamento> dptos = (HashMap<String, Departamento>) mDptos.getDepartamentos();
 		HashSet<String> res = new HashSet<String>();
@@ -38,7 +38,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return res;
 	}
 	
-	public HashSet<DTActividad> obtenerDatosActividadesAsociadas(String nombreDpto) throws departamentoNoExisteException {
+	public Set<DTActividad> obtenerDatosActividadesAsociadas(String nombreDpto) throws departamentoNoExisteException {
 		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		Departamento dpto = mDptos.getDepartamento(nombreDpto);
 		if (dpto == null) 
@@ -46,7 +46,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return dpto.obtenerDatosActividades();
 	}
 	
-	public HashSet<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException {
+	public Set<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException {
 		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Departamento> dptos = mDptos.getDepartamentos();
 		HashMap<String, Salida> sals = new HashMap<String, Salida>(); 
@@ -68,7 +68,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return res;
 	}
 	
-	public HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
+	public Set<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
 		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Departamento> dptos = mDptos.getDepartamentos();
 		for (Departamento dpto : dptos.values()) {
@@ -206,7 +206,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		HashMap<String, Departamento> deptos = mDptos.getDepartamentos();
 		for (String dpto: deptos.keySet()) {
 			try {
-				HashSet<DTActividad> actividadesEnDepto = obtenerDatosActividadesAsociadas(dpto);
+				HashSet<DTActividad> actividadesEnDepto = (HashSet<DTActividad>) obtenerDatosActividadesAsociadas(dpto);
 				for (DTActividad act: actividadesEnDepto) {
 					if (act.getEstado() == Estado.AGREGADA) {
 						actividades.add(act.getNombre());
@@ -230,7 +230,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	}
 
 	
-	public HashSet<DTActividad> obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException{
+	public Set<DTActividad> obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException{
 		ManejadorDepartamentoCategoria mDpto = ManejadorDepartamentoCategoria.getInstance();
 		Departamento dpto = mDpto.getDepartamento(nombreDpto);
 		if (dpto == null)
@@ -243,12 +243,12 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return res;
 	}
 	
-	public HashSet<DTActividad> obtenerDatosActividadesConfirmadasCat(String nombreCat) throws categoriaNoExisteException{
+	public Set<DTActividad> obtenerDatosActividadesConfirmadasCat(String nombreCat) throws categoriaNoExisteException{
 		ManejadorDepartamentoCategoria mCat = ManejadorDepartamentoCategoria.getInstance();
 		Categoria cat = mCat.getCategoria(nombreCat);
 		if (cat == null)
 			throw new categoriaNoExisteException("Categoria no encontrada");
-		Vector<Actividad> actsConfi = cat.getActividadesConfirmadas();
+		HashSet<Actividad> actsConfi = (HashSet<Actividad>) cat.getActividadesConfirmadas();
 		HashSet<DTActividad> res = new HashSet<DTActividad>();
 		for (Actividad act : actsConfi) {
 			res.add(act.getDatos());
@@ -275,6 +275,24 @@ public class ControladorDepartamento implements IControladorDepartamento {
 			res.add(key);
 		});
 		return res;
+	}
+	
+	@Override
+	public DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException {
+		ManejadorSalida manSalida = ManejadorSalida.getInstance();
+		Salida salida = manSalida.getSalida(nombreSalida);
+		if (salida == null)
+			 throw new salidaNoExisteException("Salida no encontrada");
+		return salida.getDatos();
+	}
+	
+	@Override
+	public String obtenerNombreActividadDeSalida(String nombreSalida) throws salidaNoExisteException {
+		ManejadorSalida manSalida = ManejadorSalida.getInstance();
+		Salida salida = manSalida.getSalida(nombreSalida);
+		if (salida == null)
+			throw new salidaNoExisteException("Salida no encontrada");
+		return salida.getActividad().getNombre();
 	}
 	
 }

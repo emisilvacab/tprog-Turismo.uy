@@ -35,7 +35,4 @@ public interface IControladorPaquete {
 
 	public abstract HashSet<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct);
 	
-	public abstract DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException;
-	
-	public abstract String obtenerNombreActivdadDeSalida(String nombreSalida) throws salidaNoExisteException;
 }

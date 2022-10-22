@@ -52,7 +52,7 @@ public class ListarActividades extends HttpServlet {
     	HashSet<DTActividad> actividades = null;
     	if (tipo.equals("departamento")) {
     		try {
-				actividades = ctrlDepartamentos.obtenerDatosActividadesConfirmadasDpto(request.getParameter("nombreTipoActividad"));
+				actividades = (HashSet<DTActividad>) ctrlDepartamentos.obtenerDatosActividadesConfirmadasDpto(request.getParameter("nombreTipoActividad"));
 			} catch (departamentoNoExisteException deptoNoExiste) {
 				// TODO Auto-generated catch block
 				request.setAttribute("error", "departamentoNoExiste");
@@ -66,7 +66,7 @@ public class ListarActividades extends HttpServlet {
     		request.getRequestDispatcher("/pages/listarActividades.jsp").forward(request, response);
     	} else if (tipo.equals("categoria")) {
     		try {
-				actividades = ctrlDepartamentos.obtenerDatosActividadesConfirmadasCat(request.getParameter("nombreTipoActividad"));
+				actividades = (HashSet<DTActividad>) ctrlDepartamentos.obtenerDatosActividadesConfirmadasCat(request.getParameter("nombreTipoActividad"));
 			} catch (categoriaNoExisteException catNoExiste) {
 				// TODO Auto-generated catch block
 				request.setAttribute("error", "categoriaNoExiste");

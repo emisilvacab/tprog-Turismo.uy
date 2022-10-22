@@ -61,9 +61,9 @@ public class Inscripcion extends HttpServlet {
 		try { //cargo actividades
 			HashSet<DTActividad> acts;
 			if (request.getParameter("dpto") != null)
-				acts = cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+				acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 			else 
-				acts = cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
+				acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
 			Set<String> res = new HashSet<String>();
 			for (DTActividad act : acts) {
 				res.add(act.getNombre());
@@ -74,7 +74,7 @@ public class Inscripcion extends HttpServlet {
 		}
 		try { //cargo salidas
 			HashSet<DTSalida> sals;
-			sals = cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
+			sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
 			Set<String> res = new HashSet<String>();
 			for (DTSalida sal : sals) {
 				res.add(sal.getNombre());
@@ -109,7 +109,7 @@ public class Inscripcion extends HttpServlet {
     			try {
     				request.setAttribute("cats",cDpto.obtenerCategorias());
     	    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
-					HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+					HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 					Set<String> res = new HashSet<String>();
 					for (DTActividad act : acts) {
 						res.add(act.getNombre());
@@ -128,7 +128,7 @@ public class Inscripcion extends HttpServlet {
     				request.setAttribute("cats",cDpto.obtenerCategorias());
     	    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 					
-    	    		HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
+    	    		HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
 					Set<String> res = new HashSet<String>();
 					for (DTActividad act : acts) {
 						res.add(act.getNombre());
@@ -147,7 +147,7 @@ public class Inscripcion extends HttpServlet {
 					request.setAttribute("cats",cDpto.obtenerCategorias());
     	    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
     	    		
-    	    		HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
+    	    		HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
 					Set<String> salsInsc = new HashSet<String>();
 					for (DTSalida sal : sals) {
 						salsInsc.add(sal.getNombre());
@@ -156,7 +156,7 @@ public class Inscripcion extends HttpServlet {
 					
 					if (request.getParameter("dpto") != null) { 
 						request.setAttribute("dpto", request.getParameter("dpto"));
-						HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+						HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 						Set<String> actsInsc = new HashSet<String>();
 						for (DTActividad act : acts) {
 							actsInsc.add(act.getNombre());
@@ -165,7 +165,7 @@ public class Inscripcion extends HttpServlet {
 					}
 					else {
 						request.setAttribute("cat", request.getParameter("cat"));
-						HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
+						HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
 						Set<String> actsInsc = new HashSet<String>();
 						for (DTActividad act : acts) {
 							actsInsc.add(act.getNombre());
@@ -192,7 +192,7 @@ public class Inscripcion extends HttpServlet {
 					}
 					request.setAttribute("paqsInsc", paqsInsc); //relleno los paquetes
 					
-					HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
+					HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
 					Set<String> salsInsc = new HashSet<String>();
 					for (DTSalida sal : sals) {
 						salsInsc.add(sal.getNombre());
@@ -201,7 +201,7 @@ public class Inscripcion extends HttpServlet {
 					
 					if (request.getParameter("dpto") != null) { 
 						request.setAttribute("dpto", request.getParameter("dpto"));
-						HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+						HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 						Set<String> actsInsc = new HashSet<String>();
 						for (DTActividad act : acts) {
 							actsInsc.add(act.getNombre());
@@ -210,7 +210,7 @@ public class Inscripcion extends HttpServlet {
 					}
 					else {
 						request.setAttribute("cat", request.getParameter("cat"));
-						HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
+						HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
 						Set<String> actsInsc = new HashSet<String>();
 						for (DTActividad act : acts) {
 							actsInsc.add(act.getNombre());

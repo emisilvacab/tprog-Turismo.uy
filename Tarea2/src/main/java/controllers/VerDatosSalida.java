@@ -39,7 +39,7 @@ public class VerDatosSalida extends HttpServlet {
     	
     	String salidaSeleccionada = request.getParameter("salSeleccionada");
     	try {
-			DTSalida salida = ctrlPaquete.obtenerDatosSalida(salidaSeleccionada);
+			DTSalida salida = ctrlDepartamentos.obtenerDatosSalida(salidaSeleccionada);
 			request.setAttribute("salida", salida);
 		} catch (Exception salNoExiste) {
 			// TODO Auto-generated catch block
@@ -47,7 +47,7 @@ public class VerDatosSalida extends HttpServlet {
 		}
     	
     	try {
-			String nombreActividad = ctrlPaquete.obtenerNombreActivdadDeSalida(salidaSeleccionada);
+			String nombreActividad = ctrlDepartamentos.obtenerNombreActividadDeSalida(salidaSeleccionada);
 			
 			request.setAttribute("nombreActividad", nombreActividad);
 			request.setAttribute("descripcionActividad", ctrlDepartamentos.obtenerDatosActividad(nombreActividad).getDescripcion());

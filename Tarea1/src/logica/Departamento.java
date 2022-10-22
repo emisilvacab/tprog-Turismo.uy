@@ -2,6 +2,7 @@ package logica;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 import excepciones.actividadNoExisteException;
@@ -68,7 +69,7 @@ public class Departamento{
 		return res;
 	}
 
-	public HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
+	public Set<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
 		Actividad act = actividades.get(nombreAct);
 		if (act == null)
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");

@@ -102,7 +102,7 @@ public class AltaSalida extends JInternalFrame{
 				try {
 					if (listaDep.getSelectedItem() != null) {
 						listaAct.removeAllItems();
-						HashSet<DTActividad> acts = icd.obtenerDatosActividadesAsociadas((String) listaDep.getSelectedItem());
+						HashSet<DTActividad> acts = (HashSet<DTActividad>) icd.obtenerDatosActividadesAsociadas((String) listaDep.getSelectedItem());
 						for (DTActividad a : acts)
 							listaAct.addItem(a.getNombre());
 					}

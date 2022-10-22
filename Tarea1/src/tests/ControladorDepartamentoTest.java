@@ -25,6 +25,7 @@ import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTProveedor;
+import logica.datatypes.DTSalida;
 
 class ControladorDepartamentoTest {
 	
@@ -107,17 +108,17 @@ class ControladorDepartamentoTest {
 		
 		String proveedores[] = {"artaud123", "elPadrino", "balonDeOro", "bocanada1999", "gardelito"};
 		
-		int j;
+		int contador;
 		//test obtenerProveedores
 		String provs[] = icu.obtenerProveedores();
 		for (String sal: provs) {
-			j = 0;
+			contador = 0;
 			for (String res: proveedores) {
-				j++;
+				contador++;
 				if (sal == res)
 					break;
 			}
-			assertEquals(j <= 5, true);
+			assertEquals(contador <= 5, true);
 		}
 		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		boolean ingresado;
@@ -159,15 +160,15 @@ class ControladorDepartamentoTest {
 		//test modificarEstadoActividad y obtenerDatosActividadesConfirmadasDpto
 		
 		try {
-			HashSet<DTActividad> actividadesConfirmadas = icd.obtenerDatosActividadesConfirmadasDpto("Maldonado");
+			HashSet<DTActividad> actividadesConfirmadas = (HashSet<DTActividad>) icd.obtenerDatosActividadesConfirmadasDpto("Maldonado");
 			assertEquals(actividadesConfirmadas.size(), 0);
 			
 			icd.modificarEstadoActividad("Caza de brujas", Estado.CONFIRMADA);
-			actividadesConfirmadas = icd.obtenerDatosActividadesConfirmadasDpto("Maldonado");
+			actividadesConfirmadas = (HashSet<DTActividad>) icd.obtenerDatosActividadesConfirmadasDpto("Maldonado");
 			for (DTActividad a :actividadesConfirmadas) {
 				assertEquals(a.getNombre(), "Caza de brujas");
 			}
-			actividadesConfirmadas = icd.obtenerDatosActividadesConfirmadasCat("Gastronomía");
+			actividadesConfirmadas = (HashSet<DTActividad>) icd.obtenerDatosActividadesConfirmadasCat("Gastronomía");
 			for (DTActividad a :actividadesConfirmadas) {
 				assertEquals(a.getNombre(), "Caza de brujas");
 			}
@@ -178,7 +179,15 @@ class ControladorDepartamentoTest {
 			e.printStackTrace();
 		}
 		
-		
+		//obtenerCategoriasActividad
+		try {
+			HashSet<String> catsAct = icd.obtenerCategoriasActividad("Caza de brujas");
+			for (String c :catsAct) {
+				assertEquals(categorias.contains(c), true);
+			}
+		} catch (actividadNoExisteException e) {
+			e.printStackTrace();
+		}
 		
 		//test obtenerDeptoActividad
 		String nomDep = icd.obtenerDeptoActividad("Caza de brujas");
@@ -209,12 +218,46 @@ class ControladorDepartamentoTest {
 		} catch (actividadNoExisteException e) {
 			e.printStackTrace();
 		}
+		
 		assertThrows(actividadNoExisteException.class, () -> {
 			icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "No actividad", null);
 		});
+		
 		assertThrows(departamentoNoExisteException.class, () -> {
 			icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "No", "Caza de brujas", null);
 		});
+		
+		//obtenerDatosSalida
+		
+		try {
+			DTSalida sal = icd.obtenerDatosSalida("salida de prueba");
+			assertEquals(sal.getNombre(), "salida de prueba");
+			assertEquals(sal.getMaxTuristas(), 5);
+			assertEquals(sal.getFechaDTSalida(), fechaAlta);
+			assertEquals(sal.getHora(), 0);
+			assertEquals(sal.getLugarDTSalida(), "fing");
+			assertEquals(sal.getAlta(), fechaAlta);
+		} catch (salidaNoExisteException e) {
+			e.printStackTrace();
+		}
+		
+		assertThrows(salidaNoExisteException.class, () -> {
+			icd.obtenerDatosSalida("asdasdwiqwdn");
+		});
+		
+		//obtenerNombreActividadDeSalida
+		
+		try {
+			String nomActSal = icd.obtenerNombreActividadDeSalida("salida de prueba");
+			assertEquals(nomActSal, "Caza de brujas");
+		} catch (salidaNoExisteException e) {
+			e.printStackTrace();
+		}
+
+		assertThrows(salidaNoExisteException.class, () -> {
+			icd.obtenerNombreActividadDeSalida("asdasdwiqwdn");
+		});
+		
 	}
 	
 	@Test

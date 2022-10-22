@@ -329,7 +329,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private void cargarActividades() {
 		if (comboBoxDepartamento.getSelectedItem() != null) {
 			try {
-				HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
+				HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
 				for (DTActividad a : acts)
 					comboBoxActividad.addItem(a.getNombre());
 			}catch(departamentoNoExisteException e1) {
@@ -343,7 +343,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private void cargarSalidas() {
 		if (comboBoxActividad.getSelectedItem() != null) {
 			try {
-				HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasParaActividad((String) comboBoxActividad.getSelectedItem());
+				HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasParaActividad((String) comboBoxActividad.getSelectedItem());
 				for (DTSalida s : sals)
 					comboBoxSalida.addItem(s.getNombre());
 			}catch(actividadNoExisteException e1) {
@@ -357,7 +357,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 	private void mostrarSalida() {
 		if (comboBoxDepartamento.getSelectedItem() != null && comboBoxActividad.getSelectedItem() != null && comboBoxSalida.getSelectedItem() != null) {
 		try {
-			HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasParaActividad((String) comboBoxActividad.getSelectedItem());
+			HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasParaActividad((String) comboBoxActividad.getSelectedItem());
 			DTSalida salida = null;
 		    
 			for (DTSalida it : sals) {

@@ -100,7 +100,7 @@ public class InscripcionASalida extends JInternalFrame {
 				try {
 					if (listaDptos.getSelectedItem() != null) {
 						listaActs.removeAllItems();
-						HashSet<DTActividad> acts = icd.obtenerDatosActividadesAsociadas((String) listaDptos.getSelectedItem());
+						HashSet<DTActividad> acts = (HashSet<DTActividad>) icd.obtenerDatosActividadesAsociadas((String) listaDptos.getSelectedItem());
 						for (DTActividad a : acts)
 							listaActs.addItem(a.getNombre());
 					}
@@ -118,7 +118,7 @@ public class InscripcionASalida extends JInternalFrame {
 				try {
 					if (listaActs.getSelectedItem() != null) {
 						listaSals.removeAllItems();
-						HashSet<DTSalida> sals = icd.obtenerDatosSalidasVigentes((String) listaActs.getSelectedItem());
+						HashSet<DTSalida> sals = (HashSet<DTSalida>) icd.obtenerDatosSalidasVigentes((String) listaActs.getSelectedItem());
 						for (DTSalida s : sals)
 							listaSals.addItem(s.getNombre() + " (desde: " + s.getLugarDTSalida() + ") " + s.getFechaDTSalida().get(Calendar.DAY_OF_MONTH) + "/" + (s.getFechaDTSalida().get(Calendar.MONTH)+1) + "/" + s.getFechaDTSalida().get(Calendar.YEAR));
 					}
