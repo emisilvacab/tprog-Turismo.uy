@@ -24,10 +24,12 @@ import logica.Salida;
 import logica.Turista;
 import logica.Usuario;
 import logica.datatypes.DTActividad;
+import logica.datatypes.DTCompra;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
+import logica.datatypes.DTCompra;
 import logica.manejadores.ManejadorSalida;
 import logica.manejadores.ManejadorUsuario;
 import logica.Actividad;
@@ -351,6 +353,27 @@ public class ControladorUsuario implements IControladorUsuario {
 		}
 	}
 	
+	public HashSet<DTCompra> obtenerComprasTurista(String nickname) throws usuarioNoExisteException{
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Turista user = mu.getTurista(nickname);
+		
+		if (user == null) {
+			throw new usuarioNoExisteException("no se encontro ningun turista con el nickname ingresado");
+		}else{
+			HashSet<DTCompra> comprasDT = new HashSet<DTCompra>();
+			Vector<Compra> compras = user.getCompras();
+			
+			for(Compra comp : compras) {
+				String nomPaquete = comp.getPaquete().getNombre();
+				DTCompra nueva = new DTCompra(comp.getFecha(), comp.getCantTuristas(), comp.getVencimiento(), comp.getCosto(), nomPaquete, nickname);
+				comprasDT.add(nueva);
+			}
+				
+			return comprasDT;
+	
+		}
+
+	}
 	
 }
 
