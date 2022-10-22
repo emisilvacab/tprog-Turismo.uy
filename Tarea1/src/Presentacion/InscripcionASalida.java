@@ -66,7 +66,7 @@ public class InscripcionASalida extends JInternalFrame {
 		icu = picu;
 		icd = picd;
 		
-		Dimension dmsInternal = new Dimension(700,417);
+		Dimension dmsInternal = new Dimension(700, 417);
 		setMaximumSize(dmsInternal);
 		setMaximizable(true);
 		setResizable(true);
@@ -116,7 +116,7 @@ public class InscripcionASalida extends JInternalFrame {
 		listaActs.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				try {
-					if(listaActs.getSelectedItem() != null) {
+					if (listaActs.getSelectedItem() != null) {
 						listaSals.removeAllItems();
 						HashSet<DTSalida> sals = icd.obtenerDatosSalidasVigentes((String) listaActs.getSelectedItem());
 						for (DTSalida s : sals)
@@ -132,14 +132,14 @@ public class InscripcionASalida extends JInternalFrame {
 		//Evento en listaSals que carga cantidad de lugares disponibles en salida 
 		listaSals.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if(listaSals.getSelectedItem() != null) {
+				if (listaSals.getSelectedItem() != null) {
 					try {
 						
 						String datosSalida = (String) listaSals.getSelectedItem();
 						
 						//Separación del nombre de la salida del resto de datos
 						int pos = datosSalida.indexOf("(");
-						String nombreSalida = datosSalida.substring(0,pos-1);
+						String nombreSalida = datosSalida.substring(0, pos-1);
 						
 						int cant = icd.obtenerlugaresDisponibles(nombreSalida);
 						
@@ -180,10 +180,10 @@ public class InscripcionASalida extends JInternalFrame {
 					
 						//Separación del nombre de la salida del resto de datos
 						int pos = datosSalida.indexOf("(");
-						String nombreSalida = datosSalida.substring(0,pos-1);
+						String nombreSalida = datosSalida.substring(0, pos-1);
 						
 						GregorianCalendar fechaActual = GregorianCalendar.from(ZonedDateTime.now());
-						String problema = icu.ingresarDatosInscripcion(nombreUsuario,nombreSalida,cant,fechaActual);
+						String problema = icu.ingresarDatosInscripcion(nombreUsuario, nombreSalida, cant, fechaActual);
 					
 						if (problema == "lleno") {
 							JOptionPane.showMessageDialog(null, "La salida no cuenta con la capacidad para la cantidad de personas registradas. Cambie la salida seleccionada o la cantidad de personas a registrar.", "Capacidad superada", JOptionPane.ERROR_MESSAGE);
@@ -340,7 +340,7 @@ public class InscripcionASalida extends JInternalFrame {
 			else {
 				String datosSalida = (String) listaSals.getSelectedItem();
 				int pos = datosSalida.indexOf("(");
-				String nombreSalida = datosSalida.substring(0,pos-1);
+				String nombreSalida = datosSalida.substring(0, pos-1);
 				try {
 					int cant = icd.obtenerlugaresDisponibles(nombreSalida);
 					try {

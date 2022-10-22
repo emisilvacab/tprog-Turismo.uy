@@ -171,7 +171,7 @@ public class ConsultarUsuario extends JInternalFrame{
         actividadesOfrecidasBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(actividadesOfrecidasBox.getSelectedItem()!=null)
+					if (actividadesOfrecidasBox.getSelectedItem()!=null)
 						cargarSalidasAsociadas();
 				}catch (usuarioNoExisteException error) {
 					JOptionPane.showMessageDialog(null, error.getMessage(), "Usuario invalido", JOptionPane.ERROR_MESSAGE);
@@ -228,10 +228,10 @@ public class ConsultarUsuario extends JInternalFrame{
         buttonActividad.setVisible(false);
         buttonActividad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	if(actividadesOfrecidasBox.getSelectedItem() != null)
+            	if (actividadesOfrecidasBox.getSelectedItem() != null)
             		try {
             			consultaDeActividad.setVisible(true);
-            			consultaDeActividad.mostrarDT(contUser.obtenerDatoActividadProveedor((String) listaUsuarios.getSelectedItem(),(String) actividadesOfrecidasBox.getSelectedItem()));
+            			consultaDeActividad.mostrarDT(contUser.obtenerDatoActividadProveedor((String) listaUsuarios.getSelectedItem(), (String) actividadesOfrecidasBox.getSelectedItem()));
             		} 
             		catch(usuarioNoExisteException exc ) {
 	        			JOptionPane.showMessageDialog(null, exc.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
@@ -247,10 +247,10 @@ public class ConsultarUsuario extends JInternalFrame{
         buttonSalida.setVisible(false);
         buttonSalida.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	if(salidasAsociadasBox.getSelectedItem() != null)
+            	if (salidasAsociadasBox.getSelectedItem() != null)
             		try {
             			consultaDeSalida.setVisible(true);
-            			consultaDeSalida.mostrarDT(contUser.obtenerDatoSalidaProveedor((String) listaUsuarios.getSelectedItem(),(String) actividadesOfrecidasBox.getSelectedItem(),(String) salidasAsociadasBox.getSelectedItem()  ));
+            			consultaDeSalida.mostrarDT(contUser.obtenerDatoSalidaProveedor((String) listaUsuarios.getSelectedItem(), (String) actividadesOfrecidasBox.getSelectedItem(), (String) salidasAsociadasBox.getSelectedItem()  ));
             		} catch(usuarioNoExisteException | actividadNoExisteException exc ) {
 	        			JOptionPane.showMessageDialog(null, exc.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
 

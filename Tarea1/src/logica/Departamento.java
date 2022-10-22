@@ -21,7 +21,7 @@ public class Departamento{
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setUrl(url);
-		this.setActividades(new HashMap<String,Actividad>());
+		this.setActividades(new HashMap<String, Actividad>());
 	}
 
 	public String getNombre() {
@@ -62,7 +62,7 @@ public class Departamento{
 	
 	public HashSet<DTActividad> obtenerDatosActividades(){
 		HashSet<DTActividad> res = new HashSet<DTActividad>();
-		actividades.forEach((key,value)->{
+		actividades.forEach((key, value)-> {
 			res.add(actividades.get(key).getDatos());
 		});
 		return res;

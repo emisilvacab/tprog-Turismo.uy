@@ -32,7 +32,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Departamento> dptos = (HashMap<String, Departamento>) mDptos.getDepartamentos();
 		HashSet<String> res = new HashSet<String>();
-		dptos.forEach((key,value)->{
+		dptos.forEach((key, value)-> {
 			res.add(key);
 		});
 		return res;
@@ -48,8 +48,8 @@ public class ControladorDepartamento implements IControladorDepartamento {
 	
 	public HashSet<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException {
 		ManejadorDepartamentoCategoria mDptos = ManejadorDepartamentoCategoria.getInstance();
-		HashMap<String,Departamento> dptos = mDptos.getDepartamentos();
-		HashMap<String,Salida> sals = new HashMap<String,Salida>(); 
+		HashMap<String, Departamento> dptos = mDptos.getDepartamentos();
+		HashMap<String, Salida> sals = new HashMap<String, Salida>(); 
 		boolean encontro = false;
 		for (Departamento dpto : dptos.values()) {
 			for (Actividad a : dpto.getActividades().values()) {
@@ -104,7 +104,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
     		}
     		Actividad nuevaActividad = new Actividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, depAsignado, proveedor);
     		HashMap<String, Categoria> cats = new HashMap<String, Categoria>();
-    		for(String nomCat : categorias) {
+    		for (String nomCat : categorias) {
     			Categoria cat = manDepartamento.getCategoria(nomCat);
     			cats.put(nomCat, cat);
     			cat.addActividad(nuevaActividad);
@@ -271,7 +271,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		ManejadorDepartamentoCategoria mCat = ManejadorDepartamentoCategoria.getInstance();
 		HashMap<String, Categoria> cats = mCat.getCategorias();
 		HashSet<String> res = new HashSet<String>();
-		cats.forEach((key,value)->{
+		cats.forEach((key, value)-> {
 			res.add(key);
 		});
 		return res;

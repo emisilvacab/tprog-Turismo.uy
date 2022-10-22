@@ -31,12 +31,12 @@ import java.util.Set;
 
 class ControladorUsuarioTest {
 	static //si agregan algun usuario avisenme joaco
-	DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "contra", "Uruguaya");
-	static DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel2@gmail.com", new GregorianCalendar(2001,6,5), "contra", "Uruguaya");
-	static DTProveedor userU3 = new DTProveedor("joaco", "Leonardo", "Melgar", "joaco@gmail.com", new GregorianCalendar(2001,6,5), "contra", "lol", "superlol");
+	DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
+	static DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel2@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
+	static DTProveedor userU3 = new DTProveedor("joaco", "Leonardo", "Melgar", "joaco@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "lol", "superlol");
 	String[] usuariosCargados = new String[]{"leomel", "leomel2", "joaco", "wason", "pepe"};
-	static DTProveedor userP1 = new DTProveedor("wason","Ignacio","Nunez","wason@gmail.com", new GregorianCalendar(2001,3,2), "contra", "Proveedor desde 2010");
-	static DTTurista userU4 = new DTTurista("pepe", "Leonardo", "Melgar", "pepe@gmail.com", new GregorianCalendar(2001,6,5), "contra", "Uruguaya");
+	static DTProveedor userP1 = new DTProveedor("wason", "Ignacio", "Nunez", "wason@gmail.com", new GregorianCalendar(2001, 3, 2), "contra", "Proveedor desde 2010");
+	static DTTurista userU4 = new DTTurista("pepe", "Leonardo", "Melgar", "pepe@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
 	
 
 	
@@ -45,7 +45,7 @@ class ControladorUsuarioTest {
 	
 	@BeforeAll
 	public static void iniciar() {
-		HashSet<String> categorias = new HashSet<String>();//HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
+		HashSet<String> categorias = new HashSet<String>(); //HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
 
 		Fabrica fabrica = Fabrica.getInstance();
 		icu = fabrica.getIControladorUsuario();
@@ -60,7 +60,7 @@ class ControladorUsuarioTest {
 			fail(e.getMessage());
 			e.printStackTrace();
 		}
-		icd.ingresarDepartamento("Montevideo","Capital de Uruguay", "mvdeo.com.uy");
+		icd.ingresarDepartamento("Montevideo", "Capital de Uruguay", "mvdeo.com.uy");
 		try {
 			icu.altaUsuario(userP1);
 		}
@@ -69,7 +69,7 @@ class ControladorUsuarioTest {
 			e.printStackTrace();
 		}
 		try {
-			icd.ingresarDatosActividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012,11,1), "wason", "Montevideo", categorias);
+			icd.ingresarDatosActividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012, 11, 1), "wason", "Montevideo", categorias);
 		}
 		catch(proveedorNoExisteException e) {
 			fail(e.getMessage());
@@ -81,8 +81,8 @@ class ControladorUsuarioTest {
 		}
 		
 		try {
-			icd.ingresarDatosSalida("Juegos", 6, new GregorianCalendar(2015,10,2),new GregorianCalendar(2022,11,8), 15,"Playa Ramirez", "Montevideo", "Paseo por Parque Rodo", null);
-			icd.ingresarDatosSalida("Juegos_vencida",6, new GregorianCalendar(2015,10,2), new GregorianCalendar(2021,8,13), 15, "Playa Ramirez", "Montevideo", "Paseo por Parque Rodo", null);
+			icd.ingresarDatosSalida("Juegos", 6, new GregorianCalendar(2015, 10, 2), new GregorianCalendar(2022, 11, 8), 15, "Playa Ramirez", "Montevideo", "Paseo por Parque Rodo", null);
+			icd.ingresarDatosSalida("Juegos_vencida", 6, new GregorianCalendar(2015, 10, 2), new GregorianCalendar(2021, 8, 13), 15, "Playa Ramirez", "Montevideo", "Paseo por Parque Rodo", null);
 		}
 		catch(departamentoNoExisteException e) {
 			fail(e.getMessage());
@@ -94,7 +94,7 @@ class ControladorUsuarioTest {
 		}
 		
 		try {
-			icu.ingresarDatosInscripcion("pepe", "Juegos", 1, new GregorianCalendar(2015,10,2));
+			icu.ingresarDatosInscripcion("pepe", "Juegos", 1, new GregorianCalendar(2015, 10, 2));
 		} catch (salidaNoExisteException e) {
 			fail(e.getMessage());
 			e.printStackTrace();
@@ -108,9 +108,11 @@ class ControladorUsuarioTest {
 	
 	@Test
 	void testAltaIniciarUsuario() {
-		GregorianCalendar nacimiento = new GregorianCalendar(2001,6,5);
+		GregorianCalendar nacimiento = new GregorianCalendar(2001, 6, 5);
 				try {
-					assertThrows(UsuarioRepetidoException.class, () -> {icu.altaUsuario(new DTTurista("gervasio", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001,6,5), "contra", "Uruguaya"));});
+					assertThrows(UsuarioRepetidoException.class, () -> {
+						icu.altaUsuario(new DTTurista("gervasio", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya"));
+					});
 					DTUsuario userObtenido = icu.obtenerUsuario("leomel");
 					DTUsuario userObtenido2 = icu.obtenerUsuario("joaco");
 					DTTurista turObtenido = (DTTurista) userObtenido;
@@ -213,21 +215,21 @@ class ControladorUsuarioTest {
 		//testeo de obtenerDepartamentos
 		Set<String> dptos = icd.obtenerDepartamentos();
 		for (String d : dptos) {
-			assertEquals(d,"Montevideo");
+			assertEquals(d, "Montevideo");
 		}
 		
 		//testeo de los datos de la actividad registrada
 		try {
 			HashSet<DTActividad> acts = icd.obtenerDatosActividadesAsociadas("Montevideo");
-			for(DTActividad a : acts) {
-				assertEquals(a.getNombre(),"Paseo por Parque Rodo");
-				assertEquals(a.getDuracion(),4);
-				assertEquals(a.getDescripcion(),"Recorrido");
-				assertEquals(a.getCosto(),(float) 100, 0);
-				assertEquals(a.getCiudad(),"Parque Rodo");
-				assertEquals(a.getAlta().get(Calendar.DAY_OF_MONTH),1);
-				assertEquals(a.getAlta().get(Calendar.MONTH),11);
-				assertEquals(a.getAlta().get(Calendar.YEAR),2012);
+			for (DTActividad a : acts) {
+				assertEquals(a.getNombre(), "Paseo por Parque Rodo");
+				assertEquals(a.getDuracion(), 4);
+				assertEquals(a.getDescripcion(), "Recorrido");
+				assertEquals(a.getCosto(), (float) 100, 0);
+				assertEquals(a.getCiudad(), "Parque Rodo");
+				assertEquals(a.getAlta().get(Calendar.DAY_OF_MONTH), 1);
+				assertEquals(a.getAlta().get(Calendar.MONTH), 11);
+				assertEquals(a.getAlta().get(Calendar.YEAR), 2012);
 			}
 		}
 		catch (departamentoNoExisteException e) {
@@ -238,19 +240,21 @@ class ControladorUsuarioTest {
 		//testeo de excepciones en obtenerDatosActividadesAsociadas
 		//dpto erroneo
 			
-		assertThrows(departamentoNoExisteException.class , ()->{HashSet<DTActividad> acts = icd.obtenerDatosActividadesAsociadas("Canelones");});
+		assertThrows(departamentoNoExisteException.class , ()-> {
+			HashSet<DTActividad> acts = icd.obtenerDatosActividadesAsociadas("Canelones");
+		});
 		
 		
 		//testeo de si se devuelve unicamente la salida vigente
 		try {
 			HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentes("Paseo por Parque Rodo");
 			for (DTSalida s : salidasVigentes) {
-				assertEquals(s.getNombre(),"Juegos");
-				assertEquals(s.getMaxTuristas(),6);
-				assertEquals(s.getFechaDTSalida().get(Calendar.DAY_OF_MONTH),8);
-				assertEquals(s.getFechaDTSalida().get(Calendar.MONTH),11);
-				assertEquals(s.getFechaDTSalida().get(Calendar.YEAR),2022);
-				assertEquals(s.getLugarDTSalida(),"Playa Ramirez");
+				assertEquals(s.getNombre(), "Juegos");
+				assertEquals(s.getMaxTuristas(), 6);
+				assertEquals(s.getFechaDTSalida().get(Calendar.DAY_OF_MONTH), 8);
+				assertEquals(s.getFechaDTSalida().get(Calendar.MONTH), 11);
+				assertEquals(s.getFechaDTSalida().get(Calendar.YEAR), 2022);
+				assertEquals(s.getLugarDTSalida(), "Playa Ramirez");
 			}
 		}
 		catch (actividadNoExisteException e) {
@@ -261,15 +265,17 @@ class ControladorUsuarioTest {
 		
 		//testeo de si se devuelven excepciones en obtenerDatosSalidasVigentes
 		//actividad erronea
-		assertThrows(actividadNoExisteException.class, ()->{HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentes("Bus turistico");});
+		assertThrows(actividadNoExisteException.class, ()-> {
+			HashSet<DTSalida> salidasVigentes = icd.obtenerDatosSalidasVigentes("Bus turistico");
+		});
 		
 		
 		//TESTEO DE ingresarDatosInscripcion
 		
 		//testeo de inscripcion correcta
 		try {
-			String problema = icu.ingresarDatosInscripcion("leomel", "Juegos", 1, new GregorianCalendar(2022,8,29));
-			assertEquals(problema,"no");
+			String problema = icu.ingresarDatosInscripcion("leomel", "Juegos", 1, new GregorianCalendar(2022, 8, 29));
+			assertEquals(problema, "no");
 		}
 		catch (salidaNoExisteException e) {
 			fail(e.getMessage());
@@ -282,8 +288,8 @@ class ControladorUsuarioTest {
 		
 		//testeo del problema que el usuario ya esté inscripto
 		try {
-			String problema = icu.ingresarDatosInscripcion("leomel", "Juegos", 1, new GregorianCalendar(2022,8,29));
-			assertEquals(problema,"existe");
+			String problema = icu.ingresarDatosInscripcion("leomel", "Juegos", 1, new GregorianCalendar(2022, 8, 29));
+			assertEquals(problema, "existe");
 		}
 		catch (salidaNoExisteException e) {
 			fail(e.getMessage());
@@ -296,8 +302,8 @@ class ControladorUsuarioTest {
 		
 		//testeo del problema de capacidad superada
 		try {
-			String problema = icu.ingresarDatosInscripcion("leomel2", "Juegos", 10, new GregorianCalendar(2022,8,29));
-			assertEquals(problema,"lleno");
+			String problema = icu.ingresarDatosInscripcion("leomel2", "Juegos", 10, new GregorianCalendar(2022, 8, 29));
+			assertEquals(problema, "lleno");
 		}
 		catch (salidaNoExisteException e) {
 			fail(e.getMessage());
@@ -309,10 +315,14 @@ class ControladorUsuarioTest {
 		}
 		
 		//testeo excepcion ingreso de usuario que no existe
-		assertThrows(usuarioNoExisteException.class, ()->{String problema = icu.ingresarDatosInscripcion("leomel3", "Juegos", 10, new GregorianCalendar(2022,8,29));});
+		assertThrows(usuarioNoExisteException.class, ()-> {
+			String problema = icu.ingresarDatosInscripcion("leomel3", "Juegos", 10, new GregorianCalendar(2022, 8, 29));
+		});
 		
 		//testeo excepcion ingreso de salida que no existe
-		assertThrows(salidaNoExisteException.class, ()->{String problema = icu.ingresarDatosInscripcion("leomel2", "Rio", 10, new GregorianCalendar(2022,8,29));});
+		assertThrows(salidaNoExisteException.class, ()-> {
+			String problema = icu.ingresarDatosInscripcion("leomel2", "Rio", 10, new GregorianCalendar(2022, 8, 29));
+		});
 	}
 	@Test
 	void obtenerConsultaUsuario() {
@@ -326,28 +336,36 @@ class ControladorUsuarioTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertThrows(usuarioNoExisteException.class, ()->{String[] erroneo = icu.obtenerSalidasDeActividad(null, "Paseo por Parque Rodo");});
-		assertThrows(actividadNoExisteException.class, ()->{String[] erroneo = icu.obtenerSalidasDeActividad("wason", "cosopum");});
+		assertThrows(usuarioNoExisteException.class, ()-> {
+			String[] erroneo = icu.obtenerSalidasDeActividad(null, "Paseo por Parque Rodo");
+		});
+		assertThrows(actividadNoExisteException.class, ()-> {
+			String[] erroneo = icu.obtenerSalidasDeActividad("wason", "cosopum");
+		});
 	
 		//test de obtenerSalidasDeActividad
 		try {
 			DTSalida datosSalida = icu.obtenerDatoSalidaProveedor("wason", "Paseo por Parque Rodo", "Juegos");
 			assertEquals(datosSalida.getNombre(), "Juegos");
-			assertEquals(datosSalida.getAlta().get(Calendar.DAY_OF_MONTH),2);
-			assertEquals(datosSalida.getAlta().get(Calendar.MONTH),10);
-			assertEquals(datosSalida.getAlta().get(Calendar.YEAR),2015);
-			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.DAY_OF_MONTH),8);
-			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.MONTH),11);
-			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.YEAR),2022);
-			assertEquals(datosSalida.getHora(),15);
-			assertEquals(datosSalida.getLugarDTSalida(),"Playa Ramirez");
+			assertEquals(datosSalida.getAlta().get(Calendar.DAY_OF_MONTH), 2);
+			assertEquals(datosSalida.getAlta().get(Calendar.MONTH), 10);
+			assertEquals(datosSalida.getAlta().get(Calendar.YEAR), 2015);
+			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.DAY_OF_MONTH), 8);
+			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.MONTH), 11);
+			assertEquals(datosSalida.getFechaDTSalida().get(Calendar.YEAR), 2022);
+			assertEquals(datosSalida.getHora(), 15);
+			assertEquals(datosSalida.getLugarDTSalida(), "Playa Ramirez");
 			//"Juegos", 6, new GregorianCalendar(2015,10,2),new GregorianCalendar(2022,11,8), 15,"Playa Ramirez", "Montevideo", "Paseo por Parque Rodo"
 		} catch (usuarioNoExisteException | actividadNoExisteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertThrows(usuarioNoExisteException.class, ()->{DTSalida erroneo = icu.obtenerDatoSalidaProveedor("joker", "Paseo por Parque Rodo", "Juegos");});
-		assertThrows(usuarioNoExisteException.class, ()->{DTSalida erroneo = icu.obtenerDatoSalidaProveedor("wason", "Paseo por lago ness", "Juegos");});
+		assertThrows(usuarioNoExisteException.class, ()-> {
+			DTSalida erroneo = icu.obtenerDatoSalidaProveedor("joker", "Paseo por Parque Rodo", "Juegos");
+		});
+		assertThrows(usuarioNoExisteException.class, ()-> {
+			DTSalida erroneo = icu.obtenerDatoSalidaProveedor("wason", "Paseo por lago ness", "Juegos");
+		});
 	}
 	
 	@Test
@@ -355,14 +373,14 @@ class ControladorUsuarioTest {
 		
 		try {
 			DTActividad act = icu.obtenerDatoActividadProveedor("wason", "Paseo por Parque Rodo");
-			assertEquals(act.getNombre(),"Paseo por Parque Rodo");
-			assertEquals(act.getDuracion(),4);
-			assertEquals(act.getDescripcion(),"Recorrido");
-			assertEquals(act.getCosto(),(float) 100, 0);
-			assertEquals(act.getCiudad(),"Parque Rodo");
-			assertEquals(act.getAlta().get(Calendar.DAY_OF_MONTH),1);
-			assertEquals(act.getAlta().get(Calendar.MONTH),11);
-			assertEquals(act.getAlta().get(Calendar.YEAR),2012);
+			assertEquals(act.getNombre(), "Paseo por Parque Rodo");
+			assertEquals(act.getDuracion(), 4);
+			assertEquals(act.getDescripcion(), "Recorrido");
+			assertEquals(act.getCosto(), (float) 100, 0);
+			assertEquals(act.getCiudad(), "Parque Rodo");
+			assertEquals(act.getAlta().get(Calendar.DAY_OF_MONTH), 1);
+			assertEquals(act.getAlta().get(Calendar.MONTH), 11);
+			assertEquals(act.getAlta().get(Calendar.YEAR), 2012);
 			
 		} 
 		catch (usuarioNoExisteException e) {
@@ -374,44 +392,48 @@ class ControladorUsuarioTest {
 			e.printStackTrace();
 		}
 		
-		assertThrows(usuarioNoExisteException.class, ()->{DTActividad act = icu.obtenerDatoActividadProveedor("Diegu", "Paseo por Parque Rodo");});
-		assertThrows(actividadNoExisteException.class, ()->{DTActividad act = icu.obtenerDatoActividadProveedor("wason", "Ir al estadio del Huesca");});
+		assertThrows(usuarioNoExisteException.class, ()-> {
+			DTActividad act = icu.obtenerDatoActividadProveedor("Diegu", "Paseo por Parque Rodo");
+		});
+		assertThrows(actividadNoExisteException.class, ()-> {
+			DTActividad act = icu.obtenerDatoActividadProveedor("wason", "Ir al estadio del Huesca");
+		});
 	}
 	@Test
 	void clasesTest() {
-		Proveedor provPrueba = new Proveedor("elProser", "Jose", "Artigas", "artigas@gmail.com", new GregorianCalendar(2001,6,5), "contra", "El de la Batalla de Las Piedras");
+		Proveedor provPrueba = new Proveedor("elProser", "Jose", "Artigas", "artigas@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "El de la Batalla de Las Piedras");
 		assertEquals(provPrueba.getNickname(), "elProser");
 		assertEquals(provPrueba.getNombre(), "Jose");
 		assertEquals(provPrueba.getApellido(), "Artigas");
 		assertEquals(provPrueba.getCorreo(), "artigas@gmail.com");
-		assertEquals(provPrueba.getNacimiento().get(Calendar.DAY_OF_MONTH),5);
-		assertEquals(provPrueba.getNacimiento().get(Calendar.MONTH),6);
-		assertEquals(provPrueba.getNacimiento().get(Calendar.YEAR),2001);
+		assertEquals(provPrueba.getNacimiento().get(Calendar.DAY_OF_MONTH), 5);
+		assertEquals(provPrueba.getNacimiento().get(Calendar.MONTH), 6);
+		assertEquals(provPrueba.getNacimiento().get(Calendar.YEAR), 2001);
 		assertEquals(provPrueba.getDescripcion(), "El de la Batalla de Las Piedras");
 		Departamento pruebaDep = new Departamento("Tacuarembo", "Carpinchos", "capibara.com");
-		Actividad pruebaAct = new Actividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012,11,1), pruebaDep, provPrueba);
+		Actividad pruebaAct = new Actividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012, 11, 1), pruebaDep, provPrueba);
 		assertEquals(pruebaAct.getDescripcion(), "Recorrido");
 		assertEquals(pruebaAct.getDuracion(), 4);
 		assertEquals(pruebaAct.getDepartamento(), pruebaDep);
 		assertEquals(pruebaAct.getCiudad(), "Parque Rodo");
-		assertEquals(pruebaAct.getAlta().get(Calendar.DAY_OF_MONTH),1);
-		assertEquals(pruebaAct.getAlta().get(Calendar.MONTH),11);
-		assertEquals(pruebaAct.getAlta().get(Calendar.YEAR),2012);
+		assertEquals(pruebaAct.getAlta().get(Calendar.DAY_OF_MONTH), 1);
+		assertEquals(pruebaAct.getAlta().get(Calendar.MONTH), 11);
+		assertEquals(pruebaAct.getAlta().get(Calendar.YEAR), 2012);
 		assertEquals(pruebaAct.getProveedor(), provPrueba);
 		provPrueba.addActividad(pruebaAct);
 		assertEquals(provPrueba.getActividades().get("Paseo por Parque Rodo") != null, true);
 		pruebaDep.addActividad(pruebaAct);
 		assertEquals(pruebaDep.getActividades().get("Paseo por Parque Rodo") != null, true);
-		assertEquals(pruebaDep.getUrl(),"capibara.com");
-		assertEquals(pruebaDep.getDescripcion(),"Carpinchos");
+		assertEquals(pruebaDep.getUrl(), "capibara.com");
+		assertEquals(pruebaDep.getDescripcion(), "Carpinchos");
 		
-		Salida pruebaSalida = new Salida("Tirarse al lago", 4, new GregorianCalendar(2023,6,5), new GregorianCalendar(2023,6,7), 12, "Puerta del liceo Zorrilla", pruebaAct);
+		Salida pruebaSalida = new Salida("Tirarse al lago", 4, new GregorianCalendar(2023, 6, 5), new GregorianCalendar(2023, 6, 7), 12, "Puerta del liceo Zorrilla", pruebaAct);
 		pruebaAct.addSalida(pruebaSalida);
 		assertEquals(pruebaAct.existeSalida(pruebaSalida.getNombre()), true);
 		assertEquals(pruebaSalida.getMaxTuristas(), 4);
-		assertEquals(pruebaSalida.getAlta().get(Calendar.DAY_OF_MONTH),5);
-		assertEquals(pruebaSalida.getAlta().get(Calendar.MONTH),6);
-		assertEquals(pruebaSalida.getAlta().get(Calendar.YEAR),2023);
+		assertEquals(pruebaSalida.getAlta().get(Calendar.DAY_OF_MONTH), 5);
+		assertEquals(pruebaSalida.getAlta().get(Calendar.MONTH), 6);
+		assertEquals(pruebaSalida.getAlta().get(Calendar.YEAR), 2023);
 		assertEquals(pruebaSalida.getLugarSalida(), "Puerta del liceo Zorrilla");
 		assertEquals(pruebaSalida.getHora(), 12);
 		assertEquals(pruebaSalida.getActividad(), pruebaAct);
@@ -425,8 +447,8 @@ class ControladorUsuarioTest {
 		assertEquals(sal.getHora(), 15);
 		assertEquals(sal.getLugarDTSalida(), "Playa Ramirez");
 		assertEquals(sal.getMaxTuristas(), 6);
-		assertEquals(sal.getFechaDTSalida(), new GregorianCalendar(2022,11,8));
-		assertEquals(sal.getAlta(), new GregorianCalendar(2015,10,2));
+		assertEquals(sal.getFechaDTSalida(), new GregorianCalendar(2022, 11, 8));
+		assertEquals(sal.getAlta(), new GregorianCalendar(2015, 10, 2));
 	}
 
 }

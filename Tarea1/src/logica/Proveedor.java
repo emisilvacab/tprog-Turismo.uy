@@ -14,14 +14,14 @@ public class Proveedor extends Usuario{
 	
 	private Map<String, Actividad> actividades;
 	
-	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena,String descripcion) {
+	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String descripcion) {
 		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
 		this.setDescripcion(descripcion);
 		this.setLink(new String());
 		this.setActividades(new HashMap<String, Actividad>());
 	}
 
-	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena,String descripcion, String link) {
+	public Proveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String descripcion, String link) {
 		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
 		this.setDescripcion(descripcion);
 		this.setLink(link);
@@ -58,6 +58,6 @@ public class Proveedor extends Usuario{
 	}
 
 	public DTUsuario getDatos() {
-		return new DTProveedor(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),this.getContrasena(),this.getDescripcion(),this.getLink());
+		return new DTProveedor(this.getNickname(), this.getNombre(), this.getApellido(), this.getCorreo(), this.getNacimiento(), this.getContrasena(), this.getDescripcion(), this.getLink());
 	}
 }

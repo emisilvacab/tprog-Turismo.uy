@@ -61,7 +61,7 @@ public class Principal {
         
         frmReservas_UY.getContentPane().setLayout(null);
         
-        conUsrInternalFrame = new ConsultarUsuario(ICU,ICD);
+        conUsrInternalFrame = new ConsultarUsuario(ICU, ICD);
         conUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(conUsrInternalFrame);
         
@@ -69,7 +69,7 @@ public class Principal {
         crearUsrInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(crearUsrInternalFrame);
         
-        inscASalInternalFrame = new InscripcionASalida(ICU,ICD);
+        inscASalInternalFrame = new InscripcionASalida(ICU, ICD);
         inscASalInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(inscASalInternalFrame);
         
@@ -82,7 +82,7 @@ public class Principal {
         consultaSalidaInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(consultaSalidaInternalFrame);
         
-        altaActividadInternalFrame = new AltaActividad(ICD,ICU);
+        altaActividadInternalFrame = new AltaActividad(ICD, ICU);
         altaActividadInternalFrame.setVisible(false);
         frmReservas_UY.getContentPane().add(altaActividadInternalFrame);
         

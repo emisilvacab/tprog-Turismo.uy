@@ -90,7 +90,7 @@ public class AltaActividad extends JInternalFrame {
 		setResizable(true);
 		setMaximizable(true);
 		setClosable(true);
-		setBounds(0,0,499,421);
+		setBounds(0, 0, 499, 421);
 		getContentPane().setLayout(new GridLayout(10, 3, 3, 15));
 		
 	    addInternalFrameListener(new InternalFrameAdapter(){

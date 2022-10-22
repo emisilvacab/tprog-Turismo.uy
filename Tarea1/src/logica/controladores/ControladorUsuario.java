@@ -67,10 +67,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		}else {
 			if (user.getClass() == Turista.class) {
 				Turista tur = (Turista)user;
-				return new DTTurista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena() ,tur.getNacionalidad());
+				return new DTTurista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), tur.getNacionalidad());
 			}else {
 				Proveedor prov = (Proveedor)user;
-				return new DTProveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(),prov.getDescripcion(), prov.getLink());
+				return new DTProveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), prov.getDescripcion(), prov.getLink());
 			}
 	
 		}
@@ -121,7 +121,7 @@ public class ControladorUsuario implements IControladorUsuario {
 				mu.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), dttur.getNacionalidad()));
 			}else {
 				DTProveedor dtprov = (DTProveedor)user;
-				mu.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena() ,dtprov.getDescripcion(), dtprov.getLink()));
+				mu.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), dtprov.getDescripcion(), dtprov.getLink()));
 				
 			}
 		}
@@ -145,7 +145,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		return resu;
 	}
 
-	public String ingresarDatosInscripcion(String nickname,String nombre,int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException{
+	public String ingresarDatosInscripcion(String nickname, String  nombre, int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException{
 		
 		ManejadorSalida mSalida = ManejadorSalida.getInstance();
 		ManejadorUsuario mUsuario = ManejadorUsuario.getInstance();
@@ -160,13 +160,13 @@ public class ControladorUsuario implements IControladorUsuario {
 		boolean hayLugar = salida.admiteCapacidad(capacidad);
 		boolean existe = salida.existeInscripcion(turista.getNickname());
 		if (hayLugar && !existe) {
-			Inscripcion insc = new Inscripcion(fechaAlta,capacidad,salida,turista,null);
+			Inscripcion insc = new Inscripcion(fechaAlta, capacidad, salida, turista, null);
 			salida.addInscripcion(insc);
 			turista.addInscripcion(insc);
 			return "no";
 		}
 		else {
-			if(!hayLugar)
+			if (!hayLugar)
 				return "lleno";
 			else 
 				return "existe";
@@ -191,15 +191,14 @@ public class ControladorUsuario implements IControladorUsuario {
 		
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Proveedor proveedor = mu.getProveedor(nickname);
-		if(proveedor == null)
+		if (proveedor == null)
 			throw new usuarioNoExisteException("No se encontró un proveedor con el nickname ingresado.");
-		Map<String,Actividad> actividades = proveedor.getActividades();
-		//boolean encontro = false;
+		Map<String, Actividad> actividades = proveedor.getActividades();
 		Actividad act = actividades.get(nombreAct);
-		if(act == null) {
+		if (act == null) {
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado." );
 		}
-		Map<String,Salida> salidas = act.getSalidas();
+		Map<String, Salida> salidas = act.getSalidas();
 		res.addAll(salidas.keySet());
 		
 		return res.toArray(new String[res.size()]);
@@ -209,18 +208,18 @@ public class ControladorUsuario implements IControladorUsuario {
 	public DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException{
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Proveedor proveedor = mu.getProveedor(nickname);
-		if(proveedor == null)
+		if (proveedor == null)
 			throw new usuarioNoExisteException("Usuario no existe");
 		DTActividad actividad = null;
-		Map<String,Actividad> actividades = proveedor.getActividades();
-		for(Map.Entry<String, Actividad> act : actividades.entrySet()) {
-			if(act.getKey() == nombreAct) {
+		Map<String, Actividad> actividades = proveedor.getActividades();
+		for (Map.Entry<String, Actividad> act : actividades.entrySet()) {
+			if (act.getKey() == nombreAct) {
 				actividad = act.getValue().getDatos();
 					
 			}
 							
 		}
-		if(actividad == null)
+		if (actividad == null)
 			throw new actividadNoExisteException("Actividad no existe");
 	
 		return actividad;
@@ -230,26 +229,26 @@ public class ControladorUsuario implements IControladorUsuario {
 	public DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException{
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 		Proveedor proveedor = mu.getProveedor(nickname);
-		if(proveedor == null)
+		if (proveedor == null)
 			throw new usuarioNoExisteException("Usuario no existe");
 		Actividad actividad = null;
-		Map<String,Actividad> actividades = proveedor.getActividades();
-		for(Map.Entry<String, Actividad> act : actividades.entrySet()) {
-			if(act.getKey() == nombreAct) {
+		Map<String, Actividad> actividades = proveedor.getActividades();
+		for (Map.Entry<String, Actividad> act : actividades.entrySet()) {
+			if (act.getKey() == nombreAct) {
 				actividad = act.getValue();
 					
 			}
 							
 		}		
 		
-		if(actividad == null)
+		if (actividad == null)
 			throw new usuarioNoExisteException("Usuario no existe");
 		
 		
 		DTSalida salida = null;
-		Map<String,Salida> salidas = actividad.getSalidas();
-		for(Map.Entry<String, Salida> sal : salidas.entrySet()) {
-			if(sal.getKey() == nombreSal) {
+		Map<String, Salida> salidas = actividad.getSalidas();
+		for (Map.Entry<String, Salida> sal : salidas.entrySet()) {
+			if (sal.getKey() == nombreSal) {
 				salida = sal.getValue().getDatos();
 					
 			}
@@ -277,7 +276,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		return resu;
 	}
 	
-	public void ingresarDatosInscripcionPaq(String nickname, String nombreSal,int cantidad,GregorianCalendar fecha,String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException {
+	public void ingresarDatosInscripcionPaq(String nickname, String nombreSal, int cantidad, GregorianCalendar fecha, String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException {
 		ManejadorSalida mSalida = ManejadorSalida.getInstance();
 		ManejadorUsuario mUsuario = ManejadorUsuario.getInstance();
 		
@@ -302,15 +301,15 @@ public class ControladorUsuario implements IControladorUsuario {
 		boolean hayLugar = salida.admiteCapacidad(cantidad);
 		boolean existe = salida.existeInscripcion(turista.getNickname());
 		if (hayLugar && !existe) {
-			Inscripcion insc = new Inscripcion(fecha,cantidad,salida,turista,compra);
+			Inscripcion insc = new Inscripcion(fecha, cantidad, salida, turista, compra);
 			salida.addInscripcion(insc);
 			turista.addInscripcion(insc);
-			if(compra != null) {
-				compra.descontarCupos(salida,cantidad);
+			if (compra != null) {
+				compra.descontarCupos(salida, cantidad);
 			}
 		}
 		else {
-			if(!hayLugar)
+			if (!hayLugar)
 				throw new limiteSuperadoException("Capacidad de inscripciones a salida superada");
 			else 
 				throw new inscripcionExisteException("Inscripcion ya existente");
@@ -326,13 +325,13 @@ public class ControladorUsuario implements IControladorUsuario {
 	    
 		ManejadorUsuario mu = ManejadorUsuario.getInstance();
 			
-		if(!matcher.matches()) {
+		if (!matcher.matches()) {
 			Turista turista = mu.getTurista(id);
 			Proveedor proveedor = mu.getProveedor(id);
 			if (turista != null && turista.getContrasena().equals(pass)) 
 				return turista.getDatos();
 			else {
-				if(proveedor != null && proveedor.getContrasena().equals(pass)) 
+				if (proveedor != null && proveedor.getContrasena().equals(pass)) 
 					return proveedor.getDatos();
 				else 
 					return null;
@@ -344,7 +343,7 @@ public class ControladorUsuario implements IControladorUsuario {
 			if (turista != null && turista.getContrasena().equals(pass)) 
 				return turista.getDatos();
 			else {
-				if(proveedor != null && proveedor.getContrasena().equals(pass)) 
+				if (proveedor != null && proveedor.getContrasena().equals(pass)) 
 					return proveedor.getDatos();
 				else 
 					return null;

@@ -7,7 +7,7 @@ import logica.Departamento;
 
 public class ManejadorDepartamentoCategoria{
 	private HashMap<String, Departamento> departamentos;
-	private HashMap<String,Categoria> categorias;
+	private HashMap<String, Categoria> categorias;
 	
 	private static ManejadorDepartamentoCategoria instancia = null;
 	

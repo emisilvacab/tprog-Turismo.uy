@@ -61,7 +61,7 @@ class ControladorPaqueteTest {
 		icd.ingresarDepartamento("Colonia", "La propuesta del Departamento de Colonia divide en cuatro actos su espectáculo anual. Cada acto tiene su magia. Desde su naturaleza y playas hasta sus tradiciones y el patrimonio	mundial. Todo el año se disfruta.", "https://colonia.gub.uy/turismo/");
 		
 		try { 
-			HashSet<String> categorias = new HashSet<String>();//HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
+			HashSet<String> categorias = new HashSet<String>(); //HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
 
 			icd.ingresarDatosActividad("Degusta",  "Festival gastronómico de productos locales en Rocha", 3, 800, "Rocha", new GregorianCalendar(2022, 6, 20), "washington", "Rocha", categorias);
 			icd.ingresarDatosActividad("Teatro con Sabores",  "En el mes aniversario del Club Deportivo Unión de Rocha te invitamos a una merienda deliciosa.", 3, 500, "Rocha", new GregorianCalendar(2022, 6, 21), "washington", "Rocha", categorias);
@@ -103,14 +103,16 @@ class ControladorPaqueteTest {
 			assertEquals(paq1.getNombre(), "Disfrutar Rocha");
 			assertEquals(paq1.getDescripcion(), "Actividades para hacer en familia y disfrutar arte y gastronomía");
 			assertEquals(paq1.getValidez(), 60);
-			assertEquals(paq1.getDescuento(),(float) 20);
+			assertEquals(paq1.getDescuento(), (float) 20);
 			assertEquals(paq1.getFechaAlta(), new GregorianCalendar(2022, 7, 10));
 			assertEquals(paq2.getNombre(), "Un día en Colonia");
 			assertEquals(paq2.getDescripcion(), "Paseos por el casco histórico y se puede terminar con Almuerzo en la Plaza de Toros");
 			assertEquals(paq2.getValidez(), 45);
-			assertEquals(paq2.getDescuento(),(float) 15);
+			assertEquals(paq2.getDescuento(), (float) 15);
 			assertEquals(paq2.getFechaAlta(), new GregorianCalendar(2022, 7, 1));
-			assertThrows(paqueteNoExisteException.class, () -> {icp.obtenerDatosPaquete("A");});
+			assertThrows(paqueteNoExisteException.class, () -> {
+				icp.obtenerDatosPaquete("A");
+			});
 			HashSet<DTPaquete> paquetesDT = icp.obtenerPaquetesNoComprados();
 			for (DTPaquete p : paquetesDT) {
 				assertEquals(paquetes.contains(p.getNombre()), true);
@@ -120,7 +122,9 @@ class ControladorPaqueteTest {
 		catch(paqueteNoExisteException ep) {
 			JOptionPane.showMessageDialog(null, ep.getMessage(), "Paquete no existe", JOptionPane.ERROR_MESSAGE);
 		}
-		assertThrows(paqueteYaExisteException.class, () -> {icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null); });
+		assertThrows(paqueteYaExisteException.class, () -> {
+			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null);
+		});
 		
 	}
 	

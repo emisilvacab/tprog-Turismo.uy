@@ -95,9 +95,9 @@ public class ConsultaDeSalida extends JInternalFrame {
 				comboBoxActividad.removeAllItems();
 				comboBoxSalida.removeAllItems();
 				
-				if(comboBoxDepartamento.getSelectedItem() != null) {
+				if (comboBoxDepartamento.getSelectedItem() != null) {
 					cargarActividades();
-					if(comboBoxActividad.getSelectedItem() != null)
+					if (comboBoxActividad.getSelectedItem() != null)
 						comboBoxActividad.setEnabled(true);
 				}
 				limpiarFormulario();
@@ -128,9 +128,9 @@ public class ConsultaDeSalida extends JInternalFrame {
 
 				comboBoxSalida.removeAllItems();
 				
-				if(comboBoxActividad.getSelectedItem() != null) {
+				if (comboBoxActividad.getSelectedItem() != null) {
 					cargarSalidas();
-					if(comboBoxSalida.getSelectedItem() != null)
+					if (comboBoxSalida.getSelectedItem() != null)
 					    comboBoxSalida.setEnabled(true);
 				}
 				limpiarFormulario();
@@ -158,7 +158,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		
 		comboBoxSalida.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent g) {
-				if(comboBoxSalida.getSelectedItem() != null) {
+				if (comboBoxSalida.getSelectedItem() != null) {
 					mostrarSalida();
 				}else {
 					limpiarFormulario();
@@ -355,13 +355,13 @@ public class ConsultaDeSalida extends JInternalFrame {
 	}
 	
 	private void mostrarSalida() {
-		if(comboBoxDepartamento.getSelectedItem() != null && comboBoxActividad.getSelectedItem() != null && comboBoxSalida.getSelectedItem() != null) {
+		if (comboBoxDepartamento.getSelectedItem() != null && comboBoxActividad.getSelectedItem() != null && comboBoxSalida.getSelectedItem() != null) {
 		try {
 			HashSet<DTSalida> sals = cDpto.obtenerDatosSalidasParaActividad((String) comboBoxActividad.getSelectedItem());
 			DTSalida salida = null;
 		    
-			for(DTSalida it : sals) {
-				if(it.getNombre() == comboBoxSalida.getSelectedItem())
+			for (DTSalida it : sals) {
+				if (it.getNombre() == comboBoxSalida.getSelectedItem())
 					salida = it;
 			}
 							

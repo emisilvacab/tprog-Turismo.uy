@@ -104,7 +104,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 				//comboBoxSalida.setSelectedItem(null);
 				
 				departamentoSeleccionado = (String) comboBoxDepartamento.getSelectedItem();
-				if(comboBoxDepartamento.getSelectedItem() != null) {
+				if (comboBoxDepartamento.getSelectedItem() != null) {
 					cargarActividades();
 					comboBoxActividad.setEnabled(true);
 				}
@@ -127,7 +127,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 				comboBoxSalida.setSelectedItem(null);
 				comboBoxSalida.removeAllItems();
 				actividadSeleccionada = (String) comboBoxActividad.getSelectedItem();
-				if(actividadSeleccionada != null) {
+				if (actividadSeleccionada != null) {
 					mostrarActividad();
 					cargarSalidas();
 					comboBoxSalida.setEnabled(true);
@@ -185,7 +185,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		buttonInfo = new JButton("Ver");
 		buttonInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	if(comboBoxSalida.getSelectedItem() != null)
+            	if (comboBoxSalida.getSelectedItem() != null)
             		mostrarInfo();
             }
         });
@@ -326,8 +326,8 @@ public class ConsultaDeActividad extends JInternalFrame {
 				HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
 				DTActividad actividad = null;
 				
-				for(DTActividad it : acts) {
-					if(it.getNombre() == actividadSeleccionada)
+				for (DTActividad it : acts) {
+					if (it.getNombre() == actividadSeleccionada)
 						actividad = it;
 				}
 				

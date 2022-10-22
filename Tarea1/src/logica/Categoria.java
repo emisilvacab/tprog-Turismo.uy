@@ -10,8 +10,8 @@ import logica.datatypes.DTSalida;
 public class Categoria {
 	
 	private String nombre;
-	private HashMap<String,Actividad> actividades;
-	private HashMap<String,Paquete> paquetes;
+	private HashMap<String, Actividad> actividades;
+	private HashMap<String, Paquete> paquetes;
 	
 	public Categoria(String nombre) {
 		this.setNombre(nombre);
@@ -27,19 +27,19 @@ public class Categoria {
 		this.nombre = nombre;
 	}
 	
-	public HashMap<String,Actividad> getActividades() {
+	public HashMap<String, Actividad> getActividades() {
 		return actividades;
 	}
 	
-	public void setActividades(HashMap<String,Actividad> actividades) {
+	public void setActividades(HashMap<String, Actividad> actividades) {
 		this.actividades = actividades;
 	}
 	
-	public HashMap<String,Paquete> getPaquetes() {
+	public HashMap<String, Paquete> getPaquetes() {
 		return paquetes;
 	}
 	
-	public void setPaquetes(HashMap<String,Paquete> paquetes) {
+	public void setPaquetes(HashMap<String, Paquete> paquetes) {
 		this.paquetes = paquetes;
 	}
 	

@@ -27,7 +27,7 @@ public class Actividad{
 	private Map<String, Salida> salidas;
 	private Map<String, Paquete> paquetes;
 	private Vector<Cuponera> cuponeras;
-	private HashMap<String,Categoria> categorias;
+	private HashMap<String, Categoria> categorias;
 	
 	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor) {
 		this.setNombre(nombre);
@@ -39,7 +39,7 @@ public class Actividad{
 		this.setDepartamento(departamento);
 		this.setProveedor(proveedor);
 		this.setSalidas(new HashMap<String, Salida>());
-		this.setPaquetes(new HashMap<String,Paquete>());
+		this.setPaquetes(new HashMap<String, Paquete>());
 		this.setCuponeras(new Vector<Cuponera>());
 		this.setEstado(Estado.AGREGADA);
 		this.setCategorias(new HashMap<String, Categoria>());
@@ -134,14 +134,14 @@ public class Actividad{
 	}
 
 	public DTActividad getDatos() {
-		DTActividad res = new DTActividad(nombre,descripcion,duracion,costo,ciudad,alta, estado);
+		DTActividad res = new DTActividad(nombre, descripcion, duracion, costo, ciudad, alta, estado);
 		return res;
 	}
 
 	public HashSet<DTSalida> obtenerSalidasVigentes() {
 		HashSet<DTSalida> res = new HashSet<DTSalida>();
-		salidas.forEach((key,value)->{
-			if(value.getFechaSalida().after(GregorianCalendar.from(ZonedDateTime.now())))
+		salidas.forEach((key, value)-> {
+			if (value.getFechaSalida().after(GregorianCalendar.from(ZonedDateTime.now())))
 				res.add(value.getDatos());				
 					});
 		return res;
