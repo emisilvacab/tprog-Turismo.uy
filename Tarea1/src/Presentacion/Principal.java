@@ -34,7 +34,7 @@ public class Principal {
 	private ConsultaDeActividad consultaActividadInternalFrame;
 	private AceptarORechazarActividad aceptarORechazarActividadInternalFrame;
 	private AltaCategoria altaCategoriaInternalFrame;
-	
+	private AgregarActividadPaquete agregarActividadPaqueteInternalFrame;
 	
 	
     public static void main(String[] args) {
@@ -93,6 +93,11 @@ public class Principal {
         altaCategoriaInternalFrame = new AltaCategoria(iCD);
         altaCategoriaInternalFrame.setVisible(false);
         frmReservasUY.getContentPane().add(altaCategoriaInternalFrame);
+        
+        agregarActividadPaqueteInternalFrame = new AgregarActividadPaquete(iCP, iCD);
+        agregarActividadPaqueteInternalFrame.setSize(460, 300);
+        agregarActividadPaqueteInternalFrame.setVisible(false);
+        frmReservasUY.getContentPane().add(agregarActividadPaqueteInternalFrame);
     }
     
     
@@ -237,6 +242,17 @@ public class Principal {
         menuItemAltaCategoria.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	altaCategoriaInternalFrame.setVisible(true);
+            }
+        });
+        
+        JMenuItem menuItemAgregarActividadPaquete = new JMenuItem("Agregar actividad a paquete");
+        menuActividades.add(menuItemAgregarActividadPaquete);
+        menuItemAgregarActividadPaquete.setToolTipText("Seleccione esta opción si desea agregar una actividad a un paquete");
+        menuItemAgregarActividadPaquete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	agregarActividadPaqueteInternalFrame.cargarDepartamentos();
+            	agregarActividadPaqueteInternalFrame.cargarPaquetesNoComprados();
+            	agregarActividadPaqueteInternalFrame.setVisible(true);
             }
         });
  		
