@@ -38,10 +38,10 @@ public class CargarDatos {
 		try {
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("isabelita", "Elizabeth", "Windsor", "isabelita@thecrown.co.uk", new GregorianCalendar(1926, 3, 21),"r5t6y7u8", "inglesa");
+			user = new DTTurista("isabelita", "Elizabeth", "Windsor", "isabelita@thecrown.co.uk", new GregorianCalendar(1926, 3, 21), "r5t6y7u8", "inglesa");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("anibal", "Aníbal", "Lecter", "anibal@fing.edu.uy", new GregorianCalendar(1937, 11, 31),"edrft543", "lituana");
+			user = new DTTurista("anibal", "Aníbal", "Lecter", "anibal@fing.edu.uy", new GregorianCalendar(1937, 11, 31), "edrft543", "lituana");
 			icu.altaUsuario(user);
 			
 			user = new DTTurista("waston", "Emma", "Waston", "e.waston@gmail.com", new GregorianCalendar(1990, 3, 15), "poiuy987", "inglesa");
@@ -125,7 +125,7 @@ public class CargarDatos {
 			icd.ingresarDatosCategoria("Turismo Playas");
 			
 		} catch (categoriaYaExisteException e4) {
-			JOptionPane.showMessageDialog(null, e4.getMessage(),"La categoría ingresada ya está en el sistema", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e4.getMessage(), "La categoría ingresada ya está en el sistema", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		try { 
@@ -257,20 +257,20 @@ public class CargarDatos {
 		
 		
 		try {
-			icu.ingresarDatosInscripcion("lachiqui","Degusta Agosto", 3, new GregorianCalendar(2022, 7, 15)); //costo 2400
-			icu.ingresarDatosInscripcion("elelvis","Degusta Agosto", 5, new GregorianCalendar(2022, 7, 16)); // costo 4000
+			icu.ingresarDatosInscripcion("lachiqui", "Degusta Agosto", 3, new GregorianCalendar(2022, 7, 15)); //costo 2400
+			icu.ingresarDatosInscripcion("elelvis", "Degusta Agosto", 5, new GregorianCalendar(2022, 7, 16)); // costo 4000
 			
-			icu.ingresarDatosInscripcion("lachiqui","Tour Colonia del Sacramento 18-09", 3, new GregorianCalendar(2022, 7, 18)); //costo 1200
-			icu.ingresarDatosInscripcion("isabelita","Tour Colonia del Sacramento 18-09", 1, new GregorianCalendar(2022, 7, 19));// costo 400
+			icu.ingresarDatosInscripcion("lachiqui", "Tour Colonia del Sacramento 18-09", 3, new GregorianCalendar(2022, 7, 18)); //costo 1200
+			icu.ingresarDatosInscripcion("isabelita", "Tour Colonia del Sacramento 18-09", 1, new GregorianCalendar(2022, 7, 19)); // costo 400
 			
-			icu.ingresarDatosInscripcion("mastropiero","Almuerzo 2", 2, new GregorianCalendar(2022, 7, 19));// costo 1600
-			icu.ingresarDatosInscripcion("chino","Teatro con Sabores 1", 1, new GregorianCalendar(2022, 7, 19)); //costo 500
+			icu.ingresarDatosInscripcion("mastropiero", "Almuerzo 2", 2, new GregorianCalendar(2022, 7, 19)); // costo 1600
+			icu.ingresarDatosInscripcion("chino", "Teatro con Sabores 1", 1, new GregorianCalendar(2022, 7, 19)); //costo 500
 			
-			icu.ingresarDatosInscripcion("chino","Teatro con Sabores 2", 10, new GregorianCalendar(2022, 7, 20)); //costo 5000
-			icu.ingresarDatosInscripcion("bobesponja","Teatro con Sabores 2", 2, new GregorianCalendar(2022, 7, 20));// costo 1000
+			icu.ingresarDatosInscripcion("chino", "Teatro con Sabores 2", 10, new GregorianCalendar(2022, 7, 20)); //costo 5000
+			icu.ingresarDatosInscripcion("bobesponja", "Teatro con Sabores 2", 2, new GregorianCalendar(2022, 7, 20)); // costo 1000
 			
-			icu.ingresarDatosInscripcion("anibal","Teatro con Sabores 2", 1, new GregorianCalendar(2022, 7, 21));// costo 500
-			icu.ingresarDatosInscripcion("tony","Degusta Setiembre", 11, new GregorianCalendar(2022, 7, 21)); //costo 8800
+			icu.ingresarDatosInscripcion("anibal", "Teatro con Sabores 2", 1, new GregorianCalendar(2022, 7, 21)); // costo 500
+			icu.ingresarDatosInscripcion("tony", "Degusta Setiembre", 11, new GregorianCalendar(2022, 7, 21)); //costo 8800
 			
 		}
 		catch(salidaNoExisteException e1) {

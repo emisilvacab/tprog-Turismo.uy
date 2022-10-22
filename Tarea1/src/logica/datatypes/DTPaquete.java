@@ -16,8 +16,8 @@ public class DTPaquete {
 	public DTPaquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
-		this.setValidez (validez);
-		this.setDescuento (descuento);
+		this.setValidez(validez);
+		this.setDescuento(descuento);
 		this.setFechaAlta(fechaAlta);
 		this.setFigura(null);
 	}

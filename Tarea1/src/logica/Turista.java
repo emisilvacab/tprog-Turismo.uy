@@ -18,7 +18,7 @@ public class Turista extends Usuario{
 	private Vector<Compra> compras;
 	
 	
-	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena,String nacionalidad) {
+	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String nacionalidad) {
 		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
 		this.setNacionalidad(nacionalidad);
 		this.setInscripciones(new Vector<Inscripcion>());
@@ -60,7 +60,7 @@ public class Turista extends Usuario{
 		for (Compra compra : compras) {
 			if (compra.getVencimiento().after(GregorianCalendar.from(ZonedDateTime.now()))) {
 				Vector<Cuponera> cuponeras = compra.getCuponeras();
-				for(Cuponera cuponera : cuponeras) {
+				for (Cuponera cuponera : cuponeras) {
 					if (cuponera.getActividad().getNombre().equals(salida.getActividad().getNombre())  && cuponera.getCuposRestantes() >= cantTuristas) {
 						res.add(compra.getPaquete().getDatos());
 						break;
@@ -73,7 +73,7 @@ public class Turista extends Usuario{
 
 	public boolean existeCompra(String nombrePaq) {
 		boolean res = false;
-		for(Compra c : compras) {
+		for (Compra c : compras) {
 			if (c.getPaquete().getNombre().equals(nombrePaq)) {
 				res = true;
 				break;
@@ -87,7 +87,7 @@ public class Turista extends Usuario{
 	}
 
 	public DTUsuario getDatos() {
-		return new DTTurista(this.getNickname(),this.getNombre(),this.getApellido(),this.getCorreo(),this.getNacimiento(),this.getContrasena(),nacionalidad);
+		return new DTTurista(this.getNickname(), this.getNombre(), this.getApellido(), this.getCorreo(), this.getNacimiento(), this.getContrasena(), nacionalidad);
 	}
 }
 

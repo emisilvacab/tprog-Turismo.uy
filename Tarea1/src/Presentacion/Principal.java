@@ -21,10 +21,10 @@ import logica.controladores.IControladorUsuario;
 */
 
 public class Principal {
-	private JFrame frmReservas_UY;
-	private IControladorUsuario ICU;
-	private IControladorDepartamento ICD;
-	private IControladorPaquete ICP;
+	private JFrame frmReservasUY;
+	private IControladorUsuario iCU;
+	private IControladorDepartamento iCD;
+	private IControladorPaquete iCP;
 	private ConsultarUsuario conUsrInternalFrame;
 	private AltaUsuario crearUsrInternalFrame;
 	private InscripcionASalida inscASalInternalFrame;
@@ -34,18 +34,14 @@ public class Principal {
 	private ConsultaDeActividad consultaActividadInternalFrame;
 	private AceptarORechazarActividad aceptarORechazarActividadInternalFrame;
 	private AltaCategoria altaCategoriaInternalFrame;
-	
+	private AgregarActividadPaquete agregarActividadPaqueteInternalFrame;
 	
 	
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    Principal window = new Principal();
-                    window.frmReservas_UY.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                Principal window = new Principal();
+                window.frmReservasUY.setVisible(true);
             }
         });
     }
@@ -55,59 +51,64 @@ public class Principal {
     	
     	// Inicialización
         Fabrica fabrica = Fabrica.getInstance();
-        ICU = fabrica.getIControladorUsuario();
-        ICD = fabrica.getIControladorDepartamento();
-        ICP = fabrica.getIControladorPaquete();
+        iCU = fabrica.getIControladorUsuario();
+        iCD = fabrica.getIControladorDepartamento();
+        iCP = fabrica.getIControladorPaquete();
         
-        frmReservas_UY.getContentPane().setLayout(null);
+        frmReservasUY.getContentPane().setLayout(null);
         
-        conUsrInternalFrame = new ConsultarUsuario(ICU,ICD);
+        conUsrInternalFrame = new ConsultarUsuario(iCU, iCD);
         conUsrInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(conUsrInternalFrame);
+        frmReservasUY.getContentPane().add(conUsrInternalFrame);
         
-        crearUsrInternalFrame = new AltaUsuario(ICU);
+        crearUsrInternalFrame = new AltaUsuario(iCU);
         crearUsrInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(crearUsrInternalFrame);
+        frmReservasUY.getContentPane().add(crearUsrInternalFrame);
         
-        inscASalInternalFrame = new InscripcionASalida(ICU,ICD);
+        inscASalInternalFrame = new InscripcionASalida(iCU, iCD);
         inscASalInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(inscASalInternalFrame);
+        frmReservasUY.getContentPane().add(inscASalInternalFrame);
         
-        altaSalidaInternalFrame = new AltaSalida(ICD);
+        altaSalidaInternalFrame = new AltaSalida(iCD);
         altaSalidaInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(altaSalidaInternalFrame);
+        frmReservasUY.getContentPane().add(altaSalidaInternalFrame);
         
         
-        consultaSalidaInternalFrame = new ConsultaDeSalida(ICD);
+        consultaSalidaInternalFrame = new ConsultaDeSalida(iCD);
         consultaSalidaInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(consultaSalidaInternalFrame);
+        frmReservasUY.getContentPane().add(consultaSalidaInternalFrame);
         
-        altaActividadInternalFrame = new AltaActividad(ICD,ICU);
+        altaActividadInternalFrame = new AltaActividad(iCD, iCU);
         altaActividadInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(altaActividadInternalFrame);
+        frmReservasUY.getContentPane().add(altaActividadInternalFrame);
         
-        consultaActividadInternalFrame = new ConsultaDeActividad(ICD);
+        consultaActividadInternalFrame = new ConsultaDeActividad(iCD);
         consultaActividadInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(consultaActividadInternalFrame);
+        frmReservasUY.getContentPane().add(consultaActividadInternalFrame);
         
-        aceptarORechazarActividadInternalFrame = new AceptarORechazarActividad(ICD);
+        aceptarORechazarActividadInternalFrame = new AceptarORechazarActividad(iCD);
         aceptarORechazarActividadInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(aceptarORechazarActividadInternalFrame);
+        frmReservasUY.getContentPane().add(aceptarORechazarActividadInternalFrame);
         
-        altaCategoriaInternalFrame = new AltaCategoria(ICD);
+        altaCategoriaInternalFrame = new AltaCategoria(iCD);
         altaCategoriaInternalFrame.setVisible(false);
-        frmReservas_UY.getContentPane().add(altaCategoriaInternalFrame);
+        frmReservasUY.getContentPane().add(altaCategoriaInternalFrame);
+        
+        agregarActividadPaqueteInternalFrame = new AgregarActividadPaquete(iCP, iCD);
+        agregarActividadPaqueteInternalFrame.setSize(460, 300);
+        agregarActividadPaqueteInternalFrame.setVisible(false);
+        frmReservasUY.getContentPane().add(agregarActividadPaqueteInternalFrame);
     }
     
     
     private void initialize() {
         
         // Se crea el Frame con las dimensiones indicadas.
-        frmReservas_UY = new JFrame();
-        frmReservas_UY.setTitle("Reservas_UY admin");
-        frmReservas_UY.setBounds(150, 100, 1000, 1000);
+        frmReservasUY = new JFrame();
+        frmReservasUY.setTitle("Reservas_UY admin");
+        frmReservasUY.setBounds(150, 100, 1000, 1000);
         //frmReservas_UY.setBounds(100, 100, 569, 450);
-        frmReservas_UY.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmReservasUY.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
         // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
@@ -116,7 +117,7 @@ public class Principal {
         //MENU SISTEMA
         
         JMenuBar menuBar = new JMenuBar();
-        frmReservas_UY.setJMenuBar(menuBar);
+        frmReservasUY.setJMenuBar(menuBar);
 
         JMenu menuSistema = new JMenu("Sistema");
         menuBar.add(menuSistema);
@@ -125,8 +126,8 @@ public class Principal {
         menuSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 // Salgo de la aplicación
-                frmReservas_UY.setVisible(false);
-                frmReservas_UY.dispose();
+                frmReservasUY.setVisible(false);
+                frmReservasUY.dispose();
             }
         });
         menuSistema.add(menuSalir);
@@ -135,7 +136,7 @@ public class Principal {
         menuCargarDatos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 // Cargo los datos
-            	CargarDatos carga = new CargarDatos(ICU, ICD, ICP);
+            	CargarDatos carga = new CargarDatos(iCU, iCD, iCP);
             }
         });
         menuSistema.add(menuCargarDatos);
@@ -207,6 +208,7 @@ public class Principal {
             public void actionPerformed(ActionEvent e) {
             	altaActividadInternalFrame.cargarDepartamentos();
             	altaActividadInternalFrame.cargarProveedores();
+            	altaActividadInternalFrame.cargarCategorias();
             	altaActividadInternalFrame.setVisible(true);
             }
         });
@@ -240,6 +242,17 @@ public class Principal {
         menuItemAltaCategoria.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	altaCategoriaInternalFrame.setVisible(true);
+            }
+        });
+        
+        JMenuItem menuItemAgregarActividadPaquete = new JMenuItem("Agregar actividad a paquete");
+        menuActividades.add(menuItemAgregarActividadPaquete);
+        menuItemAgregarActividadPaquete.setToolTipText("Seleccione esta opción si desea agregar una actividad a un paquete");
+        menuItemAgregarActividadPaquete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	agregarActividadPaqueteInternalFrame.cargarDepartamentos();
+            	agregarActividadPaqueteInternalFrame.cargarPaquetesNoComprados();
+            	agregarActividadPaqueteInternalFrame.setVisible(true);
             }
         });
  		

@@ -16,18 +16,18 @@ public class Paquete {
 	private GregorianCalendar fechaAlta;
 	private Image figura;
 	
-	private HashMap<String,Actividad> actividades;
-	private HashMap<String,Categoria> categorias;
+	private HashMap<String, Actividad> actividades;
+	private HashMap<String, Categoria> categorias;
 	private Vector<Compra> compras;
 	
 	
 	public Paquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
-		this.setValidez (validez);
-		this.setDescuento (descuento);
-		this.setActividades (new HashMap<String, Actividad>());
-		this.setCategorias(new HashMap<String,Categoria>());
+		this.setValidez(validez);
+		this.setDescuento(descuento);
+		this.setActividades(new HashMap<String, Actividad>());
+		this.setCategorias(new HashMap<String, Categoria>());
 		this.setCompras(new Vector<Compra>());
 		this.setFechaAlta(fechaAlta);
 		this.setFigura(null);
@@ -85,16 +85,16 @@ public class Paquete {
 		actividades.put(act.getNombre(), act);
 	}
 
-	public HashMap<String,Categoria> getCategorias() {
+	public HashMap<String, Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(HashMap<String,Categoria> categorias) {
+	public void setCategorias(HashMap<String, Categoria> categorias) {
 		this.categorias = categorias;
 	}
 
 	public DTPaquete getDatos() {
-		return new DTPaquete(nombre,descripcion,validez,descuento,fechaAlta);
+		return new DTPaquete(nombre, descripcion, validez, descuento, fechaAlta);
 	}
 
 	public Vector<Compra> getCompras() {

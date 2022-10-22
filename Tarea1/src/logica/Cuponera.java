@@ -4,7 +4,7 @@ public class Cuponera {
 	private int cuposRestantes;
 	private Actividad actividad;
 	
-	Cuponera (int cuposRestantes, Actividad actividad){
+	Cuponera(int cuposRestantes, Actividad actividad){
 		setCuposRestantes(cuposRestantes);
 		setActividad(actividad);
 	}

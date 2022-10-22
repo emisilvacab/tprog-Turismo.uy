@@ -24,7 +24,7 @@ public interface IControladorUsuario {
 
 	public abstract void altaUsuario(DTUsuario user) throws UsuarioRepetidoException;
 	
-	public abstract String ingresarDatosInscripcion(String nickname,String nombre,int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException;
+	public abstract String ingresarDatosInscripcion(String nickname, String nombre, int capacidad, GregorianCalendar fechaAlta) throws excepciones.salidaNoExisteException, usuarioNoExisteException;
 	
 	public abstract String[] obtenerProveedores();
 	
@@ -36,7 +36,7 @@ public interface IControladorUsuario {
 	
 	public abstract DTSalida obtenerSalidaInscripto(String nombreSalida, String nickname);
 	
-	public abstract void ingresarDatosInscripcionPaq(String nickname, String nombreSal,int cantidad,GregorianCalendar fecha,String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException;
+	public abstract void ingresarDatosInscripcionPaq(String nickname, String nombreSal, int cantidad, GregorianCalendar fecha, String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException;
 
 	public abstract DTUsuario iniciarSesion(String id, String pass);
 

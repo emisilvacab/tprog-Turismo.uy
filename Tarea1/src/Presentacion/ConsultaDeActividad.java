@@ -104,7 +104,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 				//comboBoxSalida.setSelectedItem(null);
 				
 				departamentoSeleccionado = (String) comboBoxDepartamento.getSelectedItem();
-				if(comboBoxDepartamento.getSelectedItem() != null) {
+				if (comboBoxDepartamento.getSelectedItem() != null) {
 					cargarActividades();
 					comboBoxActividad.setEnabled(true);
 				}
@@ -127,7 +127,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 				comboBoxSalida.setSelectedItem(null);
 				comboBoxSalida.removeAllItems();
 				actividadSeleccionada = (String) comboBoxActividad.getSelectedItem();
-				if(actividadSeleccionada != null) {
+				if (actividadSeleccionada != null) {
 					mostrarActividad();
 					cargarSalidas();
 					comboBoxSalida.setEnabled(true);
@@ -185,7 +185,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		buttonInfo = new JButton("Ver");
 		buttonInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	if(comboBoxSalida.getSelectedItem() != null)
+            	if (comboBoxSalida.getSelectedItem() != null)
             		mostrarInfo();
             }
         });
@@ -309,7 +309,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		//try
 		if (comboBoxDepartamento.getSelectedItem() != null) {
 			try {
-				HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
+				HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
 				for (DTActividad a : acts)
 					comboBoxActividad.addItem(a.getNombre());
 			}catch(departamentoNoExisteException e1) {
@@ -323,11 +323,11 @@ public class ConsultaDeActividad extends JInternalFrame {
 	private void mostrarActividad() {
 		if (comboBoxDepartamento.getSelectedItem() != null && actividadSeleccionada != null) {
 			try {
-				HashSet<DTActividad> acts = cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
+				HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesAsociadas((String) comboBoxDepartamento.getSelectedItem());
 				DTActividad actividad = null;
 				
-				for(DTActividad it : acts) {
-					if(it.getNombre() == actividadSeleccionada)
+				for (DTActividad it : acts) {
+					if (it.getNombre() == actividadSeleccionada)
 						actividad = it;
 				}
 				
@@ -367,7 +367,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		if (actividadSeleccionada != null) {
 			try {
 				if (actividadSeleccionada!=null) {
-					HashSet<DTSalida> salidas = cDpto.obtenerDatosSalidasParaActividad(actividadSeleccionada);
+					HashSet<DTSalida> salidas = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasParaActividad(actividadSeleccionada);
 					model = new DefaultComboBoxModel<String>(obtenerNombreSalidas(salidas));
 					comboBoxSalida.setModel(model);
 					

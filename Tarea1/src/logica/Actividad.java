@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Vector;
+import java.util.Set;
 
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
@@ -27,8 +27,8 @@ public class Actividad{
 	private Proveedor proveedor;
 	private Map<String, Salida> salidas;
 	private Map<String, Paquete> paquetes;
-	private Vector<Cuponera> cuponeras;
-	private HashMap<String,Categoria> categorias;
+	private Set<Cuponera> cuponeras;
+	private Map<String, Categoria> categorias;
 	
 	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor, String linkImagen) {
 		this.setNombre(nombre);
@@ -40,8 +40,8 @@ public class Actividad{
 		this.setDepartamento(departamento);
 		this.setProveedor(proveedor);
 		this.setSalidas(new HashMap<String, Salida>());
-		this.setPaquetes(new HashMap<String,Paquete>());
-		this.setCuponeras(new Vector<Cuponera>());
+		this.setPaquetes(new HashMap<String, Paquete>());
+		this.setCuponeras(new HashSet<Cuponera>());
 		this.setEstado(Estado.AGREGADA);
 		this.setCategorias(new HashMap<String, Categoria>());
 		this.setLinkImagen(linkImagen);
@@ -136,14 +136,14 @@ public class Actividad{
 	}
 
 	public DTActividad getDatos() {
-		DTActividad res = new DTActividad(nombre,descripcion,duracion,costo,ciudad,alta, estado, linkImagen);
+		DTActividad res = new DTActividad(nombre, descripcion, duracion, costo, ciudad, alta, estado, linkImagen);
 		return res;
 	}
 
-	public HashSet<DTSalida> obtenerSalidasVigentes() {
+	public Set<DTSalida> obtenerSalidasVigentes() {
 		HashSet<DTSalida> res = new HashSet<DTSalida>();
-		salidas.forEach((key,value)->{
-			if(value.getFechaSalida().after(GregorianCalendar.from(ZonedDateTime.now())))
+		salidas.forEach((key, value)-> {
+			if (value.getFechaSalida().after(GregorianCalendar.from(ZonedDateTime.now())))
 				res.add(value.getDatos());				
 					});
 		return res;
@@ -161,11 +161,11 @@ public class Actividad{
 		return estado;
 	}
 
-	public HashMap<String, Categoria> getCategorias() {
+	public Map<String, Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(HashMap<String, Categoria> categorias) {
+	public void setCategorias(Map<String, Categoria> categorias) {
 		this.categorias = categorias;
 	}
 	
@@ -181,11 +181,11 @@ public class Actividad{
 		this.cuponeras.add(cup);
 	}
 
-	public Vector<Cuponera> getCuponeras() {
+	public Set<Cuponera> getCuponeras() {
 		return cuponeras;
 	}
 
-	public void setCuponeras(Vector<Cuponera> cuponeras) {
+	public void setCuponeras(Set<Cuponera> cuponeras) {
 		this.cuponeras = cuponeras;
 	}
 

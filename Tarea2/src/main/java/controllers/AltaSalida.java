@@ -50,7 +50,7 @@ public class AltaSalida extends HttpServlet {
 		request.setAttribute("cantTurSal", request.getParameter("cantTurSal"));
 		request.setAttribute("imgSal", request.getParameter("imgSal"));
  		try {
-			HashSet<DTActividad> acts = cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+			HashSet<DTActividad> acts = (HashSet<DTActividad>) cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 			Set<String> res = new HashSet<String>();
 			for (DTActividad act : acts) {
 				res.add(act.getNombre());
@@ -73,7 +73,7 @@ public class AltaSalida extends HttpServlet {
 	 		try {
 	 				request.setAttribute("cats",cd.obtenerCategorias());
 		    		request.setAttribute("dptos",cd.obtenerDepartamentos());
-					HashSet<DTActividad> acts = cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+					HashSet<DTActividad> acts = (HashSet<DTActividad>) cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 					Set<String> res = new HashSet<String>();
 					for (DTActividad act : acts) {
 						res.add(act.getNombre());
@@ -92,7 +92,7 @@ public class AltaSalida extends HttpServlet {
 	    		request.setAttribute("dptos",cd.obtenerDepartamentos());
 				
 				request.setAttribute("dpto", request.getParameter("dpto"));
-				HashSet<DTActividad> acts = cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
+				HashSet<DTActividad> acts = (HashSet<DTActividad>) cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 				Set<String> actsInsc = new HashSet<String>();
 				for (DTActividad act : acts) {
 					actsInsc.add(act.getNombre());

@@ -78,10 +78,10 @@ public class ControladorPaquete implements IControladorPaquete {
 	public HashSet<DTPaquete> obtenerPaquetesConActividades(){
 		HashSet<DTPaquete> res = new HashSet<DTPaquete>();
 		ManejadorPaquete mp = ManejadorPaquete.getInstance();
-		HashMap<String,Paquete> paquetes = mp.getPaquetes();
+		HashMap<String, Paquete> paquetes = mp.getPaquetes();
 		
 		for (Paquete paquete : paquetes.values()) {
-			if(paquete.getActividades().size() > 0)
+			if (paquete.getActividades().size() > 0)
 				res.add(paquete.getDatos());
 	    }
 		return res;
@@ -108,18 +108,18 @@ public class ControladorPaquete implements IControladorPaquete {
 		costo = costo * cantidadTuristas;
 		costo = costo - ((costo * paquete.getDescuento()) / 100);
 		
-		Compra compra = new Compra(fechaCompra,cantidadTuristas,vencimiento,costo,turista,paquete);
+		Compra compra = new Compra(fechaCompra, cantidadTuristas, vencimiento, costo, turista, paquete);
 		turista.addCompra(compra);
 		paquete.addCompra(compra);		
 	}
 	
 	public HashSet<DTPaquete> obtenerPaquetesNoComprados(){
 		ManejadorPaquete mp = ManejadorPaquete.getInstance();
-		HashMap<String,Paquete> paquetes = mp.getPaquetes();
+		HashMap<String, Paquete> paquetes = mp.getPaquetes();
 		HashSet<DTPaquete> res = new HashSet<DTPaquete>();
 		
-		for(Paquete p : paquetes.values()) {
-			if(p.getCompras().size() == 0) {
+		for (Paquete p : paquetes.values()) {
+			if (p.getCompras().size() == 0) {
 				res.add(p.getDatos());
 			}	
 		}
@@ -140,7 +140,7 @@ public class ControladorPaquete implements IControladorPaquete {
 		
 		HashSet<DTActividad> res = new HashSet<DTActividad>();
 		for (Actividad act : dpto.getActividades().values()) {
-			if(act.getEstado() == Estado.CONFIRMADA && !act.getPaquetes().containsKey(nombrePaq))
+			if (act.getEstado() == Estado.CONFIRMADA && !act.getPaquetes().containsKey(nombrePaq))
 				res.add(act.getDatos());
 		}
 		return res;
@@ -159,24 +159,6 @@ public class ControladorPaquete implements IControladorPaquete {
 		return ans;
 	}
 	
-	@Override
-	public DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException {
-		ManejadorSalida manSalida = ManejadorSalida.getInstance();
-		DTSalida salida = manSalida.getSalida(nombreSalida).getDatos();
-		if (salida == null)
-			 new salidaNoExisteException("Salida no encontrada");
-		return salida;
-	}
-	
-	@Override
-	public String obtenerNombreActivdadDeSalida(String nombreSalida) throws salidaNoExisteException {
-		ManejadorSalida manSalida = ManejadorSalida.getInstance();
-		Salida salida = manSalida.getSalida(nombreSalida);
-		if (salida == null) {
-			new salidaNoExisteException("Salida no encontrada");
-		}
-		return salida.getActividad().getNombre();
-	}
 }
 
 

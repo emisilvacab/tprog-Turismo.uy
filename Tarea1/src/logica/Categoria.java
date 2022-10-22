@@ -2,6 +2,8 @@ package logica;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 import excepciones.actividadNoExisteException;
@@ -10,8 +12,8 @@ import logica.datatypes.DTSalida;
 public class Categoria {
 	
 	private String nombre;
-	private HashMap<String,Actividad> actividades;
-	private HashMap<String,Paquete> paquetes;
+	private Map<String, Actividad> actividades;
+	private Map<String, Paquete> paquetes;
 	
 	public Categoria(String nombre) {
 		this.setNombre(nombre);
@@ -27,20 +29,20 @@ public class Categoria {
 		this.nombre = nombre;
 	}
 	
-	public HashMap<String,Actividad> getActividades() {
+	public Map<String, Actividad> getActividades() {
 		return actividades;
 	}
 	
-	public void setActividades(HashMap<String,Actividad> actividades) {
-		this.actividades = actividades;
+	public void setActividades(Map<String, Actividad> actividades) {
+		this.actividades = (HashMap<String, Actividad>) actividades;
 	}
 	
-	public HashMap<String,Paquete> getPaquetes() {
+	public Map<String, Paquete> getPaquetes() {
 		return paquetes;
 	}
 	
-	public void setPaquetes(HashMap<String,Paquete> paquetes) {
-		this.paquetes = paquetes;
+	public void setPaquetes(Map<String, Paquete> paquetes) {
+		this.paquetes = (HashMap<String, Paquete>) paquetes;
 	}
 	
 	public void addPaquete(Paquete paquete) {
@@ -51,8 +53,8 @@ public class Categoria {
 		actividades.put(actividad.getNombre(), actividad);
 	}
 
-	public Vector<Actividad> getActividadesConfirmadas() {
-		Vector<Actividad> res = new Vector<Actividad>();
+	public Set<Actividad> getActividadesConfirmadas() {
+		Set<Actividad> res = new HashSet<Actividad>();
 		for (Actividad act : actividades.values()) {
 	        if (act.getEstado() == Estado.CONFIRMADA)
 	        	res.add(act);
@@ -60,7 +62,7 @@ public class Categoria {
 		return res;
 	}
 
-	public HashSet<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
+	public Set<DTSalida> obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
 		Actividad act = actividades.get(nombreAct);
 		if (act == null)
 			throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");

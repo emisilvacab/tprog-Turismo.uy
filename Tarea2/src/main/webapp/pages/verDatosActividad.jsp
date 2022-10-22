@@ -129,7 +129,7 @@
 		  	%>
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem;">
-		  		<a href="verDatosSalida.html">
+		  		<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=salida.getNombre()%>">
 			  	<img class="card-img-top" src="https://s3.amazonaws.com/turismorocha/operadores/1/med/bahia-resto-053888900-1458674720.JPG" alt="Card image cap">
 			  	</a>
 			  <div class="card-body">
@@ -158,7 +158,7 @@
 		  	%>
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem">
-		  		<a href="detalleDePaquete.html">
+		  		<a href="/Tarea2/DetallePaquete?detallePaqueteNombre=<%=paquete.getNombre()%>">
 			  		<img class="card-img-top" src="https://sites.google.com/site/areasprotegidasenuruguay/_/rsrc/1411660757953/algunas-de-las-areas-ingresadas-por-el-snap/laguna-de-rocha/Mapa_Rocha_BLOG.jpg?height=280&width=400" alt="Card image cap">
 			  	</a>
 			  <div class="card-body">

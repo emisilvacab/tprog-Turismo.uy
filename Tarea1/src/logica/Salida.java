@@ -93,21 +93,21 @@ public class Salida{
 
 	public boolean admiteCapacidad(int capacidad) {
 		int total = 0;
-		for(int i = 0; i < inscripciones.size(); i++) {
+		for (int i = 0; i < inscripciones.size(); i++) {
 			total += inscripciones.get(i).getCantTuristas();
 		}
-		return (total + capacidad <= maxTuristas);
+		return total + capacidad <= maxTuristas;
 	}
 
 	public boolean existeInscripcion(String nickname) {
 		int i = 0;
-		while (i < inscripciones.size() && (inscripciones.get(i).getNicknameInscripto() != nickname))
+		while (i < inscripciones.size() && inscripciones.get(i).getNicknameInscripto() != nickname)
 			i++;
-		return (i < inscripciones.size());
+		return i < inscripciones.size();
 	}
 
 	public DTSalida getDatos() {
-		DTSalida res = new DTSalida(nombre,maxTuristas,alta,fechaSalida,hora,lugarSalida);
+		DTSalida res = new DTSalida(nombre, maxTuristas, alta, fechaSalida, hora, lugarSalida);
 		return res;
 	}
 
@@ -125,10 +125,10 @@ public class Salida{
 
 	public int obtenerlugaresDisponibles() {
 		int total = 0;
-		for(int i = 0; i < inscripciones.size(); i++) {
+		for (int i = 0; i < inscripciones.size(); i++) {
 			total += inscripciones.get(i).getCantTuristas();
 		}
-		return (maxTuristas - total);
+		return maxTuristas - total;
 	}
 
 	public Image getFigura() {
