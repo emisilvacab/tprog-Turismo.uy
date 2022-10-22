@@ -207,6 +207,7 @@ public class Principal {
             public void actionPerformed(ActionEvent e) {
             	altaActividadInternalFrame.cargarDepartamentos();
             	altaActividadInternalFrame.cargarProveedores();
+            	altaActividadInternalFrame.cargarCategorias();
             	altaActividadInternalFrame.setVisible(true);
             }
         });
