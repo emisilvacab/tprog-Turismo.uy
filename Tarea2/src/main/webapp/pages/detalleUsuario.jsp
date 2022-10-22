@@ -116,7 +116,7 @@
      									<p class="card-text"><strong>Costo:</strong> $<%=ins.getCosto()%></p>
      									<p3 class="card-text"><strong>Fecha de inscripción: </strong><%=insFecha.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=insFecha.get(GregorianCalendar.MONTH)%>/<%=insFecha.get(GregorianCalendar.YEAR)%></p3>
      								<%} %>
- 									<a href="verDatosSalida?salSeleccionada=<%=ins.getSalida()%>>" class="stretched-link"></a>
+ 									<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=ins.getSalida()%>" class="stretched-link"></a>
     			
   								</div>  						
 							</div>
@@ -177,7 +177,7 @@
   								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=actividad.getNombre() %></h3>
-    								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%></p>
+    								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%> días</p>
     								<p class="card-text"><strong>Costo: $</strong><%=actividad.getCosto()%></p>
     								<p class="card-text"><strong>Ciudad:</strong><%=actividad.getCiudad()%></p>	
     								<!--   class="card-text"><strong>Departamento:</strong> Rocha</p>-->
