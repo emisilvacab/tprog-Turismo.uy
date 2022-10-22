@@ -7,6 +7,7 @@ import logica.datatypes.DTUsuario;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTCompra;
+import logica.datatypes.DTInscripcion;
 import excepciones.usuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
@@ -43,5 +44,7 @@ public interface IControladorUsuario {
 	public abstract DTUsuario iniciarSesion(String id, String pass);
 	
 	public abstract HashSet<DTCompra> obtenerComprasTurista(String nickname) throws usuarioNoExisteException;
+	
+	public abstract HashSet<DTInscripcion> obtenerInscripcionesTurista(String nickname) throws usuarioNoExisteException;
 
 }

@@ -25,6 +25,7 @@ import logica.Turista;
 import logica.Usuario;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTCompra;
+import logica.datatypes.DTInscripcion;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
@@ -371,6 +372,26 @@ public class ControladorUsuario implements IControladorUsuario {
 				
 			return comprasDT;
 	
+		}
+
+	}
+	
+	public HashSet<DTInscripcion> obtenerInscripcionesTurista(String nickname) throws usuarioNoExisteException{
+		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		Turista user = mu.getTurista(nickname);
+		
+		if(user == null) {
+			throw new usuarioNoExisteException("no se encontro ningun turista con el nickname ingresado");			
+		}else {
+			HashSet<DTInscripcion> inscripcionesDT = new HashSet<DTInscripcion>();
+			Vector<Inscripcion> inscripciones = user.getInscripciones();
+			
+			for(Inscripcion ins : inscripciones) {
+				DTInscripcion nueva = new DTInscripcion(ins.getFecha(), ins.getCantTuristas(), ins.getSalida().getNombre(), ins.getTurista().getNickname(), ins.getCosto());
+				inscripcionesDT.add(nueva);
+			}
+			
+			return inscripcionesDT;
 		}
 
 	}
