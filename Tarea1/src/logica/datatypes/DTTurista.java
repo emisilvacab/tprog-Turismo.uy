@@ -6,8 +6,8 @@ public class DTTurista extends DTUsuario{
 	
 	private String nacionalidad;
 	
-	public DTTurista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String nacionalidad) {
-		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
+	public DTTurista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen, String nacionalidad) {
+		super(nickname, nombre, apellido, correo, nacimiento, contrasena, linkImagen);
 		this.setNacionalidad(nacionalidad);
 	}
 	

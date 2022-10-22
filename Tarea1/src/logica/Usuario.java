@@ -1,6 +1,5 @@
 package logica;
 
-import java.awt.Image;
 import java.util.GregorianCalendar;
 
 public abstract class Usuario{
@@ -11,18 +10,17 @@ public abstract class Usuario{
 	private String contrasena;
 	private String correo;
 	private GregorianCalendar nacimiento;
-
-	private Image figura;
+	private String linkImagen;
 
 	
-	public Usuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena) {
+	public Usuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen) {
 		this.setNickname(nickname);
 		this.setNombre(nombre);
 		this.setApellido(apellido);
 		this.setCorreo(correo);
 		this.setNacimiento(nacimiento);
 		this.setContrasena(contrasena);
-		this.setFigura(null);
+		this.setLinkImagen(linkImagen);
 	}
 	
 	
@@ -66,19 +64,21 @@ public abstract class Usuario{
 		this.nacimiento = nacimiento;
 	}
 
-	public Image getFigura() {
-		return figura;
-	}
-
-	public void setFigura(Image figura) {
-		this.figura = figura;
-	}
-
 	public String getContrasena() {
 		return contrasena;
 	}
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+
+
+	public String getLinkImagen() {
+		return linkImagen;
+	}
+
+
+	public void setLinkImagen(String linkImagen) {
+		this.linkImagen = linkImagen;
 	}
 }

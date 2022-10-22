@@ -38,11 +38,11 @@ class ControladorUsuarioTest {
 	
 	@BeforeAll
 	public static void iniciar() {
-		DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
-		DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel2@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
-		DTProveedor userU3 = new DTProveedor("joaco", "Leonardo", "Melgar", "joaco@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "lol", "superlol");
-		DTProveedor userP1 = new DTProveedor("wason", "Ignacio", "Nunez", "wason@gmail.com", new GregorianCalendar(2001, 3, 2), "contra", "Proveedor desde 2010");
-		DTTurista userU4 = new DTTurista("pepe", "Leonardo", "Melgar", "pepe@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
+		DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", null, "Uruguaya");
+		DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel2@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", null, "Uruguaya");
+		DTProveedor userU3 = new DTProveedor("joaco", "Leonardo", "Melgar", "joaco@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", null, "lol", "superlol");
+		DTProveedor userP1 = new DTProveedor("wason", "Ignacio", "Nunez", "wason@gmail.com", new GregorianCalendar(2001, 3, 2), "contra", null, "Proveedor desde 2010");
+		DTTurista userU4 = new DTTurista("pepe", "Leonardo", "Melgar", "pepe@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", null, "Uruguaya");
 		
 		
 		HashSet<String> categorias = new HashSet<String>(); //HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
@@ -111,7 +111,7 @@ class ControladorUsuarioTest {
 		GregorianCalendar nacimiento = new GregorianCalendar(2001, 6, 5);
 				try {
 					assertThrows(UsuarioRepetidoException.class, () -> {
-						icu.altaUsuario(new DTTurista("gervasio", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya"));
+						icu.altaUsuario(new DTTurista("gervasio", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", null, "Uruguaya"));
 					});
 					DTUsuario userObtenido = icu.obtenerUsuario("leomel");
 					DTUsuario userObtenido2 = icu.obtenerUsuario("joaco");
@@ -401,7 +401,7 @@ class ControladorUsuarioTest {
 	}
 	@Test
 	void clasesTest() {
-		Proveedor provPrueba = new Proveedor("elProser", "Jose", "Artigas", "artigas@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "El de la Batalla de Las Piedras");
+		Proveedor provPrueba = new Proveedor("elProser", "Jose", "Artigas", "artigas@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", null, "El de la Batalla de Las Piedras");
 		assertEquals(provPrueba.getNickname(), "elProser");
 		assertEquals(provPrueba.getNombre(), "Jose");
 		assertEquals(provPrueba.getApellido(), "Artigas");

@@ -296,9 +296,9 @@ public class AltaUsuario extends JInternalFrame{
         		if (chequearDatos()) {
         			DTUsuario user;
         			if (esTurista) {
-        				user = new DTTurista(nickname, nombre, apellido, correo, fecha, contrasena, nacionalidad);
+        				user = new DTTurista(nickname, nombre, apellido, correo, fecha, contrasena, null, nacionalidad);
         			}else {
-        				user = new DTProveedor(nickname, nombre, apellido, correo, fecha, contrasena, descripcion, link);
+        				user = new DTProveedor(nickname, nombre, apellido, correo, fecha, contrasena, null, descripcion, link);
         			}
         			try {
 						contrUsers.altaUsuario(user);

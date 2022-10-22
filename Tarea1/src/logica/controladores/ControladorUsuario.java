@@ -30,7 +30,6 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
-import logica.datatypes.DTCompra;
 import logica.manejadores.ManejadorSalida;
 import logica.manejadores.ManejadorUsuario;
 import logica.Actividad;
@@ -70,10 +69,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		}else {
 			if (user.getClass() == Turista.class) {
 				Turista tur = (Turista) user;
-				return new DTTurista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), tur.getNacionalidad());
+				return new DTTurista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), tur.getNacionalidad());
 			}else {
 				Proveedor prov = (Proveedor) user;
-				return new DTProveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), prov.getDescripcion(), prov.getLink());
+				return new DTProveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), prov.getDescripcion(), prov.getLink());
 			}
 	
 		}
@@ -121,10 +120,10 @@ public class ControladorUsuario implements IControladorUsuario {
 		}else {
 			if (user.getClass() == DTTurista.class) {
 				DTTurista dttur = (DTTurista) user;
-				mu.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), dttur.getNacionalidad()));
+				mu.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), dttur.getNacionalidad()));
 			}else {
 				DTProveedor dtprov = (DTProveedor) user;
-				mu.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), dtprov.getDescripcion(), dtprov.getLink()));
+				mu.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), dtprov.getDescripcion(), dtprov.getLink()));
 				
 			}
 		}

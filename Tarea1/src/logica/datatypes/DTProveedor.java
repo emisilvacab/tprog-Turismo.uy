@@ -7,14 +7,14 @@ public class DTProveedor extends DTUsuario{
 	private String descripcion;
 	private String link;
 	
-	public DTProveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String descripcion) {
-		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
+	public DTProveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen, String descripcion) {
+		super(nickname, nombre, apellido, correo, nacimiento, contrasena, linkImagen);
 		this.setDescripcion(descripcion);
 		this.setLink(new String());
 	}
 
-	public DTProveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String descripcion, String link) {
-		super(nickname, nombre, apellido, correo, nacimiento, contrasena);
+	public DTProveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen, String descripcion, String link) {
+		super(nickname, nombre, apellido, correo, nacimiento, contrasena, linkImagen);
 		this.setDescripcion(descripcion);
 		this.setLink(link);
 	}
