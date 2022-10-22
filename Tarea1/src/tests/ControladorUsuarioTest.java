@@ -1,7 +1,5 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -24,27 +22,29 @@ import logica.Salida;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
 class ControladorUsuarioTest {
-	static //si agregan algun usuario avisenme joaco
-	DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
-	static DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel2@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
-	static DTProveedor userU3 = new DTProveedor("joaco", "Leonardo", "Melgar", "joaco@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "lol", "superlol");
-	String[] usuariosCargados = new String[]{"leomel", "leomel2", "joaco", "wason", "pepe"};
-	static DTProveedor userP1 = new DTProveedor("wason", "Ignacio", "Nunez", "wason@gmail.com", new GregorianCalendar(2001, 3, 2), "contra", "Proveedor desde 2010");
-	static DTTurista userU4 = new DTTurista("pepe", "Leonardo", "Melgar", "pepe@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
-	
-
-	
+	private static String[] usuariosCargados = new String[]{"leomel", "leomel2", "joaco", "wason", "pepe"};
 	private static IControladorUsuario icu;
 	private static IControladorDepartamento icd;
 	
 	@BeforeAll
 	public static void iniciar() {
+		DTTurista userU1 = new DTTurista("leomel", "Leonardo", "Melgar", "leomel@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
+		DTTurista userU2 = new DTTurista("leomel2", "Leonardo", "Melgar", "leomel2@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
+		DTProveedor userU3 = new DTProveedor("joaco", "Leonardo", "Melgar", "joaco@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "lol", "superlol");
+		DTProveedor userP1 = new DTProveedor("wason", "Ignacio", "Nunez", "wason@gmail.com", new GregorianCalendar(2001, 3, 2), "contra", "Proveedor desde 2010");
+		DTTurista userU4 = new DTTurista("pepe", "Leonardo", "Melgar", "pepe@gmail.com", new GregorianCalendar(2001, 6, 5), "contra", "Uruguaya");
+		
+		
 		HashSet<String> categorias = new HashSet<String>(); //HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
 
 		Fabrica fabrica = Fabrica.getInstance();
@@ -174,7 +174,7 @@ class ControladorUsuarioTest {
 		String[] usuarios = icu.obtenerUsuarios();
 		assertEquals(usuarios.length, usuariosCargados.length);
 		for (String nickname: usuariosCargados) {
-			if (!contiene (usuarios, nickname)) {
+			if (!contiene(usuarios, nickname)) {
 				fail("el usuario " + nickname + " no fue cargado");
 			}
 		}

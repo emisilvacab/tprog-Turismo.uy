@@ -1,7 +1,5 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +20,9 @@ import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
@@ -170,7 +171,9 @@ class ControladorPaqueteTest {
 		
 		try {
 			icp.comprarPaquete("leomel", "Disfrutar Rocha",  GregorianCalendar.from(ZonedDateTime.now()), 1);
-			assertThrows(compraExisteException.class, () -> {icp.comprarPaquete("leomel", "Disfrutar Rocha",  GregorianCalendar.from(ZonedDateTime.now()), 3); });
+			assertThrows(compraExisteException.class, () -> {
+				icp.comprarPaquete("leomel", "Disfrutar Rocha",  GregorianCalendar.from(ZonedDateTime.now()), 3);
+			});
 
 		} catch (usuarioNoExisteException | paqueteNoExisteException | compraExisteException e) {
 			e.printStackTrace();

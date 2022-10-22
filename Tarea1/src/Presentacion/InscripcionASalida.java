@@ -361,7 +361,7 @@ public class InscripcionASalida extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, e.getMessage(), "La salida seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-		return (!nombreUsuario.isEmpty() && listaSals.getSelectedItem() != null && ans);
+		return !nombreUsuario.isEmpty() && listaSals.getSelectedItem() != null && ans;
 	}
 
 

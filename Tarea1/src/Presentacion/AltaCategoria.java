@@ -30,7 +30,7 @@ public class AltaCategoria extends JInternalFrame {
 	
 	private JTextField txfNombre;
 	private JLabel labelNombre;
-	private JLabel lblNewLabel_1_3;
+	private JLabel lblNewLabel13;
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	
@@ -58,7 +58,7 @@ public class AltaCategoria extends JInternalFrame {
 		txfNombre = new JTextField();
 		txfNombre.setColumns(10);
 		
-		lblNewLabel_1_3 = new JLabel("");
+		lblNewLabel13 = new JLabel("");
 		
 		btnAceptar = new JButton("Aceptar");
 		
@@ -95,7 +95,7 @@ public class AltaCategoria extends JInternalFrame {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1_3, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel13, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(labelNombre)
@@ -121,7 +121,7 @@ public class AltaCategoria extends JInternalFrame {
 						.addComponent(labelNombre, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txfNombre, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
 					.addGap(15)
-					.addComponent(lblNewLabel_1_3, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblNewLabel13, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(19)
 					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)

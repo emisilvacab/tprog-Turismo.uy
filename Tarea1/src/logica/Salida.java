@@ -96,7 +96,7 @@ public class Salida{
 		for (int i = 0; i < inscripciones.size(); i++) {
 			total += inscripciones.get(i).getCantTuristas();
 		}
-		return (total + capacidad <= maxTuristas);
+		return total + capacidad <= maxTuristas;
 	}
 
 	public boolean existeInscripcion(String nickname) {
@@ -128,7 +128,7 @@ public class Salida{
 		for (int i = 0; i < inscripciones.size(); i++) {
 			total += inscripciones.get(i).getCantTuristas();
 		}
-		return (maxTuristas - total);
+		return maxTuristas - total;
 	}
 
 	public Image getFigura() {

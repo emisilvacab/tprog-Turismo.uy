@@ -35,7 +35,6 @@ import javax.swing.SwingConstants;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.JComboBox;
@@ -61,24 +60,24 @@ public class AltaActividad extends JInternalFrame {
 	private JLabel labelDepartamento;
 	private JComboBox<String> comboDepartamento;
 	private JLabel labelProveedor;
-	private JLabel lblNewLabel_1_1;
+	private JLabel lblNewLabel11;
 	private JComboBox<String> comboProveedor;
-	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel1;
 	private JLabel labelNombre;
-	private JLabel lblNewLabel_1_3;
+	private JLabel lblNewLabel13;
 	private JLabel labelDescripcion;
-	private JLabel lblNewLabel_1_3_1;
+	private JLabel lblNewLabel131;
 	private JLabel labelDuracion;
-	private JLabel lblNewLabel_1_3_2;
+	private JLabel lblNewLabel132;
 	private JLabel labelCosto;
-	private JLabel lblNewLabel_1_3_3;
+	private JLabel lblNewLabel133;
 	private JLabel labelCiudad;
-	private JLabel lblNewLabel_1_3_4;
+	private JLabel lblNewLabel134;
 	private JLabel labelImagen;
 	private JButton btnAceptar;
 	private JButton btnCancelar;
-	private JLabel lblNewLabel_6;
-	private JLabel lblNewLabel_7;
+	private JLabel lblNewLabel6;
+	private JLabel lblNewLabel7;
 	private JLabel labelCategorias;
 	private JSplitPane splitPane;
 	private JButton btnAbrir;
@@ -116,9 +115,9 @@ public class AltaActividad extends JInternalFrame {
 		comboDepartamento.setBounds(162, 3, 159, 25);
 		getContentPane().add(comboDepartamento);
 		
-		lblNewLabel_1_1 = new JLabel("");
-		lblNewLabel_1_1.setBounds(324, 3, 159, 25);
-		getContentPane().add(lblNewLabel_1_1);
+		lblNewLabel11 = new JLabel("");
+		lblNewLabel11.setBounds(324, 3, 159, 25);
+		getContentPane().add(lblNewLabel11);
 		
 		labelProveedor = new JLabel("Proveedor:");
 		labelProveedor.setBounds(0, 43, 159, 25);
@@ -129,9 +128,9 @@ public class AltaActividad extends JInternalFrame {
 		comboProveedor.setBounds(162, 43, 159, 25);
 		getContentPane().add(comboProveedor);
 		
-		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(324, 43, 159, 25);
-		getContentPane().add(lblNewLabel_1);
+		lblNewLabel1 = new JLabel("");
+		lblNewLabel1.setBounds(324, 43, 159, 25);
+		getContentPane().add(lblNewLabel1);
 		
 		labelNombre = new JLabel("Nombre de la actividad:");
 		labelNombre.setBounds(0, 83, 159, 25);
@@ -143,9 +142,9 @@ public class AltaActividad extends JInternalFrame {
 		getContentPane().add(txfNombre);
 		txfNombre.setColumns(10);
 		
-		lblNewLabel_1_3 = new JLabel("");
-		lblNewLabel_1_3.setBounds(324, 83, 159, 25);
-		getContentPane().add(lblNewLabel_1_3);
+		lblNewLabel13 = new JLabel("");
+		lblNewLabel13.setBounds(324, 83, 159, 25);
+		getContentPane().add(lblNewLabel13);
 		
 		labelDescripcion = new JLabel("Descripcion:");
 		labelDescripcion.setBounds(0, 123, 159, 25);
@@ -157,9 +156,9 @@ public class AltaActividad extends JInternalFrame {
 		txfDescripcion.setColumns(10);
 		getContentPane().add(txfDescripcion);
 		
-		lblNewLabel_1_3_1 = new JLabel("");
-		lblNewLabel_1_3_1.setBounds(324, 123, 159, 25);
-		getContentPane().add(lblNewLabel_1_3_1);
+		lblNewLabel131 = new JLabel("");
+		lblNewLabel131.setBounds(324, 123, 159, 25);
+		getContentPane().add(lblNewLabel131);
 		
 		labelDuracion = new JLabel("Duracion de la actividad:");
 		labelDuracion.setBounds(0, 163, 159, 25);
@@ -171,10 +170,10 @@ public class AltaActividad extends JInternalFrame {
 		txfDuracion.setColumns(10);
 		getContentPane().add(txfDuracion);
 		
-		lblNewLabel_1_3_2 = new JLabel("dias");
-		lblNewLabel_1_3_2.setBounds(324, 163, 159, 25);
-		lblNewLabel_1_3_2.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(lblNewLabel_1_3_2);
+		lblNewLabel132 = new JLabel("dias");
+		lblNewLabel132.setBounds(324, 163, 159, 25);
+		lblNewLabel132.setHorizontalAlignment(SwingConstants.LEFT);
+		getContentPane().add(lblNewLabel132);
 		
 		labelCosto = new JLabel("Costo:");
 		labelCosto.setBounds(0, 203, 159, 25);
@@ -186,10 +185,10 @@ public class AltaActividad extends JInternalFrame {
 		txfCosto.setColumns(10);
 		getContentPane().add(txfCosto);
 		
-		lblNewLabel_1_3_3 = new JLabel("");
-		lblNewLabel_1_3_3.setBounds(324, 203, 159, 25);
-		lblNewLabel_1_3_3.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(lblNewLabel_1_3_3);
+		lblNewLabel133 = new JLabel("");
+		lblNewLabel133.setBounds(324, 203, 159, 25);
+		lblNewLabel133.setHorizontalAlignment(SwingConstants.LEFT);
+		getContentPane().add(lblNewLabel133);
 		
 		labelCiudad = new JLabel("Ciudad:");
 		labelCiudad.setBounds(0, 243, 159, 25);
@@ -201,9 +200,9 @@ public class AltaActividad extends JInternalFrame {
 		txfCiudad.setColumns(10);
 		getContentPane().add(txfCiudad);
 		
-		lblNewLabel_1_3_4 = new JLabel("");
-		lblNewLabel_1_3_4.setBounds(324, 243, 159, 25);
-		getContentPane().add(lblNewLabel_1_3_4);
+		lblNewLabel134 = new JLabel("");
+		lblNewLabel134.setBounds(324, 243, 159, 25);
+		getContentPane().add(lblNewLabel134);
 		
 		labelImagen = new JLabel("Imagen:");
 		labelImagen.setVisible(false);
@@ -335,13 +334,13 @@ public class AltaActividad extends JInternalFrame {
 		});
 		scrollPane.setViewportView(listCategorias);
 		
-		lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setBounds(324, 287, 159, 25);
-		getContentPane().add(lblNewLabel_6);
+		lblNewLabel6 = new JLabel("");
+		lblNewLabel6.setBounds(324, 287, 159, 25);
+		getContentPane().add(lblNewLabel6);
 		
-		lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setBounds(0, 363, 159, 25);
-		getContentPane().add(lblNewLabel_7);
+		lblNewLabel7 = new JLabel("");
+		lblNewLabel7.setBounds(0, 363, 159, 25);
+		getContentPane().add(lblNewLabel7);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -424,7 +423,7 @@ public class AltaActividad extends JInternalFrame {
 							            ans = false;
 							        }
 								}
-		return (ans);
+		return ans;
 	}
 	
 	private void limpiarFormulario() {

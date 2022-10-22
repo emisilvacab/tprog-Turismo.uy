@@ -28,6 +28,8 @@ import logica.datatypes.DTUsuario;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.awt.Color;
 
@@ -219,7 +221,7 @@ public class ConsultarUsuario extends JInternalFrame{
         	public void actionPerformed(ActionEvent e) {
         		if (salidasInscriptoBox.getSelectedItem() != null) {
         			consultaDeSalida.setVisible(true);
-        			consultaDeSalida.mostrarDT(icu.obtenerSalidaInscripto((String)salidasInscriptoBox.getSelectedItem(), (String)listaUsuarios.getSelectedItem()));
+        			consultaDeSalida.mostrarDT(icu.obtenerSalidaInscripto((String) salidasInscriptoBox.getSelectedItem(), (String) listaUsuarios.getSelectedItem()));
         		}
         	}
         });
@@ -543,10 +545,10 @@ public class ConsultarUsuario extends JInternalFrame{
 	}
 	
 	public static void openWebpage(String urlString) {
-	    try {
-	        Desktop.getDesktop().browse(new URL(urlString).toURI());
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+        try {
+			Desktop.getDesktop().browse(new URL(urlString).toURI());
+		} catch (IOException | URISyntaxException e) {
+			e.printStackTrace();
+		}
 	}
 }

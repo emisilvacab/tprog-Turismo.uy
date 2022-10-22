@@ -133,7 +133,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 			ManejadorSalida msal = ManejadorSalida.getInstance();
 			msal.addSalida(nueva);
 		}
-		return (sal != null);
+		return sal != null;
 	}
 	
 	public void ingresarDepartamento(String nombre, String descripcion, String url) {

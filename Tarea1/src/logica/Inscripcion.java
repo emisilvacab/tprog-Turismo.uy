@@ -18,7 +18,7 @@ public class Inscripcion{
 		this.setSalida(salida);
 		this.setTurista(turista);
 		if (compra == null)
-			this.costo  = (salida.getCostoActividad() * cantTuristas); 
+			this.costo  = salida.getCostoActividad() * cantTuristas; 
 		else 
 			this.costo  = (salida.getCostoActividad() * cantTuristas) - (compra.getPaquete().getDescuento()*(salida.getCostoActividad() * cantTuristas) / 100);
 		this.setCompra(compra);			
