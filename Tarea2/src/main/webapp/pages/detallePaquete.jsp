@@ -52,7 +52,7 @@
 				for(DTActividad act : actividades){
 				%>
 				<div id="paquete-card" class="card" style="width: 18rem;">
-  					<img id="card-img-paquete" src="https://s3.amazonaws.com/turismorocha/eventos/2569/cover/degusta-048968300-1659558891.jpg" class="card-img-top" alt="...">
+  					<img id="card-img-paquete" <%if (act.getLinkImagen() != null){%> src="<%=act.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
   					<div class="card-body" id="card-body-paquete">
     					<h3 class="card-title"><%=act.getNombre()%></h3>
     					<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=act.getNombre()%>" class="stretched-link"></a>
