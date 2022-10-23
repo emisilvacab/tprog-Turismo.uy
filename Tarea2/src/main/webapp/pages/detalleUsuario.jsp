@@ -45,7 +45,7 @@
 			<div class="card mb-3" style="max-width: 640px;">
   				<div class="row g-0">
     				<div class="col-md-4">
-      					<img src="https://pbs.twimg.com/media/EOHAP9zWoAsnkiM?format=jpg&name=small" class="img-fluid rounded-start">
+      					<img <%if (usr.getLinkImagen() != null){%> src="<%=usr.getLinkImagen()%>" <%} else {%>src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png"<%}%> class="img-fluid rounded-start">
     				</div>
     				<div class="col-md-8">
       					<div class="card-body">
@@ -53,7 +53,10 @@
         					
         					<p class="card-text"><%=usr.getNickname()%> / <p1 class="text-muted"><%=usr.getCorreo()%></p1></p>
         					<% GregorianCalendar nacimiento = usr.getNacimiento(); %>
-        					<p class="card-text">Fecha de nacimiento: <p1 class="text-muted"><%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH)%>/<%=nacimiento.get(GregorianCalendar.YEAR)%> </p1></p>
+        					<p class="card-text">Fecha de nacimiento: <p1 class="text-muted"><%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%> </p1></p>
+        					<% if(usr.getNickname().equals(nick)){%>
+        					<a  href="modificarDatosUsuario.html" id="button-cargarDatos" class="btn btn-primary">Modificar</a>
+        					<%} %>
       					</div>
     				</div>
   				</div>
@@ -67,7 +70,7 @@
   				<%if(tipo == "turista"){ %>
   				
   				<li class="nav-item" role="presentation">
-    				<button class="nav-link" id="salidas-tab" data-bs-toggle="tab" data-bs-target="#salidas-tab-pane" type="button" role="tab" aria-controls="salidas-tab-pane" aria-selected="false" style="color: #2f3131;">Salidas</button>
+    				<button class="nav-link" id="salidas-tab" data-bs-toggle="tab" data-bs-target="#salidas-tab-pane" type="button" role="tab" aria-controls="salidas-tab-pane" aria-selected="false" style="color: #2f3131;">Inscripciones a Salidas</button>
   				</li>
   				<% 		if(usr.getNickname().equals(nick)){%>
   				<li class="nav-item" role="presentation">
@@ -77,11 +80,11 @@
   				<% }else if(tipo == "proveedor"){ %>
   				
   				<li class="nav-item" role="presentation">
-    				<button class="nav-link" id="actividades-tab" data-bs-toggle="tab" data-bs-target="#actividades-tab-pane" type="button" role="tab" aria-controls="actividades-tab-pane" aria-selected="false" style="color: #2f3131;">Actividades</button>
+    				<button class="nav-link" id="actividades-tab" data-bs-toggle="tab" data-bs-target="#actividades-tab-pane" type="button" role="tab" aria-controls="actividades-tab-pane" aria-selected="false" style="color: #2f3131;">Actividades ofrecidas</button>
   				</li>
   				
   				<li class="nav-item" role="presentation">
-    				<button class="nav-link" id="salidass-tab" data-bs-toggle="tab" data-bs-target="#salidas-tab-pane" type="button" role="tab" aria-controls="salidas-tab-pane" aria-selected="false" style="color: #2f3131;">Salidas</button>
+    				<button class="nav-link" id="salidass-tab" data-bs-toggle="tab" data-bs-target="#salidas-tab-pane" type="button" role="tab" aria-controls="salidas-tab-pane" aria-selected="false" style="color: #2f3131;">Salidas ofrecidas</button>
   				</li>
   				
   				<%}%>
@@ -93,7 +96,7 @@
          			<p3 class="text">Nombre: <%=usr.getNombre()%></p3><br>
          			<p3 class="text">Apellido: <%=usr.getApellido()%></p3><br>
          			<p1 class="text-muted">E-Mail: <%=usr.getCorreo()%></p1><br>
-         			<p3 class="text">Fecha de nacimiento: <%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH)%>/<%=nacimiento.get(GregorianCalendar.YEAR)%></p3>
+         			<p3 class="text">Fecha de nacimiento: <%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%></p3>
          			
   				
   				</div>
@@ -111,13 +114,12 @@
 								GregorianCalendar insFecha = ins.getFecha();
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<img id="card-img-paquete" src="https://city.woow.com.uy/media/catalog/product/cache/dcf64a24127a43d9ce9fe76e3e5f8061/n/u/nueva2_3_1.jpg" class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=ins.getSalida()%></h3>
     								<%if(usr.getNickname().equals(nick)){ %>
      									<p class="card-text"><strong>Cantidad de turistas: </strong><%=ins.getCantTuristas()%></p>	
      									<p class="card-text"><strong>Costo:</strong> $<%=ins.getCosto()%></p>
-     									<p3 class="card-text"><strong>Fecha de inscripción: </strong><%=insFecha.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=insFecha.get(GregorianCalendar.MONTH)%>/<%=insFecha.get(GregorianCalendar.YEAR)%></p3>
+     									<p3 class="card-text"><strong>Fecha de inscripción: </strong><%=insFecha.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=insFecha.get(GregorianCalendar.MONTH)+1%>/<%=insFecha.get(GregorianCalendar.YEAR)%></p3>
      								<%} %>
  									<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=ins.getSalida()%>" class="stretched-link"></a>
     			
@@ -141,10 +143,9 @@
 									GregorianCalendar fechaCompra = comp.getFecha();
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<img id="card-img-paquete" src="https://sites.google.com/site/areasprotegidasenuruguay/_/rsrc/1411660757953/algunas-de-las-areas-ingresadas-por-el-snap/laguna-de-rocha/Mapa_Rocha_BLOG.jpg?height=280&width=400" class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=comp.getPaquete()%></h3>
-     								<p class="card-text"><strong>Fecha de Compra:</strong> <%=fechaCompra.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=fechaCompra.get(GregorianCalendar.MONTH)%>/<%=fechaCompra.get(GregorianCalendar.YEAR)%></p>	
+     								<p class="card-text"><strong>Fecha de Compra:</strong> <%=fechaCompra.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=fechaCompra.get(GregorianCalendar.MONTH)+1%>/<%=fechaCompra.get(GregorianCalendar.YEAR)%></p>	
       								<p class="card-text"><strong>Cantidad de turistas: </strong><%=comp.getCantTuristas()%></p>
       								<p class="card-text"><strong>Costo:</strong> $<%=comp.getCosto()%></p>	
       								
@@ -177,14 +178,14 @@
   						%>
   						
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%}%> class="card-img-top" alt="...">
+  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=actividad.getNombre() %></h3>
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%> días</p>
     								<p class="card-text"><strong>Costo: $</strong><%=actividad.getCosto()%></p>
     								<p class="card-text"><strong>Ciudad:</strong><%=actividad.getCiudad()%></p>	
     								<!--   class="card-text"><strong>Departamento:</strong> Rocha</p>-->
-    								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
+    								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)+1%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
     			
     								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>" class="stretched-link"></a>
    		
@@ -208,14 +209,14 @@
 								}
 				%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%}%> class="card-img-top" alt="...">
+  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=actividad.getNombre() %></h3>
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%></p>
     								<p class="card-text"><strong>Costo: $</strong><%=actividad.getCosto()%></p>
     								<p class="card-text"><strong>Ciudad:</strong><%=actividad.getCiudad()%></p>	
     								<!--   class="card-text"><strong>Departamento:</strong> Rocha</p>-->
-    								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
+    								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)+1%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
     								<p class="card-text"><strong>Estado: </strong><%=estadoStr%></p>	
     								
     								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>" class="stretched-link"></a>
@@ -245,7 +246,7 @@
   						%>
   						
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<!-- <img id="card-img-paquete" ruta ruta ruta class="card-img-top" alt="..."> -->
+  								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=sal.getNombre()%></h3>    			
     								<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=sal.getNombre()%>" class="stretched-link"></a>
@@ -259,7 +260,7 @@
 							for(DTSalida sal : salidasConf){
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<!-- <img id="card-img-paquete" ruta ruta ruta class="card-img-top" alt="..."> -->
+  								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=sal.getNombre()%></h3>    			
     								<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=sal.getNombre()%>" class="stretched-link"></a>
