@@ -34,6 +34,7 @@ public class ListarPaquetes extends HttpServlet {
     }
     
     protected void cargarPaquetes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	request.setCharacterEncoding("UTF-8");
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
     	IControladorDepartamento ctrlDep = fact.getIControladorDepartamento();

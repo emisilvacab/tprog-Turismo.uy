@@ -36,6 +36,7 @@ public class ListarUsuarios extends HttpServlet {
     }
     
     protected void cargarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	request.setCharacterEncoding("UTF-8");
     	Fabrica fact = Fabrica.getInstance();
     	IControladorUsuario ctrlUsr = fact.getIControladorUsuario();
     	
