@@ -47,6 +47,7 @@ public class DetalleUsuario extends HttpServlet {
 
     
     protected void cargarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	request.setCharacterEncoding("UTF-8");
     	Fabrica fact = Fabrica.getInstance();
     	IControladorUsuario ctrlUsr = fact.getIControladorUsuario();
     	IControladorDepartamento ctrlDpto = fact.getIControladorDepartamento();
@@ -56,14 +57,16 @@ public class DetalleUsuario extends HttpServlet {
     	
     	String nickname = request.getParameter("usuarioDetalleNickname");
     	DTUsuario usuario = null;
+    			
     	try {
     		usuario = ctrlUsr.obtenerUsuario(nickname);
+    		
     	} catch (usuarioNoExisteException usuarioNoExiste) {
 			request.setAttribute("error", "usuario-no-existe"); 		
-    	}
+    	}    	
     	
-    	if (usuario instanceof DTTurista) {	
-    		    	
+    	if (usuario instanceof DTTurista) {			
+    		
     		Set<DTInscripcion> inscripciones = new HashSet<DTInscripcion>();
     		try {
     			inscripciones = ctrlUsr.obtenerInscripcionesTurista(nickname);

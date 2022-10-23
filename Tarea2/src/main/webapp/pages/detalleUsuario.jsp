@@ -96,9 +96,20 @@
          			<p3 class="text">Nombre: <%=usr.getNombre()%></p3><br>
          			<p3 class="text">Apellido: <%=usr.getApellido()%></p3><br>
          			<p1 class="text-muted">E-Mail: <%=usr.getCorreo()%></p1><br>
-         			<p3 class="text">Fecha de nacimiento: <%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%></p3>
+         			<p3 class="text">Fecha de nacimiento: <%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%></p3><br>
          			
-  				
+         			<%if(tipo == "turista"){
+         				DTTurista tur = (DTTurista) usr;
+         			%>
+         				<p1 class="text">Nacionalidad: <%=tur.getNacionalidad()%></p1><br>
+         			
+         			<%}else if(tipo == "proveedor"){ 
+         				DTProveedor prov = (DTProveedor) usr;
+
+         			%>
+  					<p1 class="text">Link: <%=prov.getLink()%></p1><br>
+  					<p3 class="text">Descripción: <%=prov.getDescripcion()%></p3><br>
+  					<%} %>
   				</div>
   				
   				<%if(tipo == "turista"){ %>
