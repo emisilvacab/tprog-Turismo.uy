@@ -51,7 +51,7 @@ public class DetallePaquete extends HttpServlet {
     	
     	HashSet<DTActividad> actConfirmadas = new HashSet<DTActividad>();
     	try {
-    		actConfirmadas = ctrlPaq.obtenerActividadesConfirmadasPaquete(nombre);
+    		actConfirmadas = ctrlPaq.obtenerActividadesPaquete(nombre);
     	} catch (paqueteNoExisteException paqueteNoExiste) {
     		
     	}
