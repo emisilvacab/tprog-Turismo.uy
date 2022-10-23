@@ -25,7 +25,7 @@
 			%>
 			<div class="container" id="container-paquete">
 		
-				<img id="img-paquete" src="https://sites.google.com/site/areasprotegidasenuruguay/_/rsrc/1411660757953/algunas-de-las-areas-ingresadas-por-el-snap/laguna-de-rocha/Mapa_Rocha_BLOG.jpg?height=280&width=400" class="img-thumbnail" alt="...">
+				<img id="img-paquete" <%if (paquete.getLinkImagen() != null){%> src="<%=paquete.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultPaquete.png"<%}%> class="img-thumbnail" alt="...">
 		
 				<p class="fw-bold">Nombre:</p>
 				<p class="text-break"><%=paquete.getNombre()%></p>
@@ -38,7 +38,7 @@
 				<p class="fw-bold">Descuento:</p>
 				<p class="text-break"><%=paquete.getDescuento()%>%</p>
 				<p class="fw-bold">Fecha de alta:</p>
-				<p class="text-break"><%=fecha.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=fecha.get(GregorianCalendar.MONTH)%>/<%=fecha.get(GregorianCalendar.YEAR)%> </p>
+				<p class="text-break"><%=fecha.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=fecha.get(GregorianCalendar.MONTH)+1%>/<%=fecha.get(GregorianCalendar.YEAR)%> </p>
 				<p class="fw-bold">Descripción:</p>
 				<p class="text-break"><%=paquete.getDescripcion()%>.</p>
 		

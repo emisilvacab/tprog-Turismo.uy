@@ -33,7 +33,7 @@
 			%>
 	
 			<div id="usuario-card" class="card" style="width: 18rem;">
-  				<img id="card-img-usuario" src="https://pbs.twimg.com/media/EOHAP9zWoAsnkiM?format=jpg&name=small" class="card-img-top" alt="...">
+  				<img id="card-img-usuario" <%if (usuario.getLinkImagen() != null){%> src="<%=usuario.getLinkImagen()%>" <%} else {%>src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png"<%}%> class="card-img-top" alt="...">
   				<div class="card-body" id="card-body-paquete">
 
     				<h3 class="card-title"><%=nick%></h3>
