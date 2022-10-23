@@ -86,7 +86,7 @@
 								}
 								%>
 								</li>
-								<li class="list-group-item" style="font-size: 110%;"><%=actividad.getEstado()%></li>
+								<li class="list-group-item" style="font-size: 110%;"><%=actividad.getEstado().toString()%></li>
 							</ul>
 						</div>
 					</div>

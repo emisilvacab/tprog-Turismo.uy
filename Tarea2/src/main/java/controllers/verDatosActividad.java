@@ -70,20 +70,17 @@ public class verDatosActividad extends HttpServlet {
 			request.setAttribute("error", "actividadNoExiste");
 		}
     	
-    	try {
-			HashSet<DTSalida> listaSalidas = (HashSet<DTSalida>) ctrlDepartamentos.obtenerDatosSalidasParaActividad(NombreAct);
+		try {
+    		HashSet<DTSalida> listaSalidas = new HashSet<DTSalida>();
+			listaSalidas = (HashSet<DTSalida>) ctrlDepartamentos.obtenerDatosSalidasParaActividad(NombreAct);
 			request.setAttribute("salidas", listaSalidas);
 		} catch (actividadNoExisteException noExisteAct) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
 		}
-    	
-    	HashSet<DTPaquete> listaPaquetes = (HashSet<DTPaquete>) ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
-    	if (listaPaquetes.isEmpty()) {
-    		request.setAttribute("error", "Actividad sin paquete");
-    	} else {
-    		request.setAttribute("paquetes", listaPaquetes);
-		}
+    	HashSet<DTPaquete> listaPaquetes = new HashSet<DTPaquete>();
+    	listaPaquetes = (HashSet<DTPaquete>) ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
+    	request.setAttribute("paquetes", listaPaquetes);
     	
 		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
 		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());
