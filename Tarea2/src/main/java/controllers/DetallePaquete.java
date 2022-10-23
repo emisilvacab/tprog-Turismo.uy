@@ -35,6 +35,7 @@ public class DetallePaquete extends HttpServlet {
     }
 
     protected void cargarPaquete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
     	IControladorDepartamento ctrlDep = fact.getIControladorDepartamento();
@@ -51,14 +52,14 @@ public class DetallePaquete extends HttpServlet {
     	
     	HashSet<DTActividad> actConfirmadas = new HashSet<DTActividad>();
     	try {
-    		actConfirmadas = ctrlPaq.obtenerActividadesPaquete(nombre);
+    		actConfirmadas = (HashSet<DTActividad>) ctrlPaq.obtenerActividadesPaquete(nombre);
     	} catch (paqueteNoExisteException paqueteNoExiste) {
     		
     	}
     	
     	HashSet<String> categorias = new HashSet<String>();
     	try {
-    		categorias = ctrlPaq.obtenerCategoriasPaquete(nombre);
+    		categorias = (HashSet<String>) ctrlPaq.obtenerCategoriasPaquete(nombre);
     	} catch (paqueteNoExisteException paqueteNoExiste) {
     		
     	}

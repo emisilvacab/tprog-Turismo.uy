@@ -183,7 +183,7 @@ class ControladorDepartamentoTest {
 		
 		//obtenerCategoriasActividad
 		try {
-			HashSet<String> catsAct = icd.obtenerCategoriasActividad("Caza de brujas");
+			HashSet<String> catsAct = (HashSet<String>) icd.obtenerCategoriasActividad("Caza de brujas");
 			for (String c :catsAct) {
 				assertEquals(categorias.contains(c), true);
 			}

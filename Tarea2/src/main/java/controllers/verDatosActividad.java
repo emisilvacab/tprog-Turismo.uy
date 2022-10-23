@@ -47,6 +47,7 @@ public class verDatosActividad extends HttpServlet {
     	IControladorPaquete ctrlPaquete = fact.getIControladorPaquete();
     	String NombreAct = (String) request.getParameter("actSeleccionada");
     	DTActividad actividad;
+    	String nombreProveedor;
 		try {
 			actividad = ctrlDepartamentos.obtenerDatosActividad(NombreAct);
 			request.setAttribute("actividad", actividad);
@@ -54,6 +55,8 @@ public class verDatosActividad extends HttpServlet {
 			request.setAttribute("fechaAltaDia", fechaAlta.get(fechaAlta.DAY_OF_MONTH));
 			request.setAttribute("fechaAltaMes", fechaAlta.get(fechaAlta.MONTH) + 1);
 			request.setAttribute("fechaAltaAño", fechaAlta.get(fechaAlta.YEAR));
+			nombreProveedor = ctrlDepartamentos.obtenerNombreProveedorDeActividad(NombreAct);
+			request.setAttribute("proveedor", nombreProveedor);
 		} catch (actividadNoExisteException noExisteActividad) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
@@ -63,27 +66,24 @@ public class verDatosActividad extends HttpServlet {
     	
     	HashSet<String> listaCategorias;
 		try {
-			listaCategorias = ctrlDepartamentos.obtenerCategoriasActividad(NombreAct);
+			listaCategorias = (HashSet<String>) ctrlDepartamentos.obtenerCategoriasActividad(NombreAct);
 			request.setAttribute("categorias", listaCategorias);
 		} catch (Exception actNoExiste) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
 		}
     	
-    	try {
-			HashSet<DTSalida> listaSalidas = (HashSet<DTSalida>) ctrlDepartamentos.obtenerDatosSalidasParaActividad(NombreAct);
+		try {
+    		HashSet<DTSalida> listaSalidas = new HashSet<DTSalida>();
+			listaSalidas = (HashSet<DTSalida>) ctrlDepartamentos.obtenerDatosSalidasParaActividad(NombreAct);
 			request.setAttribute("salidas", listaSalidas);
 		} catch (actividadNoExisteException noExisteAct) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
 		}
-    	
-    	HashSet<DTPaquete> listaPaquetes = ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
-    	if (listaPaquetes.isEmpty()) {
-    		request.setAttribute("error", "Actividad sin paquete");
-    	} else {
-    		request.setAttribute("paquetes", listaPaquetes);
-		}
+    	HashSet<DTPaquete> listaPaquetes = new HashSet<DTPaquete>();
+    	listaPaquetes = (HashSet<DTPaquete>) ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
+    	request.setAttribute("paquetes", listaPaquetes);
     	
 		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
 		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());

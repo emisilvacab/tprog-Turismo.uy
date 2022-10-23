@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import javax.swing.JInternalFrame;
 
@@ -46,7 +46,7 @@ public class AltaCategoria extends JInternalFrame {
 		setBounds(0, 0, 420, 240);
 		
 	    addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
             	limpiarFormulario();
 				setVisible(false);
             }
@@ -63,7 +63,7 @@ public class AltaCategoria extends JInternalFrame {
 		btnAceptar = new JButton("Aceptar");
 		
 		btnAceptar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				if (txfNombre.getText().length() != 0) {
 					try {
 						String nombre = txfNombre.getText();
@@ -84,7 +84,7 @@ public class AltaCategoria extends JInternalFrame {
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
         		JOptionPane.showMessageDialog(null, "Alta cancelada!", "Alta de categoría", JOptionPane.INFORMATION_MESSAGE);
         		limpiarFormulario();
 				setVisible(false);

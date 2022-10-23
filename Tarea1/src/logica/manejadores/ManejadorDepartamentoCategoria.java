@@ -1,13 +1,14 @@
 package logica.manejadores;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import logica.Categoria;
 import logica.Departamento;
 
 public class ManejadorDepartamentoCategoria{
-	private HashMap<String, Departamento> departamentos;
-	private HashMap<String, Categoria> categorias;
+	private Map<String, Departamento> departamentos;
+	private Map<String, Categoria> categorias;
 	
 	private static ManejadorDepartamentoCategoria instancia = null;
 	
@@ -30,7 +31,7 @@ public class ManejadorDepartamentoCategoria{
 		return departamentos.get(nombre);
 	}
 	
-	public HashMap<String, Departamento> getDepartamentos(){
+	public Map<String, Departamento> getDepartamentos(){
 			return departamentos;
 	}
 	
@@ -42,7 +43,7 @@ public class ManejadorDepartamentoCategoria{
 		return categorias.get(nombre);
 	}
 	
-	public HashMap<String, Categoria> getCategorias(){
+	public Map<String, Categoria> getCategorias(){
 		return categorias;
 	}
 }

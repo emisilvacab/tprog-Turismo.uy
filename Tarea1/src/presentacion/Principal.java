@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -134,7 +134,7 @@ public class Principal {
         
         JMenuItem menuCargarDatos = new JMenuItem("Cargar datos");
         menuCargarDatos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent a) {
+            public void actionPerformed(ActionEvent actev) {
                 // Cargo los datos
             	CargarDatos carga = new CargarDatos(iCU, iCD, iCP);
             }
@@ -148,7 +148,7 @@ public class Principal {
         
         JMenuItem menuItemConsultaUsuario = new JMenuItem("Consultar");
         menuItemConsultaUsuario.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	conUsrInternalFrame.cargarUsuarios();
                 conUsrInternalFrame.setVisible(true);
             }
@@ -157,7 +157,7 @@ public class Principal {
         
         JMenuItem menuItemAltaUsuario = new JMenuItem("Alta");
         menuItemAltaUsuario.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		crearUsrInternalFrame.setVisible(true);
         	}
         });
@@ -166,7 +166,7 @@ public class Principal {
         JMenuItem menuItemInscripcionASalida = new JMenuItem("Inscribir a salida");
         menuItemInscripcionASalida.setToolTipText("Seleccione esta opción si desea inscribir un usuario a una salida");
         menuItemInscripcionASalida.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	inscASalInternalFrame.cargarDptos();
                 inscASalInternalFrame.setVisible(true);
             }
@@ -181,7 +181,7 @@ public class Principal {
         JMenuItem menuItemAltaSalida = new JMenuItem("Alta de Salida");
         menuItemAltaSalida.setToolTipText("Seleccione esta opción si desea dar de alta una salida");
         menuItemAltaSalida.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	altaSalidaInternalFrame.cargarDptos();
             	altaSalidaInternalFrame.setVisible(true);
             }
@@ -191,7 +191,7 @@ public class Principal {
         JMenuItem menuItemConsultaSalida = new JMenuItem("Consulta de Salida");
         menuItemConsultaSalida.setToolTipText("Seleccione esta opción si desea consultar una salida");
         menuItemConsultaSalida.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	consultaSalidaInternalFrame.cargarDepartamentos();
             	consultaSalidaInternalFrame.setVisible(true);
             }
@@ -205,7 +205,7 @@ public class Principal {
         JMenuItem menuItemAltaActividad = new JMenuItem("Alta de Actividad");
         menuItemAltaActividad.setToolTipText("Seleccione esta opción si desea dar de alta una actividad");
         menuItemAltaActividad.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	altaActividadInternalFrame.cargarDepartamentos();
             	altaActividadInternalFrame.cargarProveedores();
             	altaActividadInternalFrame.cargarCategorias();
@@ -217,7 +217,7 @@ public class Principal {
         JMenuItem menuItemConsultaActividad = new JMenuItem("Consulta de Actividad");
         menuActividades.add(menuItemConsultaActividad);
         menuItemConsultaActividad.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	consultaActividadInternalFrame.cargarDepartamentos();
             	consultaActividadInternalFrame.setVisible(true);
             }
@@ -226,7 +226,7 @@ public class Principal {
         JMenuItem menuItemAceptarORechazar = new JMenuItem("Aceptar/Rechazar Actividad");
         menuItemAceptarORechazar.setToolTipText("Seleccione esta opción si desea cambiar el estado de una actividad");
         menuItemAceptarORechazar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	aceptarORechazarActividadInternalFrame.cargarActividades();
             	aceptarORechazarActividadInternalFrame.setVisible(true);
             }
@@ -240,7 +240,7 @@ public class Principal {
         JMenuItem menuItemAltaCategoria = new JMenuItem("Alta de Categoria");
         menuActividades.add(menuItemAltaCategoria);
         menuItemAltaCategoria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	altaCategoriaInternalFrame.setVisible(true);
             }
         });
@@ -249,7 +249,7 @@ public class Principal {
         menuActividades.add(menuItemAgregarActividadPaquete);
         menuItemAgregarActividadPaquete.setToolTipText("Seleccione esta opción si desea agregar una actividad a un paquete");
         menuItemAgregarActividadPaquete.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	agregarActividadPaqueteInternalFrame.cargarDepartamentos();
             	agregarActividadPaqueteInternalFrame.cargarPaquetesNoComprados();
             	agregarActividadPaqueteInternalFrame.setVisible(true);

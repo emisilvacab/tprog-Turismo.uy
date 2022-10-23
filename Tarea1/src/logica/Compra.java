@@ -1,7 +1,8 @@
 package logica;
 
 import java.util.GregorianCalendar;
-import java.util.Vector;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Compra {
 	
@@ -11,7 +12,7 @@ public class Compra {
 	private float costo;
 	
 	private Paquete paquete;
-	private Vector<Cuponera> cuponeras;
+	private Set<Cuponera> cuponeras;
 	private Turista turista;
 	
 
@@ -22,7 +23,7 @@ public class Compra {
 		this.setCosto(costo);
 		this.setTurista(turista);
 		this.setPaquete(paquete);
-		this.setCuponeras(new Vector<Cuponera>());
+		this.setCuponeras(new HashSet<Cuponera>());
 		for (Actividad act : paquete.getActividades().values()) {
 	        Cuponera cup = new Cuponera(cantTuristas, act);
 			cuponeras.add(cup);
@@ -70,11 +71,11 @@ public class Compra {
 		this.paquete = paquete;
 	}
 
-	public Vector<Cuponera> getCuponeras() {
+	public Set<Cuponera> getCuponeras() {
 		return cuponeras;
 	}
 
-	public void setCuponeras(Vector<Cuponera> cuponeras) {
+	public void setCuponeras(Set<Cuponera> cuponeras) {
 		this.cuponeras = cuponeras;
 	}
 	

@@ -1,7 +1,6 @@
 package logica.controladores;
 
 import java.util.GregorianCalendar;
-import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.actividadNoExisteException;
@@ -31,7 +30,7 @@ public interface IControladorDepartamento {
 
 	public abstract String obtenerDeptoActividad(String actividad);
 	
-	public abstract HashSet<String> obtenerCategoriasActividad(String actividad) throws actividadNoExisteException;
+	public abstract Set<String> obtenerCategoriasActividad(String actividad) throws actividadNoExisteException;
 
 	public abstract Set<DTSalida> obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException;
 	
@@ -52,4 +51,6 @@ public interface IControladorDepartamento {
 	public abstract DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException;
 
 	public abstract String obtenerNombreActividadDeSalida(String nombreSalida) throws salidaNoExisteException;
+	
+	public abstract String obtenerNombreProveedorDeActividad(String nombreAct) throws actividadNoExisteException;
 }

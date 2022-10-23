@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import excepciones.departamentoNoExisteException;
 import excepciones.actividadNoExisteException;
@@ -62,7 +62,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		
 		
 		addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
 				setVisible(false);
 				comboBoxDepartamento.removeAllItems();
 				comboBoxActividad.removeAllItems();
@@ -88,7 +88,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxDepartamento = new JComboBox<String>();
 			
 		comboBoxDepartamento.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent except) {
 				comboBoxActividad.setEnabled(false);
 				comboBoxSalida.setEnabled(false);
 				
@@ -124,7 +124,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxActividad = new JComboBox<String>();
 		
 		comboBoxActividad.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent f) {
+			public void itemStateChanged(ItemEvent itmev2) {
 
 				comboBoxSalida.removeAllItems();
 				
@@ -157,7 +157,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		comboBoxSalida = new JComboBox<String>();
 		
 		comboBoxSalida.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent g) {
+			public void itemStateChanged(ItemEvent itmev) {
 				if (comboBoxSalida.getSelectedItem() != null) {
 					mostrarSalida();
 				}else {
@@ -277,7 +277,7 @@ public class ConsultaDeSalida extends JInternalFrame {
 		buttonCerrar = new JButton("Cerrar");
 		
 		buttonCerrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent except) {
             	setVisible(false);
 				limpiarFormulario();
 				comboBoxDepartamento.removeAllItems();

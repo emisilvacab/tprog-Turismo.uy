@@ -1,7 +1,8 @@
 package logica;
 
 import java.util.GregorianCalendar;
-import java.util.Vector;
+import java.util.HashSet;
+import java.util.Set;
 
 import logica.datatypes.DTSalida;
 
@@ -16,7 +17,7 @@ public class Salida{
 	private String linkImagen;
 	
 	private Actividad actividad;
-	private Vector<Inscripcion> inscripciones;
+	private Set<Inscripcion> inscripciones;
 
 	public Salida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaSalida, int hora, String lugarSalida, Actividad actividad, String linkImagen) {
 		this.setNombre(nombre);
@@ -26,7 +27,7 @@ public class Salida{
 		this.setHora(hora);
 		this.setLugarSalida(lugarSalida);
 		this.setActividad(actividad);
-		this.setInscripciones(new Vector<Inscripcion>());
+		this.setInscripciones(new HashSet<Inscripcion>());
 		this.setLinkImagen(linkImagen);
 	}
 
@@ -78,11 +79,11 @@ public class Salida{
 		this.actividad = actividad;
 	}
 
-	public Vector<Inscripcion> getInscripciones() {
+	public Set<Inscripcion> getInscripciones() {
 		return inscripciones;
 	}
 
-	public void setInscripciones(Vector<Inscripcion> inscripciones) {
+	public void setInscripciones(Set<Inscripcion> inscripciones) {
 		this.inscripciones = inscripciones;
 	}
 	
@@ -92,17 +93,18 @@ public class Salida{
 
 	public boolean admiteCapacidad(int capacidad) {
 		int total = 0;
-		for (int i = 0; i < inscripciones.size(); i++) {
-			total += inscripciones.get(i).getCantTuristas();
+		for (Inscripcion ins: inscripciones) {
+			total += ins.getCantTuristas();
 		}
 		return total + capacidad <= maxTuristas;
 	}
 
 	public boolean existeInscripcion(String nickname) {
-		int i = 0;
-		while (i < inscripciones.size() && inscripciones.get(i).getNicknameInscripto() != nickname)
-			i++;
-		return i < inscripciones.size();
+		for (Inscripcion ins : inscripciones) {
+			if (ins.getNicknameInscripto().equals(nickname))
+				return true;
+		}
+		return false;
 	}
 
 	public DTSalida getDatos() {
@@ -124,8 +126,8 @@ public class Salida{
 
 	public int obtenerlugaresDisponibles() {
 		int total = 0;
-		for (int i = 0; i < inscripciones.size(); i++) {
-			total += inscripciones.get(i).getCantTuristas();
+		for (Inscripcion ins: inscripciones) {
+			total += ins.getCantTuristas();
 		}
 		return maxTuristas - total;
 	}

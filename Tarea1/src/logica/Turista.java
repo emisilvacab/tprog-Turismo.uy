@@ -3,7 +3,7 @@ package logica;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.Vector;
+import java.util.Set;
 
 import logica.datatypes.DTPaquete;
 import logica.datatypes.DTTurista;
@@ -14,15 +14,15 @@ public class Turista extends Usuario{
 	
 	private String nacionalidad;
 	
-	private Vector<Inscripcion> inscripciones;
-	private Vector<Compra> compras;
+	private Set<Inscripcion> inscripciones;
+	private Set<Compra> compras;
 	
 	
 	public Turista(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen, String nacionalidad) {
 		super(nickname, nombre, apellido, correo, nacimiento, contrasena, linkImagen);
 		this.setNacionalidad(nacionalidad);
-		this.setInscripciones(new Vector<Inscripcion>());
-		this.setCompras(new Vector<Compra>());
+		this.setInscripciones(new HashSet<Inscripcion>());
+		this.setCompras(new HashSet<Compra>());
 	}
 	
 	public String getNacionalidad() {
@@ -33,11 +33,11 @@ public class Turista extends Usuario{
 		this.nacionalidad = nacionalidad;
 	}
 
-	public Vector<Inscripcion> getInscripciones() {
+	public Set<Inscripcion> getInscripciones() {
 		return inscripciones;
 	}
 
-	public void setInscripciones(Vector<Inscripcion> inscripciones) {
+	public void setInscripciones(Set<Inscripcion> inscripciones) {
 		this.inscripciones = inscripciones;
 	}
 	
@@ -45,21 +45,21 @@ public class Turista extends Usuario{
 		this.inscripciones.add(inscripcion);
 	}
 
-	public Vector<Compra> getCompras() {
+	public Set<Compra> getCompras() {
 		return compras;
 	}
 
-	public void setCompras(Vector<Compra> compras) {
+	public void setCompras(Set<Compra> compras) {
 		this.compras = compras;
 	}
 
-	public HashSet<DTPaquete> obtenerPaquetesDisponibles(String nombreSalida, int cantTuristas) {
+	public Set<DTPaquete> obtenerPaquetesDisponibles(String nombreSalida, int cantTuristas) {
 		ManejadorSalida mSal = ManejadorSalida.getInstance();
 		Salida salida = mSal.getSalida(nombreSalida);
-		HashSet<DTPaquete> res = new HashSet<DTPaquete>();
+		Set<DTPaquete> res = new HashSet<DTPaquete>();
 		for (Compra compra : compras) {
 			if (compra.getVencimiento().after(GregorianCalendar.from(ZonedDateTime.now()))) {
-				Vector<Cuponera> cuponeras = compra.getCuponeras();
+				Set<Cuponera> cuponeras = compra.getCuponeras();
 				for (Cuponera cuponera : cuponeras) {
 					if (cuponera.getActividad().getNombre().equals(salida.getActividad().getNombre())  && cuponera.getCuposRestantes() >= cantTuristas) {
 						res.add(compra.getPaquete().getDatos());

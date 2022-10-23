@@ -31,7 +31,7 @@
 		
 			<%
 				DTActividad actividad = (DTActividad) request.getAttribute("actividad");
-				
+				String nombreProveedor = (String) request.getAttribute("proveedor");
 				if (actividad != null) {
 			%>
 		
@@ -49,7 +49,7 @@
 							<li class="list-group-item" style="font-size: 150%;"><%=actividad.getCiudad()%></li>
 							<li class="list-group-item" style="font-size: 150%;"><%=actividad.getDuracion()%> días</li>
 							<li class="list-group-item" style="font-weight: 600; font-size: 150%;">$<%=actividad.getCosto()%></li>
-							<li class="list-group-item" style="font-size: 150%;">Proveedor: <em style="color: #2f3131;">washington</em></li>
+							<li class="list-group-item" style="font-size: 150%;">Proveedor: <em style="color: #2f3131;"><%=nombreProveedor%></em></li>
 						</ul>
 						<p class="card-text"><small class="text-muted">Dada de alta el <%=(Integer) request.getAttribute("fechaAltaDia")%>/<%=(Integer) request.getAttribute("fechaAltaMes")%>/<%=(Integer) request.getAttribute("fechaAltaAño")%></small></p>
 						</div>
@@ -86,7 +86,7 @@
 								}
 								%>
 								</li>
-								<li class="list-group-item" style="font-size: 110%;"><%=actividad.getEstado()%></li>
+								<li class="list-group-item" style="font-size: 110%;"><%=actividad.getEstado().toString()%></li>
 							</ul>
 						</div>
 					</div>

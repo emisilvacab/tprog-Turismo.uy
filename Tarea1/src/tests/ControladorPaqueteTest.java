@@ -114,7 +114,7 @@ class ControladorPaqueteTest {
 			assertThrows(paqueteNoExisteException.class, () -> {
 				icp.obtenerDatosPaquete("A");
 			});
-			HashSet<DTPaquete> paquetesDT = icp.obtenerPaquetesNoComprados();
+			HashSet<DTPaquete> paquetesDT = (HashSet<DTPaquete>) icp.obtenerPaquetesNoComprados();
 			for (DTPaquete p : paquetesDT) {
 				assertEquals(paquetes.contains(p.getNombre()), true);
 			}
@@ -139,7 +139,7 @@ class ControladorPaqueteTest {
 			icp.agregarActividadPaquete("Rocha", "Disfrutar Rocha", "Teatro con Sabores");
 			icp.agregarActividadPaquete("Colonia", "Un día en Colonia", "Tour por Colonia del Sacramento");
 			icp.agregarActividadPaquete("Colonia", "Un día en Colonia", "Almuerzo en el Real de San Carlos");
-			HashSet<DTPaquete> paquetesDT = icp.obtenerPaquetesConActividades();
+			HashSet<DTPaquete> paquetesDT = (HashSet<DTPaquete>) icp.obtenerPaquetesConActividades();
 			for (DTPaquete p : paquetesDT) {
 				assertEquals(paquetes.contains(p.getNombre()), true);
 			}
@@ -157,7 +157,7 @@ class ControladorPaqueteTest {
 		//test obtenerDatosActividadesConfirmadasNoPaquete 
 		icd.modificarEstadoActividad("Degusta", Estado.CONFIRMADA);
 		try {
-			HashSet<DTActividad> actsConfNoPaq = icp.obtenerDatosActividadesConfirmadasNoPaquete("Rocha", "Un día en Colonia");
+			HashSet<DTActividad> actsConfNoPaq = (HashSet<DTActividad>) icp.obtenerDatosActividadesConfirmadasNoPaquete("Rocha", "Un día en Colonia");
 			Set<String> actsConf = new HashSet<String>();
 			actsConf.add("Degusta");
 			for (DTActividad p : actsConfNoPaq) {
@@ -181,7 +181,7 @@ class ControladorPaqueteTest {
 
 		//obtenerDatosPaquetesParaActividad
 		
-		HashSet<DTPaquete> paquetesParaAct = icp.obtenerDatosPaquetesParaActividad("Degusta");
+		HashSet<DTPaquete> paquetesParaAct = (HashSet<DTPaquete>) icp.obtenerDatosPaquetesParaActividad("Degusta");
 		for (DTPaquete p : paquetesParaAct) {
 			assertEquals(p.getNombre(), "Disfrutar Rocha");
 		}

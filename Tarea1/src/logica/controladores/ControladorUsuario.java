@@ -5,7 +5,6 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -41,9 +40,9 @@ public class ControladorUsuario implements IControladorUsuario {
     }
     
     public String[] obtenerUsuarios(){
-    	ManejadorUsuario mu = ManejadorUsuario.getInstance();
-    	Map<String, Proveedor> proveedores = mu.getProveedores();
-    	Map<String, Turista> turistas = mu.getTuristas();
+    	ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+    	Map<String, Proveedor> proveedores = mUsr.getProveedores();
+    	Map<String, Turista> turistas = mUsr.getTuristas();
     	Set<String> provsName = proveedores.keySet();
     	Set<String> tursName = turistas.keySet();
     	Set<String> usersName = new HashSet<String>();
@@ -59,10 +58,10 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public DTUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException {
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Usuario user = mu.getTurista(nickname);
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Usuario user = mUsr.getTurista(nickname);
 		if (user == null) {
-			user = mu.getProveedor(nickname);
+			user = mUsr.getProveedor(nickname);
 		}
 		if (user == null) {
 			throw new usuarioNoExisteException("no se encontro ningun usuario con el nickname ingresado");
@@ -81,10 +80,10 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public String[] obtenerSalidasInscripto(String nickname) throws usuarioNoExisteException {
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Turista tur = mu.getTurista(nickname);
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Turista tur = mUsr.getTurista(nickname);
 		if (tur == null) throw new usuarioNoExisteException("El turista no fue encontrado");
-		Vector<Inscripcion> inscripciones = tur.getInscripciones();
+		HashSet<Inscripcion> inscripciones = (HashSet<Inscripcion>) tur.getInscripciones();
 		Set<String> nombresSalidas = new HashSet<String>();
 		for (Inscripcion inscripcion: inscripciones) {
 			if (inscripcion.getSalida() != null) {
@@ -99,8 +98,8 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public String[] obtenerActividadesOfrecidas(String nickname) throws usuarioNoExisteException {
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Proveedor prov = mu.getProveedor(nickname);
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Proveedor prov = mUsr.getProveedor(nickname);
 		Set<String> actividades = new HashSet<String>();
 		if (prov==null) throw new usuarioNoExisteException("no se encontro ningun usuario con el nickname ingresado");
 		else {
@@ -114,16 +113,16 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public void altaUsuario(DTUsuario user) throws UsuarioRepetidoException {
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		if (mu.getProveedor(user.getNickname())!=null || mu.getTurista(user.getNickname())!=null || existeUsuarioConCorreo(user.getCorreo())){
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		if (mUsr.getProveedor(user.getNickname())!=null || mUsr.getTurista(user.getNickname())!=null || existeUsuarioConCorreo(user.getCorreo())){
 			throw new UsuarioRepetidoException("Ya existe un usuario con el nickname o correo ingresado");
 		}else {
 			if (user.getClass() == DTTurista.class) {
 				DTTurista dttur = (DTTurista) user;
-				mu.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), dttur.getNacionalidad()));
+				mUsr.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), dttur.getNacionalidad()));
 			}else {
 				DTProveedor dtprov = (DTProveedor) user;
-				mu.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), dtprov.getDescripcion(), dtprov.getLink()));
+				mUsr.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), dtprov.getDescripcion(), dtprov.getLink()));
 				
 			}
 		}
@@ -132,14 +131,14 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	
 	private boolean existeUsuarioConCorreo(String correo) {
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
 		boolean resu = false;
-		for (Turista tur: mu.getTuristas().values()) {
+		for (Turista tur: mUsr.getTuristas().values()) {
 			if (tur.getCorreo().equals(correo)) {
 				resu = true;
 			}
 		}
-		for (Proveedor prov: mu.getProveedores().values()) {
+		for (Proveedor prov: mUsr.getProveedores().values()) {
 			if (prov.getCorreo().equals(correo)) {
 				resu = true;
 			}
@@ -176,8 +175,8 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 	
 	public String[] obtenerProveedores() {
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-    	Map<String, Proveedor> proveedores = mu.getProveedores();
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+    	Map<String, Proveedor> proveedores = mUsr.getProveedores();
     	Set<String> provsName = proveedores.keySet();
     	Set<String> usersName = new HashSet<String>();
     	for (String prov: provsName) {
@@ -191,8 +190,8 @@ public class ControladorUsuario implements IControladorUsuario {
 	public String[] obtenerSalidasDeActividad(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException{
 		Set<String> res = new HashSet<String>();
 		
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Proveedor proveedor = mu.getProveedor(nickname);
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Proveedor proveedor = mUsr.getProveedor(nickname);
 		if (proveedor == null)
 			throw new usuarioNoExisteException("No se encontró un proveedor con el nickname ingresado.");
 		Map<String, Actividad> actividades = proveedor.getActividades();
@@ -208,8 +207,8 @@ public class ControladorUsuario implements IControladorUsuario {
 	
 	@Override
 	public DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException{
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Proveedor proveedor = mu.getProveedor(nickname);
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Proveedor proveedor = mUsr.getProveedor(nickname);
 		if (proveedor == null)
 			throw new usuarioNoExisteException("Usuario no existe");
 		DTActividad actividad = null;
@@ -229,8 +228,8 @@ public class ControladorUsuario implements IControladorUsuario {
 	
 	@Override
 	public DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException{
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Proveedor proveedor = mu.getProveedor(nickname);
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Proveedor proveedor = mUsr.getProveedor(nickname);
 		if (proveedor == null)
 			throw new usuarioNoExisteException("Usuario no existe");
 		Actividad actividad = null;
@@ -262,9 +261,9 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	@Override
 	public DTSalida obtenerSalidaInscripto(String nombreSalida, String nickname) {
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Turista tur = mu.getTurista(nickname);
-		Vector<Inscripcion> inscripciones = tur.getInscripciones();
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Turista tur = mUsr.getTurista(nickname);
+		HashSet<Inscripcion> inscripciones = (HashSet<Inscripcion>) tur.getInscripciones();
 		DTSalida resu = null;
 		for (Inscripcion inscripcion: inscripciones) {
 			Salida sal = inscripcion.getSalida();
@@ -291,7 +290,7 @@ public class ControladorUsuario implements IControladorUsuario {
 		
 		Compra compra = null;
 		if (nombrePaq != null) {
-			Vector<Compra> compras = turista.getCompras();
+			HashSet<Compra> compras = (HashSet<Compra>) turista.getCompras();
 			for (Compra c : compras) {
 				if (c.getPaquete().getNombre().equals(nombrePaq)) {
 					compra = c;
@@ -318,18 +317,18 @@ public class ControladorUsuario implements IControladorUsuario {
 		}
 	}
 	
-	public DTUsuario iniciarSesion(String id, String pass) {
+	public DTUsuario iniciarSesion(String ident, String pass) {
 		
 		String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
 	    Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
-	    Matcher matcher = EMAIL_PATTERN.matcher(id);
+	    Matcher matcher = EMAIL_PATTERN.matcher(ident);
 	    matcher.matches();
 	    
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
 			
 		if (!matcher.matches()) {
-			Turista turista = mu.getTurista(id);
-			Proveedor proveedor = mu.getProveedor(id);
+			Turista turista = mUsr.getTurista(ident);
+			Proveedor proveedor = mUsr.getProveedor(ident);
 			if (turista != null && turista.getContrasena().equals(pass)) 
 				return turista.getDatos();
 			else {
@@ -340,8 +339,8 @@ public class ControladorUsuario implements IControladorUsuario {
 			}
 		}
 		else {
-			Turista turista = mu.getTuristaPorEmail(id);
-			Proveedor proveedor = mu.getProveedorPorEmail(id);
+			Turista turista = mUsr.getTuristaPorEmail(ident);
+			Proveedor proveedor = mUsr.getProveedorPorEmail(ident);
 			if (turista != null && turista.getContrasena().equals(pass)) 
 				return turista.getDatos();
 			else {
@@ -353,17 +352,18 @@ public class ControladorUsuario implements IControladorUsuario {
 		}
 	}
 	
-	public HashSet<DTCompra> obtenerComprasTurista(String nickname) throws usuarioNoExisteException{
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Turista user = mu.getTurista(nickname);
+	public Set<DTCompra> obtenerComprasTurista(String nickname) throws usuarioNoExisteException{
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Turista user = mUsr.getTurista(nickname);
 		
 		if (user == null) {
 			throw new usuarioNoExisteException("no se encontro ningun turista con el nickname ingresado");
-		}else{
+		}
+		else {
 			HashSet<DTCompra> comprasDT = new HashSet<DTCompra>();
-			Vector<Compra> compras = user.getCompras();
+			HashSet<Compra> compras = (HashSet<Compra>) user.getCompras();
 			
-			for(Compra comp : compras) {
+			for (Compra comp : compras) {
 				String nomPaquete = comp.getPaquete().getNombre();
 				DTCompra nueva = new DTCompra(comp.getFecha(), comp.getCantTuristas(), comp.getVencimiento(), comp.getCosto(), nomPaquete, nickname);
 				comprasDT.add(nueva);
@@ -375,17 +375,17 @@ public class ControladorUsuario implements IControladorUsuario {
 
 	}
 	
-	public HashSet<DTInscripcion> obtenerInscripcionesTurista(String nickname) throws usuarioNoExisteException{
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Turista user = mu.getTurista(nickname);
+	public Set<DTInscripcion> obtenerInscripcionesTurista(String nickname) throws usuarioNoExisteException{
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Turista user = mUsr.getTurista(nickname);
 		
-		if(user == null) {
+		if (user == null) {
 			throw new usuarioNoExisteException("no se encontro ningun turista con el nickname ingresado");			
 		}else {
 			HashSet<DTInscripcion> inscripcionesDT = new HashSet<DTInscripcion>();
-			Vector<Inscripcion> inscripciones = user.getInscripciones();
+			HashSet<Inscripcion> inscripciones = (HashSet<Inscripcion>) user.getInscripciones();
 			
-			for(Inscripcion ins : inscripciones) {
+			for (Inscripcion ins : inscripciones) {
 				DTInscripcion nueva = new DTInscripcion(ins.getFecha(), ins.getCantTuristas(), ins.getSalida().getNombre(), ins.getTurista().getNickname(), ins.getCosto());
 				inscripcionesDT.add(nueva);
 			}

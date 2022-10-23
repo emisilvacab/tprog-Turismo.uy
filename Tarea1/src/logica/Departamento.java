@@ -2,8 +2,8 @@ package logica;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
 
 import excepciones.actividadNoExisteException;
 import logica.datatypes.DTActividad;
@@ -15,7 +15,7 @@ public class Departamento{
 	private String descripcion;
 	private String url;
 	
-	private HashMap<String, Actividad> actividades;
+	private Map<String, Actividad> actividades;
 
 	
 	public Departamento(String nombre, String descripcion, String url) {
@@ -37,7 +37,7 @@ public class Departamento{
 		return url;
 	}
 	
-	public HashMap<String, Actividad> getActividades() {
+	public Map<String, Actividad> getActividades() {
 		return actividades;
 	}
 	
@@ -53,7 +53,7 @@ public class Departamento{
 		this.url = url;
 	}
 	
-	public void setActividades(HashMap<String, Actividad> actividades) {
+	public void setActividades(Map<String, Actividad> actividades) {
 		this.actividades = actividades;
 	}
 	
@@ -61,8 +61,8 @@ public class Departamento{
 		this.actividades.put(actividad.getNombre(), actividad);
 	}
 	
-	public HashSet<DTActividad> obtenerDatosActividades(){
-		HashSet<DTActividad> res = new HashSet<DTActividad>();
+	public Set<DTActividad> obtenerDatosActividades(){
+		Set<DTActividad> res = new HashSet<DTActividad>();
 		actividades.forEach((key, value)-> {
 			res.add(actividades.get(key).getDatos());
 		});
@@ -80,8 +80,8 @@ public class Departamento{
 		return actividades.get(nombreAct);
 	}  
 
-	public Vector<Actividad> getActividadesConfirmadas() {
-		Vector<Actividad> res = new Vector<Actividad>();
+	public Set<Actividad> getActividadesConfirmadas() {
+		Set<Actividad> res = new HashSet<Actividad>();
 		for (Actividad act : actividades.values()) {
 	        if (act.getEstado() == Estado.CONFIRMADA)
 	        	res.add(act);

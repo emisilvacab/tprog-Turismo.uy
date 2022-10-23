@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -45,7 +45,7 @@ public class AceptarORechazarActividad extends JInternalFrame{
 		setBounds(100, 100, 499, 511);
 		
 		addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
 				setVisible(false);
 				limpiarFormulario();
             }
@@ -69,14 +69,14 @@ public class AceptarORechazarActividad extends JInternalFrame{
 		
 		cancelarButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				limpiarFormulario();
 				setVisible(false);
 			}
 		});
 		
 		confirmarButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		if (comboBoxActividades.getSelectedItem() != null) {
 	        		String actividadSeleccionada = (String) comboBoxActividades.getSelectedItem();
 	        		if (aceptarButton.isSelected()) {

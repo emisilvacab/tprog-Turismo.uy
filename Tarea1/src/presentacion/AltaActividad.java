@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import javax.swing.JInternalFrame;
 
@@ -99,7 +99,7 @@ public class AltaActividad extends JInternalFrame {
 		setBounds(0, 0, 499, 461);
 		
 	    addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
             	limpiarFormulario();
 				setVisible(false);
             }
@@ -213,7 +213,7 @@ public class AltaActividad extends JInternalFrame {
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(162, 395, 159, 25);
 		btnAceptar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				if (checkFormulario()) {
 					try {
 						String nombre = txfNombre.getText();
@@ -269,7 +269,7 @@ public class AltaActividad extends JInternalFrame {
 		btnAbrir = new JButton("Abrir");
 		btnAbrir.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				JFileChooser selector = new JFileChooser(); // esta clase se importo
 				int respuesta = selector.showOpenDialog(null); // selecciona archivo a abrir
 				if (respuesta == JFileChooser.APPROVE_OPTION) {
@@ -300,7 +300,7 @@ public class AltaActividad extends JInternalFrame {
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				imagenAct = null; // si no hay imagen le seteamos null al valor
 				txfImagen.setText("Sin imagen");
 				txfImagen.setIcon(null); // si no hay imagen le seteamos null al valor
@@ -347,7 +347,7 @@ public class AltaActividad extends JInternalFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(324, 395, 159, 25);
 		btnCancelar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
         		JOptionPane.showMessageDialog(null, "Alta cancelada!", "Alta de actividad", JOptionPane.INFORMATION_MESSAGE);
         		limpiarFormulario();
 				setVisible(false);
@@ -406,7 +406,7 @@ public class AltaActividad extends JInternalFrame {
 									                    JOptionPane.ERROR_MESSAGE);
 								            	ans = false;
 								            }
-								        } catch (NumberFormatException e) {
+								        } catch (NumberFormatException except) {
 								            JOptionPane.showMessageDialog(this, "La duración de la actividad debe ser un numero entero mayor que 0", "Duracion no ingresada",
 								                    JOptionPane.ERROR_MESSAGE);
 								            ans = false;
@@ -418,7 +418,7 @@ public class AltaActividad extends JInternalFrame {
 								                    JOptionPane.ERROR_MESSAGE);
 							            	ans = false;
 							            }
-							        } catch (NumberFormatException e) {
+							        } catch (NumberFormatException except) {
 							            JOptionPane.showMessageDialog(this, "El costo de la actividad debe ser un numero mayor o igual a 0.0", "Costo no ingresado",
 							                    JOptionPane.ERROR_MESSAGE);
 							            ans = false;

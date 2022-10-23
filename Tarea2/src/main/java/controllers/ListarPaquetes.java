@@ -34,6 +34,7 @@ public class ListarPaquetes extends HttpServlet {
     }
     
     protected void cargarPaquetes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	request.setCharacterEncoding("UTF-8");
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
     	IControladorDepartamento ctrlDep = fact.getIControladorDepartamento();
@@ -41,7 +42,7 @@ public class ListarPaquetes extends HttpServlet {
     	request.setAttribute("dptos", ctrlDep.obtenerDepartamentos());
 		request.setAttribute("cats", ctrlDep.obtenerCategorias());
     	
-    	HashSet<DTPaquete> paquetes = ctrlPaq.obtenerPaquetesAll();
+    	HashSet<DTPaquete> paquetes = (HashSet<DTPaquete>) ctrlPaq.obtenerPaquetesAll();
     	request.setAttribute("listarPaquetes", paquetes);
 		request.getRequestDispatcher("/pages/listarPaquetes.jsp").forward(request, response);
 

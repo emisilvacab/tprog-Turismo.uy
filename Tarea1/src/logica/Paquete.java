@@ -2,7 +2,9 @@ package logica;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import logica.datatypes.DTPaquete;
 
@@ -15,9 +17,9 @@ public class Paquete {
 	private GregorianCalendar fechaAlta;
 	private String linkImagen;
 	
-	private HashMap<String, Actividad> actividades;
-	private HashMap<String, Categoria> categorias;
-	private Vector<Compra> compras;
+	private Map<String, Actividad> actividades;
+	private Map<String, Categoria> categorias;
+	private Set<Compra> compras;
 	
 	
 	public Paquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, String linkImagen) {
@@ -27,7 +29,7 @@ public class Paquete {
 		this.setDescuento(descuento);
 		this.setActividades(new HashMap<String, Actividad>());
 		this.setCategorias(new HashMap<String, Categoria>());
-		this.setCompras(new Vector<Compra>());
+		this.setCompras(new HashSet<Compra>());
 		this.setFechaAlta(fechaAlta);
 		this.setLinkImagen(linkImagen);
 	}
@@ -72,11 +74,11 @@ public class Paquete {
 		this.descuento = descuento;
 	}
 
-	public HashMap<String, Actividad> getActividades() {
+	public Map<String, Actividad> getActividades() {
 		return actividades;
 	}
 
-	public void setActividades(HashMap<String, Actividad> actividades) {
+	public void setActividades(Map<String, Actividad> actividades) {
 		this.actividades = actividades;
 	}
 	
@@ -84,11 +86,11 @@ public class Paquete {
 		actividades.put(act.getNombre(), act);
 	}
 
-	public HashMap<String, Categoria> getCategorias() {
+	public Map<String, Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(HashMap<String, Categoria> categorias) {
+	public void setCategorias(Map<String, Categoria> categorias) {
 		this.categorias = categorias;
 	}
 
@@ -96,11 +98,11 @@ public class Paquete {
 		return new DTPaquete(nombre, descripcion, validez, descuento, fechaAlta, linkImagen);
 	}
 
-	public Vector<Compra> getCompras() {
+	public Set<Compra> getCompras() {
 		return compras;
 	}
 
-	public void setCompras(Vector<Compra> compras) {
+	public void setCompras(Set<Compra> compras) {
 		this.compras = compras;
 	}
 

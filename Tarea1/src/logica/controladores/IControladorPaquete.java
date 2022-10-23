@@ -1,7 +1,7 @@
 package logica.controladores;
 
 import java.util.GregorianCalendar;
-import java.util.HashSet;
+import java.util.Set;
 
 import excepciones.actividadNoExisteException;
 import excepciones.compraExisteException;
@@ -20,22 +20,22 @@ public interface IControladorPaquete {
 	
 	public abstract DTPaquete obtenerDatosPaquete(String nombrePaq) throws paqueteNoExisteException;
 	
-	public abstract HashSet<DTPaquete> obtenerPaquetesDisponibles(String nickname, String nombreSalida, int cantTuristas) throws usuarioNoExisteException;
+	public abstract Set<DTPaquete> obtenerPaquetesDisponibles(String nickname, String nombreSalida, int cantTuristas) throws usuarioNoExisteException;
 
-	public abstract HashSet<DTPaquete> obtenerPaquetesConActividades();
+	public abstract Set<DTPaquete> obtenerPaquetesConActividades();
 	
 	public abstract void comprarPaquete(String nickname, String nombrePaq, GregorianCalendar fechaCompra, int cantidadTuristas) throws usuarioNoExisteException, paqueteNoExisteException, compraExisteException;
 	
-	public abstract HashSet<DTPaquete> obtenerPaquetesNoComprados();
+	public abstract Set<DTPaquete> obtenerPaquetesNoComprados();
 	
-	public abstract HashSet<DTActividad> obtenerDatosActividadesConfirmadasNoPaquete(String nombreDpto, String nombrePaq) throws departamentoNoExisteException, paqueteNoExisteException;
+	public abstract Set<DTActividad> obtenerDatosActividadesConfirmadasNoPaquete(String nombreDpto, String nombrePaq) throws departamentoNoExisteException, paqueteNoExisteException;
 
-	public abstract HashSet<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct);
+	public abstract Set<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct);
 	
-	public abstract HashSet<DTPaquete> obtenerPaquetesAll();
+	public abstract Set<DTPaquete> obtenerPaquetesAll();
 	
-	public abstract HashSet<DTActividad> obtenerActividadesPaquete(String nombrePaq) throws paqueteNoExisteException;
+	public abstract Set<DTActividad> obtenerActividadesPaquete(String nombrePaq) throws paqueteNoExisteException;
 	
-	public abstract HashSet<String> obtenerCategoriasPaquete(String nombrePaq) throws paqueteNoExisteException;
+	public abstract Set<String> obtenerCategoriasPaquete(String nombrePaq) throws paqueteNoExisteException;
 
 }
