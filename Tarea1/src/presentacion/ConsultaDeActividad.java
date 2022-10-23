@@ -39,6 +39,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 	private IControladorDepartamento cDpto;
 	private JTextField textFieldNombre;
 	private JTextArea textAreaDescripcion;
+	private JTextArea textAreaCategorias;
 	private JTextField textFieldDuracion;
 	private JTextField textFieldCosto;
 	private JTextField textFieldCiudad;
@@ -190,6 +191,14 @@ public class ConsultaDeActividad extends JInternalFrame {
             }
         });
 		
+		JLabel lblNewLabel = new JLabel("Categorias");
+		
+		textAreaCategorias = new JTextArea();
+		textAreaCategorias.setWrapStyleWord(true);
+		textAreaCategorias.setLineWrap(true);
+		textAreaCategorias.setEditable(false);
+		textAreaCategorias.setColumns(10);
+		
 		
 		
 		
@@ -199,43 +208,53 @@ public class ConsultaDeActividad extends JInternalFrame {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(37)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tagSalidas, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(tagSalidas, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(tagActividad, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(tagDepartamento, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(textFieldFechaAlta)
-										.addComponent(textFieldCosto)
-										.addComponent(textFieldDuracion)
-										.addComponent(comboBoxSalida, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(textAreaDescripcion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-										.addComponent(textFieldNombre, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+									.addGap(113)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(textFieldFechaAlta, 204, 204, 204)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+											.addComponent(comboBoxSalida, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+											.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
+										.addComponent(textFieldDuracion, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+										.addComponent(textFieldCosto, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+										.addComponent(textFieldCiudad, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
+									.addGap(61)))
+							.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+									.addGap(107)
+									.addComponent(textAreaCategorias, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+												.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+											.addPreferredGap(ComponentPlacement.RELATED))
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(tagActividad, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(tagDepartamento, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(textFieldNombre, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 												.addComponent(comboBoxActividad, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(comboBoxDepartamento, 0, 129, Short.MAX_VALUE))))
-									.addGap(40))
-								.addComponent(textFieldCiudad))))
-					.addContainerGap())
+												.addComponent(comboBoxDepartamento, 0, 129, Short.MAX_VALUE)))
+										.addComponent(textAreaDescripcion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))))
+							.addGap(50))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -256,6 +275,13 @@ public class ConsultaDeActividad extends JInternalFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_2)
 						.addComponent(textAreaDescripcion, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(28)
+							.addComponent(lblNewLabel))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
+							.addComponent(textAreaCategorias, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_3)
@@ -277,7 +303,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 						.addComponent(tagSalidas)
 						.addComponent(comboBoxSalida, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(buttonInfo))
-					.addContainerGap(69, Short.MAX_VALUE))
+					.addGap(53))
 		);
 		getContentPane().setLayout(groupLayout);
 
@@ -288,6 +314,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 	private void limpiarFormulario() {
 		textFieldNombre.setText("");
 		textAreaDescripcion.setText("");
+		textAreaCategorias.setText("");
 		textFieldDuracion.setText("");
 		textFieldCosto.setText("");
 		textFieldCiudad.setText("");
@@ -341,7 +368,18 @@ public class ConsultaDeActividad extends JInternalFrame {
 				comboBoxSalida.setVisible(true);
 				GregorianCalendar fechaAlta = actividad.getAlta();
 		        
-		       
+				HashSet<String> categorias = new HashSet<String>();
+				try {	
+					categorias = (HashSet<String>) cDpto.obtenerCategoriasActividad(actividad.getNombre());
+				}catch (actividadNoExisteException actividadNoExiste) {
+					JOptionPane.showMessageDialog(null, actividadNoExiste.getMessage(), "Actividad invlida", JOptionPane.ERROR_MESSAGE);
+				}
+					
+				String areaCategorias = "";
+				for (String cat : categorias) {
+					areaCategorias = areaCategorias + cat + ". ";
+				}
+				textAreaCategorias.setText(areaCategorias);
 		        
 		        Integer diaA = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
 		        Integer mesA = fechaAlta.get(fechaAlta.MONTH) + 1;
@@ -373,7 +411,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 					
 				}
 			}catch(actividadNoExisteException e1) {
-				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad inválida", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "Actividad invÃ¡lida", JOptionPane.ERROR_MESSAGE);
 			}
 									
 		}
@@ -403,6 +441,19 @@ public class ConsultaDeActividad extends JInternalFrame {
 	public void mostrarDT(DTActividad actividad) {
 		textFieldNombre.setText(actividad.getNombre());
 		textAreaDescripcion.setText(actividad.getDescripcion());
+		
+		HashSet<String> categorias = new HashSet<String>();
+		try {	
+			categorias = (HashSet<String>) cDpto.obtenerCategoriasActividad(actividad.getNombre());
+		}catch (actividadNoExisteException actividadNoExiste) {
+			JOptionPane.showMessageDialog(null, actividadNoExiste.getMessage(), "Actividad invlida", JOptionPane.ERROR_MESSAGE);
+		}
+			
+		String areaCategorias = "";
+		for (String cat : categorias) {
+			areaCategorias = cat;
+		}
+		textAreaCategorias.setText(areaCategorias);
 		
 		Integer duracion = actividad.getDuracion();
 		textFieldDuracion.setText(duracion.toString());
@@ -436,7 +487,4 @@ public class ConsultaDeActividad extends JInternalFrame {
 		
 		
 	}
-	
-	
-	
 }
