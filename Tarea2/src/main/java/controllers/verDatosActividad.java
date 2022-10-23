@@ -63,7 +63,7 @@ public class verDatosActividad extends HttpServlet {
     	
     	HashSet<String> listaCategorias;
 		try {
-			listaCategorias = ctrlDepartamentos.obtenerCategoriasActividad(NombreAct);
+			listaCategorias = (HashSet<String>) ctrlDepartamentos.obtenerCategoriasActividad(NombreAct);
 			request.setAttribute("categorias", listaCategorias);
 		} catch (Exception actNoExiste) {
 			// TODO Auto-generated catch block
@@ -78,7 +78,7 @@ public class verDatosActividad extends HttpServlet {
 			request.setAttribute("error", "actividadNoExiste");
 		}
     	
-    	HashSet<DTPaquete> listaPaquetes = ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
+    	HashSet<DTPaquete> listaPaquetes = (HashSet<DTPaquete>) ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
     	if (listaPaquetes.isEmpty()) {
     		request.setAttribute("error", "Actividad sin paquete");
     	} else {

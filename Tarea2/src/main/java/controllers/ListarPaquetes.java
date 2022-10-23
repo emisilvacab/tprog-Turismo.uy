@@ -41,7 +41,7 @@ public class ListarPaquetes extends HttpServlet {
     	request.setAttribute("dptos", ctrlDep.obtenerDepartamentos());
 		request.setAttribute("cats", ctrlDep.obtenerCategorias());
     	
-    	HashSet<DTPaquete> paquetes = ctrlPaq.obtenerPaquetesAll();
+    	HashSet<DTPaquete> paquetes = (HashSet<DTPaquete>) ctrlPaq.obtenerPaquetesAll();
     	request.setAttribute("listarPaquetes", paquetes);
 		request.getRequestDispatcher("/pages/listarPaquetes.jsp").forward(request, response);
 

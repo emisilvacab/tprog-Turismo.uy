@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import javax.swing.JInternalFrame;
 
@@ -81,7 +81,7 @@ public class AltaUsuario extends JInternalFrame{
         setBounds(30, 30, 530, 330);
         
 	    addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
             	limpiarFormulario();
 				setVisible(false);
             }
@@ -162,7 +162,7 @@ public class AltaUsuario extends JInternalFrame{
         turOProv.add(turistaButton);
         
         proveedorButton.addActionListener( new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		esTurista = false;
         		nacionalidadLabel.setVisible(false);
         		nacionalidadField.setVisible(false);
@@ -174,7 +174,7 @@ public class AltaUsuario extends JInternalFrame{
         });
         
         turistaButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		esTurista = true;
         		nacionalidadLabel.setVisible(true);
         		nacionalidadField.setVisible(true);
@@ -185,7 +185,7 @@ public class AltaUsuario extends JInternalFrame{
         	}
         });
         cancelarButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		JOptionPane.showMessageDialog(null, "Alta cancelada!", "Alta de usuario",
                         JOptionPane.INFORMATION_MESSAGE);
         		setVisible(false);
@@ -193,11 +193,11 @@ public class AltaUsuario extends JInternalFrame{
         	}
         });
         UtilDateModel model = new UtilDateModel();
-        Properties p = new Properties();
-        p.put("text.today", "Today");
-        p.put("text.month", "Month");
-        p.put("text.year", "Year");
-        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+        Properties props = new Properties();
+        props.put("text.today", "Today");
+        props.put("text.month", "Month");
+        props.put("text.year", "Year");
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, props);
         getContentPane().setLayout(null);
         getContentPane().add(tipoUserLabel);
         getContentPane().add(turistaButton);
@@ -238,7 +238,7 @@ public class AltaUsuario extends JInternalFrame{
         getContentPane().add(btnAbrir);
 		btnAbrir.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				JFileChooser selector = new JFileChooser(); // esta clase se importo
 				int respuesta = selector.showOpenDialog(null); // selecciona archivo a abrir
 				if (respuesta == JFileChooser.APPROVE_OPTION) {
@@ -265,7 +265,7 @@ public class AltaUsuario extends JInternalFrame{
 				
 		btnBorrar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				imagenUsr = null; // si no hay imagen le seteamos null al valor
 				txfImagen.setText("Sin imagen");
 				txfImagen.setIcon(null); // si no hay imagen le seteamos null al valor
@@ -291,7 +291,7 @@ public class AltaUsuario extends JInternalFrame{
        
         
         confirmarButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		getDatosFromUser();
         		if (chequearDatos()) {
         			DTUsuario user;

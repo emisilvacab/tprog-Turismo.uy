@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -84,7 +84,7 @@ public class ConsultarUsuario extends JInternalFrame{
         setBounds(70, 70, 600, 570);
         
 	    addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
             	limpiarFormulario();
 				setVisible(false);
             }
@@ -93,7 +93,7 @@ public class ConsultarUsuario extends JInternalFrame{
         listaUsuarios = new JComboBox<String>();
         
         listaUsuarios.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		if (listaUsuarios.getSelectedItem()!=null) {
 	        		cargarInfoUsuario((String) listaUsuarios.getSelectedItem());
         		}
@@ -151,18 +151,18 @@ public class ConsultarUsuario extends JInternalFrame{
         linkText.setForeground(Color.BLUE);
         linkText.addMouseListener(new MouseAdapter() {
         	@Override
-        	public void mouseClicked(MouseEvent e) {
+        	public void mouseClicked(MouseEvent except) {
         		String link = linkText.getText();
         		if (!(link.isEmpty())) {
         			openWebpage(link);
         		}
         	}
         	@Override
-        	public void mouseEntered(MouseEvent e) {
+        	public void mouseEntered(MouseEvent except) {
         		linkText.setForeground(new Color(32, 133, 255));
         	}
         	@Override
-        	public void mouseExited(MouseEvent e) {
+        	public void mouseExited(MouseEvent except) {
         		linkText.setForeground(Color.BLUE);
         	}
         });
@@ -171,7 +171,7 @@ public class ConsultarUsuario extends JInternalFrame{
         actividadesOfrecidasBox = new JComboBox<String>();
         actividadesOfrecidasBox.setVisible(false);
         actividadesOfrecidasBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent except) {
 				try {
 					if (actividadesOfrecidasBox.getSelectedItem()!=null)
 						cargarSalidasAsociadas();
@@ -192,14 +192,14 @@ public class ConsultarUsuario extends JInternalFrame{
         salidasAsociadasBox = new JComboBox<String>();
         salidasAsociadasBox.setVisible(false);
         salidasAsociadasBox.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		     //llamar a consulta de actividad   
         	}
         });
         
         JButton cerrarButton = new JButton("Cerrar");
         cerrarButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		setVisible(false);
         		limpiarFormulario();
         	}
@@ -218,7 +218,7 @@ public class ConsultarUsuario extends JInternalFrame{
         salidasInscriptoBox = new JComboBox<String>();
         salidasInscriptoBox.setVisible(false);
         salidasInscriptoBox.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent except) {
         		if (salidasInscriptoBox.getSelectedItem() != null) {
         			consultaDeSalida.setVisible(true);
         			consultaDeSalida.mostrarDT(icu.obtenerSalidaInscripto((String) salidasInscriptoBox.getSelectedItem(), (String) listaUsuarios.getSelectedItem()));
@@ -238,8 +238,8 @@ public class ConsultarUsuario extends JInternalFrame{
             		catch(usuarioNoExisteException exc ) {
 	        			JOptionPane.showMessageDialog(null, exc.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
             		}
-            		catch (actividadNoExisteException e) {
-            			JOptionPane.showMessageDialog(null, e.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
+            		catch (actividadNoExisteException except) {
+            			JOptionPane.showMessageDialog(null, except.getMessage(), "Usuario o actividad invalida", JOptionPane.ERROR_MESSAGE);
             		}
             }
         }); 
@@ -491,8 +491,8 @@ public class ConsultarUsuario extends JInternalFrame{
 				descripcionText.setVisible(false);
 				
 			}
-		} catch (usuarioNoExisteException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
+		} catch (usuarioNoExisteException except) {
+			JOptionPane.showMessageDialog(this, except.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		
@@ -513,8 +513,8 @@ public class ConsultarUsuario extends JInternalFrame{
 
 			model = new DefaultComboBoxModel<String>(actividadesOfrecidas);
 			actividadesOfrecidasBox.setModel(model);
-		} catch (usuarioNoExisteException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
+		} catch (usuarioNoExisteException except) {
+			JOptionPane.showMessageDialog(this, except.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 		}
     }
 	
@@ -527,8 +527,8 @@ public class ConsultarUsuario extends JInternalFrame{
 			    model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasDeActividad((String) listaUsuarios.getSelectedItem(), actividad));
 			    salidasAsociadasBox.setModel(model);
 			}
-		}catch (usuarioNoExisteException | actividadNoExisteException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
+		}catch (usuarioNoExisteException | actividadNoExisteException except) {
+			JOptionPane.showMessageDialog(null, except.getMessage(), "Actividad o usuario invalido", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -538,8 +538,8 @@ public class ConsultarUsuario extends JInternalFrame{
         	salidasInscriptoBox.removeAllItems();
 			model = new DefaultComboBoxModel<String>(contUser.obtenerSalidasInscripto(nickname));
 			salidasInscriptoBox.setModel(model);
-		} catch (usuarioNoExisteException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
+		} catch (usuarioNoExisteException except) {
+			JOptionPane.showMessageDialog(this, except.getMessage(), "Consultar Usuario", JOptionPane.ERROR_MESSAGE);
 			
 		}
 	}
@@ -547,8 +547,8 @@ public class ConsultarUsuario extends JInternalFrame{
 	public static void openWebpage(String urlString) {
         try {
 			Desktop.getDesktop().browse(new URL(urlString).toURI());
-		} catch (IOException | URISyntaxException e) {
-			e.printStackTrace();
+		} catch (IOException | URISyntaxException except) {
+			except.printStackTrace();
 		}
 	}
 }

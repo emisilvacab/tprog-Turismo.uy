@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import javax.swing.JInternalFrame;
 
@@ -55,7 +55,7 @@ public class AgregarActividadPaquete extends JInternalFrame {
 		setResizable(true);
 		setTitle("Agregar Actividad Turística a Paquete");
 		addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
             	limpiarCampos();
 				setVisible(false);
             }
@@ -68,7 +68,7 @@ public class AgregarActividadPaquete extends JInternalFrame {
 				if (comboDepartamento.getSelectedItem() != null && comboPaquete.getSelectedItem() != null) {
 					try {
 						comboActividad.removeAllItems();
-						HashSet<DTActividad> actividades = ctrlPaquete.obtenerDatosActividadesConfirmadasNoPaquete((String) comboDepartamento.getSelectedItem(), (String) comboPaquete.getSelectedItem());
+						HashSet<DTActividad> actividades = (HashSet<DTActividad>) ctrlPaquete.obtenerDatosActividadesConfirmadasNoPaquete((String) comboDepartamento.getSelectedItem(), (String) comboPaquete.getSelectedItem());
 						for (DTActividad actividad: actividades)
 							comboActividad.addItem(actividad.getNombre());
 						comboActividad.setSelectedItem(null);
@@ -96,7 +96,7 @@ public class AgregarActividadPaquete extends JInternalFrame {
 				if (comboPaquete.getSelectedItem() != null && comboDepartamento.getSelectedItem() != null) {
 					try {
 						comboActividad.removeAllItems();
-						HashSet<DTActividad> actividades = ctrlPaquete.obtenerDatosActividadesConfirmadasNoPaquete((String) comboDepartamento.getSelectedItem(), (String) comboPaquete.getSelectedItem());
+						HashSet<DTActividad> actividades = (HashSet<DTActividad>) ctrlPaquete.obtenerDatosActividadesConfirmadasNoPaquete((String) comboDepartamento.getSelectedItem(), (String) comboPaquete.getSelectedItem());
 						for (DTActividad actividad: actividades)
 							comboActividad.addItem(actividad.getNombre());
 						comboActividad.setSelectedItem(null);
@@ -130,7 +130,7 @@ public class AgregarActividadPaquete extends JInternalFrame {
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				String nombreDepartamento = (String) comboDepartamento.getSelectedItem();
 				String nombrePaquete = (String) comboPaquete.getSelectedItem();
 				String nombreActividad = (String) comboActividad.getSelectedItem();
@@ -156,7 +156,7 @@ public class AgregarActividadPaquete extends JInternalFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				JOptionPane.showMessageDialog(null, "Agregar actividad a paquete cancelado!", "Agregar actividad turística a paquete", JOptionPane.INFORMATION_MESSAGE);
         		limpiarCampos();
 				setVisible(false);
@@ -201,7 +201,7 @@ public class AgregarActividadPaquete extends JInternalFrame {
 	}
 	
 	public void cargarPaquetesNoComprados() {
-	HashSet<DTPaquete> paquetes = ctrlPaquete.obtenerPaquetesNoComprados();
+	HashSet<DTPaquete> paquetes = (HashSet<DTPaquete>) ctrlPaquete.obtenerPaquetesNoComprados();
 	for (DTPaquete paquete: paquetes)
 		comboPaquete.addItem(paquete.getNombre());
 	comboPaquete.setSelectedItem(null);

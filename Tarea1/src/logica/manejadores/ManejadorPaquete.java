@@ -1,12 +1,13 @@
 package logica.manejadores;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import logica.Paquete;
 
 
 public class ManejadorPaquete {
-	private HashMap<String, Paquete> paquetes;
+	private Map<String, Paquete> paquetes;
 	
 	private static ManejadorPaquete instancia = null;
 	
@@ -28,7 +29,7 @@ public class ManejadorPaquete {
 		return paquetes.get(nombre);
 	}
 	
-	public HashMap<String, Paquete> getPaquetes(){
+	public Map<String, Paquete> getPaquetes(){
 		return paquetes;
 	}
 }

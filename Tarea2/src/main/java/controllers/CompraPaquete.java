@@ -43,7 +43,7 @@ public class CompraPaquete extends HttpServlet {
     	request.setAttribute("cats",cDpto.obtenerCategorias());
 		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 		
-		HashSet<DTPaquete> paqs = cPaq.obtenerPaquetesConActividades();
+		HashSet<DTPaquete> paqs = (HashSet<DTPaquete>) cPaq.obtenerPaquetesConActividades();
 		Set<String> paqsCompra = new HashSet<String>();
 		for (DTPaquete paq : paqs) {
 			paqsCompra.add(paq.getNombre());
@@ -78,7 +78,7 @@ public class CompraPaquete extends HttpServlet {
 		IControladorDepartamento cDpto = fact.getIControladorDepartamento(); 
 		IControladorPaquete cPaq = fact.getIControladorPaquete(); 
 		
-		HashSet<DTPaquete> paqs = cPaq.obtenerPaquetesConActividades();
+		HashSet<DTPaquete> paqs = (HashSet<DTPaquete>) cPaq.obtenerPaquetesConActividades();
 		Set<String> paqsCompra = new HashSet<String>();
 		for (DTPaquete paq : paqs) {
 			paqsCompra.add(paq.getNombre());

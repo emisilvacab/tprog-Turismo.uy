@@ -73,7 +73,7 @@ public class DetalleUsuario extends HttpServlet {
     		
     		HashSet<DTCompra> compras = new HashSet<DTCompra>();
     		try {
-    			compras = ctrlUsr.obtenerComprasTurista(nickname);
+    			compras = (HashSet<DTCompra>) ctrlUsr.obtenerComprasTurista(nickname);
     		} catch (usuarioNoExisteException usuarioNoExiste) {
 				request.setAttribute("error", "usuario-no-existe"); 
     		}

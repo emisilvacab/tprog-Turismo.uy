@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import javax.swing.JInternalFrame;
 
@@ -76,7 +76,7 @@ public class InscripcionASalida extends JInternalFrame {
 	    setBounds(0, 0, 410, 417);
 	    
 	    addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
             	limpiarCampos();
 				setVisible(false);
             }
@@ -96,7 +96,7 @@ public class InscripcionASalida extends JInternalFrame {
 		
 		//Evento en listaDptos que carga lista de actividades
 		listaDptos.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent except) {
 				try {
 					if (listaDptos.getSelectedItem() != null) {
 						listaActs.removeAllItems();
@@ -114,7 +114,7 @@ public class InscripcionASalida extends JInternalFrame {
 		
 		//Evento en listaActs que carga lista de salidas
 		listaActs.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent except) {
 				try {
 					if (listaActs.getSelectedItem() != null) {
 						listaSals.removeAllItems();
@@ -131,7 +131,7 @@ public class InscripcionASalida extends JInternalFrame {
 		
 		//Evento en listaSals que carga cantidad de lugares disponibles en salida 
 		listaSals.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent except) {
 				if (listaSals.getSelectedItem() != null) {
 					try {
 						
@@ -170,7 +170,7 @@ public class InscripcionASalida extends JInternalFrame {
 		botonContinuar = new JButton("Continuar");
 		botonContinuar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				if (checkCampos()) {
 					try {
 						
@@ -213,7 +213,7 @@ public class InscripcionASalida extends JInternalFrame {
 		botonCancelar = new JButton("Cancelar");
 		botonCancelar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				limpiarCampos();
 				setVisible(false);
 			}
@@ -353,12 +353,12 @@ public class InscripcionASalida extends JInternalFrame {
 			            		JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar menor o igual que la cantidad disponible.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
 				            	ans = false;
 			            	}
-			        } catch (NumberFormatException e) {
+			        } catch (NumberFormatException except) {
 			        	JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
 			            ans = false;
 			        }
-				} catch (salidaNoExisteException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage(), "La salida seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
+				} catch (salidaNoExisteException except) {
+					JOptionPane.showMessageDialog(null, except.getMessage(), "La salida seleccionada no está registrada en el sistema", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		return !nombreUsuario.isEmpty() && listaSals.getSelectedItem() != null && ans;

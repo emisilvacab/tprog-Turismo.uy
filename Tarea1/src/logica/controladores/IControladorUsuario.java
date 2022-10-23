@@ -1,7 +1,7 @@
 package logica.controladores;
 
 import java.util.GregorianCalendar;
-import java.util.HashSet;
+import java.util.Set;
 
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTActividad;
@@ -41,10 +41,10 @@ public interface IControladorUsuario {
 	
 	public abstract void ingresarDatosInscripcionPaq(String nickname, String nombreSal, int cantidad, GregorianCalendar fecha, String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException;
 
-	public abstract DTUsuario iniciarSesion(String id, String pass);
+	public abstract DTUsuario iniciarSesion(String ident, String pass);
 	
-	public abstract HashSet<DTCompra> obtenerComprasTurista(String nickname) throws usuarioNoExisteException;
+	public abstract Set<DTCompra> obtenerComprasTurista(String nickname) throws usuarioNoExisteException;
 	
-	public abstract HashSet<DTInscripcion> obtenerInscripcionesTurista(String nickname) throws usuarioNoExisteException;
+	public abstract Set<DTInscripcion> obtenerInscripcionesTurista(String nickname) throws usuarioNoExisteException;
 
 }

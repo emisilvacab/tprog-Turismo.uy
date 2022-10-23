@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JFrame;
@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JButton;
 
-import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -85,7 +84,7 @@ public class AltaSalida extends JInternalFrame{
         setBounds(30, 30, 430, 325);
 		
 	    addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
             	limpiarCampos();
 				setVisible(false);
             }
@@ -98,7 +97,7 @@ public class AltaSalida extends JInternalFrame{
 		listaAct = new JComboBox<String>();
 		
 		listaDep.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent except) {
 				try {
 					if (listaDep.getSelectedItem() != null) {
 						listaAct.removeAllItems();
@@ -131,11 +130,11 @@ public class AltaSalida extends JInternalFrame{
 		txtSpinner1.setEditable(false);
 		
         UtilDateModel model = new UtilDateModel();
-        Properties p = new Properties();
-        p.put("text.today", "Today");
-        p.put("text.month", "Month");
-        p.put("text.year", "Year");
-        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+        Properties props = new Properties();
+        props.put("text.today", "Today");
+        props.put("text.month", "Month");
+        props.put("text.year", "Year");
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, props);
 		
 		lblFecha = new JLabel("Fecha de Salida:");
 		
@@ -166,7 +165,7 @@ public class AltaSalida extends JInternalFrame{
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
         		JOptionPane.showMessageDialog(null, "Alta cancelada!", "Alta de salida", JOptionPane.INFORMATION_MESSAGE);
 				limpiarCampos();
 				setVisible(false);
@@ -175,7 +174,7 @@ public class AltaSalida extends JInternalFrame{
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent except) {
 				if (checkCampos()) {
 					try {
 						
@@ -343,7 +342,7 @@ public class AltaSalida extends JInternalFrame{
 				            	JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
 				            	ans = false;
 				            }
-				        } catch (NumberFormatException e) {
+				        } catch (NumberFormatException except) {
 				        	JOptionPane.showMessageDialog(null, "Ingrese una cantidad de personas a registrar mayor o igual a 1.", "Cantidad inválida", JOptionPane.ERROR_MESSAGE);
 				            ans = false;
 				        }

@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import excepciones.actividadNoExisteException;
 import excepciones.compraExisteException;
@@ -27,14 +28,14 @@ import logica.manejadores.ManejadorUsuario;
 public class ControladorPaquete implements IControladorPaquete {
 	
 	public void agregarActividadPaquete(String nombreDpto, String nombrePaq, String nombreAct) throws paqueteNoExisteException, departamentoNoExisteException, actividadNoExisteException {
-		ManejadorDepartamentoCategoria md = ManejadorDepartamentoCategoria.getInstance();
-		ManejadorPaquete mp = ManejadorPaquete.getInstance();
+		ManejadorDepartamentoCategoria mDep = ManejadorDepartamentoCategoria.getInstance();
+		ManejadorPaquete mPaq = ManejadorPaquete.getInstance();
 		
-		Paquete paq = mp.getPaquete(nombrePaq);
+		Paquete paq = mPaq.getPaquete(nombrePaq);
 		if (paq == null)
 			throw new paqueteNoExisteException("No existe el paquete ingresado");
 		
-		Departamento dpto = md.getDepartamento(nombreDpto);
+		Departamento dpto = mDep.getDepartamento(nombreDpto);
 		if (dpto == null)
 			throw new departamentoNoExisteException("No existe el departamento ingresado");
 		
@@ -47,34 +48,34 @@ public class ControladorPaquete implements IControladorPaquete {
 	}
 	
 	public void ingresarDatosPaquete(String nombrePaq, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, String linkImagen) throws paqueteYaExisteException{
-		ManejadorPaquete mp = ManejadorPaquete.getInstance();
-		Paquete existe = mp.getPaquete(nombrePaq);
+		ManejadorPaquete mPaq = ManejadorPaquete.getInstance();
+		Paquete existe = mPaq.getPaquete(nombrePaq);
 		if (existe != null)
 			throw new paqueteYaExisteException("Ya existe el paquete ingresado");
 		Paquete nuevo = new Paquete(nombrePaq, descripcion, validez, descuento, fechaAlta, linkImagen);
-		mp.addPaquete(nuevo);
+		mPaq.addPaquete(nuevo);
 	}
 	
 	public DTPaquete obtenerDatosPaquete(String nombrePaq) throws paqueteNoExisteException{
-		ManejadorPaquete mp = ManejadorPaquete.getInstance();
-		Paquete paq = mp.getPaquete(nombrePaq);
+		ManejadorPaquete mPaq = ManejadorPaquete.getInstance();
+		Paquete paq = mPaq.getPaquete(nombrePaq);
 		if (paq == null)
 			throw new paqueteNoExisteException("No existe el paquete ingresado");
 		DTPaquete datos = paq.getDatos();
 		return datos;
 	}
 	
-	public HashSet<DTPaquete> obtenerPaquetesDisponibles(String nickname, String nombreSalida, int cantTuristas) throws usuarioNoExisteException{ 
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		Turista turista = mu.getTurista(nickname);
+	public Set<DTPaquete> obtenerPaquetesDisponibles(String nickname, String nombreSalida, int cantTuristas) throws usuarioNoExisteException{ 
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		Turista turista = mUsr.getTurista(nickname);
 		if (turista == null) throw new usuarioNoExisteException("Usuario no encontrado.");
 		return turista.obtenerPaquetesDisponibles(nombreSalida, cantTuristas);	
 	}
 	
-	public HashSet<DTPaquete> obtenerPaquetesConActividades(){
+	public Set<DTPaquete> obtenerPaquetesConActividades(){
 		HashSet<DTPaquete> res = new HashSet<DTPaquete>();
-		ManejadorPaquete mp = ManejadorPaquete.getInstance();
-		HashMap<String, Paquete> paquetes = mp.getPaquetes();
+		ManejadorPaquete mPaq = ManejadorPaquete.getInstance();
+		HashMap<String, Paquete> paquetes = (HashMap<String, Paquete>) mPaq.getPaquetes();
 		
 		for (Paquete paquete : paquetes.values()) {
 			if (paquete.getActividades().size() > 0)
@@ -84,11 +85,11 @@ public class ControladorPaquete implements IControladorPaquete {
 	}
 	
 	public void comprarPaquete(String nickname, String nombrePaq, GregorianCalendar fechaCompra, int cantidadTuristas) throws usuarioNoExisteException, paqueteNoExisteException, compraExisteException {
-		ManejadorUsuario mu = ManejadorUsuario.getInstance();
-		ManejadorPaquete mp= ManejadorPaquete.getInstance();
+		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
+		ManejadorPaquete mPaq= ManejadorPaquete.getInstance();
 		
-		Paquete paquete = mp.getPaquete(nombrePaq);
-		Turista turista = mu.getTurista(nickname);
+		Paquete paquete = mPaq.getPaquete(nombrePaq);
+		Turista turista = mUsr.getTurista(nickname);
 		
 		if (paquete == null) throw new paqueteNoExisteException("Paquete no encontrado");
 		if (turista == null) throw new usuarioNoExisteException("Usuario no encontrado");
@@ -109,9 +110,9 @@ public class ControladorPaquete implements IControladorPaquete {
 		paquete.addCompra(compra);		
 	}
 	
-	public HashSet<DTPaquete> obtenerPaquetesNoComprados(){
-		ManejadorPaquete mp = ManejadorPaquete.getInstance();
-		HashMap<String, Paquete> paquetes = mp.getPaquetes();
+	public Set<DTPaquete> obtenerPaquetesNoComprados(){
+		ManejadorPaquete mPaq = ManejadorPaquete.getInstance();
+		HashMap<String, Paquete> paquetes = (HashMap<String, Paquete>) mPaq.getPaquetes();
 		HashSet<DTPaquete> res = new HashSet<DTPaquete>();
 		
 		for (Paquete p : paquetes.values()) {
@@ -123,11 +124,11 @@ public class ControladorPaquete implements IControladorPaquete {
 	}
 	
 	//Función que devuelve las actividades confirmadas del dpto que no pertenecen al paquete pasado por parámetro
-	public HashSet<DTActividad> obtenerDatosActividadesConfirmadasNoPaquete(String nombreDpto, String nombrePaq) throws departamentoNoExisteException, paqueteNoExisteException{
+	public Set<DTActividad> obtenerDatosActividadesConfirmadasNoPaquete(String nombreDpto, String nombrePaq) throws departamentoNoExisteException, paqueteNoExisteException{
 		ManejadorDepartamentoCategoria mDpto = ManejadorDepartamentoCategoria.getInstance();
 		Departamento dpto = mDpto.getDepartamento(nombreDpto);
-		ManejadorPaquete mp = ManejadorPaquete.getInstance();
-		Paquete paquete = mp.getPaquete(nombrePaq);
+		ManejadorPaquete mPaq = ManejadorPaquete.getInstance();
+		Paquete paquete = mPaq.getPaquete(nombrePaq);
 		
 		if (dpto == null)
 			throw new departamentoNoExisteException("Departamento no encontrado");
@@ -143,10 +144,10 @@ public class ControladorPaquete implements IControladorPaquete {
 	}
 	
 	@Override
-	public HashSet<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct) {
+	public Set<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct) {
 		HashSet<DTPaquete> ans = new HashSet<DTPaquete>();
 		ManejadorPaquete manPaquete = ManejadorPaquete.getInstance();
-		HashMap<String, Paquete> setPaquetes = manPaquete.getPaquetes();
+		HashMap<String, Paquete> setPaquetes = (HashMap<String, Paquete>) manPaquete.getPaquetes();
 		for (Paquete paquete: setPaquetes.values()) {
 			if (paquete.getActividades().containsKey(nombreAct)) {
 				ans.add(paquete.getDatos());
@@ -155,12 +156,12 @@ public class ControladorPaquete implements IControladorPaquete {
 		return ans;
 	}
 	
-	public HashSet<DTPaquete> obtenerPaquetesAll(){
+	public Set<DTPaquete> obtenerPaquetesAll(){
 		HashSet<DTPaquete> paquetesDT = new HashSet<DTPaquete>();
 		ManejadorPaquete manPaquete = ManejadorPaquete.getInstance();
-		HashMap<String, Paquete> paquetes = manPaquete.getPaquetes();
+		HashMap<String, Paquete> paquetes = (HashMap<String, Paquete>) manPaquete.getPaquetes();
 		
-		paquetes.forEach((nombre,paq) -> {
+		paquetes.forEach((nombre, paq) -> {
 			DTPaquete dato = paq.getDatos();
 			paquetesDT.add(dato);		
 		});
@@ -168,7 +169,7 @@ public class ControladorPaquete implements IControladorPaquete {
 		return paquetesDT;
 	}
 
-	public HashSet<DTActividad> obtenerActividadesPaquete(String nombrePaq) throws paqueteNoExisteException{
+	public Set<DTActividad> obtenerActividadesPaquete(String nombrePaq) throws paqueteNoExisteException{
 		HashSet<DTActividad> actividadesConfirmadas = new HashSet<DTActividad>();
 		ManejadorPaquete manPaquete = ManejadorPaquete.getInstance();
 		
@@ -176,9 +177,9 @@ public class ControladorPaquete implements IControladorPaquete {
 		if (paquete == null) {
 			throw new paqueteNoExisteException("Paquete no encontrado"); 
 		}else {
-			HashMap<String,Actividad> actividadesPaq = paquete.getActividades();
+			HashMap<String, Actividad> actividadesPaq = (HashMap<String, Actividad>) paquete.getActividades();
 		
-			actividadesPaq.forEach((key, actividad)->{
+			actividadesPaq.forEach((key, actividad)-> {
 				//if(actividad.getEstado().equals(Estado.CONFIRMADA)) {
 					DTActividad nueva = actividad.getDatos();
 					actividadesConfirmadas.add(nueva);
@@ -191,20 +192,20 @@ public class ControladorPaquete implements IControladorPaquete {
 		}
 	}
 	
-	public HashSet<String> obtenerCategoriasPaquete(String nombrePaq) throws paqueteNoExisteException{
+	public Set<String> obtenerCategoriasPaquete(String nombrePaq) throws paqueteNoExisteException{
 		ManejadorPaquete manPaquete = ManejadorPaquete.getInstance();
 		Paquete paquete = manPaquete.getPaquete(nombrePaq);
 		if (paquete == null) {
 			throw new paqueteNoExisteException("Paquete no encontrado"); 
 		}else {
 			HashSet<String> categoriasStr = new HashSet<String>();
-			HashMap<String,Actividad> actividadesPaq = paquete.getActividades();
+			HashMap<String, Actividad> actividadesPaq = (HashMap<String, Actividad>) paquete.getActividades();
 			
-			actividadesPaq.forEach((key, actividad)->{
-				Map<String,Categoria> catMap = actividad.getCategorias();
+			actividadesPaq.forEach((key, actividad)-> {
+				Map<String, Categoria> catMap = actividad.getCategorias();
 				
-				catMap.forEach((keyMap, categoria)->{
-					if(!categoriasStr.contains(categoria.getNombre())){
+				catMap.forEach((keyMap, categoria)-> {
+					if (!categoriasStr.contains(categoria.getNombre())){
 						categoriasStr.add(categoria.getNombre());
 					}
 					

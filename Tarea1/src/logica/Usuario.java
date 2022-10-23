@@ -2,6 +2,8 @@ package logica;
 
 import java.util.GregorianCalendar;
 
+import logica.datatypes.DTUsuario;
+
 public abstract class Usuario{
 	
 	private String nickname;
@@ -23,6 +25,7 @@ public abstract class Usuario{
 		this.setLinkImagen(linkImagen);
 	}
 	
+	public abstract DTUsuario getDatos();
 	
 	public String getNickname() {
 		return nickname;

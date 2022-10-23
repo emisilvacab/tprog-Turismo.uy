@@ -1,4 +1,4 @@
-package Presentacion;
+package presentacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,7 +72,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		setBounds(100, 100, 499, 511);
 		
 		addInternalFrameListener(new InternalFrameAdapter(){
-            public void internalFrameClosing(InternalFrameEvent e) {
+            public void internalFrameClosing(InternalFrameEvent except) {
 				setVisible(false);
 				limpiarFormulario();
 				comboBoxDepartamento.removeAllItems();
@@ -94,7 +94,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		comboBoxDepartamento = new JComboBox<String>();
 		
 		comboBoxDepartamento.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent except) {
 				comboBoxActividad.setEnabled(false);				
 				comboBoxActividad.removeAllItems();				
 				//comboBoxActividad.setSelectedItem(null);
@@ -121,7 +121,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 		
 		comboBoxActividad = new JComboBox<String>();
 		comboBoxActividad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent except) {
 				
 				comboBoxSalida.setEnabled(false);
 				comboBoxSalida.setSelectedItem(null);
@@ -380,7 +380,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 				
 	}
 	
-	private String[] obtenerNombreSalidas(HashSet<DTSalida> salidas) {
+	private String[] obtenerNombreSalidas(Set<DTSalida> salidas) {
 		HashSet<String> resu = new HashSet<String>();
 		for (DTSalida salida: salidas) {
 			resu.add(salida.getNombre());

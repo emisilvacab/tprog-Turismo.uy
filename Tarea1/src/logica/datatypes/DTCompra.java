@@ -1,11 +1,6 @@
 package logica.datatypes;
 
 import java.util.GregorianCalendar;
-import java.util.Vector;
-
-import logica.Cuponera;
-import logica.Paquete;
-import logica.Turista;
 
 public class DTCompra{
 	
