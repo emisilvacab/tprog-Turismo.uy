@@ -39,7 +39,7 @@
 				<div class="row">
 			      <div class="col-sm-6" style="min-width: 300px;">
 			        <div class="card" style="max-width: 100%;">
-			   			<img src="https://s3.amazonaws.com/turismorocha/eventos/2569/cover/degusta-048968300-1659558891.jpg" class="img-fluid rounded" alt="Actividad">
+			   			<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="img-fluid rounded" alt="Actividad">
 			   		</div>
 			      </div>
 			      <div class="col-sm-6"  style="min-width: 300px;">
@@ -130,7 +130,7 @@
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem;">
 		  		<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=salida.getNombre()%>">
-			  	<img class="card-img-top" src="https://s3.amazonaws.com/turismorocha/operadores/1/med/bahia-resto-053888900-1458674720.JPG" alt="Card image cap">
+			  	<img class="card-img-top"  <%if (salida.getLinkImagen() != null){%>src=<%=salida.getLinkImagen()%><%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> alt="Card image cap">
 			  	</a>
 			  <div class="card-body">
 			    <h5 class="card-title"><%=salida.getNombre()%></h5>
@@ -159,7 +159,7 @@
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem">
 		  		<a href="/Tarea2/DetallePaquete?detallePaqueteNombre=<%=paquete.getNombre()%>">
-			  		<img class="card-img-top" src="https://sites.google.com/site/areasprotegidasenuruguay/_/rsrc/1411660757953/algunas-de-las-areas-ingresadas-por-el-snap/laguna-de-rocha/Mapa_Rocha_BLOG.jpg?height=280&width=400" alt="Card image cap">
+			  		<img class="card-img-top" <%if (paquete.getLinkImagen() != null){%> src="<%=paquete.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultPaquete.png"<%}%> alt="Card image cap">
 			  	</a>
 			  <div class="card-body">
 			    <h5 class="card-title"><%=paquete.getNombre()%></h5>

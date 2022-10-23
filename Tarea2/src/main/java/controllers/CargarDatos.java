@@ -3,14 +3,12 @@ package controllers;
 import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
@@ -32,7 +30,6 @@ import logica.controladores.IControladorPaquete;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
-import model.EstadoSesion;
 
 /**
  * Servlet implementation class CargarDatos
@@ -65,44 +62,44 @@ public class CargarDatos extends HttpServlet {
 		icp = picp; */
 		
     	DTUsuario user;
-		user = new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23), "awdrg543", "argentina");
+		user = new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23), "awdrg543", "https://pbs.twimg.com/media/EOHAP9zWoAsnkiM?format=jpg&name=small","argentina");
 		try {
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("isabelita", "Elizabeth", "Windsor", "isabelita@thecrown.co.uk", new GregorianCalendar(1926, 3, 21),"r5t6y7u8", "inglesa");
+			user = new DTTurista("isabelita", "Elizabeth", "Windsor", "isabelita@thecrown.co.uk", new GregorianCalendar(1926, 3, 21),"r5t6y7u8", "https://ca-times.brightspotcdn.com/dims4/default/2413d30/2147483647/strip/true/crop/720x1024+0+0/resize/840x1195!/format/webp/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F9b%2Fe3%2F0973ea3441e396271b457c1e0b31%2Fap22146719572803.jpg", "inglesa");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("anibal", "Aníbal", "Lecter", "anibal@fing.edu.uy", new GregorianCalendar(1937, 11, 31),"edrft543", "lituana");
+			user = new DTTurista("anibal", "Aníbal", "Lecter", "anibal@fing.edu.uy", new GregorianCalendar(1937, 11, 31),"edrft543", "https://es.web.img2.acsta.net/c_310_420/pictures/14/01/20/09/27/059623.jpg", "lituana");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("waston", "Emma", "Waston", "e.waston@gmail.com", new GregorianCalendar(1990, 3, 15), "poiuy987", "inglesa");
+			user = new DTTurista("waston", "Emma", "Waston", "e.waston@gmail.com", new GregorianCalendar(1990, 3, 15), "poiuy987", "https://i.pinimg.com/originals/88/aa/b9/88aab93b1948c13d6acb878ced5e182e.jpg", "inglesa");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("elelvis", "Elvis", "Lacio", "suavemente@hotmail.com", new GregorianCalendar(1971, 6, 30), "45idgaf67", "estadounidense");
+			user = new DTTurista("elelvis", "Elvis", "Lacio", "suavemente@hotmail.com", new GregorianCalendar(1971, 6, 30), "45idgaf67", "https://sc2.elpais.com.uy/files/article_default_content/uploads/2021/11/03/61830c08f3881.jpeg", "estadounidense");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("eleven11", "Eleven", "Once", "eleven11@gmail.com", new GregorianCalendar(2004, 1, 19), "xdrgb657", "española");
+			user = new DTTurista("eleven11", "Eleven", "Once", "eleven11@gmail.com", new GregorianCalendar(2004, 1, 19), "xdrgb657", "https://static.zerochan.net/Eleven.%28Stranger.Things%29.full.2671625.jpg", "española");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("bobesponja", "Bob", "Esponja", "bobesponja@nickelodeon.com ", new GregorianCalendar(1999, 4, 01), "sbsplol1", "japonesa");
+			user = new DTTurista("bobesponja", "Bob", "Esponja", "bobesponja@nickelodeon.com ", new GregorianCalendar(1999, 4, 01), "sbsplol1", "https://smoda.elpais.com/wp-content/uploads/2020/06/bob-esponja-591x447.jpg", "japonesa");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("tony", "Antonio", "Pacheco", "eltony@manya.org.uy", new GregorianCalendar(1976, 3, 11), "okmnji98", "uruguaya");
+			user = new DTTurista("tony", "Antonio", "Pacheco", "eltony@manya.org.uy", new GregorianCalendar(1976, 3, 11), "okmnji98", "https://vinostonypacheco.com/images/500x500_2.jpg", "uruguaya");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("chino", "Álvaro", "Recoba", "chino@trico.org.uy", new GregorianCalendar(1976, 2, 17), "qsxcdw43", "uruguaya");
+			user = new DTTurista("chino", "Álvaro", "Recoba", "chino@trico.org.uy", new GregorianCalendar(1976, 2, 17), "qsxcdw43", "https://www.doblealturadeco.com/wp-content/uploads/2020/08/02-ChinoRecoba.jpg", "uruguaya");
 			icu.altaUsuario(user);
 			
-			user = new DTTurista("mastropiero", "Johann Sebastian", "Mastropiero", "johann.sebastian@gmail.com", new GregorianCalendar(1922, 1, 07), "qpwoei586", "austríaca");
+			user = new DTTurista("mastropiero", "Johann Sebastian", "Mastropiero", "johann.sebastian@gmail.com", new GregorianCalendar(1922, 1, 07), "qpwoei586", "https://static.lesluthiers.org/fotos/Personajes/mastropiero.png", "austríaca");
 			icu.altaUsuario(user);
 			
-			user = new DTProveedor("washington", "Washington", "Rocha", "washington@turismorocha.gub.uy", new GregorianCalendar(1970, 8, 14), "asdfg654", "Hola! me llamo Washington y soy el encargado del portal de turismo del departamento de Rocha - Uruguay" , "http://turismorocha.gub.uy/");
+			user = new DTProveedor("washington", "Washington", "Rocha", "washington@turismorocha.gub.uy", new GregorianCalendar(1970, 8, 14), "asdfg654", "https://c.wallhere.com/photos/55/39/safe_house_cia_agent_tobin_frost_denzel_washington-584127.jpg!d", "Hola! me llamo Washington y soy el encargado del portal de turismo del departamento de Rocha - Uruguay" , "http://turismorocha.gub.uy/");
 			icu.altaUsuario(user);
 			
-			user = new DTProveedor("eldiez", "Pablo", "Bengoechea", "eldiez@socfomturriv.org.uy", new GregorianCalendar(1965, 5, 27), "ytrewq10", "Pablo es el presidente de la Sociedad de Fomento Turístico de Rivera (conocida como Socfomturriv)", "http://wwww.socfomturriv.org.uy");
+			user = new DTProveedor("eldiez", "Pablo", "Bengoechea", "eldiez@socfomturriv.org.uy", new GregorianCalendar(1965, 5, 27), "ytrewq10", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI6iVebQtM32FoIZFXUPSIhJlQo2asvOouzw&usqp=CAU", "Pablo es el presidente de la Sociedad de Fomento Turístico de Rivera (conocida como Socfomturriv)", "http://wwww.socfomturriv.org.uy");
 			icu.altaUsuario(user);
 			
-			user = new DTProveedor("meche", "Mercedes", "Venn", "meche@colonia.gub.uy", new GregorianCalendar(1990, 11, 31), "mnjkiu89", "Departamento de Turismo del Departamento de Colonia", "https://colonia.gub.uy/turismo/");
+			user = new DTProveedor("meche", "Mercedes", "Venn", "meche@colonia.gub.uy", new GregorianCalendar(1990, 11, 31), "mnjkiu89", "https://pbs.twimg.com/media/EmLg8pkXYAAkuGY?format=jpg&name=small", "Departamento de Turismo del Departamento de Colonia", "https://colonia.gub.uy/turismo/");
 			icu.altaUsuario(user);
 			
 			
@@ -229,14 +226,14 @@ public class CargarDatos extends HttpServlet {
 		}
 
 		try {
-			icd.ingresarDatosSalida("Degusta Agosto", 20, new GregorianCalendar(2022, 6, 21), new GregorianCalendar(2022, 7, 20), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", null);
-			icd.ingresarDatosSalida("Degusta Setiembre", 20, new GregorianCalendar(2022, 6, 22), new GregorianCalendar(2022, 8, 3), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", null);
+			icd.ingresarDatosSalida("Degusta Agosto", 20, new GregorianCalendar(2022, 6, 21), new GregorianCalendar(2022, 7, 20), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", "https://city.woow.com.uy/media/catalog/product/cache/dcf64a24127a43d9ce9fe76e3e5f8061/n/u/nueva2_3_1.jpg");
+			icd.ingresarDatosSalida("Degusta Setiembre", 20, new GregorianCalendar(2022, 6, 22), new GregorianCalendar(2022, 8, 3), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", "https://s3.amazonaws.com/turismorocha/operadores/1/med/bahia-resto-053888900-1458674720.JPG");
 			
-			icd.ingresarDatosSalida("Teatro con Sabores 1", 30, new GregorianCalendar(2022, 6, 23), new GregorianCalendar(2022, 8, 4), 1800, "Club Deportivo Unión", "Rocha", "Teatro con Sabores", null);
-			icd.ingresarDatosSalida("Teatro con Sabores 2", 30, new GregorianCalendar(2022, 6, 23), new GregorianCalendar(2022, 8, 11), 1800, "Club Deportivo Unión", "Rocha", "Teatro con Sabores", null);
+			icd.ingresarDatosSalida("Teatro con Sabores 1", 30, new GregorianCalendar(2022, 6, 23), new GregorianCalendar(2022, 8, 4), 1800, "Club Deportivo Unión", "Rocha", "Teatro con Sabores", "https://thumbs.dreamstime.com/b/teatro-de-la-cena-3857878.jpg");
+			icd.ingresarDatosSalida("Teatro con Sabores 2", 30, new GregorianCalendar(2022, 6, 23), new GregorianCalendar(2022, 8, 11), 1800, "Club Deportivo Unión", "Rocha", "Teatro con Sabores", "https://www.teatroreal.es/sites/default/files/2019-09/MESITAS%20%281%29.jpg");
 			
-			icd.ingresarDatosSalida("Tour Colonia del Sacramento 11-09", 5, new GregorianCalendar(2022, 7, 5), new GregorianCalendar(2022, 8, 11), 1000, "Encuentro en la base del Faro", "Colonia", "Tour por Colonia del Sacramento", null);
-			icd.ingresarDatosSalida("Tour Colonia del Sacramento 18-09", 5, new GregorianCalendar(2022, 7, 5), new GregorianCalendar(2022, 8, 18), 1000, "Encuentro en la base del Faro", "Colonia", "Tour por Colonia del Sacramento", null);
+			icd.ingresarDatosSalida("Tour Colonia del Sacramento 11-09", 5, new GregorianCalendar(2022, 7, 5), new GregorianCalendar(2022, 8, 11), 1000, "Encuentro en la base del Faro", "Colonia", "Tour por Colonia del Sacramento", "https://upload.wikimedia.org/wikipedia/commons/4/42/Colonia_de_Sacramento.jpg");
+			icd.ingresarDatosSalida("Tour Colonia del Sacramento 18-09", 5, new GregorianCalendar(2022, 7, 5), new GregorianCalendar(2022, 8, 18), 1000, "Encuentro en la base del Faro", "Colonia", "Tour por Colonia del Sacramento", "https://www.surfingtheplanet.com/wp-content/uploads/2012/04/DSC4945.jpg");
 			
 			icd.ingresarDatosSalida("Almuerzo 1", 5, new GregorianCalendar(2022, 7, 4), new GregorianCalendar(2022, 8, 18), 1200, "Restaurante de la Plaza de Toros", "Colonia", "Almuerzo en el Real de San Carlos", null);
 			icd.ingresarDatosSalida("Almuerzo 2", 5, new GregorianCalendar(2022, 7, 4), new GregorianCalendar(2022, 8, 25), 1200, "Restaurante de la Plaza de Toros", "Colonia", "Almuerzo en el Real de San Carlos", null);
@@ -244,16 +241,16 @@ public class CargarDatos extends HttpServlet {
 			icd.ingresarDatosSalida("Almuerzo 3", 4, new GregorianCalendar(2022, 7, 15), new GregorianCalendar(2022, 8, 10), 1200, "Posada del Lunarejo", "Rivera", "Almuerzo en Valle del Lunarejo", null);
 			icd.ingresarDatosSalida("Almuerzo 4", 4, new GregorianCalendar(2022, 7, 15), new GregorianCalendar(2022, 8, 11), 1200, "Posada del Lunarejo", "Rivera", "Almuerzo en Valle del Lunarejo", null);
 			
-			icd.ingresarDatosSalida("Cabalgata 1", 4, new GregorianCalendar(2022, 7, 15), new GregorianCalendar(2022, 8, 10), 1600, "Posada del Lunarejo", "Rivera", "Cabalgata en Valle del Lunarejo", null);
+			icd.ingresarDatosSalida("Cabalgata 1", 4, new GregorianCalendar(2022, 7, 15), new GregorianCalendar(2022, 8, 10), 1600, "Posada del Lunarejo", "Rivera", "Cabalgata en Valle del Lunarejo", "https://volemos.nyc3.cdn.digitaloceanspaces.com/blog/wp-content/uploads/2021/12/14132221/cabalgatas-valle-del-Lunarejo.jpg");
 			icd.ingresarDatosSalida("Cabalgata 2", 4, new GregorianCalendar(2022, 7, 15), new GregorianCalendar(2022, 8, 11), 1600, "Posada del Lunarejo", "Rivera", "Cabalgata en Valle del Lunarejo", null);
 			
-			icd.ingresarDatosSalida("Degusta Octubre", 20, new GregorianCalendar(2022, 8, 22), new GregorianCalendar(2022, 9, 30), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", null);
-			icd.ingresarDatosSalida("Degusta Noviembre", 20, new GregorianCalendar(2022, 1, 10), new GregorianCalendar(2022, 10, 5), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", null);
+			icd.ingresarDatosSalida("Degusta Octubre", 20, new GregorianCalendar(2022, 8, 22), new GregorianCalendar(2022, 9, 30), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", "https://www.cucinare.tv/wp-content/uploads/2020/02/Carne-Hermanos-1024x579.jpg");
+			icd.ingresarDatosSalida("Degusta Noviembre", 20, new GregorianCalendar(2022, 1, 10), new GregorianCalendar(2022, 10, 5), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", "https://s3.amazonaws.com/turismorocha/operadores/156/med/maria-esther-089483400-1481752402.JPG");
 		
 			icd.ingresarDatosSalida("Teatro con Sabores 3", 30, new GregorianCalendar(2022, 7, 25), new GregorianCalendar(2022, 10, 11), 1800, "Club Deportivo Unión", "Rocha", "Teatro con Sabores", null);
-			icd.ingresarDatosSalida("Tour Colonia del Sacramento 30-10", 10, new GregorianCalendar(2022, 8, 7), new GregorianCalendar(2022, 9, 30), 1000, "Encuentro en la base del Faro", "Colonia", "Tour por Colonia del Sacramento", null);
+			icd.ingresarDatosSalida("Tour Colonia del Sacramento 30-10", 10, new GregorianCalendar(2022, 8, 7), new GregorianCalendar(2022, 9, 30), 1000, "Encuentro en la base del Faro", "Colonia", "Tour por Colonia del Sacramento", "https://www.globeguide.ca/wp-content/uploads/2017/10/Uruguay-Colonia-52.jpg");
 
-			icd.ingresarDatosSalida("Cabalgata Extrema", 4, new GregorianCalendar(2022, 8, 15), new GregorianCalendar(2022, 9, 30), 1600, "Posada del Lunarejo", "Rivera", "Cabalgata en Valle del Lunarejo", null);
+			icd.ingresarDatosSalida("Cabalgata Extrema", 4, new GregorianCalendar(2022, 8, 15), new GregorianCalendar(2022, 9, 30), 1600, "Posada del Lunarejo", "Rivera", "Cabalgata en Valle del Lunarejo", "http://elgavilan-valledellunarejo.com.uy/wp-content/uploads/2020/12/WhatsApp-Image-2020-12-21-at-4.28.25-PM.jpeg");
 			icd.ingresarDatosSalida("Almuerzo en el Real 1", 10, new GregorianCalendar(2022, 9, 10), new GregorianCalendar(2022, 9, 30), 1200, "Restaurante de la Plaza de Toros", "Colonia", "Almuerzo en el Real de San Carlos", null);
 
 //			S1 tinyurl.com/4jwed4jx
@@ -308,9 +305,9 @@ public class CargarDatos extends HttpServlet {
 		}	
 		
 		try {
-			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null);
-			icp.ingresarDatosPaquete("Un día en Colonia", "Paseos por el casco histórico y se puede terminar con Almuerzo en la Plaza de Toros", 45, 15, new GregorianCalendar(2022, 7, 1), null);
-			icp.ingresarDatosPaquete("Valle del Lunarejo", "Visite un área protegida con un paisaje natural hermoso", 60, 15, new GregorianCalendar(2022, 8, 15), null);
+			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), "https://sites.google.com/site/areasprotegidasenuruguay/_/rsrc/1411660757953/algunas-de-las-areas-ingresadas-por-el-snap/laguna-de-rocha/Mapa_Rocha_BLOG.jpg?height=280&width=400");
+			icp.ingresarDatosPaquete("Un día en Colonia", "Paseos por el casco histórico y se puede terminar con Almuerzo en la Plaza de Toros", 45, 15, new GregorianCalendar(2022, 7, 1), "https://www.lr21.com.uy/wp-content/uploads/2021/12/plaza-toros-colonia.jpg");
+			icp.ingresarDatosPaquete("Valle del Lunarejo", "Visite un área protegida con un paisaje natural hermoso", 60, 15, new GregorianCalendar(2022, 8, 15), "http://www.indra.org.uy/images/inauguracion-03.jpg");
 		
 //			tinyurl.com/3ppwdca4
 //			tinyurl.com/4yzrdt8b

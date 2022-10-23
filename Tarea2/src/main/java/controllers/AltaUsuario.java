@@ -1,6 +1,5 @@
 package controllers;
 
-import java.awt.Image;
 import java.io.IOException;
 import java.util.GregorianCalendar;
 
@@ -41,7 +40,7 @@ public class AltaUsuario extends HttpServlet {
     	String part1 = parts[0]; 
     	GregorianCalendar fecha = new GregorianCalendar(Integer.parseInt(parts[0]),Integer.parseInt(parts[1])-1,Integer.parseInt(parts[2]));
     	
-    	DTTurista nuevo = new DTTurista(request.getParameter("nickname"),request.getParameter("nombrePersona"),request.getParameter("apellido"),request.getParameter("correoPersona"),fecha,request.getParameter("contrasena"),request.getParameter("nacionalidad"));
+    	DTTurista nuevo = new DTTurista(request.getParameter("nickname"), request.getParameter("nombrePersona"), request.getParameter("apellido"), request.getParameter("correoPersona"), fecha,request.getParameter("contrasena"), null/* imagen */, request.getParameter("nacionalidad"));
     	//Image img = (Image) request.getParameter("imgPersona"); 
     	//nuevo.setFigura(img);
     	try {

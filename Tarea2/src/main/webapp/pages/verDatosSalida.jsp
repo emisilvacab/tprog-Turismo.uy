@@ -3,6 +3,7 @@
 <%@page import="model.EstadoSesion"%>
 <%@page import="logica.datatypes.DTSalida"%>
 <%@page import="logica.datatypes.DTUsuario"%>
+<%@page import="logica.datatypes.DTActividad"%>
 <%@page import="java.util.GregorianCalendar"%>
 <!DOCTYPE html>
 <html>
@@ -51,8 +52,7 @@
         Integer mesAlta = fechaAlta.get(fechaAlta.MONTH) + 1;
         Integer anioAlta = fechaAlta.get(fechaAlta.YEAR);
         
-        String nombreAct = (String) request.getAttribute("nombreActividad");
-        String descripcionAct = (String) request.getAttribute("descripcionActividad");
+        DTActividad actividad = (DTActividad) request.getAttribute("actividad");
         
 		%>
 		
@@ -68,7 +68,7 @@
 				<div class="card mb-3" style="max-width: 100%;">
 					<div class="row">
 				      	<div class="col-md-6" style="min-width: 300px;">
-				   			<img src="https://s3.amazonaws.com/turismorocha/operadores/1/med/bahia-resto-053888900-1458674720.JPG" class="img-fluid rounded" style="max-width: 100%;" alt="Actividad">
+				   			<img <%if (salida.getLinkImagen() != null){%> src=<%=salida.getLinkImagen()%> <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="img-fluid rounded" style="max-width: 100%; min-height:243px; object-fit: cover" alt="Actividad">
 				      	</div>
 					     <div class="col-md-6" style="min-width: 300px;">
 					     	<div class="card-body pb-0 mb-0" style="max-width: 100%;">
@@ -107,15 +107,15 @@
 			  	<div class="card mb-3 contenedor-actividad" style="max-width: 98.5%;">
 					<div class="row g-0">
 						<div class="col-md-4" style="min-width: 200px;">
-						<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=nombreAct%>">
-							<img src="https://s3.amazonaws.com/turismorocha/eventos/2569/cover/degusta-048968300-1659558891.jpg" class="img-fluid rounded-start" alt="Actividad">
+						<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
+							<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="img-fluid rounded-start" alt="Actividad">
 						</a>
 						</div>
 						<div class="col-md-8" style="min-width: 300px;">
 							<div class="card-body" style="max-width: 100%;">
-								<h4 class="card-title"><%=nombreAct%></h4>
+								<h4 class="card-title"><%=actividad.getNombre()%></h4>
 								<div class="card-text">
-									<%=descripcionAct%>
+									<%=actividad.getDescripcion()%>
 								</div>
 							</div>
 						</div>

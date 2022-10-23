@@ -31,7 +31,7 @@
 		 <div class="dropdown">
 		 	<button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 		  	 <%
-				if (usr.getFigura() == null) {
+				if (usr.getLinkImagen() == null) {
 	 		 %>
 		  		<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" id="foto_usuario" class="rounded-circle" alt="foto de usuario" class="logopic">
 		  	<%

@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import excepciones.salidaNoExisteException;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorPaquete;
+import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
 
 /**
@@ -34,7 +33,6 @@ public class VerDatosSalida extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Fabrica fact = Fabrica.getInstance();
-    	IControladorPaquete ctrlPaquete = fact.getIControladorPaquete();
     	IControladorDepartamento ctrlDepartamentos = fact.getIControladorDepartamento();
     	
     	String salidaSeleccionada = request.getParameter("salSeleccionada");
@@ -48,9 +46,9 @@ public class VerDatosSalida extends HttpServlet {
     	
     	try {
 			String nombreActividad = ctrlDepartamentos.obtenerNombreActividadDeSalida(salidaSeleccionada);
+			DTActividad actividad = ctrlDepartamentos.obtenerDatosActividad(nombreActividad);
 			
-			request.setAttribute("nombreActividad", nombreActividad);
-			request.setAttribute("descripcionActividad", ctrlDepartamentos.obtenerDatosActividad(nombreActividad).getDescripcion());
+			request.setAttribute("actividad", actividad);
 		} catch (Exception salNoExiste) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "salidaNoExiste");
