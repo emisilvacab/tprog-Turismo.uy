@@ -34,7 +34,7 @@
  						<div class="card-body" id="card-body-paquete">
    							<h3 class="card-title"><%=paq.getNombre()%></h3>
    							<p class="card-text"><%=paq.getDescripcion()%></p>	
-   			 				<a href="detalleDePaquete.html" class="stretched-link"></a>
+   			 				<a href="DetallePaquete?detallePaqueteNombre=<%=paq.getNombre()%>" class="stretched-link"></a>
    			
  						</div>  						
 				</div>

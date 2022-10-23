@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="logica.datatypes.DTPaquete"%>
+<%@page import="logica.datatypes.DTActividad"%>
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.HashSet"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -39,15 +42,21 @@
 		<div class="container" id="container-actividades-paquete">
 	
 			<div class="d-flex align-items-stretch" id="flex-actividades-paquete">
-	
+				<%
+				HashSet<DTActividad> actividades = (HashSet<DTActividad>) request.getAttribute("detallePaqueteActividades");
+				for(DTActividad act : actividades){
+				%>
 				<div id="paquete-card" class="card" style="width: 18rem;">
   					<img id="card-img-paquete" src="https://s3.amazonaws.com/turismorocha/eventos/2569/cover/degusta-048968300-1659558891.jpg" class="card-img-top" alt="...">
   					<div class="card-body" id="card-body-paquete">
-    					<h3 class="card-title">Degusta</h3>
-    					<a href="verDatosActividad.html" class="stretched-link"></a>
+    					<h3 class="card-title"><%=act.getNombre()%></h3>
+    					<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=act.getNombre()%>" class="stretched-link"></a>
    		
   					</div>  						
 				</div>
+				<%
+				}
+				%>
 					
 			</div>
 	

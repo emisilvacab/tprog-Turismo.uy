@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import excepciones.departamentoNoExisteException;
 import excepciones.usuarioNoExisteException;
 import logica.Fabrica;
+import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTUsuario;
 
@@ -37,6 +38,11 @@ public class ListarUsuarios extends HttpServlet {
     protected void cargarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	Fabrica fact = Fabrica.getInstance();
     	IControladorUsuario ctrlUsr = fact.getIControladorUsuario();
+    	
+    	IControladorDepartamento ctrlDep = fact.getIControladorDepartamento();
+    	
+    	request.setAttribute("dptos", ctrlDep.obtenerDepartamentos());
+		request.setAttribute("cats", ctrlDep.obtenerCategorias());
     	
     	String[] usrsNombres = ctrlUsr.obtenerUsuarios();
     	Set<DTUsuario> usuarios = new HashSet<DTUsuario>();

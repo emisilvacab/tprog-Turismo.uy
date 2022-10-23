@@ -36,6 +36,6 @@ public interface IControladorPaquete {
 	public abstract HashSet<DTPaquete> obtenerDatosPaquetesParaActividad(String nombreAct);
 	
 	public abstract HashSet<DTPaquete> obtenerPaquetesAll();
-
 	
+	public abstract HashSet<DTActividad> obtenerActividadesConfirmadasPaquete(String nombrePaq) throws paqueteNoExisteException;
 }
