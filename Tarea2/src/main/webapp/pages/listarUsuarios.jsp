@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
 <%@page import="logica.datatypes.DTUsuario"%>
+<%@page import="logica.datatypes.DTTurista"%>
+<%@page import="logica.datatypes.DTProveedor"%>
 <%@page import="java.util.HashSet"%>
 
 <!DOCTYPE html>
@@ -38,6 +40,7 @@
 
     				<h3 class="card-title"><%=nick%></h3>
     				<p class="card-text"><%=usuario.getApellido()%>, <%=usuario.getNombre()%></p>
+    				<h6 class="card-text"><% if (usuario instanceof DTTurista) {%>Turista<%} else {%>Proveedor<%}%></h6>
         			<p class="card-text"><small class="text-muted"><%=usuario.getCorreo()%></small></p>
     				<a href="DetalleUsuario?usuarioDetalleNickname=<%=nick%>" class="stretched-link"></a>
     			

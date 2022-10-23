@@ -107,7 +107,7 @@
          				DTProveedor prov = (DTProveedor) usr;
 
          			%>
-  					<p1 class="text">Link: <%=prov.getLink()%></p1><br>
+  					<p1 class="text">Link: <a href="<%=prov.getLink()%>" target="_blank"><%=prov.getLink()%></a></p1><br>
   					<p3 class="text">Descripción: <%=prov.getDescripcion()%></p3><br>
   					<%} %>
   				</div>
