@@ -21,6 +21,7 @@
 			<%
 			DTPaquete paquete = (DTPaquete) request.getAttribute("detallePaquete"); 
 			GregorianCalendar fecha = paquete.getFechaAlta();
+			HashSet<String> categorias = (HashSet<String>) request.getAttribute("detallePaqueteCategorias");
 			%>
 			<div class="container" id="container-paquete">
 		
@@ -28,6 +29,10 @@
 		
 				<p class="fw-bold">Nombre:</p>
 				<p class="text-break"><%=paquete.getNombre()%></p>
+				<p class="fw-bold">Categorías:</p>
+				<%for(String cat : categorias){ %>
+					<p class="text-break"><%=cat%></p>
+				<%} %>
 				<p class="fw-bold">Validez:</p>
 				<p class="text-break"><%=paquete.getValidez()%></p>
 				<p class="fw-bold">Descuento:</p>

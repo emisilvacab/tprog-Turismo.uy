@@ -3,6 +3,7 @@ package logica.controladores;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import excepciones.actividadNoExisteException;
 import excepciones.compraExisteException;
@@ -14,6 +15,7 @@ import logica.Actividad;
 import logica.Compra;
 import logica.Departamento;
 import logica.Estado;
+import logica.Categoria;
 import logica.Paquete;
 import logica.Turista;
 import logica.datatypes.DTActividad;
@@ -188,6 +190,31 @@ public class ControladorPaquete implements IControladorPaquete {
 			return actividadesConfirmadas;
 		}
 	}
+	
+	public HashSet<String> obtenerCategoriasPaquete(String nombrePaq) throws paqueteNoExisteException{
+		ManejadorPaquete manPaquete = ManejadorPaquete.getInstance();
+		Paquete paquete = manPaquete.getPaquete(nombrePaq);
+		if (paquete == null) {
+			throw new paqueteNoExisteException("Paquete no encontrado"); 
+		}else {
+			HashSet<String> categoriasStr = new HashSet<String>();
+			HashMap<String,Actividad> actividadesPaq = paquete.getActividades();
+			
+			actividadesPaq.forEach((key, actividad)->{
+				Map<String,Categoria> catMap = actividad.getCategorias();
+				
+				catMap.forEach((keyMap, categoria)->{
+					if(!categoriasStr.contains(categoria.getNombre())){
+						categoriasStr.add(categoria.getNombre());
+					}
+					
+				});
+			});
+		
+			return categoriasStr;
+		}
+	}
+
 
 }
 

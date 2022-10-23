@@ -55,10 +55,18 @@ public class DetallePaquete extends HttpServlet {
     	} catch (paqueteNoExisteException paqueteNoExiste) {
     		
     	}
+    	
+    	HashSet<String> categorias = new HashSet<String>();
+    	try {
+    		categorias = ctrlPaq.obtenerCategoriasPaquete(nombre);
+    	} catch (paqueteNoExisteException paqueteNoExiste) {
+    		
+    	}
 
     	request.setAttribute("dptos", ctrlDep.obtenerDepartamentos());
 		request.setAttribute("cats", ctrlDep.obtenerCategorias());
     	
+		request.setAttribute("detallePaqueteCategorias",categorias);
 		request.setAttribute("detallePaqueteActividades",actConfirmadas);
     	request.setAttribute("detallePaquete",paquete);
 		request.getRequestDispatcher("/pages/detallePaquete.jsp").forward(request, response);
