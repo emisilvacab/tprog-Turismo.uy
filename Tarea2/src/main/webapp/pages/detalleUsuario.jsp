@@ -198,13 +198,13 @@
 							for(DTActividad actividad : actividades){
 								GregorianCalendar alta = actividad.getAlta();
 								Estado estadoAct = actividad.getEstado();
-								String estadoStr;
+								String estadoStr = "";
 																
 								if(estadoAct.equals(Estado.CONFIRMADA)){
 									estadoStr = "Confirmada";
 								}else if(estadoAct.equals(Estado.AGREGADA)){
 									estadoStr = "Agregada";
-								}else{
+								}else if(estadoAct.equals(Estado.RECHAZADA)){
 									estadoStr = "Rechazada";
 								}
 				%>
