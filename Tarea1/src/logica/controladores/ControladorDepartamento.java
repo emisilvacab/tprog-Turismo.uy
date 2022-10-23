@@ -292,6 +292,16 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return salida.getActividad().getNombre();
 	}
 	
+	@Override
+	public String obtenerNombreProveedorDeActividad(String nombreAct) throws actividadNoExisteException {
+		ManejadorDepartamentoCategoria manDepartamento = ManejadorDepartamentoCategoria.getInstance();
+		String nombreDepartamento = obtenerDeptoActividad(nombreAct);
+		Departamento departamento = manDepartamento.getDepartamento(nombreDepartamento);
+		Actividad actividad = departamento.obtenerActividad(nombreAct);
+		String nombreProveedor = actividad.getProveedor().getNombre();
+		return nombreProveedor;
+	}
+	
 }
 
 

@@ -51,4 +51,6 @@ public interface IControladorDepartamento {
 	public abstract DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException;
 
 	public abstract String obtenerNombreActividadDeSalida(String nombreSalida) throws salidaNoExisteException;
+	
+	public abstract String obtenerNombreProveedorDeActividad(String nombreAct) throws actividadNoExisteException;
 }

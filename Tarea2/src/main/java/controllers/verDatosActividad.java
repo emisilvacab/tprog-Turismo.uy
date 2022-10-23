@@ -47,6 +47,7 @@ public class verDatosActividad extends HttpServlet {
     	IControladorPaquete ctrlPaquete = fact.getIControladorPaquete();
     	String NombreAct = (String) request.getParameter("actSeleccionada");
     	DTActividad actividad;
+    	String nombreProveedor;
 		try {
 			actividad = ctrlDepartamentos.obtenerDatosActividad(NombreAct);
 			request.setAttribute("actividad", actividad);
@@ -54,6 +55,8 @@ public class verDatosActividad extends HttpServlet {
 			request.setAttribute("fechaAltaDia", fechaAlta.get(fechaAlta.DAY_OF_MONTH));
 			request.setAttribute("fechaAltaMes", fechaAlta.get(fechaAlta.MONTH) + 1);
 			request.setAttribute("fechaAltaAño", fechaAlta.get(fechaAlta.YEAR));
+			nombreProveedor = ctrlDepartamentos.obtenerNombreProveedorDeActividad(NombreAct);
+			request.setAttribute("proveedor", nombreProveedor);
 		} catch (actividadNoExisteException noExisteActividad) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
