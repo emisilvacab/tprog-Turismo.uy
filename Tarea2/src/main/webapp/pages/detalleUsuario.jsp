@@ -54,6 +54,9 @@
         					<p class="card-text"><%=usr.getNickname()%> / <p1 class="text-muted"><%=usr.getCorreo()%></p1></p>
         					<% GregorianCalendar nacimiento = usr.getNacimiento(); %>
         					<p class="card-text">Fecha de nacimiento: <p1 class="text-muted"><%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%> </p1></p>
+        					<% if(usr.getNickname().equals(nick)){%>
+        					<a  href="modificarDatosUsuario.html" id="button-cargarDatos" class="btn btn-primary">Modificar</a>
+        					<%} %>
       					</div>
     				</div>
   				</div>
