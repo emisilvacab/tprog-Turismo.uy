@@ -24,6 +24,8 @@ import logica.datatypes.DTTurista;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTInscripcion;
 import logica.datatypes.DTCompra;
+import logica.datatypes.DTSalida;
+import logica.Estado;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -95,15 +97,49 @@ public class DetalleUsuario extends HttpServlet {
     			DTActividad aux = null;
     			try {
     				aux = ctrlUsr.obtenerDatoActividadProveedor(nickname, act);
-    			} catch (usuarioNoExisteException | actividadNoExisteException ex) {
+    			} catch (usuarioNoExisteException | actividadNoExisteException usuarioActividadNoExiste) {
     				request.setAttribute("error", "usuario-actividad-no-existe"); 		
     				
     			}
     			actividades.add(aux);
     			
     		}
-    		request.setAttribute("usuarioDetalleActividadesNombres", actividadesNombres);
 
+    		HashSet<DTSalida> salidasProveedor = new HashSet<DTSalida>();
+    		for(String act : actividadesNombres) {
+    			try {
+    				String[] salidasAct = ctrlUsr.obtenerSalidasDeActividad(nickname, act);
+    				for(String sal : salidasAct) {
+    					DTSalida nueva = ctrlUsr.obtenerDatoSalidaProveedor(nickname, act, sal);
+    					salidasProveedor.add(nueva);
+    				}
+    							
+    			} catch(usuarioNoExisteException | actividadNoExisteException usuarioActividadNoExiste) {
+    				request.setAttribute("error", "usuario-actividad-no-existe"); 	
+    			}
+    		}
+    		
+    		HashSet<DTSalida> salidasConfirmadas = new HashSet<DTSalida>();
+    		for(String act : actividadesNombres) {
+    			try {
+    				DTActividad actividad = ctrlUsr.obtenerDatoActividadProveedor(nickname, act);
+    			
+    				if(actividad.getEstado().equals(Estado.CONFIRMADA)){
+    					String[] salidasAct = ctrlUsr.obtenerSalidasDeActividad(nickname, act);
+    					for(String sal : salidasAct) {
+    						DTSalida nueva = ctrlUsr.obtenerDatoSalidaProveedor(nickname, act, sal);
+    						salidasConfirmadas.add(nueva);
+    					}	
+    				}	
+    							
+    				} catch(usuarioNoExisteException | actividadNoExisteException usuarioActividadNoExiste) {
+    					request.setAttribute("error", "usuario-actividad-no-existe"); 	
+    				
+    			}
+    		}
+     		
+    		request.setAttribute("usuarioDetalleSalidasConfirmadas", salidasConfirmadas);
+    		request.setAttribute("usuarioDetalleSalidas", salidasProveedor);
     		request.setAttribute("usuarioDetalleActividades", actividades);
     		request.setAttribute("usuarioDetalle", usuario);
     		request.setAttribute("usuarioDetalleTipo", "proveedor");

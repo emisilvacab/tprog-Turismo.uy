@@ -7,9 +7,8 @@
 <%@page import="logica.datatypes.DTActividad"%>
 <%@page import="logica.datatypes.DTInscripcion"%>
 <%@page import="logica.datatypes.DTCompra"%>
+<%@page import="logica.datatypes.DTSalida"%>
 <%@page import="logica.Estado"%>
-
-<%@page import="model.EstadoSesion"%>
 
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.HashSet"%>
@@ -79,6 +78,10 @@
   				
   				<li class="nav-item" role="presentation">
     				<button class="nav-link" id="actividades-tab" data-bs-toggle="tab" data-bs-target="#actividades-tab-pane" type="button" role="tab" aria-controls="actividades-tab-pane" aria-selected="false" style="color: #2f3131;">Actividades</button>
+  				</li>
+  				
+  				<li class="nav-item" role="presentation">
+    				<button class="nav-link" id="salidass-tab" data-bs-toggle="tab" data-bs-target="#salidas-tab-pane" type="button" role="tab" aria-controls="salidas-tab-pane" aria-selected="false" style="color: #2f3131;">Salidas</button>
   				</li>
   				
   				<%}%>
@@ -222,12 +225,60 @@
 				<% 
 							}
 						}
-  				}
+  				
   				%>
   					
 						</div>
 					</div>
-  				</div>  						
+  				</div>
+  				
+  				<div class="tab-pane fade" id="salidas-tab-pane" role="tabpanel" aria-labelledby="salidas-tab" tabindex="0">
+
+					<div class="container" id="container-cards-actividades-usuario" style="max-width:950px;">
+	
+						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
+						<% 
+						
+						if(usr.getNickname().equals(nick)){
+							HashSet<DTSalida> salidas = (HashSet<DTSalida>) request.getAttribute("usuarioDetalleSalidas");
+							for(DTSalida sal : salidas){							
+  						%>
+  						
+							<div id="paquete-card" class="card" style="width: 18rem;">
+  								<!-- <img id="card-img-paquete" ruta ruta ruta class="card-img-top" alt="..."> -->
+  								<div class="card-body" id="card-body-paquete">
+    								<h3 class="card-title"><%=sal.getNombre()%></h3>    			
+    								<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=sal.getNombre()%>" class="stretched-link"></a>
+   		
+  								</div>  						
+							</div>
+					<%				
+							}
+						}else{
+							HashSet<DTSalida> salidasConf = (HashSet<DTSalida>) request.getAttribute("usuarioDetalleSalidasConfirmadas");
+							for(DTSalida sal : salidasConf){
+							%>
+							<div id="paquete-card" class="card" style="width: 18rem;">
+  								<!-- <img id="card-img-paquete" ruta ruta ruta class="card-img-top" alt="..."> -->
+  								<div class="card-body" id="card-body-paquete">
+    								<h3 class="card-title"><%=sal.getNombre()%></h3>    			
+    								<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=sal.getNombre()%>" class="stretched-link"></a>
+   		
+  								</div>  						
+							</div>
+								
+								
+							<%
+							}
+						}
+						
+  				}
+  					%>
+  					
+						</div>
+					</div>
+  				</div> 
+  				  						
 			</div>								
 		</div>			
 	</div>
