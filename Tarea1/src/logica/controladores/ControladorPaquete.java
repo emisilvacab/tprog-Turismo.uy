@@ -166,7 +166,29 @@ public class ControladorPaquete implements IControladorPaquete {
 		return paquetesDT;
 	}
 
-	
+	public HashSet<DTActividad> obtenerActividadesConfirmadasPaquete(String nombrePaq) throws paqueteNoExisteException{
+		HashSet<DTActividad> actividadesConfirmadas = new HashSet<DTActividad>();
+		ManejadorPaquete manPaquete = ManejadorPaquete.getInstance();
+		
+		Paquete paquete = manPaquete.getPaquete(nombrePaq);
+		if (paquete == null) {
+			throw new paqueteNoExisteException("Paquete no encontrado"); 
+		}else {
+			HashMap<String,Actividad> actividadesPaq = paquete.getActividades();
+		
+			actividadesPaq.forEach((key, actividad)->{
+				if(actividad.getEstado().equals(Estado.CONFIRMADA)) {
+					DTActividad nueva = actividad.getDatos();
+					actividadesConfirmadas.add(nueva);
+				}
+			
+			});
+		
+		
+			return actividadesConfirmadas;
+		}
+	}
+
 }
 
 

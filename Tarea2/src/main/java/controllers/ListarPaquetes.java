@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import logica.Fabrica;
 import logica.controladores.IControladorPaquete;
+import logica.controladores.IControladorDepartamento;
 import logica.datatypes.DTPaquete;
 
 /**
@@ -35,6 +36,10 @@ public class ListarPaquetes extends HttpServlet {
     protected void cargarPaquetes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
+    	IControladorDepartamento ctrlDep = fact.getIControladorDepartamento();
+    	
+    	request.setAttribute("dptos", ctrlDep.obtenerDepartamentos());
+		request.setAttribute("cats", ctrlDep.obtenerCategorias());
     	
     	HashSet<DTPaquete> paquetes = ctrlPaq.obtenerPaquetesAll();
     	request.setAttribute("listarPaquetes", paquetes);

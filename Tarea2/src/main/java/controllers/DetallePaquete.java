@@ -16,6 +16,7 @@ import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.datatypes.DTPaquete;
+import logica.datatypes.DTActividad;
 
 
 /**
@@ -48,9 +49,17 @@ public class DetallePaquete extends HttpServlet {
 			request.setAttribute("error", "paquete-no-existe");
     	}
     	
+    	HashSet<DTActividad> actConfirmadas = new HashSet<DTActividad>();
+    	try {
+    		actConfirmadas = ctrlPaq.obtenerActividadesConfirmadasPaquete(nombre);
+    	} catch (paqueteNoExisteException paqueteNoExiste) {
+    		
+    	}
+
     	request.setAttribute("dptos", ctrlDep.obtenerDepartamentos());
 		request.setAttribute("cats", ctrlDep.obtenerCategorias());
     	
+		request.setAttribute("detallePaqueteActividades",actConfirmadas);
     	request.setAttribute("detallePaquete",paquete);
 		request.getRequestDispatcher("/pages/detallePaquete.jsp").forward(request, response);
 

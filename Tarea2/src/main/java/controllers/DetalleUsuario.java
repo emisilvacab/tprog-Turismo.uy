@@ -50,7 +50,9 @@ public class DetalleUsuario extends HttpServlet {
     	Fabrica fact = Fabrica.getInstance();
     	IControladorUsuario ctrlUsr = fact.getIControladorUsuario();
     	IControladorDepartamento ctrlDpto = fact.getIControladorDepartamento();
-
+    	
+    	request.setAttribute("dptos", ctrlDpto.obtenerDepartamentos());
+		request.setAttribute("cats", ctrlDpto.obtenerCategorias());
     	
     	String nickname = request.getParameter("usuarioDetalleNickname");
     	DTUsuario usuario = null;
