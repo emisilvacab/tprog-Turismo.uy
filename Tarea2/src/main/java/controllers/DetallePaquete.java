@@ -35,7 +35,6 @@ public class DetallePaquete extends HttpServlet {
     }
 
     protected void cargarPaquete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.setCharacterEncoding("UTF-8");
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
     	IControladorDepartamento ctrlDep = fact.getIControladorDepartamento();
@@ -78,6 +77,7 @@ public class DetallePaquete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		cargarPaquete(request,response);
 	}
 
@@ -86,6 +86,7 @@ public class DetallePaquete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 
