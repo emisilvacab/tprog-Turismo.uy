@@ -125,13 +125,18 @@ public class AltaActividad extends HttpServlet {
  
     	try { 
     		String linkImagen = null;
+			String nuevoNombre = null;
     		Part part = request.getPart("imgAct");
-			if(part != null && part.getInputStream() != null) { //Solo guardo la imagen si la seteó el usuario
-				String nuevoNombre = guardarImagen(request,response);
+			if(part.getContentType().contains("image") && part.getInputStream() != null) { //Solo guardo la imagen si la seteó el usuario
+				nuevoNombre = guardarImagen(request,response);
 				linkImagen = "resources/img/" + nuevoNombre;
 			}
 			boolean existe = cd.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), fechaAct, nicknameProv, request.getParameter("depAct"), categorias, linkImagen);
 			if (existe) {
+				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
+					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
+					file.delete();
+				}
 				request.setAttribute("error", "actividad-repetida");
 				errorActividad(request,response);
 			}

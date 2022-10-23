@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
+<%@ page import ="logica.datatypes.DTUsuario"%>
 
 
 <!DOCTYPE html>
@@ -28,9 +29,12 @@
 	      </div>
 	    </div>
 		
+		<%
+		DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
+		%>
 		<div class="card" id = "card-unitenos">
 		  <div class="card-body">
-		  	<a class = "ref" href=altausuario.html>
+		  	<a class="ref" <%if (usr == null) {%> href="/Tarea2/log?iniciar=si" <%}%>>
 		    <h4 class="card-title">¡Unítenos y forma parte de la experiencia!</h4>
 		    </a>
 		  </div>

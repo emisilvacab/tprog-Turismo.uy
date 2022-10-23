@@ -1,32 +1,34 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import excepciones.actividadNoExisteException;
-import excepciones.categoriaNoExisteException;
 import excepciones.departamentoNoExisteException;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorPaquete;
-import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTActividad;
-import logica.datatypes.DTSalida;
-import logica.datatypes.DTUsuario;
 
 /**
  * Servlet implementation class AltaSalida
  */
-@WebServlet("/altaSalida")
+@WebServlet("/altaSalida") @MultipartConfig
 public class AltaSalida extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,6 +38,31 @@ public class AltaSalida extends HttpServlet {
     public AltaSalida() {
         super();
         // TODO Auto-generated constructor stub
+    }
+    
+    protected String guardarImagen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    	String pathFiles = this.getServletContext().getRealPath("/resources/img");
+    	
+    	File uploads = new File(pathFiles);
+    	
+    	Part part = request.getPart("imgSal"); //obtengo el part que se mandó por el request
+		Path path = Paths.get(part.getSubmittedFileName()); 
+		
+		String fileName = path.getFileName().toString(); //obtengo el nombre del archivo
+		String extension = fileName.substring(fileName.lastIndexOf('.'));
+		String nombre  = request.getParameter("nombreSal"); //Le pongo el nombre de la salida a la imagen
+		String save = nombre + "." + extension;
+		
+		InputStream input = part.getInputStream(); //obtengo el archivo
+		File file = new File(uploads, save);
+		int num = 0;
+		while (file.exists()) { //le agrega 1 al numero del nombre si ya existe
+			save = nombre + (num++) + "." + extension;
+			file = new File(uploads, save);
+		}
+		Files.copy(input, file.toPath()); //guardo el archivo en la carpeta img
+
+		return save;
     }
     
     protected void errorSalida(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,7 +75,6 @@ public class AltaSalida extends HttpServlet {
 		request.setAttribute("horaSal", request.getParameter("horaSal"));
 		request.setAttribute("lugarSal", request.getParameter("lugarSal"));
 		request.setAttribute("cantTurSal", request.getParameter("cantTurSal"));
-		request.setAttribute("imgSal", request.getParameter("imgSal"));
  		try {
 			HashSet<DTActividad> acts = (HashSet<DTActividad>) cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 			Set<String> res = new HashSet<String>();
@@ -143,10 +169,21 @@ public class AltaSalida extends HttpServlet {
 		String hora = request.getParameter("horaSal");
 		String[] partsH = hora.split(":");
 		int horaSal = Integer.parseInt(partsH[0])*100 + Integer.parseInt(partsH[1]);
-				
+				 
 		try {
-			boolean existe = cd.ingresarDatosSalida(request.getParameter("nombreSal"), Integer.parseInt(request.getParameter("cantTurSal")), fechaAlta, fechaSal, horaSal, request.getParameter("lugarSal"), request.getParameter("dpto"), request.getParameter("act"), null);
+			String linkImagen = null;
+			String nuevoNombre = null;
+    		Part part = request.getPart("imgSal");
+			if(part.getContentType().contains("image") && part.getInputStream() != null) { //Solo guardo la imagen si la seteó el usuario
+				nuevoNombre = guardarImagen(request,response);
+				linkImagen = "resources/img/" + nuevoNombre;
+			}
+			boolean existe = cd.ingresarDatosSalida(request.getParameter("nombreSal"), Integer.parseInt(request.getParameter("cantTurSal")), fechaAlta, fechaSal, horaSal, request.getParameter("lugarSal"), request.getParameter("dpto"), request.getParameter("act"), linkImagen);
 			if (existe) {
+				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
+					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
+					file.delete();
+				}
 				request.setAttribute("error", "existe");
 				errorSalida(request,response);
 			}

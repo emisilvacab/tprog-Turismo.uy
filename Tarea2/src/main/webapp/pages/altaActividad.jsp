@@ -72,7 +72,7 @@
 			<input class="inputbox" type="text" id="ciudadAct" name="ciudadAct" <%if (request.getAttribute("ciudadAct") != null){ String ciudadAct = (String) request.getAttribute("ciudadAct"); %> value="<%=ciudadAct%>" <%}%>><br>		
 			
 			<label class="lbltxt">Imagen</label><br>
-			<input class="inputbox" type="file" id="imgAct" accept = "image/*" name="imgAct"><br> <%//FALTA DEVOLVER LA IMAGEN CARGADA SI HUBO ERROR %>	
+			<input class="inputbox" type="file" id="imgAct" accept = "image/*" name="imgAct"><br> 
 			
 			
 			<label class="lbltxt">Seleccionar Categoría(s)*</label><br>
