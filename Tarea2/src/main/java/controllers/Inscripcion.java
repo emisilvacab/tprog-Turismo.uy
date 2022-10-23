@@ -227,6 +227,43 @@ public class Inscripcion extends HttpServlet {
 				}
 				break;
     		}
+    		case "consulta":{
+    			try {
+					request.setAttribute("cats",cDpto.obtenerCategorias());
+		    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
+		    		
+		    		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
+		    		Set<DTPaquete> paqs = cPaq.obtenerPaquetesDisponibles(usr.getNickname(), request.getParameter("sal"), 1);
+					Set<String> paqsInsc = new HashSet<String>();
+					for (DTPaquete paq : paqs) {
+						paqsInsc.add(paq.getNombre());
+					}
+					request.setAttribute("paqsInsc", paqsInsc); //relleno los paquetes
+					
+					HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
+					Set<String> salsInsc = new HashSet<String>();
+					for (DTSalida sal : sals) {
+						salsInsc.add(sal.getNombre());
+					} 
+					request.setAttribute("salsInsc", salsInsc); // relleno las salidas
+					
+					request.setAttribute("dpto", cDpto.obtenerDeptoActividad(request.getParameter("act")));
+					HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(cDpto.obtenerDeptoActividad(request.getParameter("act")));
+					Set<String> actsInsc = new HashSet<String>();
+					for (DTActividad act : acts) {
+						actsInsc.add(act.getNombre());
+					}
+					request.setAttribute("actsInsc", actsInsc); // relleno las actividades por Dpto
+					
+					request.setAttribute("act", request.getParameter("act"));
+					request.setAttribute("cant", "1");
+					request.setAttribute("sal", request.getParameter("sal"));
+					request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
+	    		} catch (usuarioNoExisteException | departamentoNoExisteException | actividadNoExisteException exc1) {
+	    			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
+				}
+				break;
+    		}
     		default: {
                 System.out.println("Parametros incorrectos");
             }

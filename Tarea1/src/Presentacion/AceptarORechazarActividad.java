@@ -10,6 +10,8 @@ import logica.controladores.IControladorDepartamento;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -24,6 +26,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class AceptarORechazarActividad extends JInternalFrame{
 	
+	private static final long serialVersionUID = 1L;
 	private JComboBox<String> comboBoxActividades;
 	private IControladorDepartamento controladorDeptos;
 	private JRadioButton aceptarButton;
@@ -62,6 +65,15 @@ public class AceptarORechazarActividad extends JInternalFrame{
 		aceptarORechazar.add(rechazarButton);
 		
 		JButton confirmarButton = new JButton("Confirmar");
+		JButton cancelarButton = new JButton("Cancelar");
+		
+		cancelarButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
 		
 		confirmarButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -99,19 +111,19 @@ public class AceptarORechazarActividad extends JInternalFrame{
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(62)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(cancelarButton)
 								.addComponent(lblActividades)
 								.addComponent(aceptarButton))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(55)
-									.addComponent(rechazarButton))
-								.addGroup(groupLayout.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(comboBoxActividades, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(121)
-							.addComponent(confirmarButton)))
-					.addContainerGap(121, Short.MAX_VALUE))
+									.addComponent(comboBoxActividades, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(36)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(confirmarButton)
+										.addComponent(rechazarButton))))))
+					.addContainerGap(45, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -126,9 +138,11 @@ public class AceptarORechazarActividad extends JInternalFrame{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(aceptarButton)
 						.addComponent(rechazarButton))
-					.addGap(38)
-					.addComponent(confirmarButton)
-					.addContainerGap(257, Short.MAX_VALUE))
+					.addGap(56)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(confirmarButton)
+						.addComponent(cancelarButton))
+					.addContainerGap(239, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}

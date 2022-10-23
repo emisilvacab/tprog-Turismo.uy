@@ -232,7 +232,7 @@ public class AltaActividad extends JInternalFrame {
 						for (String categoria: categorias) {
 							setCategorias.add(categoria);
 						}
-						
+						 
 
 						boolean existeAct = iCtrlDepartamento.ingresarDatosActividad(nombre,  descripcion, duracion, costo, ciudad, fecha, proveedor, departamento, setCategorias, null);
 

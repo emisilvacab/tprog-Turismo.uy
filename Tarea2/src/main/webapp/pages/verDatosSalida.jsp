@@ -89,7 +89,7 @@
 			  				%>
 				  			<div class="card-body mb-0 mt-0 pt-2 pb-1" style="max-width: 100%;">
 					  			<div class="row">
-				  					<button type="button" class="btn btn-primary btn-block">Inscribirse a salida</button>
+					  				<a class="btn btn-primary btn-block" href="/Tarea2/inscribir?cambio=consulta&act=<%=actividad.getNombre()%>&sal=<%=salida.getNombre()%>">Inscribirse a salida</a>
 				  				</div>
 			  				</div>
 			  				<%

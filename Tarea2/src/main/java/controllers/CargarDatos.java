@@ -56,10 +56,6 @@ public class CargarDatos extends HttpServlet {
     	IControladorDepartamento icd = fact.getIControladorDepartamento();
     	IControladorUsuario icu = fact.getIControladorUsuario();
     	IControladorPaquete icp = fact.getIControladorPaquete();
-    	//CargarDatos cacaDatos = new CargarDatos(ctrlUsuario, ctrlDepartamentos, ctrlPaquete);
-    	/* icd = picd;
-		icu = picu;
-		icp = picp; */
 		
     	DTUsuario user;
 		user = new DTTurista("lachiqui", "Rosa María", "Martínez", "mirtha.legrand.ok@hotmail.com.ar", new GregorianCalendar(1927, 1, 23), "awdrg543", "https://pbs.twimg.com/media/EOHAP9zWoAsnkiM?format=jpg&name=small","argentina");
@@ -359,8 +355,8 @@ public class CargarDatos extends HttpServlet {
 		}
 				
 		try {
-			icu.ingresarDatosInscripcionPaq("lachiqui", "Degusta Noviembre", 2, new GregorianCalendar(2022, 8, 15), "Disfrutar Rocha");//costo = 1280
-			icu.ingresarDatosInscripcionPaq("lachiqui", "Teatro con Sabores 3", 2, new GregorianCalendar(2022, 8, 15), "Disfrutar Rocha");//costo = 800
+			icu.ingresarDatosInscripcionPaq("lachiqui", "Degusta Noviembre", 2, new GregorianCalendar(2022, 9, 3), "Disfrutar Rocha");//costo = 1280
+			icu.ingresarDatosInscripcionPaq("lachiqui", "Teatro con Sabores 3", 2, new GregorianCalendar(2022, 9, 3), "Disfrutar Rocha");//costo = 800
 			
 			icu.ingresarDatosInscripcionPaq("elelvis", "Degusta Setiembre", 5, new GregorianCalendar(2022, 8, 2), "Disfrutar Rocha");//costo = 3200
 			icu.ingresarDatosInscripcionPaq("elelvis", "Teatro con Sabores 1", 5, new GregorianCalendar(2022, 8, 2), "Disfrutar Rocha");//costo = 200
@@ -372,10 +368,10 @@ public class CargarDatos extends HttpServlet {
 			icu.ingresarDatosInscripcionPaq("waston", "Almuerzo 2", 1, new GregorianCalendar(2022, 8, 5), "Un día en Colonia");//costo = 680
 			
 			icu.ingresarDatosInscripcionPaq("elelvis", "Tour Colonia del Sacramento 30-10", 2, new GregorianCalendar(2022, 9, 2), "Un día en Colonia");//costo = 680
-			icu.ingresarDatosInscripcionPaq("elelvis", "Almuerzo en el Real 1", 2, new GregorianCalendar(2022, 9, 2), "Un día en Colonia");//costo = 1360
+			icu.ingresarDatosInscripcionPaq("elelvis", "Almuerzo en el Real 1", 2, new GregorianCalendar(2022, 9, 11), "Un día en Colonia");//costo = 1360
 			
-			icu.ingresarDatosInscripcionPaq("mastropiero", "Tour Colonia del Sacramento 30-10", 4, new GregorianCalendar(2022, 9, 5), "Un día en Colonia");//costo = 1360
-			icu.ingresarDatosInscripcionPaq("mastropiero", "Almuerzo en el Real 1", 4, new GregorianCalendar(2022, 9, 5), "Un día en Colonia");//costo = 2720
+			icu.ingresarDatosInscripcionPaq("mastropiero", "Tour Colonia del Sacramento 30-10", 4, new GregorianCalendar(2022, 9, 12), "Un día en Colonia");//costo = 1360
+			icu.ingresarDatosInscripcionPaq("mastropiero", "Almuerzo en el Real 1", 4, new GregorianCalendar(2022, 9, 12), "Un día en Colonia");//costo = 2720
 			
 		}
 		catch(salidaNoExisteException e1) {
