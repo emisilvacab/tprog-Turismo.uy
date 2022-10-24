@@ -35,7 +35,7 @@
 				}
 			}
 		%>		
-			<form class="form" id="form-registrar-usuario" action="/Tarea2/registrar" method="post" enctype="multipart/form-data">
+			<form class="form" id="form-registrar-usuario" action="/Tarea2/registrar" method="post" enctype="multipart/form-data" style="margin-top:100px">
 				<div class="row">
 					<div class="col-md-4">
 						<label class="lbltxt">Nickname*</label><br>
