@@ -1,5 +1,5 @@
 function validarAltaUsuario(){
-	
+	alert("validó")
 	if (document.getElementById('fieldNickname').value.length == 0){
 		alert('Ingrese un nickname');
     	return false;

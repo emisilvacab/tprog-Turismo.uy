@@ -9,6 +9,7 @@ import logica.datatypes.DTProveedor;
 import logica.datatypes.DTUsuario;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
+import excepciones.categoriaYaExisteException;
 import excepciones.compraExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.paqueteNoExisteException;
@@ -60,11 +61,20 @@ class ControladorPaqueteTest {
 		
 		icd.ingresarDepartamento("Rocha", "La Organización de Gestión del Destino (OGD) Rocha es un Ámbito de articulación público - privada en el sector turístico que integran la Corporación Rochense de Turismo y la Intendencia de Rocha a través de su Dirección de Turismo.", "www.turismorocha.gub.uy");
 		icd.ingresarDepartamento("Colonia", "La propuesta del Departamento de Colonia divide en cuatro actos su espectáculo anual. Cada acto tiene su magia. Desde su naturaleza y playas hasta sus tradiciones y el patrimonio	mundial. Todo el año se disfruta.", "https://colonia.gub.uy/turismo/");
+		try {
+			icd.ingresarDatosCategoria("Gastro");
+			icd.ingresarDatosCategoria("Pase");
+		} catch (categoriaYaExisteException e) {
+			e.printStackTrace();
+		}
+		
 		
 		try { 
 			HashSet<String> categorias = new HashSet<String>(); //HAY QUE TESTEAR ESTO (AGREGAR CATEGORIAS A ACTIVIDAD)
-
+			categorias.add("Gastro");
 			icd.ingresarDatosActividad("Degusta",  "Festival gastronómico de productos locales en Rocha", 3, 800, "Rocha", new GregorianCalendar(2022, 6, 20), "washington", "Rocha", categorias, null);
+			categorias.remove("Gastro");
+			categorias.add("Pase");
 			icd.ingresarDatosActividad("Teatro con Sabores",  "En el mes aniversario del Club Deportivo Unión de Rocha te invitamos a una merienda deliciosa.", 3, 500, "Rocha", new GregorianCalendar(2022, 6, 21), "washington", "Rocha", categorias, null);
 
 			icd.ingresarDatosActividad("Tour por Colonia del Sacramento",  "Con guía especializado y en varios idiomas. Varios circuitos posibles.", 2, 400, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias, null);
@@ -84,6 +94,10 @@ class ControladorPaqueteTest {
 		
 	@Test
 	void ingresarObtenerDatosPaqueteTest() {
+		Set<String> paquetes = new HashSet<String>();
+		paquetes.add("Disfrutar Rocha");
+		paquetes.add("Disfrutar");
+		paquetes.add("Un día en Colonia");
 	
 		try {
 			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null);
@@ -95,10 +109,6 @@ class ControladorPaqueteTest {
 		}
 		
 		try {
-			Set<String> paquetes = new HashSet<String>();
-			paquetes.add("Disfrutar Rocha");
-			paquetes.add("Disfrutar");
-			paquetes.add("Un día en Colonia");
 			DTPaquete paq1 = icp.obtenerDatosPaquete("Disfrutar Rocha");
 			DTPaquete paq2 = icp.obtenerDatosPaquete("Un día en Colonia");
 			assertEquals(paq1.getNombre(), "Disfrutar Rocha");
@@ -126,6 +136,11 @@ class ControladorPaqueteTest {
 		assertThrows(paqueteYaExisteException.class, () -> {
 			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), null);
 		});
+		
+		Set<DTPaquete> paqs = icp.obtenerPaquetesAll();
+		for (DTPaquete p: paqs) {
+			assertEquals(paquetes.contains(p.getNombre()), true);
+		}
 		
 	}
 	
@@ -166,6 +181,38 @@ class ControladorPaqueteTest {
 		} catch (departamentoNoExisteException | paqueteNoExisteException e) {
 			e.printStackTrace();
 		}
+		
+		//obtenerActividadesPaquete
+		Set<String> actsNom = new HashSet<String>();
+		actsNom.add("Degusta");
+		actsNom.add("Teatro con Sabores");
+
+		try {
+			Set<DTActividad> acts = icp.obtenerActividadesPaquete("Disfrutar Rocha");
+			for (DTActividad a: acts) {
+				assertEquals(actsNom.contains(a.getNombre()), true);
+			}
+			
+		} catch (paqueteNoExisteException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		//obtenerCategoriasPaquete
+
+		try {
+			Set<String> cats = icp.obtenerCategoriasPaquete("Disfrutar Rocha");
+			Set<String> catsIn = new HashSet<String>();
+			catsIn.add("Gastro");
+			catsIn.add("Pase");
+			for (String c: cats) {
+				assertEquals(catsIn.contains(c), true);
+			}
+			
+		} catch (paqueteNoExisteException e1) {
+			e1.printStackTrace();
+		}
+		
 		
 		//comprarPaquete
 		
