@@ -114,16 +114,19 @@ public class ControladorUsuario implements IControladorUsuario {
 	@Override
 	public void altaUsuario(DTUsuario user) throws UsuarioRepetidoException {
 		ManejadorUsuario mUsr = ManejadorUsuario.getInstance();
-		if (mUsr.getProveedor(user.getNickname())!=null || mUsr.getTurista(user.getNickname())!=null || existeUsuarioConCorreo(user.getCorreo())){
-			throw new UsuarioRepetidoException("Ya existe un usuario con el nickname o correo ingresado");
+		if (mUsr.getProveedor(user.getNickname())!=null || mUsr.getTurista(user.getNickname())!=null){
+			throw new UsuarioRepetidoException("Ya existe un usuario con el nickname ingresado");
 		}else {
-			if (user.getClass() == DTTurista.class) {
-				DTTurista dttur = (DTTurista) user;
-				mUsr.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), dttur.getNacionalidad()));
+			if (existeUsuarioConCorreo(user.getCorreo())){
+				throw new UsuarioRepetidoException("Ya existe un usuario con el correo ingresado");
 			}else {
-				DTProveedor dtprov = (DTProveedor) user;
-				mUsr.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), user.getLinkImagen(), dtprov.getDescripcion(), dtprov.getLink()));
-				
+				if (user.getClass() == DTTurista.class) {
+					DTTurista dttur = (DTTurista) user;
+					mUsr.addTurista(new Turista(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), dttur.getLinkImagen(), dttur.getNacionalidad()));
+				}else {
+					DTProveedor dtprov = (DTProveedor) user;
+					mUsr.addProveedor(new Proveedor(user.getNickname(), user.getNombre(), user.getApellido(), user.getCorreo(), user.getNacimiento(), user.getContrasena(), dtprov.getLinkImagen(), dtprov.getDescripcion(), dtprov.getLink()));
+					}
 			}
 		}
 		

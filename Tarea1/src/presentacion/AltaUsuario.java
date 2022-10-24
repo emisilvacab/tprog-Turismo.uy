@@ -59,6 +59,7 @@ public class AltaUsuario extends JInternalFrame{
 	private String apellido;
 	private String correo;
 	private String contrasena;
+	private String confirmacion;
 	private GregorianCalendar fecha;
 	private String nacionalidad;
 	private String link;
@@ -68,6 +69,7 @@ public class AltaUsuario extends JInternalFrame{
 	private JButton btnBorrar;
 	private Image imagenUsr = null;
 	private JLabel txfImagen;
+	private JPasswordField confirmacionField;
 
 
 	
@@ -78,7 +80,7 @@ public class AltaUsuario extends JInternalFrame{
         setClosable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setTitle("Agregar un usuario");
-        setBounds(30, 30, 530, 330);
+        setBounds(30, 30, 600, 400);
         
 	    addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent except) {
@@ -125,37 +127,37 @@ public class AltaUsuario extends JInternalFrame{
         correoField.setColumns(10);
         
         JLabel nacionalidadLabel = new JLabel("Nacionalidad: ");
-        nacionalidadLabel.setBounds(11, 155, 105, 14);
+        nacionalidadLabel.setBounds(280, 130, 105, 14);
         nacionalidadLabel.setVisible(false);
         
         nacionalidadField = new JTextField();
-        nacionalidadField.setBounds(99, 152, 132, 20);
+        nacionalidadField.setBounds(387, 127, 132, 20);
         nacionalidadField.setVisible(false);
         nacionalidadField.setColumns(10);
         
         JLabel descripcionLabel = new JLabel("Descripción: ");
-        descripcionLabel.setBounds(22, 194, 94, 14);
+        descripcionLabel.setBounds(11, 245, 94, 14);
         descripcionLabel.setVisible(false);
         
         descripcionField = new JTextField();
-        descripcionField.setBounds(119, 189, 343, 24);
+        descripcionField.setBounds(135, 240, 343, 24);
         descripcionField.setColumns(10);
         descripcionField.setVisible(false);
         
         JLabel linkLabel = new JLabel("Link (opcional): ");
-        linkLabel.setBounds(19, 220, 97, 14);
+        linkLabel.setBounds(11, 282, 97, 14);
         linkLabel.setVisible(false);
         
         linkField = new JTextField();
-        linkField.setBounds(119, 220, 334, 23);
+        linkField.setBounds(128, 273, 334, 23);
         linkField.setColumns(10);
         linkField.setVisible(false);
         
         JButton cancelarButton = new JButton("Cancelar");
-        cancelarButton.setBounds(298, 255, 185, 23);
+        cancelarButton.setBounds(301, 308, 185, 23);
         
         JButton confirmarButton = new JButton("Confirmar");
-        confirmarButton.setBounds(6, 255, 184, 23);
+        confirmarButton.setBounds(6, 308, 184, 23);
         
         ButtonGroup turOProv = new ButtonGroup();
         turOProv.add(proveedorButton);
@@ -230,11 +232,13 @@ public class AltaUsuario extends JInternalFrame{
         getContentPane().add(apellidoField);
         
         btnBorrar = new JButton("Borrar");
-        btnBorrar.setBounds(341, 149, 75, 29);
+        btnBorrar.setVisible(false);
+        btnBorrar.setBounds(63, 176, 75, 29);
         getContentPane().add(btnBorrar);
         
         btnAbrir = new JButton("Abrir");
-        btnAbrir.setBounds(425, 149, 75, 29);
+        btnAbrir.setVisible(false);
+        btnAbrir.setBounds(135, 176, 75, 29);
         getContentPane().add(btnAbrir);
 		btnAbrir.addMouseListener(new MouseAdapter() {
 			@Override
@@ -273,44 +277,59 @@ public class AltaUsuario extends JInternalFrame{
 		});
         
         JLabel contrasenaLabel = new JLabel("Contraseña: ");
-        contrasenaLabel.setBounds(280, 127, 88, 16);
+        contrasenaLabel.setBounds(6, 154, 88, 16);
         getContentPane().add(contrasenaLabel);
         
         contrasenaField = new JPasswordField();
-        contrasenaField.setBounds(370, 119, 130, 26);
+        contrasenaField.setBounds(101, 151, 130, 26);
         getContentPane().add(contrasenaField);
         contrasenaField.setColumns(10);
         
         JLabel imagenLabel = new JLabel("Imagen: ");
-        imagenLabel.setBounds(280, 154, 61, 16);
+        imagenLabel.setVisible(false);
+        imagenLabel.setBounds(6, 181, 61, 16);
         getContentPane().add(imagenLabel);
         
         txfImagen = new JLabel("Sin imagen");
-        txfImagen.setBounds(280, 173, 120, 16);
+        txfImagen.setVisible(false);
+        txfImagen.setBounds(6, 200, 120, 16);
         getContentPane().add(txfImagen);
+        
+        JLabel confirmacionlbl = new JLabel("Confirmación");
+        confirmacionlbl.setBounds(280, 156, 97, 16);
+        getContentPane().add(confirmacionlbl);
+        
+        confirmacionField = new JPasswordField();
+        confirmacionField.setBounds(387, 149, 132, 26);
+        getContentPane().add(confirmacionField);
        
         
         confirmarButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent except) {
         		getDatosFromUser();
         		if (chequearDatos()) {
-        			DTUsuario user;
-        			if (esTurista) {
-        				user = new DTTurista(nickname, nombre, apellido, correo, fecha, contrasena, null, nacionalidad);
+        			if (contrasena.equals(confirmacion)) {
+	        			DTUsuario user;
+	        			if (esTurista) {
+	        				user = new DTTurista(nickname, nombre, apellido, correo, fecha, contrasena, null, nacionalidad);
+	        			}else {
+	        				user = new DTProveedor(nickname, nombre, apellido, correo, fecha, contrasena, null, descripcion, link);
+	        			}
+	        			try {
+							contrUsers.altaUsuario(user);
+						} catch (UsuarioRepetidoException e1) {
+							JOptionPane.showMessageDialog( null, e1.getMessage(), "Alta Usuario", JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+	        			JOptionPane.showMessageDialog(null, "Usuario cargado con éxito!", "Alta de usuario",
+	                            JOptionPane.INFORMATION_MESSAGE);
+	        			limpiarFormulario();
+	        			setVisible(false);
         			}else {
-        				user = new DTProveedor(nickname, nombre, apellido, correo, fecha, contrasena, null, descripcion, link);
+        				JOptionPane.showMessageDialog(null, "La contrasena y la confirmacion deben coincidir!", "Alta de usuario",
+                                JOptionPane.INFORMATION_MESSAGE);
         			}
-        			try {
-						contrUsers.altaUsuario(user);
-					} catch (UsuarioRepetidoException e1) {
-						JOptionPane.showMessageDialog( null, e1.getMessage(), "Alta Usuario", JOptionPane.ERROR_MESSAGE);
-						return;
-					}
-        			JOptionPane.showMessageDialog(null, "Usuario cargado con éxito!", "Alta de usuario",
-                            JOptionPane.INFORMATION_MESSAGE);
-        			limpiarFormulario();
-        			setVisible(false);
-        			
+           			
         		}else {
         			JOptionPane.showMessageDialog(null, "Todos los datos son obligatorios!", "Alta de usuario",
                             JOptionPane.INFORMATION_MESSAGE);
@@ -328,7 +347,7 @@ public class AltaUsuario extends JInternalFrame{
 	}
 	
 	private Boolean chequearDatos() {
-		if (nombre.length()==0 || apellido.length()==0|| nickname.length()==0 || correo.length()==0 || contrasena.length()==0) {
+		if (nombre.length()==0 || apellido.length()==0|| nickname.length()==0 || correo.length()==0 || contrasena.length()==0 || confirmacion.length() ==0) {
 			return false;
 		}else {
 			if (turistaButton.isSelected()) {
@@ -348,6 +367,7 @@ public class AltaUsuario extends JInternalFrame{
 		apellido = apellidoField.getText();
 		correo = correoField.getText();
 		contrasena = contrasenaField.getText();
+		confirmacion = confirmacionField.getText();
 		fecha =  new GregorianCalendar(datePicker.getModel().getYear(), datePicker.getModel().getMonth(), datePicker.getModel().getDay());
 		if (turistaButton.isSelected()) {
 			nacionalidad = nacionalidadField.getText();
@@ -368,6 +388,7 @@ public class AltaUsuario extends JInternalFrame{
 		apellidoField.setText("");
 		correoField.setText("");
 		contrasenaField.setText("");
+		confirmacionField.setText("");
 		LocalDate date = LocalDate.now();
 		datePicker.getModel().setDate(date.getYear(), date.getMonthValue() -1, date.getDayOfMonth());
 		datePicker.getModel().setSelected(true);
