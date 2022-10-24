@@ -40,7 +40,7 @@
 		</form>
 	</section>
 	
-	<script src=../resources/js/validarIniciarSesion.js type="text/javascript"></script>
+	<script src=resources/js/validarIniciarSesion.js type="text/javascript"></script>
 
 </body>
 </html>
