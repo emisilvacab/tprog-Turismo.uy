@@ -37,7 +37,7 @@
 		  	<%
 				} else { 
 		  	%>
-		  		<img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" id="foto_usuario" class="rounded-circle" alt="foto de usuario" class="logopic">
+		  		<img src="<%=usr.getLinkImagen()%>" id="foto_usuario" class="rounded-circle" alt="foto de usuario" class="logopic">
 		  	<%
 		  		} 
 		  	%>
