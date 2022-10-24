@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import logica.datatypes.DTActividad;
+import logica.datatypes.DTInscripcion;
 import logica.datatypes.DTProveedor;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTTurista;
@@ -11,6 +12,9 @@ import logica.datatypes.DTUsuario;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
+import excepciones.inscripcionExisteException;
+import excepciones.limiteSuperadoException;
+import excepciones.paqueteNoExisteException;
 import excepciones.proveedorNoExisteException;
 import excepciones.salidaNoExisteException;
 import excepciones.usuarioNoExisteException;
@@ -286,6 +290,20 @@ class ControladorUsuarioTest {
 			e.printStackTrace();
 		}
 		
+		//obtenerInscripcionesTurista
+		try {
+			Set<DTInscripcion> insc = icu.obtenerInscripcionesTurista("leomel");
+			for (DTInscripcion i: insc) {
+				assertEquals(i.getCantTuristas(), 1);
+				assertEquals(i.getNickname(), "leomel");
+				assertEquals(i.getSalida(), "Juegos");
+			}
+			
+		} catch (usuarioNoExisteException e) {
+			fail(e.getMessage());
+			e.printStackTrace();
+		}
+		
 		//testeo del problema que el usuario ya esté inscripto
 		try {
 			String problema = icu.ingresarDatosInscripcion("leomel", "Juegos", 1, new GregorianCalendar(2022, 8, 29));
@@ -298,6 +316,20 @@ class ControladorUsuarioTest {
 		catch (usuarioNoExisteException e) {
 			fail(e.getMessage());
 			e.printStackTrace();
+		}
+		
+		try {
+			icu.ingresarDatosInscripcionPaq("pepe", "Juegos", 1, new GregorianCalendar(2022, 8, 29), null);
+		} catch (salidaNoExisteException e1) {
+			e1.printStackTrace();
+		} catch (usuarioNoExisteException e1) {
+			e1.printStackTrace();
+		} catch (paqueteNoExisteException e1) {
+			e1.printStackTrace();
+		} catch (inscripcionExisteException e1) {
+			e1.printStackTrace();
+		} catch (limiteSuperadoException e1) {
+			e1.printStackTrace();
 		}
 		
 		//testeo del problema de capacidad superada
