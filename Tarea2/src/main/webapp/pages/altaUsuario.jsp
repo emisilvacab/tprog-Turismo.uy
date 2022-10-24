@@ -35,7 +35,7 @@
 				}
 			}
 		%>		
-			<form class="form" id="form-registrar-usuario" action="/Tarea2/registrar" method="post">
+			<form class="form" id="form-registrar-usuario" action="/Tarea2/registrar" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-4">
 						<label class="lbltxt">Nickname*</label><br>
@@ -60,7 +60,7 @@
 						<input class="inputbox" type="email" id="correoPersona" name="correoPersona" <%if (request.getAttribute("correoPersona") != null){String correo = (String)request.getAttribute("correoPersona"); %> value='<%=correo%>' <%} %>><br><br>		
 						
 						<label class="lbltxt">Imagen</label><br>
-						<input class="inputbox" type="file" id="imgPersona" name="imgPersona" <%if (request.getAttribute("imgPersona") != null){String img = (String)request.getAttribute("imgPersona"); %> value='<%=img%>' <%} %>><br><br><br>		
+						<input class="inputbox" type="file" id="imgPersona" name="imgPersona" accept = "image/*"><br><br><br>		
 					</div>
 				
 				
