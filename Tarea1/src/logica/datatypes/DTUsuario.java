@@ -19,7 +19,7 @@ public class DTUsuario{
 		this.setCorreo(correo);
 		this.setNacimiento(nacimiento);
 		this.setContrasena(contrasena);
-		this.setLinkImagen(null);
+		this.setLinkImagen(linkImagen);
 	}
 	
 	public String getNickname() {
