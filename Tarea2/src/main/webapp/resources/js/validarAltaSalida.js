@@ -1,10 +1,10 @@
 function validarAltaSalida(){
 	
-	if (document.getElementById('depSal').value.length == 0){
+	if (document.getElementById('form-select-dpto').value.length == 0){
 		alert('Seleccione un departamento');
     	return false;
     }
-	else if (document.getElementById('actSal').value.length == 0){
+	else if (document.getElementById('form-select-act').value.length == 0){
 		alert('Seleccione una actividad');
     	return false;
     }
