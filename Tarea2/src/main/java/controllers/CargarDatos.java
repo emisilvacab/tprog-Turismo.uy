@@ -182,7 +182,7 @@ public class CargarDatos extends HttpServlet {
 
 			categorias.add("Cultura y Patrimonio");
 			categorias.remove("Campo y Naturaleza");
-			icd.ingresarDatosActividad("Bus turístico Colonia",  "Recorrida por los principales atractivos de la ciudad", 3, 600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 1), "meche", "Colonia", categorias, "resources/img/Bus turÃ­stico Colonia.jpeg");
+			icd.ingresarDatosActividad("Bus turístico Colonia",  "Recorrida por los principales atractivos de la ciudad", 3, 600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 1), "meche", "Colonia", categorias, "resources/img/Bus turístico Colonia.jpeg");
 			estado = Estado.AGREGADA;
 			icd.modificarEstadoActividad("Bus turístico Colonia", estado);
 			
@@ -193,7 +193,7 @@ public class CargarDatos extends HttpServlet {
 			categorias.add("Aventura y Deporte");
 			categorias.add("Turismo Playas");
 			categorias.remove("Cultura y Patrimonio");
-			icd.ingresarDatosActividad("Deportes náuticos sin uso de motor",  "kitsurf - windsurf - kayakismo - canotaje en Rocha", 3, 1200, "Rocha", new GregorianCalendar(2022, 8, 5), "washington", "Rocha", categorias, "resources/img/Deportes nÃ¡uticos sin uso de motor.jpeg");
+			icd.ingresarDatosActividad("Deportes náuticos sin uso de motor",  "kitsurf - windsurf - kayakismo - canotaje en Rocha", 3, 1200, "Rocha", new GregorianCalendar(2022, 8, 5), "washington", "Rocha", categorias, "resources/img/Deportes náuticos sin uso de motor.jpeg");
 			estado = Estado.AGREGADA;
 			icd.modificarEstadoActividad("Deportes náuticos sin uso de motor", estado);
 
