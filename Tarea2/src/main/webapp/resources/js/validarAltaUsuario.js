@@ -1,5 +1,4 @@
-function validarAltaUsuario(){
-	alert("validó")
+function validarAltaUsuario(esProveedor){
 	if (document.getElementById('fieldNickname').value.length == 0){
 		alert('Ingrese un nickname');
     	return false;
@@ -32,11 +31,7 @@ function validarAltaUsuario(){
 		alert('Ingrese su correo');
     	return false;
 	}
-	else if(!algunoApretado){
-		alert('El usuario debe ser Turista o Proveedor');
-		return false;
-	}
-	else if((!botonTurista) && (document.getElementById('descripcionProv').value.length == 0)){
+	else if((esProveedor) && (document.getElementById('descripcionProv').value.length == 0)){
 		alert('Al ser Proveedor debe tener descripción');
 		return false;
 	}
