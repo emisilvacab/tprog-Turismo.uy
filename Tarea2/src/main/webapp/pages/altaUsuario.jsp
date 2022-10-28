@@ -14,32 +14,31 @@
 	<jsp:include page="/template/aside-bar.jsp"/>
 	
 	<section id="section-middle" class="section">
-	<div class='row'>
-		<h1 class="headerRegistrarUsuario" id="header-center">Registrar Usuario</h1>
-	</div>
-		<%  //CARTELES DE ERRORES
-			String mensaje = (String) request.getAttribute("error");
-			request.setAttribute("error", null);			
-		if (mensaje != null && mensaje.equals("usuario-repetido-nickname")) {
-			System.out.println("llego error repetido nickname");
-		%>				
-		<h6 class="text-center" style="color:#FF0000">Ya existe un usuario con el nickname ingresado.</h6>
-		<%
-			} else { 
-				if (mensaje != null && mensaje.equals("usuario-repetido-correo")) {	
-					System.out.println("llego error repetido correo");
-
-		%>
-		<h6 style="color:#FF0000">Ya existe un usuario con el correo ingresado.</h6>
-		<%
-				}
-			}
-		%>		
-			<form class="form" id="form-registrar-usuario" action="/Tarea2/registrar" method="post" enctype="multipart/form-data" style="margin-top:100px">
-				<div class="row">
-					<div class="col-md-4">
+		<h1 class="headerRegistrarUsuario">Registrar Usuario</h1><br>
+			<form class="formAltaUsuario" id="form-registrar-usuario" action="/Tarea2/registrar" method="post" enctype="multipart/form-data" style="margin-top:100px">
+				<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-4">
+						<%  //CARTELES DE ERRORES
+							String mensaje = (String) request.getAttribute("error");
+							request.setAttribute("error", null);			
+							if (mensaje != null && mensaje.equals("usuario-repetido-nickname")) {
+								System.out.println("llego error repetido nickname");
+						%>				
+						<h6 class="text-center" style="color:#FF0000">Ya existe un usuario con el nickname ingresado.</h6>
+						<%
+							} else { 
+								if (mensaje != null && mensaje.equals("usuario-repetido-correo")) {	
+									System.out.println("llego error repetido correo");
+						%>
+						<h6 style="color:#FF0000">Ya existe un usuario con el correo ingresado.</h6>
+						<%
+								}
+							}
+						%>		
 						<label class="lbltxt">Nickname*</label><br>
 						<input class="inputbox" name="nickname" id="fieldNickname" <%if (request.getAttribute("nickname") != null){String nickname = (String)request.getAttribute("nickname"); %> value='<%=nickname%>' <%} %>><br>
+						
 						<label class="lbltxt">Nombre*</label><br>
 						<input class="inputbox" type="text" id="nombrePersona" name="nombrePersona" <%String nombre = (String) request.getAttribute("nombre"); if (nombre == null) nombre = "";  System.out.println(nombre); %> value='<%=nombre%>'><br>	
 						
@@ -49,27 +48,24 @@
 						<label class="lbltxt">Contraseña*</label><br>
 						<input class="inputbox" type="password" id="contrasenaPersona" name="contrasena"><br>
 						
-				
 						<label class="lbltxt">Confirmación*</label><br>
 						<input class="inputbox" type="password" id="confirmacionContrasena" name="confirmacionContrasena"><br>
 						
 						<label class="lbltxt">Nacimiento*</label><br>
-						<input class="inputbox" type="date" id="nacimientoPersona" name="nacimientoPersona" <%if (request.getAttribute("nacimientoPersona") != null){String nacimiento = (String)request.getAttribute("nacimientoPersona"); %> value='<%=nacimiento%>' <%} %>><br><br>	
+						<input class="inputbox" type="date" id="nacimientoPersona" name="nacimientoPersona" <%if (request.getAttribute("nacimientoPersona") != null){String nacimiento = (String)request.getAttribute("nacimientoPersona"); %> value='<%=nacimiento%>' <%} %>><br>	
 						
 						<label class="lbltxt">Correo*</label><br>
-						<input class="inputbox" type="email" id="correoPersona" name="correoPersona" <%if (request.getAttribute("correoPersona") != null){String correo = (String)request.getAttribute("correoPersona"); %> value='<%=correo%>' <%} %>><br><br>		
+						<input class="inputbox" type="email" id="correoPersona" name="correoPersona" <%if (request.getAttribute("correoPersona") != null){String correo = (String)request.getAttribute("correoPersona"); %> value='<%=correo%>' <%} %>><br>		
 						
 						<label class="lbltxt">Imagen</label><br>
 						<input class="inputbox" type="file" id="imgPersona" name="imgPersona" accept = "image/*"><br><br><br>		
-					</div>
-				
-				
-			<!-- <div class="column">	 -->	
-					<div class="col-md-4">
+					</div>	
+					
+					<div class="col-4">
 						<h2 class="lbltxt">Turista</h2>
 					    <label class="lbltxt">Nacionalidad*</label><br>
 					    <select name="nacionalidad" id="nacionalidadTurista">
-					    <option value="Afghanistan">Afghanistan</option>
+					    	<option value="Afghanistan">Afghanistan</option>
 							<option value="Albania">Albania</option>
 							<option value="Algeria">Algeria</option>
 							<option value="American Samoa">American Samoa</option>
@@ -188,7 +184,7 @@
 							<option value="Kyrgyzstan">Kyrgyzstan</option>
 							<option value="Lao">Lao People's Democratic Republic</option>
 							<option value="Latvia">Latvia</option>
-							<option value="Lebanon" selected>Lebanon</option>
+							<option value="Lebanon">Lebanon</option>
 							<option value="Lesotho">Lesotho</option>
 							<option value="Liberia">Liberia</option>
 							<option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
@@ -295,7 +291,7 @@
 							<option value="United Kingdom">United Kingdom</option>
 							<option value="United States">United States</option>
 							<option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
-							<option value="Uruguay">Uruguay</option>
+							<option value="Uruguay" selected>Uruguay</option>
 							<option value="Uzbekistan">Uzbekistan</option>
 							<option value="Vanuatu">Vanuatu</option>
 							<option value="Venezuela">Venezuela</option>
@@ -307,37 +303,22 @@
 							<option value="Yemen">Yemen</option>
 							<option value="Serbia">Serbia</option>
 							<option value="Zambia">Zambia</option>
-							<option value="Zimbabwe">Zimbabwe</option>
-					    <%
-					  		String nacionalidadSeleccionada = (String) request.getAttribute("nacionalidad");
-					    	System.out.println("la nacionalidad: " + nacionalidadSeleccionada);
-					  		if (nacionalidadSeleccionada != null) {
-					  			System.out.println("llego la opcion seleccionada");
-					  	%>
-					  		<option selected><%=nacionalidadSeleccionada%></option>
-					  	<%
-					  		} else {
-					  	%>
-					  			<option selected>Uruguay</option>
-					  	<% 
-				  			} 
-			  			%>
-					  		
-						</select>		  
-					<br>
-				<input class="btn btn-outline-dark" id="btnAceptarTur" onclick="return validarAltaUsuario(false)" name="btnAceptarTur" type="submit" value="Turista">
-			</div>
+							<option value="Zimbabwe">Zimbabwe</option>  		
+						</select>		
+						<br><br>
+						<input class="btn btn-outline-dark" id="btnAceptarTur" onclick="return validarAltaUsuario(false)" name="btnAceptarTur" type="submit" value="Turista">
+					</div>
 		  
-			  <div class="col-md-4">
-					<h2 class="lbltxt">Proveedor</h2>
-				  	<label class="lbltxt">Link</label><br>
-				  	<input class="inputbox" type="url" id="linkProv" name="linkProv" <%if (request.getAttribute("linkProv") != null){String linkProv = (String)request.getAttribute("linkProv"); %> value='<%=linkProv%>' <%} %>><br>
-					<label class="lbltxt">Descripción*</label><br>
-					<textarea class="inputbox" rows = "5" cols ="38" id="descripcionProv" name ="descripcionProv" <%String descripcionProv = ""; if (request.getAttribute("descripcionProv") != null){descripcionProv = (String)request.getAttribute("descripcionProv");} %> ><%=descripcionProv%></textarea><br>		
-				  <input class="btn btn-outline-dark" onclick="return validarAltaUsuario(true)" id="btnAceptarProv" name="btnAceptarProv" type="submit" value="Proveedor">
-					  
-			</div>
-		</div>
+					<div class="col-4">
+						<h2 class="lbltxt">Proveedor</h2>
+						<label class="lbltxt">Link</label><br>
+						<input class="inputbox" type="url" id="linkProv" name="linkProv" <%if (request.getAttribute("linkProv") != null){String linkProv = (String)request.getAttribute("linkProv"); %> value='<%=linkProv%>' <%} %>><br>
+						<label class="lbltxt">Descripción*</label><br>
+						<textarea class="inputbox" rows = "5" cols ="38" id="descripcionProv" name ="descripcionProv" <%String descripcionProv = ""; if (request.getAttribute("descripcionProv") != null){descripcionProv = (String)request.getAttribute("descripcionProv");} %> ><%=descripcionProv%></textarea><br>		
+						<input class="btn btn-outline-dark" onclick="return validarAltaUsuario(true)" id="btnAceptarProv" name="btnAceptarProv" type="submit" value="Proveedor">
+					</div>
+				</div>
+				</div>
 		</form>
 			
 			<script>

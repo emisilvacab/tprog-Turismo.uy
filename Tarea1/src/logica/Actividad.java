@@ -12,7 +12,7 @@ import logica.datatypes.DTActividad;
 import logica.datatypes.DTSalida;
 
 public class Actividad{
-	
+
 	private String nombre;
 	private String descripcion;
 	private int duracion;
