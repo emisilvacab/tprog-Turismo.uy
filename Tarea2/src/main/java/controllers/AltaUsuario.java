@@ -153,6 +153,7 @@ public class AltaUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
     	request.setAttribute("cats",cd.obtenerCategorias());
@@ -163,6 +164,7 @@ public class AltaUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		registrarUsuario(request,response);
 	}
 
