@@ -22,6 +22,7 @@ public class Actividad{
 	private Estado estado;
 	private Image figura;
 	private String linkImagen;
+	private String linkVideo;
 	
 	private Departamento departamento;
 	private Proveedor proveedor;
@@ -30,7 +31,7 @@ public class Actividad{
 	private Set<Cuponera> cuponeras;
 	private Map<String, Categoria> categorias;
 	
-	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor, String linkImagen) {
+	public Actividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Departamento departamento, Proveedor proveedor, String linkImagen, String linkVideo) {
 		this.setNombre(nombre);
 		this.setDescripcion(descripcion);
 		this.setDuracion(duracion);
@@ -45,6 +46,15 @@ public class Actividad{
 		this.setEstado(Estado.AGREGADA);
 		this.setCategorias(new HashMap<String, Categoria>());
 		this.setLinkImagen(linkImagen);
+		this.setLinkVideo(linkVideo);
+	}
+
+	public String getLinkVideo() {
+		return linkVideo;
+	}
+
+	public void setLinkVideo(String linkVideo) {
+		this.linkVideo = linkVideo;
 	}
 
 	public String getNombre() {
@@ -136,7 +146,7 @@ public class Actividad{
 	}
 
 	public DTActividad getDatos() {
-		DTActividad res = new DTActividad(nombre, descripcion, duracion, costo, ciudad, alta, estado, linkImagen);
+		DTActividad res = new DTActividad(nombre, descripcion, duracion, costo, ciudad, alta, estado, linkImagen, linkVideo);
 		return res;
 	}
 

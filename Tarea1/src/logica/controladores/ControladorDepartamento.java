@@ -76,7 +76,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		throw new actividadNoExisteException("No se encontró una actividad con el nombre ingresado");
 	}
 	
-	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias, String linkImagen) throws excepciones.proveedorNoExisteException, departamentoNoExisteException {
+	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias, String linkImagen, String linkVideo) throws excepciones.proveedorNoExisteException, departamentoNoExisteException {
 		ManejadorDepartamentoCategoria manDepartamento = ManejadorDepartamentoCategoria.getInstance();
 		ManejadorUsuario manUsuario = ManejadorUsuario.getInstance();
 		
@@ -100,7 +100,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
     		if (proveedor == null) {
     			throw new excepciones.proveedorNoExisteException("No existe proveedor");
     		}
-    		Actividad nuevaActividad = new Actividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, depAsignado, proveedor, linkImagen);
+    		Actividad nuevaActividad = new Actividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, depAsignado, proveedor, linkImagen, linkVideo);
     		HashMap<String, Categoria> cats = new HashMap<String, Categoria>();
     		for (String nomCat : categorias) {
     			Categoria cat = manDepartamento.getCategoria(nomCat);
@@ -154,7 +154,7 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		if (act == null) {
 			throw new actividadNoExisteException("actividad no encontrada");
 		}else {
-			DTActividad res = new DTActividad(act.getNombre(), act.getDescripcion(), act.getDuracion(), act.getCosto(), act.getCiudad(), act.getAlta(), act.getEstado(), act.getLinkImagen());
+			DTActividad res = new DTActividad(act.getNombre(), act.getDescripcion(), act.getDuracion(), act.getCosto(), act.getCiudad(), act.getAlta(), act.getEstado(), act.getLinkImagen(), act.getLinkVideo());
 			return res;
 		}
 	}

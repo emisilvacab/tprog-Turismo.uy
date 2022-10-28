@@ -82,6 +82,7 @@ public class AltaActividad extends HttpServlet {
 		request.setAttribute("durAct", request.getParameter("durAct"));
 		request.setAttribute("costoAct", request.getParameter("costoAct"));
 		request.setAttribute("ciudadAct", request.getParameter("ciudadAct"));
+		request.setAttribute("linkVideo", request.getParameter("linkVideo"));
 		request.setAttribute("imgAct", request.getParameter("imgAct"));
 		request.setAttribute("catsAct", request.getParameter("catsAct"));
 		request.setAttribute("dptos",cd.obtenerDepartamentos());
@@ -114,9 +115,9 @@ public class AltaActividad extends HttpServlet {
     	request.setAttribute("dptos",cd.obtenerDepartamentos());
     	
 		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
-		String nicknameProv = usr.getNickname();//Sacar el nickname del proveedor que tiene la sesion inciada
+		String nicknameProv = usr.getNickname();//nickname del proveedor que tiene la sesion inciada
     	GregorianCalendar fechaAct = GregorianCalendar.from(ZonedDateTime.now());//Fecha actual
-		HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
+		HashSet<String> categorias = new HashSet<String>();
 		String[] cates = request.getParameterValues("catsAct");
 		for (String cat: cates) {
 			cat = cat.replace("+"," ");
@@ -127,11 +128,11 @@ public class AltaActividad extends HttpServlet {
     		String linkImagen = null;
 			String nuevoNombre = null;
     		Part part = request.getPart("imgAct");
-			if(part.getContentType().contains("image") && part.getInputStream() != null) { //Solo guardo la imagen si la seteó el usuario
+			if(part.getContentType().contains("image") && part.getInputStream() != null) {
 				nuevoNombre = guardarImagen(request,response);
 				linkImagen = "resources/img/" + nuevoNombre;
 			}
-			boolean existe = cd.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), fechaAct, nicknameProv, request.getParameter("depAct"), categorias, linkImagen);
+			boolean existe = cd.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), fechaAct, nicknameProv, request.getParameter("depAct"), categorias, linkImagen, request.getParameter("linkVideo"));
 			if (existe) {
 				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
 					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
@@ -148,9 +149,7 @@ public class AltaActividad extends HttpServlet {
 			e.printStackTrace();
 		} catch (departamentoNoExisteException e) {
 			e.printStackTrace();
-		}
-    	//Falta asociar categorias
-    
+		}    
 	}
 
 }

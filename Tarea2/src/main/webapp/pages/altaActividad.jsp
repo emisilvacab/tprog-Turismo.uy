@@ -74,6 +74,9 @@
 			<label class="lbltxt">Imagen</label><br>
 			<input class="inputbox" type="file" id="imgAct" accept = "image/*" name="imgAct"><br> 
 			
+			<label class="lbltxt">Video</label><br>
+			<input class="inputbox" type="url" id="linkVideo" name="linkVideo"><br> 
+			
 			
 			<label class="lbltxt">Seleccionar Categoría(s)*</label><br>
 			<select class="multiple" multiple="multiple" id="catsAct" name="catsAct">

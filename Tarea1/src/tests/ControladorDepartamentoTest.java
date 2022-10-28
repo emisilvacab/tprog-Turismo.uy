@@ -123,16 +123,16 @@ class ControladorDepartamentoTest {
 		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		boolean ingresado;
 		try {			
-			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta , "gardelito", "Maldonado", categorias, null);
+			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta , "gardelito", "Maldonado", categorias, "linkImagen", "linkVideo");
 			assertEquals(ingresado, false);
 
 			assertThrows(departamentoNoExisteException.class, () -> {
-				icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "CABA", categorias, null);
+				icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "CABA", categorias, "linkImagen", "linkVideo");
 			});
 			assertThrows(proveedorNoExisteException.class, () -> {
-				icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "sinProv", "Maldonado", categorias, null);
+				icd.ingresarDatosActividad("Caza", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "sinProv", "Maldonado", categorias, "linkImagen", "linkVideo");
 			});
-			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "Maldonado", categorias, null);
+			ingresado = icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta, "gardelito", "Maldonado", categorias, "linkImagen", "linkVideo");
 
 			assertEquals(ingresado, true);
 		
@@ -150,6 +150,8 @@ class ControladorDepartamentoTest {
 			assertEquals(obt.getCosto(), 1);
 			assertEquals(obt.getCiudad(), "Cadiz");
 			assertEquals(obt.getAlta(), fechaAlta);
+			assertEquals(obt.getLinkImagen(), "linkImagen");
+			assertEquals(obt.getLinkVideo(), "linkVideo");
 		}
 		catch (actividadNoExisteException anee) {
 			fail(anee.getMessage());
@@ -203,7 +205,7 @@ class ControladorDepartamentoTest {
 		icd.ingresarDepartamento("Maldonado", "Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
 		try {
 			
-			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta , "gardelito", "Maldonado", categorias, null);
+			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta , "gardelito", "Maldonado", categorias, "linkImagen", "linkVideo");
 
 			try {
 				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas", null);
@@ -271,7 +273,7 @@ class ControladorDepartamentoTest {
 		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		icd.ingresarDepartamento("Maldonado", "Donde encuentras Piriapolis y Punta del Este", "maldonado.com.uy");
 		try {
-			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta , "gardelito", "Maldonado", categorias, null);
+			icd.ingresarDatosActividad("Caza de brujas", "Como en la inquisicion pero en 2022", 2, 1, "Cadiz", fechaAlta , "gardelito", "Maldonado", categorias, "linkImagen", "linkVideo");
 
 			try {
 				icd.ingresarDatosSalida( "salida de prueba", 5, fechaAlta, fechaAlta, 0, "fing", "Maldonado", "Caza de brujas", null);

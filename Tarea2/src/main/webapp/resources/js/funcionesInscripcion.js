@@ -117,9 +117,7 @@ function getURL(cambio) {
     	var cat = document.getElementById("form-select-cat").options[document.getElementById("form-select-cat").selectedIndex].text;
     	var act = document.getElementById("form-select-act").options[document.getElementById("form-select-act").selectedIndex].text;
 		var cant = document.getElementById("form-cantTuristas").value;
-		var sal = document.getElementById("form-select-sal").options[document.getElementById("form-select-sal").selectedIndex].text;
-		sal = sal.split("-")[0].trim();
-		
+		var sal = document.getElementById("form-select-sal").options[document.getElementById("form-select-sal").selectedIndex].text;		
 		if(dpto.length != 0){
 			return "/Tarea2/inscribir?cambio=sal&dpto=" + encodeURIComponent(dpto) + "&act=" + encodeURIComponent(act) + "&cant=" + encodeURIComponent(cant) + "&sal=" + encodeURIComponent(sal);
 		}

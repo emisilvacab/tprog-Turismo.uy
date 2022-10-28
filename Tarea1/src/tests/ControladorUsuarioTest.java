@@ -73,7 +73,7 @@ class ControladorUsuarioTest {
 			e.printStackTrace();
 		}
 		try {
-			icd.ingresarDatosActividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012, 11, 1), "wason", "Montevideo", categorias, null);
+			icd.ingresarDatosActividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012, 11, 1), "wason", "Montevideo", categorias, null, null);
 		}
 		catch(proveedorNoExisteException e) {
 			fail(e.getMessage());
@@ -444,7 +444,7 @@ class ControladorUsuarioTest {
 		assertEquals(provPrueba.getDescripcion(), "El de la Batalla de Las Piedras");
 		Departamento pruebaDep = new Departamento("Tacuarembo", "Carpinchos", "capibara.com");
 
-		Actividad pruebaAct = new Actividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012, 11, 1), pruebaDep, provPrueba, null);
+		Actividad pruebaAct = new Actividad("Paseo por Parque Rodo", "Recorrido", 4, 100, "Parque Rodo", new GregorianCalendar(2012, 11, 1), pruebaDep, provPrueba, null, null);
 		assertEquals(pruebaAct.getDescripcion(), "Recorrido");
 		assertEquals(pruebaAct.getDuracion(), 4);
 		assertEquals(pruebaAct.getDepartamento(), pruebaDep);
