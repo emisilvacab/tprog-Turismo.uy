@@ -68,7 +68,7 @@
 				<div class="card mb-3" style="max-width: 100%;">
 					<div class="row">
 				      	<div class="col-md-6" style="min-width: 300px;">
-				   			<img <%if (salida.getLinkImagen() != null){%> src=<%=salida.getLinkImagen()%> <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="img-fluid rounded" style="max-width: 100%; min-height:243px; object-fit: cover" alt="Actividad">
+				   			<img <%if (salida.getLinkImagen() != null){%> src="<%=salida.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="img-fluid rounded" style="max-width: 100%; min-height:243px; object-fit: cover" alt="Actividad">
 				      	</div>
 					     <div class="col-md-6" style="min-width: 300px;">
 					     	<div class="card-body pb-0 mb-0" style="max-width: 100%;">

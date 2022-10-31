@@ -6,6 +6,8 @@
 <%@page import="logica.datatypes.DTPaquete"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.regex.Matcher"%>
+<%@page import="java.util.regex.Pattern"%>
 
 <!DOCTYPE html>
 <html>
@@ -89,6 +91,25 @@
 								<li class="list-group-item" style="font-size: 110%;"><%=actividad.getEstado().toString()%></li>
 							</ul>
 						</div>
+						<%
+							String video = actividad.getLinkVideo();
+							if (video != null) {
+							
+							String regex = "http(?:s)?:\\/\\/(?:m.)?(?:www\\.)?youtu(?:\\.be\\/|(?:be-nocookie|be)\\.com\\/(?:watch|[\\w]+\\?(?:feature=[\\w]+.[\\w]+\\&)?v=|v\\/|e\\/|embed\\/|user\\/(?:[\\w#]+\\/)+))([^&#?\\n]+)";
+							Pattern patron = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+							Matcher matcher = patron.matcher(video);
+							if(matcher.find()){
+								String idVideo = matcher.group(1);
+								video = "https://www.youtube.com/embed/" + idVideo;
+							}
+						%>
+						<div class="card-body pt-0">
+						<h5 class="card-title">Video de presentacion:</h5>
+							<iframe width="720rem" height="480rem" src="<%=video%>" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+						<%
+					  		}
+					  	%>
 					</div>
 	    		</div>
 		  </div>
@@ -130,7 +151,7 @@
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem;">
 		  		<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=salida.getNombre()%>">
-			  	<img class="card-img-top"  <%if (salida.getLinkImagen() != null){%>src=<%=salida.getLinkImagen()%><%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> alt="Card image cap">
+			  	<img class="card-img-top"  <%if (salida.getLinkImagen() != null){%>src="<%=salida.getLinkImagen()%>"<%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> alt="Card image cap">
 			  	</a>
 			  <div class="card-body">
 			    <h5 class="card-title"><%=salida.getNombre()%></h5>
