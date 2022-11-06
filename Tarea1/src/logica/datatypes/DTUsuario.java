@@ -2,6 +2,12 @@ package logica.datatypes;
 
 import java.util.GregorianCalendar;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlSeeAlso;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso({DTTurista.class, DTProveedor.class})
 public class DTUsuario{
 	
 	private String nickname;
@@ -11,6 +17,8 @@ public class DTUsuario{
 	private GregorianCalendar nacimiento;
 	private String contrasena;
 	private String linkImagen;
+	
+	public DTUsuario() {}
 	
 	public DTUsuario(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen) {
 		this.setNickname(nickname);

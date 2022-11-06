@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorUsuario;
-import logica.datatypes.DTUsuario;
 import model.EstadoSesion;
+import publicadores.DtUsuario;
+import publicadores.PublicadorUsuario;
+import publicadores.PublicadorUsuarioService;
 
 /**
  * Servlet implementation class Sesion
@@ -30,10 +31,12 @@ public class Sesion extends HttpServlet {
     
     protected void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Fabrica fact = Fabrica.getInstance();
-    	IControladorUsuario cu = fact.getIControladorUsuario();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
+    	IControladorDepartamento cd = fact.getIControladorDepartamento(); //ESTO SE SACA
     	
-    	DTUsuario usr = cu.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password")); //operacion de iniciar sesion
+    	PublicadorUsuarioService service = new PublicadorUsuarioService();
+        PublicadorUsuario port = service.getPublicadorUsuarioPort();
+    	
+    	DtUsuario usr = port.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password")); //operacion de iniciar sesion
     	request.setAttribute("cats",cd.obtenerCategorias());
     	request.setAttribute("dptos",cd.obtenerDepartamentos());
 
@@ -45,12 +48,12 @@ public class Sesion extends HttpServlet {
     		request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_CORRECTO);
     		request.getSession().setAttribute("usuario_logueado", usr);
     		request.getRequestDispatcher("index.jsp").forward(request, response);
-    	}
+    	} 
     }
     
     protected void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
+    	IControladorDepartamento cd = fact.getIControladorDepartamento(); //ESTO SE SACA Y SE HACE CON EL PUBLICADOR DPTO O CON EL FILTRO 
     	request.setAttribute("cats",cd.obtenerCategorias());
     	request.getSession().setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
     	request.getSession().setAttribute("usuario_logueado", null);
@@ -64,7 +67,7 @@ public class Sesion extends HttpServlet {
 		String accion = request.getParameter("iniciar");
 		if (accion != null && accion.equals("si")) { //si iniciar es si entonces vamos a iniciar Sesion 
 			Fabrica fact = Fabrica.getInstance();
-    		IControladorDepartamento cd = fact.getIControladorDepartamento(); 
+    		IControladorDepartamento cd = fact.getIControladorDepartamento(); //ESTO SE SACA Y SE HACE CON EL PUBLICADOR DPTO O CON EL FILTRO
     		request.setAttribute("cats",cd.obtenerCategorias());
         	request.setAttribute("dptos",cd.obtenerDepartamentos());
 			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response); 

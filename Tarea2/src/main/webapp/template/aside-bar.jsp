@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import ="logica.datatypes.DTUsuario"%>
-<%@ page import ="logica.datatypes.DTTurista"%>
-<%@ page import ="logica.datatypes.DTProveedor"%>
+<%@ page import ="publicadores.DtUsuario"%>
+<%@ page import ="publicadores.DtTurista"%>
+<%@ page import ="publicadores.DtProveedor"%>
+
 <%@page import="java.util.Set"%>
 
 <!-- FALTA LINKEAR BIEN CON CADA PAGINA -->
@@ -16,8 +17,8 @@
 	      </button>
 	    </h2>
 	      	<%
-				DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
-				if (usr != null && usr.getClass().getName().equals("logica.datatypes.DTProveedor")) {
+				DtUsuario usr = (DtUsuario) session.getAttribute("usuario_logueado");
+				if (usr != null && usr.getClass().getName().equals("publicadores.DtProveedor")) {
 	  		%>
 	        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
@@ -30,7 +31,7 @@
 		      </div>
 		    </div>
 		    <% 
-		    	} else if (usr != null && usr.getClass().getName().equals("logica.datatypes.DTTurista")) {  
+		    	} else if (usr != null && usr.getClass().getName().equals("publicadores.DtTurista")) {  
 		    %>
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">

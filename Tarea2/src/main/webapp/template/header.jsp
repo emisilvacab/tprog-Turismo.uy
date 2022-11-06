@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import ="logica.datatypes.DTUsuario"%>
+<%@ page import ="publicadores.DtUsuario"%>
+
 
 	<!-- ESTA FALTANDO IMAGEN DE USUARIO Y LINKEAR A LOS JSP EN CADA CASO -->
 	<nav class="navbar">
@@ -16,7 +17,7 @@
       </form>
       
       <%
-		DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
+		DtUsuario usr = (DtUsuario) session.getAttribute("usuario_logueado");
 		if (usr == null) {
 	  %>
       <div>

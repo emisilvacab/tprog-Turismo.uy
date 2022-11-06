@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
-<%@ page import ="logica.datatypes.DTUsuario"%>
+<%@ page import ="publicadores.DtUsuario"%>
 
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
 <body>
 	
 	<jsp:include page="/template/header.jsp"/>
-	<jsp:include page="/template/aside-bar.jsp"/>
+	<jsp:include page="/template/aside-bar.jsp"/> 
 	
 	<section id="section-middle" class="section">
 	    <div class="card" id = "card-presentacion">
@@ -30,7 +30,7 @@
 	    </div>
 		
 		<%
-		DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
+		DtUsuario usr = (DtUsuario) session.getAttribute("usuario_logueado");
 		%>
 		<div class="card" id = "card-unitenos">
 		  <div class="card-body">

@@ -2,10 +2,16 @@ package logica.datatypes;
 
 import java.util.GregorianCalendar;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTProveedor extends DTUsuario{
 	
 	private String descripcion;
 	private String link;
+	
+	public DTProveedor() {}
 	
 	public DTProveedor(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen, String descripcion) {
 		super(nickname, nombre, apellido, correo, nacimiento, contrasena, linkImagen);

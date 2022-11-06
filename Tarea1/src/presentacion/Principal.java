@@ -13,6 +13,7 @@ import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
+import publicadores.PublicadorUsuario;
 
 /**
 * Clase Principal (Frame) con el método Main.
@@ -42,6 +43,9 @@ public class Principal {
             public void run() {
                 Principal window = new Principal();
                 window.frmReservasUY.setVisible(true);
+                PublicadorUsuario pubUsuario = new PublicadorUsuario();
+                pubUsuario.publicar();
+                //PUBLICAR LOS OTROS PUBLICADORES
             }
         });
     }
