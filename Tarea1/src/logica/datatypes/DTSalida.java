@@ -2,6 +2,10 @@ package logica.datatypes;
 
 import java.util.GregorianCalendar;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTSalida{
 	
 	private String nombre;
@@ -11,6 +15,8 @@ public class DTSalida{
 	private int hora;
 	private String lugarDTSalida;
 	private String linkImagen;
+	
+	public DTSalida() {}
 	
 	public DTSalida(String nombre, int maxTuristas, GregorianCalendar alta, GregorianCalendar fechaDTSalida, int hora, String lugarDTSalida, String linkImagen) {
 		this.setNombre(nombre);

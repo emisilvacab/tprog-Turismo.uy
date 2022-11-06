@@ -3,6 +3,10 @@ package logica.datatypes;
 
 import java.util.GregorianCalendar;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTPaquete {
 	
 	private String nombre;
@@ -11,6 +15,8 @@ public class DTPaquete {
 	private float descuento;
 	private GregorianCalendar fechaAlta;
 	private String linkImagen;
+	
+	public DTPaquete() {}
 	
 	public DTPaquete(String nombre, String descripcion, int validez, float descuento, GregorianCalendar fechaAlta, String linkImagen) {
 		this.setNombre(nombre);

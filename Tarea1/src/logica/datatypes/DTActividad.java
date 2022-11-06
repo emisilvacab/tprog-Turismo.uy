@@ -2,8 +2,11 @@ package logica.datatypes;
 
 import java.util.GregorianCalendar;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica.Estado;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTActividad{
 	
 	private String nombre;
@@ -16,6 +19,7 @@ public class DTActividad{
 	private String linkImagen;
 	private String linkVideo;
 	
+	public DTActividad() {}
 	
 	public DTActividad(String nombre, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar alta, Estado estado, String linkImagen, String linkVideo) {
 		this.setNombre(nombre);

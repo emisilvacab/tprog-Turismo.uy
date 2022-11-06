@@ -2,6 +2,10 @@ package logica.datatypes;
 
 import java.util.GregorianCalendar;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DTCompra{
 	
 	private GregorianCalendar fecha;
@@ -11,6 +15,8 @@ public class DTCompra{
 	
 	private String paquete;
 	private String turista;
+	
+	public DTCompra() {}
 	
 	public DTCompra(GregorianCalendar fechaIn, int cantTuristasIn, GregorianCalendar vencimientoIn, float costoIn, String paqueteIn, String turistaIn){
 		this.setFecha(fechaIn); 
