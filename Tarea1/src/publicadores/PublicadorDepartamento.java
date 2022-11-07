@@ -1,11 +1,13 @@
 package publicadores;
 
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.actividadNoExisteException;
 import excepciones.categoriaNoExisteException;
 import excepciones.departamentoNoExisteException;
+import excepciones.proveedorNoExisteException;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
@@ -72,5 +74,18 @@ public class PublicadorDepartamento {
 	public String obtenerDeptoActividad(String actividad) {
 		return contD.obtenerDeptoActividad(actividad);
 	}
-
+	
+	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias, String linkImagen, String linkVideo) throws excepciones.proveedorNoExisteException, departamentoNoExisteException{ 
+		if (linkImagen.equals("sin"))
+			linkImagen = null;
+		if (linkVideo.equals("sin"))
+			linkVideo = null;
+		return contD.ingresarDatosActividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, nicknameProv, nombreDep, categorias, linkImagen, linkVideo);
+	}
+	
+	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct, String linkImagen) throws excepciones.departamentoNoExisteException, actividadNoExisteException{
+		if (linkImagen.equals("sin"))
+			linkImagen = null;
+		return contD.ingresarDatosSalida(nombre, maxTuristas, fechaAlta, fechaSalida, horaSalida, lugarSalida, nombreDpto, nombreAct, linkImagen);
+	}
 }

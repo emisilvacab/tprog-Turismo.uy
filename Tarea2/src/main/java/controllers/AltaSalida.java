@@ -18,12 +18,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.datatypes.DTActividad;
+import publicadores.ActividadNoExisteException_Exception;
+import publicadores.DepartamentoNoExisteException_Exception;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
 
 /**
  * Servlet implementation class AltaSalida
@@ -150,10 +156,9 @@ public class AltaSalida extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		//doGet(request, response);
-		Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento();  
+    	PublicadorDepartamentoService serviceD = new PublicadorDepartamentoService();
+		PublicadorDepartamento portD = serviceD.getPublicadorDepartamentoPort();
 		
-		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
 		String fecha = request.getParameter("fechaSal");
 		String[] partsF = fecha.split("-");
 		GregorianCalendar fechaSal = new GregorianCalendar(Integer.parseInt(partsF[0]), Integer.parseInt(partsF[1]) - 1, Integer.parseInt(partsF[2]));
@@ -169,7 +174,9 @@ public class AltaSalida extends HttpServlet {
 				nuevoNombre = guardarImagen(request,response);
 				linkImagen = "resources/img/" + nuevoNombre;
 			}
-			boolean existe = cd.ingresarDatosSalida(request.getParameter("nombreSal"), Integer.parseInt(request.getParameter("cantTurSal")), fechaAlta, fechaSal, horaSal, request.getParameter("lugarSal"), request.getParameter("dpto"), request.getParameter("act"), linkImagen);
+			else
+				linkImagen = "sin";
+			boolean existe = portD.ingresarDatosSalida(request.getParameter("nombreSal"), Integer.parseInt(request.getParameter("cantTurSal")), DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaSal), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())), horaSal, request.getParameter("lugarSal"), request.getParameter("dpto"), request.getParameter("act"), linkImagen);
 			if (existe) {
 				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
 					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
@@ -183,9 +190,11 @@ public class AltaSalida extends HttpServlet {
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (departamentoNoExisteException e) {
+		} catch (DepartamentoNoExisteException_Exception e) {
 			e.printStackTrace();
-		} catch (actividadNoExisteException e) {
+		} catch (ActividadNoExisteException_Exception e) {
+			e.printStackTrace();
+		} catch (DatatypeConfigurationException e) {
 			e.printStackTrace();
 		}
 	}

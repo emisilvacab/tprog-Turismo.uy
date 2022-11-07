@@ -7,8 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,12 +19,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.sun.tools.ws.processor.model.Service;
 
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.datatypes.DTUsuario;
+import publicadores.DepartamentoNoExisteException_Exception;
+import publicadores.DtColecciones;
+import publicadores.ProveedorNoExisteException_Exception;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
+import publicadores.SetOfString;
 
 /**
  * Servlet implementation class AltaActividad
@@ -66,7 +79,6 @@ public class AltaActividad extends HttpServlet {
     }
     
     protected void errorActividad(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      	Fabrica fact = Fabrica.getInstance();
     	
     	HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
 		String[] cates = request.getParameterValues("catsAct");
@@ -99,20 +111,17 @@ public class AltaActividad extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento();
-    	
+		PublicadorDepartamentoService serviceD = new PublicadorDepartamentoService();
+		PublicadorDepartamento portD = serviceD.getPublicadorDepartamentoPort();
+		
 		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
 		String nicknameProv = usr.getNickname();//nickname del proveedor que tiene la sesion inciada
-    	GregorianCalendar fechaAct = GregorianCalendar.from(ZonedDateTime.now());//Fecha actual
-		HashSet<String> categorias = new HashSet<String>();
+		List<String> categorias = new ArrayList<String>();
 		String[] cates = request.getParameterValues("catsAct");
 		for (String cat: cates) {
 			cat = cat.replace("+"," ");
 			categorias.add(cat);
 		}
- 
     	try { 
     		String linkImagen = null;
 			String nuevoNombre = null;
@@ -121,7 +130,12 @@ public class AltaActividad extends HttpServlet {
 				nuevoNombre = guardarImagen(request,response);
 				linkImagen = "resources/img/" + nuevoNombre;
 			}
-			boolean existe = cd.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), fechaAct, nicknameProv, request.getParameter("depAct"), categorias, linkImagen, request.getParameter("linkVideo"));
+			else
+				linkImagen = "sin";
+			String linkVideo = request.getParameter("linkVideo");
+			if (linkVideo == null)
+				linkVideo = "sin";
+			boolean existe = portD.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())), nicknameProv, request.getParameter("depAct"), (SetOfString) categorias, linkImagen, linkVideo);
 			if (existe) {
 				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
 					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
@@ -134,9 +148,11 @@ public class AltaActividad extends HttpServlet {
 				request.getRequestDispatcher("index.jsp").forward(request, response);
     	} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (proveedorNoExisteException e) {
+		} catch (ProveedorNoExisteException_Exception e) {
 			e.printStackTrace();
-		} catch (departamentoNoExisteException e) {
+		} catch (DepartamentoNoExisteException_Exception e) {
+			e.printStackTrace();
+		} catch (DatatypeConfigurationException e) {
 			e.printStackTrace();
 		}    
 	}
