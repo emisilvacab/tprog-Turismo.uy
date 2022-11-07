@@ -38,10 +38,6 @@ public class CompraPaquete extends HttpServlet {
     protected void comprar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete cPaq = fact.getIControladorPaquete();
-    	IControladorDepartamento cDpto = fact.getIControladorDepartamento(); 
-    	
-    	request.setAttribute("cats",cDpto.obtenerCategorias());
-		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 		
 		HashSet<DTPaquete> paqs = (HashSet<DTPaquete>) cPaq.obtenerPaquetesConActividades();
 		Set<String> paqsCompra = new HashSet<String>();
@@ -73,9 +69,7 @@ public class CompraPaquete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		Fabrica fact = Fabrica.getInstance();
-		IControladorDepartamento cDpto = fact.getIControladorDepartamento(); 
 		IControladorPaquete cPaq = fact.getIControladorPaquete(); 
 		
 		HashSet<DTPaquete> paqs = (HashSet<DTPaquete>) cPaq.obtenerPaquetesConActividades();
@@ -85,8 +79,6 @@ public class CompraPaquete extends HttpServlet {
 		}
 		
 		request.setAttribute("paqsCompra",paqsCompra);
-		request.setAttribute("cats",cDpto.obtenerCategorias());
-		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 		request.getRequestDispatcher("/pages/comprarPaquete.jsp").forward(request, response);
 	}
 
@@ -94,7 +86,6 @@ public class CompraPaquete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		comprar(request,response);
 	}
 

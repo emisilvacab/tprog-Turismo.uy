@@ -139,10 +139,6 @@ public class AltaSalida extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String cambio = request.getParameter("cambio");
 		if (cambio.equals("iniciar")) {
-			Fabrica fact = Fabrica.getInstance();
-	    	IControladorDepartamento cDpto = fact.getIControladorDepartamento();
-    		request.setAttribute("cats",cDpto.obtenerCategorias());
-	    	request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 			request.getRequestDispatcher("/pages/altaSalida.jsp").forward(request, response);
 		}
 		else {
@@ -153,19 +149,14 @@ public class AltaSalida extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		//doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		//doGet(request, response);
 		Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento cd = fact.getIControladorDepartamento();  
-		request.setAttribute("dptos",cd.obtenerDepartamentos());
 		
 		GregorianCalendar fechaAlta = GregorianCalendar.from(ZonedDateTime.now());
-		
 		String fecha = request.getParameter("fechaSal");
 		String[] partsF = fecha.split("-");
 		GregorianCalendar fechaSal = new GregorianCalendar(Integer.parseInt(partsF[0]), Integer.parseInt(partsF[1]) - 1, Integer.parseInt(partsF[2]));
-		
 		String hora = request.getParameter("horaSal");
 		String[] partsH = hora.split(":");
 		int horaSal = Integer.parseInt(partsH[0])*100 + Integer.parseInt(partsH[1]);

@@ -26,10 +26,6 @@ public class Home extends HttpServlet {
     }
 
     private void iniciar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento ctrlDepartamento = fact.getIControladorDepartamento();
-		request.setAttribute("dptos", ctrlDepartamento.obtenerDepartamentos());
-		request.setAttribute("cats", ctrlDepartamento.obtenerCategorias());
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
     

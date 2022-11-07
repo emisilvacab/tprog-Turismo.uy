@@ -36,10 +36,6 @@ public class ListarPaquetes extends HttpServlet {
     protected void cargarPaquetes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	Fabrica fact = Fabrica.getInstance();
     	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
-    	IControladorDepartamento ctrlDep = fact.getIControladorDepartamento();
-    	
-    	request.setAttribute("dptos", ctrlDep.obtenerDepartamentos());
-		request.setAttribute("cats", ctrlDep.obtenerCategorias());
     	
     	HashSet<DTPaquete> paquetes = (HashSet<DTPaquete>) ctrlPaq.obtenerPaquetesAll();
     	request.setAttribute("listarPaquetes", paquetes);
@@ -53,7 +49,6 @@ public class ListarPaquetes extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
 		cargarPaquetes(request,response);
 	}
 
@@ -62,7 +57,6 @@ public class ListarPaquetes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 

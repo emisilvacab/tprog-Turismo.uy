@@ -30,15 +30,10 @@ public class Sesion extends HttpServlet {
     }
     
     protected void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento(); //ESTO SE SACA
-    	
     	PublicadorUsuarioService service = new PublicadorUsuarioService();
         PublicadorUsuario port = service.getPublicadorUsuarioPort();
     	
     	DtUsuario usr = port.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password")); //operacion de iniciar sesion
-    	request.setAttribute("cats",cd.obtenerCategorias());
-    	request.setAttribute("dptos",cd.obtenerDepartamentos());
 
     	if (usr==null) {
     		request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_INCORRECTO);
@@ -52,9 +47,6 @@ public class Sesion extends HttpServlet {
     }
     
     protected void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento(); //ESTO SE SACA Y SE HACE CON EL PUBLICADOR DPTO O CON EL FILTRO 
-    	request.setAttribute("cats",cd.obtenerCategorias());
     	request.getSession().setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
     	request.getSession().setAttribute("usuario_logueado", null);
     	request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -66,10 +58,6 @@ public class Sesion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("iniciar");
 		if (accion != null && accion.equals("si")) { //si iniciar es si entonces vamos a iniciar Sesion 
-			Fabrica fact = Fabrica.getInstance();
-    		IControladorDepartamento cd = fact.getIControladorDepartamento(); //ESTO SE SACA Y SE HACE CON EL PUBLICADOR DPTO O CON EL FILTRO
-    		request.setAttribute("cats",cd.obtenerCategorias());
-        	request.setAttribute("dptos",cd.obtenerDepartamentos());
 			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response); 
 		}
 		else

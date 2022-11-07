@@ -44,10 +44,6 @@ public class ListarActividades extends HttpServlet {
     	Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento ctrlDepartamentos = fact.getIControladorDepartamento();
     	
-    	/* IControladorUsuario ctrlUsuario = fact.getIControladorUsuario();
-    	IControladorPaquete ctrlPaquete = fact.getIControladorPaquete();
-    	CargarDatos cacaDatos = new CargarDatos(ctrlUsuario, ctrlDepartamentos, ctrlPaquete); */
-    	
     	String tipo = request.getParameter("tipoPedidoActividad");
     	HashSet<DTActividad> actividades = null;
     	if (tipo.equals("departamento")) {
@@ -60,9 +56,6 @@ public class ListarActividades extends HttpServlet {
 			}
     		request.setAttribute("actividades", actividades);
     		
-    		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
-    		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());
-    		
     		request.getRequestDispatcher("/pages/listarActividades.jsp").forward(request, response);
     	} else if (tipo.equals("categoria")) {
     		try {
@@ -74,10 +67,6 @@ public class ListarActividades extends HttpServlet {
 			}
     		request.setAttribute("actividades", actividades);
     		
-    		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
-    		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());
-    		
-
 			request.getRequestDispatcher("/pages/listarActividades.jsp").forward(request, response);
     	}
     }

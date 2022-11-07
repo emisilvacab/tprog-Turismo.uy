@@ -107,8 +107,6 @@ public class Inscripcion extends HttpServlet {
     	switch(cambio) {
     		case "dpto": {
     			try {
-    				request.setAttribute("cats",cDpto.obtenerCategorias());
-    	    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 					HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
 					Set<String> res = new HashSet<String>();
 					for (DTActividad act : acts) {
@@ -125,9 +123,6 @@ public class Inscripcion extends HttpServlet {
     		}
     		case "cat": {
     			try {
-    				request.setAttribute("cats",cDpto.obtenerCategorias());
-    	    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
-					
     	    		HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
 					Set<String> res = new HashSet<String>();
 					for (DTActividad act : acts) {
@@ -144,9 +139,6 @@ public class Inscripcion extends HttpServlet {
     		}
     		case "act": {
 				try {
-					request.setAttribute("cats",cDpto.obtenerCategorias());
-    	    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
-    	    		
     	    		HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
 					Set<String> salsInsc = new HashSet<String>();
 					for (DTSalida sal : sals) {
@@ -181,8 +173,6 @@ public class Inscripcion extends HttpServlet {
     		}
     		case "sal": {
     			try {
-					request.setAttribute("cats",cDpto.obtenerCategorias());
-    	    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
     	    		
     	    		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
     	    		Set<DTPaquete> paqs = cPaq.obtenerPaquetesDisponibles(usr.getNickname(), request.getParameter("sal"), Integer.parseInt(request.getParameter("cant")));
@@ -229,8 +219,6 @@ public class Inscripcion extends HttpServlet {
     		}
     		case "consulta":{
     			try {
-					request.setAttribute("cats",cDpto.obtenerCategorias());
-		    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 		    		
 		    		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
 		    		Set<DTPaquete> paqs = cPaq.obtenerPaquetesDisponibles(usr.getNickname(), request.getParameter("sal"), 1);
@@ -272,11 +260,7 @@ public class Inscripcion extends HttpServlet {
     
     protected void inscribir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cDpto = fact.getIControladorDepartamento(); 
     	IControladorUsuario cUsu = fact.getIControladorUsuario(); 
-    	
-    	request.setAttribute("cats",cDpto.obtenerCategorias());
-		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 		
 		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
 		
@@ -304,13 +288,8 @@ public class Inscripcion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		String cambio = request.getParameter("cambio");
 		if (cambio.equals("iniciar")) {
-			Fabrica fact = Fabrica.getInstance();
-    		IControladorDepartamento cDpto = fact.getIControladorDepartamento(); 
-    		request.setAttribute("cats",cDpto.obtenerCategorias());
-    		request.setAttribute("dptos",cDpto.obtenerDepartamentos());
 			request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
 		}
 		else {
@@ -322,7 +301,6 @@ public class Inscripcion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		inscribir(request,response);
 	}
 

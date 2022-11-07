@@ -47,13 +47,8 @@ public class DetalleUsuario extends HttpServlet {
 
     
     protected void cargarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
     	Fabrica fact = Fabrica.getInstance();
     	IControladorUsuario ctrlUsr = fact.getIControladorUsuario();
-    	IControladorDepartamento ctrlDpto = fact.getIControladorDepartamento();
-    	
-    	request.setAttribute("dptos", ctrlDpto.obtenerDepartamentos());
-		request.setAttribute("cats", ctrlDpto.obtenerCategorias());
     	
     	String nickname = request.getParameter("usuarioDetalleNickname");
     	DTUsuario usuario = null;
@@ -158,7 +153,6 @@ public class DetalleUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
 		cargarUsuario(request,response);
 	}
 
@@ -167,7 +161,6 @@ public class DetalleUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 

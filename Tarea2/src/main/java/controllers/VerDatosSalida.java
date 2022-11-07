@@ -53,9 +53,6 @@ public class VerDatosSalida extends HttpServlet {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "salidaNoExiste");
 		}
-    	
-    	request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
-		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());
 		
 		request.getRequestDispatcher("/pages/verDatosSalida.jsp").forward(request, response);
 	}

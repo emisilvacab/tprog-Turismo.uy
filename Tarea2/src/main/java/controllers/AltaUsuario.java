@@ -93,8 +93,6 @@ public class AltaUsuario extends HttpServlet {
     protected void registrarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Fabrica fact = Fabrica.getInstance();
     	IControladorUsuario cu = fact.getIControladorUsuario();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
-    	request.setAttribute("cats",cd.obtenerCategorias());
 
     	String[] parts =  request.getParameter("nacimientoPersona").split("-");
     	GregorianCalendar fecha = new GregorianCalendar(Integer.parseInt(parts[0]),Integer.parseInt(parts[1])-1,Integer.parseInt(parts[2]));
@@ -104,10 +102,6 @@ public class AltaUsuario extends HttpServlet {
     	String correo = request.getParameter("correoPersona");
     	String contrasena = request.getParameter("contrasena");
     	DTUsuario nuevo;
-    	System.out.println(request.getAttribute("tipo"));
-    	System.out.println(request.getParameter("turistaButton"));
-    	System.out.println("descripcion: " + request.getParameter("descripcionProv"));
-		System.out.println("link: " + request.getParameter("linkProv"));
 		
 		String linkImagen = null;
 		String nuevoNombre = null;
@@ -121,15 +115,11 @@ public class AltaUsuario extends HttpServlet {
     		request.setAttribute("tipo", "turista");
     		String nacionalidad = request.getParameter("nacionalidad");
     		nuevo = new DTTurista(nickname, nombre, apellido, correo, fecha, contrasena, linkImagen, nacionalidad);
-    		System.out.println("es turista");
-    		System.out.println("nacionalidad: " + nacionalidad);
     	}else {
     		request.setAttribute("tipo", "proveedor");
     		String descripcion = request.getParameter("descripcionProv");
     		String link = request.getParameter("linkProv");
     		nuevo = new DTProveedor(nickname, nombre, apellido,correo,fecha,contrasena,linkImagen, descripcion, link);
-    		System.out.println("es proveedor");
-    		System.out.println("link: " + link);
     	}
     	//Image img = (Image) request.getParameter("imgPersona"); 
     	//nuevo.setFigura(img);
@@ -153,10 +143,6 @@ public class AltaUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
-    	request.setAttribute("cats",cd.obtenerCategorias());
 		request.getRequestDispatcher("/pages/altaUsuario.jsp").forward(request, response);
 	}
 
@@ -164,7 +150,6 @@ public class AltaUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		registrarUsuario(request,response);
 	}
 

@@ -67,7 +67,6 @@ public class AltaActividad extends HttpServlet {
     
     protected void errorActividad(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       	Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento();
     	
     	HashSet<String> categorias = new HashSet<String>();//categorias falta hacer multiselect en pagina
 		String[] cates = request.getParameterValues("catsAct");
@@ -85,8 +84,6 @@ public class AltaActividad extends HttpServlet {
 		request.setAttribute("linkVideo", request.getParameter("linkVideo"));
 		request.setAttribute("imgAct", request.getParameter("imgAct"));
 		request.setAttribute("catsAct", request.getParameter("catsAct"));
-		request.setAttribute("dptos",cd.obtenerDepartamentos());
-		request.setAttribute("cats",cd.obtenerCategorias());
 		request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);
  
     }
@@ -95,11 +92,6 @@ public class AltaActividad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
-    	request.setAttribute("cats",cd.obtenerCategorias());
-    	request.setAttribute("dptos",cd.obtenerDepartamentos());
 		request.getRequestDispatcher("/pages/altaActividad.jsp").forward(request, response);	
 	}
  
@@ -110,9 +102,6 @@ public class AltaActividad extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento cd = fact.getIControladorDepartamento();
-    	
-    	request.setAttribute("cats",cd.obtenerCategorias());
-    	request.setAttribute("dptos",cd.obtenerDepartamentos());
     	
 		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
 		String nicknameProv = usr.getNickname();//nickname del proveedor que tiene la sesion inciada

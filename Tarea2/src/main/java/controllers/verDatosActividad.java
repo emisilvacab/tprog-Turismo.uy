@@ -84,9 +84,6 @@ public class verDatosActividad extends HttpServlet {
     	HashSet<DTPaquete> listaPaquetes = new HashSet<DTPaquete>();
     	listaPaquetes = (HashSet<DTPaquete>) ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
     	request.setAttribute("paquetes", listaPaquetes);
-    	
-		request.setAttribute("dptos", ctrlDepartamentos.obtenerDepartamentos());
-		request.setAttribute("cats", ctrlDepartamentos.obtenerCategorias());
 		
 		request.getRequestDispatcher("/pages/verDatosActividad.jsp").forward(request, response);
 		
