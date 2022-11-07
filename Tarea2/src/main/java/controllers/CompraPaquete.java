@@ -11,15 +11,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 
-import excepciones.compraExisteException;
-import excepciones.paqueteNoExisteException;
-import excepciones.usuarioNoExisteException;
-import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorPaquete;
-import logica.datatypes.DTPaquete;
-import logica.datatypes.DTUsuario;
+import publicadores.CompraExisteException_Exception;
+import publicadores.DtUsuario;
+import publicadores.PaqueteNoExisteException_Exception;
+import publicadores.PublicadorPaquete;
+import publicadores.PublicadorPaqueteService;
+import publicadores.UsuarioNoExisteException_Exception;
 
 /**
  * Servlet implementation class compraPaquete
@@ -36,31 +36,31 @@ public class CompraPaquete extends HttpServlet {
     }
      
     protected void comprar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorPaquete cPaq = fact.getIControladorPaquete();
-		
-		HashSet<DTPaquete> paqs = (HashSet<DTPaquete>) cPaq.obtenerPaquetesConActividades();
-		Set<String> paqsCompra = new HashSet<String>();
-		for (DTPaquete paq : paqs) {
-			paqsCompra.add(paq.getNombre());
-		}
+    	PublicadorPaqueteService serviceP = new PublicadorPaqueteService();
+        PublicadorPaquete portP = serviceP.getPublicadorPaquetePort();
+    	
+		Set<String> paqsCompra = new HashSet<String>(portP.obtenerPaquetesConActividades().getSetString());
 		request.setAttribute("paqsCompra",paqsCompra); //volvemos a cargar los paquetes 
 		
-		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
+		DtUsuario usr = (DtUsuario) request.getSession().getAttribute("usuario_logueado");
     	 
     	try {
-			cPaq.comprarPaquete(usr.getNickname(), request.getParameter("paq"), GregorianCalendar.from(ZonedDateTime.now()), Integer.parseInt(request.getParameter("cant")));
+    		portP.comprarPaquete(usr.getNickname(), request.getParameter("paq"), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())), Integer.parseInt(request.getParameter("cant")));
 			request.setAttribute("exito","comprado"); //seteamos el exito
 			request.getRequestDispatcher("/pages/comprarPaquete.jsp").forward(request, response);
-    	} catch (usuarioNoExisteException e) {
+    	} catch (UsuarioNoExisteException_Exception e) {
     		e.printStackTrace(); //solo pasaría con datos desactualizados
-		} catch (paqueteNoExisteException e) {
+		} catch (PaqueteNoExisteException_Exception e) {
 			e.printStackTrace(); //solo pasaría con datos desactualizados
-		} catch (compraExisteException e) {
+		} catch (CompraExisteException_Exception e) {
 			request.setAttribute("paq",request.getParameter("paq")); //seteamos el paquete y la cantidad que se mandaron
 			request.setAttribute("cant",request.getParameter("cant"));
 			request.setAttribute("error","existe"); //seteamos el error
 			request.getRequestDispatcher("/pages/comprarPaquete.jsp").forward(request, response);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (DatatypeConfigurationException e) {
+			e.printStackTrace();
 		}
     }
     
@@ -69,14 +69,10 @@ public class CompraPaquete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Fabrica fact = Fabrica.getInstance();
-		IControladorPaquete cPaq = fact.getIControladorPaquete(); 
+		PublicadorPaqueteService serviceP = new PublicadorPaqueteService();
+        PublicadorPaquete portP = serviceP.getPublicadorPaquetePort(); 
 		
-		HashSet<DTPaquete> paqs = (HashSet<DTPaquete>) cPaq.obtenerPaquetesConActividades();
-		Set<String> paqsCompra = new HashSet<String>();
-		for (DTPaquete paq : paqs) {
-			paqsCompra.add(paq.getNombre());
-		}
+		Set<String> paqsCompra = new HashSet<String>(portP.obtenerPaquetesConActividades().getSetString());
 		
 		request.setAttribute("paqsCompra",paqsCompra);
 		request.getRequestDispatcher("/pages/comprarPaquete.jsp").forward(request, response);

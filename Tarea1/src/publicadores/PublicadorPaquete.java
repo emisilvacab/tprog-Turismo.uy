@@ -1,8 +1,11 @@
 package publicadores;
 
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import excepciones.compraExisteException;
+import excepciones.paqueteNoExisteException;
 import excepciones.usuarioNoExisteException;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
@@ -42,6 +45,21 @@ public class PublicadorPaquete {
 		DTColecciones col = new DTColecciones();
 		col.setSetString(paqsInsc);
 		return col;
+	}
+	
+	public DTColecciones obtenerPaquetesConActividades() {
+		HashSet<DTPaquete> paqs = (HashSet<DTPaquete>) contP.obtenerPaquetesConActividades();
+		Set<String> paqsCompra = new HashSet<String>();
+		for (DTPaquete paq : paqs) {
+			paqsCompra.add(paq.getNombre());
+		}
+		DTColecciones col = new DTColecciones();
+		col.setSetString(paqsCompra);
+		return col;
+	}
+	
+	public void comprarPaquete(String nickname, String nombrePaq, GregorianCalendar fechaCompra, int cantidadTuristas) throws usuarioNoExisteException, paqueteNoExisteException, compraExisteException {
+		contP.comprarPaquete(nickname, nombrePaq, fechaCompra, cantidadTuristas);
 	}
 
 }

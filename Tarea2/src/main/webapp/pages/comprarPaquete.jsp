@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
 <%@ page import ="java.util.Set"%>
-<%@ page import ="logica.datatypes.DTUsuario"%>
+<%@ page import ="publicadores.DtUsuario"%>
 
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
 	<jsp:include page="/template/aside-bar.jsp"/>
 	
 	<%  //LA SESION EXPIRO
-		DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
+		DtUsuario usr = (DtUsuario) session.getAttribute("usuario_logueado");
 		if (usr == null) {
 	%>
 	<script type="text/javascript">

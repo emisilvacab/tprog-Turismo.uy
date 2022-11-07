@@ -1,6 +1,7 @@
 
 package publicadores;
 
+import javax.xml.datatype.XMLGregorianCalendar;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
@@ -48,5 +49,43 @@ public interface PublicadorPaquete {
         int arg2)
         throws UsuarioNoExisteException_Exception
     ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @throws CompraExisteException_Exception
+     * @throws PaqueteNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://publicadores/PublicadorPaquete/comprarPaqueteRequest", output = "http://publicadores/PublicadorPaquete/comprarPaqueteResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorPaquete/comprarPaquete/Fault/usuarioNoExisteException"),
+        @FaultAction(className = PaqueteNoExisteException_Exception.class, value = "http://publicadores/PublicadorPaquete/comprarPaquete/Fault/paqueteNoExisteException"),
+        @FaultAction(className = CompraExisteException_Exception.class, value = "http://publicadores/PublicadorPaquete/comprarPaquete/Fault/compraExisteException")
+    })
+    public void comprarPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        XMLGregorianCalendar arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        int arg3)
+        throws CompraExisteException_Exception, PaqueteNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns publicadores.DtColecciones
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
+    public DtColecciones obtenerPaquetesConActividades();
 
 }
