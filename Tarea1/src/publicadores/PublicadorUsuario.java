@@ -2,6 +2,7 @@ package publicadores;
 
 import java.util.GregorianCalendar;
 
+import excepciones.ingresoInvalidoException;
 import excepciones.inscripcionExisteException;
 import excepciones.limiteSuperadoException;
 import excepciones.paqueteNoExisteException;
@@ -36,13 +37,16 @@ public class PublicadorUsuario {
     }
 	
 	@WebMethod
-	public DTUsuario iniciarSesion(String id, String password) {
-		return contU.iniciarSesion(id, password);
+	public DTUsuario iniciarSesion(String id, String password) throws ingresoInvalidoException{
+		return contU.iniciarSesion(id, password); 			
 	}
 	
 	@WebMethod
 	public void ingresarDatosInscripcionPaq(String nickname, String nombreSal, int cantidad, GregorianCalendar fecha, String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException {
-		contU.ingresarDatosInscripcionPaq(nickname, nombreSal, cantidad, fecha, nombrePaq);
+		if (nombrePaq.equals("Inscripcion sin paquete"))
+			contU.ingresarDatosInscripcionPaq(nickname, nombreSal, cantidad, fecha, null);
+		else 
+			contU.ingresarDatosInscripcionPaq(nickname, nombreSal, cantidad, fecha, nombrePaq);
 	}
 	
 }

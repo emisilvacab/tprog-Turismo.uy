@@ -11,6 +11,7 @@ import logica.datatypes.DTInscripcion;
 import excepciones.usuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
+import excepciones.ingresoInvalidoException;
 import excepciones.inscripcionExisteException;
 import excepciones.limiteSuperadoException;
 import excepciones.paqueteNoExisteException;
@@ -41,7 +42,7 @@ public interface IControladorUsuario {
 	
 	public abstract void ingresarDatosInscripcionPaq(String nickname, String nombreSal, int cantidad, GregorianCalendar fecha, String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException;
 
-	public abstract DTUsuario iniciarSesion(String ident, String pass);
+	public abstract DTUsuario iniciarSesion(String ident, String pass) throws ingresoInvalidoException;
 	
 	public abstract Set<DTCompra> obtenerComprasTurista(String nickname) throws usuarioNoExisteException;
 	

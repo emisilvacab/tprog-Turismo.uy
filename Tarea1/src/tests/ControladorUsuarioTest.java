@@ -12,6 +12,7 @@ import logica.datatypes.DTUsuario;
 import excepciones.UsuarioRepetidoException;
 import excepciones.actividadNoExisteException;
 import excepciones.departamentoNoExisteException;
+import excepciones.ingresoInvalidoException;
 import excepciones.inscripcionExisteException;
 import excepciones.limiteSuperadoException;
 import excepciones.paqueteNoExisteException;
@@ -156,7 +157,7 @@ class ControladorUsuarioTest {
 					assertEquals(provIniciado.getNacimiento(), nacimiento);
 					assertEquals(provIniciado.getDescripcion(), "lol");
 					assertEquals(provIniciado.getLink(), "superlol");
-				} catch (usuarioNoExisteException e) {
+				} catch (usuarioNoExisteException | ingresoInvalidoException e) {
 					fail(e.getMessage());
 					e.printStackTrace();
 				}

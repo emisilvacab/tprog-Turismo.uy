@@ -68,5 +68,9 @@ public class PublicadorDepartamento {
 		col.setSetString(salsInsc);
 		return col;
 	}
+	
+	public String obtenerDeptoActividad(String actividad) {
+		return contD.obtenerDeptoActividad(actividad);
+	}
 
 }

@@ -29,6 +29,19 @@ public interface PublicadorDepartamento {
      * 
      * @param arg0
      * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDeptoActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDeptoActividadResponse")
+    public String obtenerDeptoActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns publicadores.DtColecciones
      * @throws ActividadNoExisteException_Exception
      */
@@ -48,24 +61,6 @@ public interface PublicadorDepartamento {
      * @param arg0
      * @return
      *     returns publicadores.DtColecciones
-     * @throws CategoriaNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatResponse", fault = {
-        @FaultAction(className = CategoriaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCat/Fault/categoriaNoExisteException")
-    })
-    public DtColecciones obtenerDatosActividadesConfirmadasCat(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws CategoriaNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.DtColecciones
      * @throws DepartamentoNoExisteException_Exception
      */
     @WebMethod
@@ -77,6 +72,24 @@ public interface PublicadorDepartamento {
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
         throws DepartamentoNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws CategoriaNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatResponse", fault = {
+        @FaultAction(className = CategoriaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCat/Fault/categoriaNoExisteException")
+    })
+    public DtColecciones obtenerDatosActividadesConfirmadasCat(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws CategoriaNoExisteException_Exception
     ;
 
 }

@@ -30,22 +30,6 @@ public interface PublicadorUsuario {
      * 
      * @param arg0
      * @param arg1
-     * @return
-     *     returns publicadores.DtUsuario
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorUsuario/iniciarSesionRequest", output = "http://publicadores/PublicadorUsuario/iniciarSesionResponse")
-    public DtUsuario iniciarSesion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
      * @param arg2
      * @param arg3
      * @param arg4
@@ -75,6 +59,27 @@ public interface PublicadorUsuario {
         @WebParam(name = "arg4", partName = "arg4")
         String arg4)
         throws InscripcionExisteException_Exception, LimiteSuperadoException_Exception, PaqueteNoExisteException_Exception, SalidaNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     *     returns publicadores.DtUsuario
+     * @throws IngresoInvalidoException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorUsuario/iniciarSesionRequest", output = "http://publicadores/PublicadorUsuario/iniciarSesionResponse", fault = {
+        @FaultAction(className = IngresoInvalidoException_Exception.class, value = "http://publicadores/PublicadorUsuario/iniciarSesion/Fault/ingresoInvalidoException")
+    })
+    public DtUsuario iniciarSesion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws IngresoInvalidoException_Exception
     ;
 
 }

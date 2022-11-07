@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
 import model.EstadoSesion;
 import publicadores.DtUsuario;
+import publicadores.IngresoInvalidoException_Exception;
 import publicadores.PublicadorUsuario;
 import publicadores.PublicadorUsuarioService;
 
@@ -32,18 +31,18 @@ public class Sesion extends HttpServlet {
     protected void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	PublicadorUsuarioService service = new PublicadorUsuarioService();
         PublicadorUsuario port = service.getPublicadorUsuarioPort();
-    	
-    	DtUsuario usr = port.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password")); //operacion de iniciar sesion
 
-    	if (usr==null) {
-    		request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_INCORRECTO);
-    		request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
-    	}
-    	else {
-    		request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_CORRECTO);
+    	try {
+			DtUsuario usr = port.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password"));
+			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_CORRECTO);
     		request.getSession().setAttribute("usuario_logueado", usr);
     		request.getRequestDispatcher("index.jsp").forward(request, response);
-    	} 
+		} catch (IngresoInvalidoException_Exception e) {
+			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_INCORRECTO);
+    		request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
+		} 
+    	
+
     }
     
     protected void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

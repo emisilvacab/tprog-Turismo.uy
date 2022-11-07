@@ -66,15 +66,17 @@ function deshabilitarSal(){
 		document.getElementById("form-select-sal").value = "";
 		document.getElementById("form-select-sal").setAttribute("disabled",true);
 	}
-	if (document.getElementById("form-cantTuristas").value < 1){
-		alert('Ingrese una cantidad de turistas mayor a 0.');
-    	document.getElementById("form-select-sal").value = "";
-		document.getElementById("form-select-sal").setAttribute("disabled",true);	
-	}
-	if (!Number.isInteger(Number(document.getElementById("form-cantTuristas").value))){
-		alert('Ingrese un valor entero para la cantidad de turistas.');
-    	document.getElementById("form-select-sal").value = "";
-		document.getElementById("form-select-sal").setAttribute("disabled",true);	
+	else {
+		if (document.getElementById("form-cantTuristas").value < 1){
+			alert('Ingrese una cantidad de turistas mayor a 0.');
+    		document.getElementById("form-select-sal").value = "";
+			document.getElementById("form-select-sal").setAttribute("disabled",true);	
+		}
+		if (!Number.isInteger(Number(document.getElementById("form-cantTuristas").value))){
+			alert('Ingrese un valor entero para la cantidad de turistas.');
+	    	document.getElementById("form-select-sal").value = "";
+			document.getElementById("form-select-sal").setAttribute("disabled",true);	
+		}
 	}
 }
 
