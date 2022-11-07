@@ -13,6 +13,8 @@ import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorPaquete;
 import publicadores.PublicadorUsuario;
 
 /**
@@ -45,7 +47,10 @@ public class Principal {
                 window.frmReservasUY.setVisible(true);
                 PublicadorUsuario pubUsuario = new PublicadorUsuario();
                 pubUsuario.publicar();
-                //PUBLICAR LOS OTROS PUBLICADORES
+                PublicadorPaquete pubPaquete = new PublicadorPaquete();
+                pubPaquete.publicar();
+                PublicadorDepartamento pubDepartamento = new PublicadorDepartamento();
+                pubDepartamento.publicar();
             }
         });
     }

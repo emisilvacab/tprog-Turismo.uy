@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 
 import excepciones.actividadNoExisteException;
 import excepciones.categoriaNoExisteException;
@@ -28,6 +30,30 @@ import logica.datatypes.DTActividad;
 import logica.datatypes.DTPaquete;
 import logica.datatypes.DTSalida;
 import logica.datatypes.DTUsuario;
+import publicadores.ActividadNoExisteException;
+import publicadores.ActividadNoExisteException_Exception;
+import publicadores.CategoriaNoExisteException;
+import publicadores.CategoriaNoExisteException_Exception;
+import publicadores.DepartamentoNoExisteException;
+import publicadores.DepartamentoNoExisteException_Exception;
+import publicadores.DtUsuario;
+import publicadores.InscripcionExisteException;
+import publicadores.InscripcionExisteException_Exception;
+import publicadores.LimiteSuperadoException;
+import publicadores.LimiteSuperadoException_Exception;
+import publicadores.PaqueteNoExisteException;
+import publicadores.PaqueteNoExisteException_Exception;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
+import publicadores.PublicadorPaquete;
+import publicadores.PublicadorPaqueteService;
+import publicadores.PublicadorUsuario;
+import publicadores.PublicadorUsuarioService;
+import publicadores.SalidaNoExisteException;
+import publicadores.SalidaNoExisteException_Exception;
+import publicadores.UsuarioNoExisteException;
+import publicadores.UsuarioNoExisteException_Exception;
+
 
 /**
  * Servlet implementation class Inscripcion
@@ -42,7 +68,7 @@ public class Inscripcion extends HttpServlet {
     public Inscripcion() {
         super();
     }
-    protected void errorInscripcion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void errorInscripcion(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException  {
     	Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento cDpto = fact.getIControladorDepartamento(); 
     	IControladorPaquete cPaq = fact.getIControladorPaquete(); 
@@ -69,7 +95,7 @@ public class Inscripcion extends HttpServlet {
 				res.add(act.getNombre());
 			}
 			request.setAttribute("actsInsc", res);
-		} catch (departamentoNoExisteException | categoriaNoExisteException exc1) {
+		} catch (departamentoNoExisteException  | categoriaNoExisteException  exc1) {
 			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 		}
 		try { //cargo salidas
@@ -80,7 +106,7 @@ public class Inscripcion extends HttpServlet {
 				res.add(sal.getNombre());
 			}
 			request.setAttribute("salsInsc", res);
-		} catch (actividadNoExisteException e) {
+		} catch (actividadNoExisteException  e) {
 			e.printStackTrace(); //solo pasaría con datos desactualizados  
 		}
 		try { //cargo paquetes
@@ -92,127 +118,99 @@ public class Inscripcion extends HttpServlet {
 				res.add(paq.getNombre());
 			}
 			request.setAttribute("paqsInsc", res);
-		} catch (usuarioNoExisteException e) {
+		} catch (usuarioNoExisteException  e) {
 			e.printStackTrace(); //solo pasaría con datos desactualizados 
 		}
 		request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
     }
     
-    protected void llenarComboboxes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void llenarComboboxes(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException  {
     	Fabrica fact = Fabrica.getInstance();
     	IControladorDepartamento cDpto = fact.getIControladorDepartamento(); 
     	IControladorPaquete cPaq = fact.getIControladorPaquete(); 
     	
+    	PublicadorUsuarioService serviceU = new PublicadorUsuarioService();
+        PublicadorUsuario portU = serviceU.getPublicadorUsuarioPort();
+        
+        PublicadorDepartamentoService serviceD = new PublicadorDepartamentoService();
+        PublicadorDepartamento portD = serviceD.getPublicadorDepartamentoPort();
+        
+        PublicadorPaqueteService serviceP = new PublicadorPaqueteService();
+        PublicadorPaquete portP = serviceP.getPublicadorPaquetePort();
+        
     	String cambio = request.getParameter("cambio");
     	switch(cambio) {
     		case "dpto": {
     			try {
-					HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
-					Set<String> res = new HashSet<String>();
-					for (DTActividad act : acts) {
-						res.add(act.getNombre());
-					}
+					Set<String> res = (Set<String>) portD.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto")).getSetString();
 					request.setAttribute("dpto", request.getParameter("dpto"));
 					request.setAttribute("actsInsc", res);
 					request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
 					
-				} catch (departamentoNoExisteException exc1) {
+				} catch (DepartamentoNoExisteException_Exception  exc1) {
 					exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 				}
     			break;
     		}
     		case "cat": {
     			try {
-    	    		HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
-					Set<String> res = new HashSet<String>();
-					for (DTActividad act : acts) {
-						res.add(act.getNombre());
-					}
+    	    		Set<String> res = (Set<String>) portD.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat")).getSetString();
 					request.setAttribute("cat", request.getParameter("cat"));
 					request.setAttribute("actsInsc", res);
 					request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
 					
-				} catch (categoriaNoExisteException exc1) {
+				} catch (CategoriaNoExisteException_Exception  exc1) {
 					exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 				}
     			break;
     		}
     		case "act": {
 				try {
-    	    		HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
-					Set<String> salsInsc = new HashSet<String>();
-					for (DTSalida sal : sals) {
-						salsInsc.add(sal.getNombre());
-					} 
+					Set<String> salsInsc =  (Set<String>) portD.obtenerDatosSalidasVigentes(request.getParameter("act")).getSetString();
 					request.setAttribute("salsInsc", salsInsc); // relleno las salidas
 					
 					if (request.getParameter("dpto") != null) { 
+						Set<String> res = (Set<String>) portD.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto")).getSetString();
 						request.setAttribute("dpto", request.getParameter("dpto"));
-						HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
-						Set<String> actsInsc = new HashSet<String>();
-						for (DTActividad act : acts) {
-							actsInsc.add(act.getNombre());
-						}
-						request.setAttribute("actsInsc", actsInsc); // relleno las actividades por Dpto
+						request.setAttribute("actsInsc", res);
 					}
 					else {
+						Set<String> res = (Set<String>) portD.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat")).getSetString();
 						request.setAttribute("cat", request.getParameter("cat"));
-						HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
-						Set<String> actsInsc = new HashSet<String>();
-						for (DTActividad act : acts) {
-							actsInsc.add(act.getNombre());
-						}
-						request.setAttribute("actsInsc", actsInsc); // relleno las actividades por cat
+						request.setAttribute("actsInsc", res); // relleno las actividades por cat
 					}
 					request.setAttribute("act", request.getParameter("act"));
 					request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
-	    		} catch (actividadNoExisteException | departamentoNoExisteException | categoriaNoExisteException exc1) {
+	    		} catch (ActividadNoExisteException_Exception  | DepartamentoNoExisteException_Exception  | CategoriaNoExisteException_Exception  exc1) {
 	    			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 				}
 				break;
     		}
     		case "sal": {
     			try {
+    	    		DtUsuario usr = (DtUsuario) request.getSession().getAttribute("usuario_logueado");
     	    		
-    	    		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
-    	    		Set<DTPaquete> paqs = cPaq.obtenerPaquetesDisponibles(usr.getNickname(), request.getParameter("sal"), Integer.parseInt(request.getParameter("cant")));
-					Set<String> paqsInsc = new HashSet<String>();
-					for (DTPaquete paq : paqs) {
-						paqsInsc.add(paq.getNombre());
-					}
+					Set<String> paqsInsc = (Set<String>) portP.obtenerPaquetesDisponibles(usr.getNickname(), request.getParameter("sal"), Integer.parseInt(request.getParameter("cant")));
 					request.setAttribute("paqsInsc", paqsInsc); //relleno los paquetes
 					
-					HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
-					Set<String> salsInsc = new HashSet<String>();
-					for (DTSalida sal : sals) {
-						salsInsc.add(sal.getNombre());
-					} 
+					Set<String> salsInsc =  (Set<String>) portD.obtenerDatosSalidasVigentes(request.getParameter("act")).getSetString();
 					request.setAttribute("salsInsc", salsInsc); // relleno las salidas
 					
 					if (request.getParameter("dpto") != null) { 
+						Set<String> res = (Set<String>) portD.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto")).getSetString();
 						request.setAttribute("dpto", request.getParameter("dpto"));
-						HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
-						Set<String> actsInsc = new HashSet<String>();
-						for (DTActividad act : acts) {
-							actsInsc.add(act.getNombre());
-						}
-						request.setAttribute("actsInsc", actsInsc); // relleno las actividades por Dpto
+						request.setAttribute("actsInsc", res);
 					}
 					else {
+						Set<String> res = (Set<String>) portD.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat")).getSetString();
 						request.setAttribute("cat", request.getParameter("cat"));
-						HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasCat(request.getParameter("cat"));
-						Set<String> actsInsc = new HashSet<String>();
-						for (DTActividad act : acts) {
-							actsInsc.add(act.getNombre());
-						}
-						request.setAttribute("actsInsc", actsInsc); // relleno las actividades por cat
+						request.setAttribute("actsInsc", res); // relleno las actividades por cat
 					}
-					
 					request.setAttribute("act", request.getParameter("act"));
 					request.setAttribute("cant", request.getParameter("cant"));
 					request.setAttribute("sal", request.getParameter("sal"));
 					request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
-	    		} catch (usuarioNoExisteException | departamentoNoExisteException | categoriaNoExisteException | actividadNoExisteException exc1) {
+	    		} catch (UsuarioNoExisteException_Exception  | DepartamentoNoExisteException_Exception  | CategoriaNoExisteException_Exception  | ActividadNoExisteException_Exception  exc1) {
 	    			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 				}
 				break;
@@ -220,34 +218,27 @@ public class Inscripcion extends HttpServlet {
     		case "consulta":{
     			try {
 		    		
-		    		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
-		    		Set<DTPaquete> paqs = cPaq.obtenerPaquetesDisponibles(usr.getNickname(), request.getParameter("sal"), 1);
-					Set<String> paqsInsc = new HashSet<String>();
-					for (DTPaquete paq : paqs) {
-						paqsInsc.add(paq.getNombre());
-					}
+		    		DtUsuario usr = (DtUsuario) request.getSession().getAttribute("usuario_logueado");
+		    		
+		    		Set<String> paqsInsc = (Set<String>) portP.obtenerPaquetesDisponibles(usr.getNickname(), request.getParameter("sal"), 1);
 					request.setAttribute("paqsInsc", paqsInsc); //relleno los paquetes
 					
-					HashSet<DTSalida> sals = (HashSet<DTSalida>) cDpto.obtenerDatosSalidasVigentes(request.getParameter("act"));
-					Set<String> salsInsc = new HashSet<String>();
-					for (DTSalida sal : sals) {
-						salsInsc.add(sal.getNombre());
-					} 
+					Set<String> salsInsc =  (Set<String>) portD.obtenerDatosSalidasVigentes(request.getParameter("act")).getSetString();
 					request.setAttribute("salsInsc", salsInsc); // relleno las salidas
 					
 					request.setAttribute("dpto", cDpto.obtenerDeptoActividad(request.getParameter("act")));
-					HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(cDpto.obtenerDeptoActividad(request.getParameter("act")));
+					//HashSet<DTActividad> acts = (HashSet<DTActividad>) cDpto.obtenerDatosActividadesConfirmadasDpto(cDpto.obtenerDeptoActividad(request.getParameter("act")));
 					Set<String> actsInsc = new HashSet<String>();
-					for (DTActividad act : acts) {
-						actsInsc.add(act.getNombre());
-					}
+					//for (DTActividad act : acts) {
+						//actsInsc.add(act.getNombre());
+					//}
 					request.setAttribute("actsInsc", actsInsc); // relleno las actividades por Dpto
 					
 					request.setAttribute("act", request.getParameter("act"));
 					request.setAttribute("cant", "1");
 					request.setAttribute("sal", request.getParameter("sal"));
 					request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
-	    		} catch (usuarioNoExisteException | departamentoNoExisteException | actividadNoExisteException exc1) {
+	    		} catch (UsuarioNoExisteException_Exception | ActividadNoExisteException_Exception   exc1) {
 	    			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 				}
 				break;
@@ -258,27 +249,29 @@ public class Inscripcion extends HttpServlet {
     	}
     }
     
-    protected void inscribir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorUsuario cUsu = fact.getIControladorUsuario(); 
+    protected void inscribir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException {
+    	PublicadorUsuarioService service = new PublicadorUsuarioService();
+        PublicadorUsuario port = service.getPublicadorUsuarioPort();
 		
-		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
+		DtUsuario usr = (DtUsuario) request.getSession().getAttribute("usuario_logueado");
 		
 		try {
-			cUsu.ingresarDatosInscripcionPaq(usr.getNickname(), request.getParameter("sal"),  Integer.parseInt(request.getParameter("cant")), GregorianCalendar.from(ZonedDateTime.now()), request.getParameter("paq"));
+			port.ingresarDatosInscripcionPaq(usr.getNickname(), request.getParameter("sal"),  Integer.parseInt(request.getParameter("cant")), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())), request.getParameter("paq"));
 			request.setAttribute("exito","inscripto"); //seteamos el exito
 			request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
-		} catch (salidaNoExisteException e) {
+		} catch (NumberFormatException | DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (SalidaNoExisteException_Exception  e) {
 			e.printStackTrace(); //solo pasaría con datos desactualizados 
-		} catch (usuarioNoExisteException e) {
+		} catch (UsuarioNoExisteException_Exception  e) {
 			e.printStackTrace(); //solo pasaría con datos desactualizados
-		} catch (paqueteNoExisteException e) {
+		} catch (PaqueteNoExisteException_Exception  e) {
 			e.printStackTrace(); //solo pasaría con datos desactualizados
-		} catch (inscripcionExisteException e) {
+		} catch (InscripcionExisteException_Exception  e) {
 			request.setAttribute("error","existe");
 			errorInscripcion(request,response);
-			
-		} catch (limiteSuperadoException e) {
+		} catch (LimiteSuperadoException_Exception  e) {
 			request.setAttribute("error","lleno");
 			errorInscripcion(request,response);
 		}
@@ -287,7 +280,7 @@ public class Inscripcion extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException  {
 		String cambio = request.getParameter("cambio");
 		if (cambio.equals("iniciar")) {
 			request.getRequestDispatcher("/pages/inscripcionASalida.jsp").forward(request, response);
@@ -300,7 +293,7 @@ public class Inscripcion extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException  {
 		inscribir(request,response);
 	}
 

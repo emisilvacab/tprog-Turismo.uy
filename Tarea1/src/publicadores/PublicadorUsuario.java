@@ -1,5 +1,12 @@
 package publicadores;
 
+import java.util.GregorianCalendar;
+
+import excepciones.inscripcionExisteException;
+import excepciones.limiteSuperadoException;
+import excepciones.paqueteNoExisteException;
+import excepciones.salidaNoExisteException;
+import excepciones.usuarioNoExisteException;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
@@ -31,6 +38,11 @@ public class PublicadorUsuario {
 	@WebMethod
 	public DTUsuario iniciarSesion(String id, String password) {
 		return contU.iniciarSesion(id, password);
+	}
+	
+	@WebMethod
+	public void ingresarDatosInscripcionPaq(String nickname, String nombreSal, int cantidad, GregorianCalendar fecha, String nombrePaq) throws salidaNoExisteException, usuarioNoExisteException, paqueteNoExisteException, inscripcionExisteException, limiteSuperadoException {
+		contU.ingresarDatosInscripcionPaq(nickname, nombreSal, cantidad, fecha, nombrePaq);
 	}
 	
 }
