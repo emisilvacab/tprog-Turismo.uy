@@ -13,6 +13,7 @@ public class DTColecciones {
 	private Set<DTPaquete> setDtPaquete = new HashSet<DTPaquete>();
 	private Set<DTInscripcion> setDtInscripcion = new HashSet<DTInscripcion>();
 	private Set<DTCompra> setDtCompra = new HashSet<DTCompra>();
+	private Set<DTUsuario> setDtUsuario = new HashSet<DTUsuario>();
 	
 	public DTColecciones(){}
 
@@ -62,6 +63,14 @@ public class DTColecciones {
 
 	public void setSetDtCompra(Set<DTCompra> setDtCompra) {
 		this.setDtCompra = setDtCompra;
+	}
+	
+	public Set<DTUsuario> getSetDtUsuario() {
+		return setDtUsuario;
+	}
+
+	public void setSetDtUsuario(Set<DTUsuario> setDtUsuario) {
+		this.setDtUsuario = setDtUsuario;
 	}
 	
 }

@@ -112,4 +112,17 @@ public class PublicadorUsuario {
 		return contU.obtenerDatoSalidaProveedor(nickname, nombreAct, nombreSal);
 	}
 	
+	@WebMethod
+	public DTColecciones obtenerUsuariosDT() throws usuarioNoExisteException {
+		String[] nombreUsuarios = contU.obtenerUsuarios();
+		Set<DTUsuario> setUsuarios = new HashSet<DTUsuario>();
+		for (String usr : nombreUsuarios) {
+			DTUsuario nuevo = contU.obtenerUsuario(usr);
+			setUsuarios.add(nuevo);
+		}
+		DTColecciones col = new DTColecciones();
+		col.setSetDtUsuario(setUsuarios);
+		return col;
+	}
+	
 }

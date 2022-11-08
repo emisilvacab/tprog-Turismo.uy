@@ -83,7 +83,7 @@ public class PublicadorDepartamento {
 	}
 
 	@WebMethod
-	public boolean setSetString(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias, String linkImagen, String linkVideo) throws excepciones.proveedorNoExisteException, departamentoNoExisteException{ 
+	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias, String linkImagen, String linkVideo) throws excepciones.proveedorNoExisteException, departamentoNoExisteException{ 
 		if (linkImagen.equals("sin"))
 			linkImagen = null;
 		if (linkVideo.equals("sin"))

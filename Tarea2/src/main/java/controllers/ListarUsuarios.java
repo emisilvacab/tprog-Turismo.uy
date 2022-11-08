@@ -1,10 +1,7 @@
 package controllers;
 
-import java.awt.Image;
-import java.util.GregorianCalendar;
 import java.util.Set;
 import java.util.HashSet;
-
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -13,12 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import excepciones.departamentoNoExisteException;
 import excepciones.usuarioNoExisteException;
 import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTUsuario;
+
+import publicadores.DtColecciones;
+import publicadores.PublicadorUsuario;
+import publicadores.PublicadorUsuarioService;
+import publicadores.UsuarioNoExisteException_Exception;
 
 /**
  * Servlet implementation class ListarUsuarios
@@ -36,13 +36,23 @@ public class ListarUsuarios extends HttpServlet {
     }
     
     protected void cargarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorUsuario ctrlUsr = fact.getIControladorUsuario();
-        	
-    	String[] usrsNombres = ctrlUsr.obtenerUsuarios();
-    	Set<DTUsuario> usuarios = new HashSet<DTUsuario>();
+    	//Fabrica fact = Fabrica.getInstance();
+    	//IControladorUsuario ctrlUsr = fact.getIControladorUsuario();
+        
+    	PublicadorUsuarioService service = new PublicadorUsuarioService();
+        PublicadorUsuario port = service.getPublicadorUsuarioPort();
+        
+        DtColecciones usuarios = new DtColecciones();
+		try {
+			usuarios = port.obtenerUsuariosDT();
+		} catch (UsuarioNoExisteException_Exception usuarioNoExiste) {
+			request.setAttribute("error", "usuario-no-existe");
+		}
     	
-    	for(String usr : usrsNombres) {
+    	//String[] usrsNombres = ctrlUsr.obtenerUsuarios();
+    	//Set<DTUsuario> usuarios = new HashSet<DTUsuario>();
+    	
+    	/*for(String usr : usrsNombres) {
     		DTUsuario nuevo = null;
     		try {
 				nuevo = ctrlUsr.obtenerUsuario(usr);
@@ -53,7 +63,7 @@ public class ListarUsuarios extends HttpServlet {
 			}
     		usuarios.add(nuevo);
     		
-    	}
+    	}*/
     	
     	request.setAttribute("usuarios", usuarios);
     	request.getRequestDispatcher("/pages/listarUsuarios.jsp").forward(request, response);
