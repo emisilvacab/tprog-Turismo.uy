@@ -17,14 +17,16 @@ import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
+import logica.Estado;
 import logica.Fabrica;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTUsuario;
 import logica.datatypes.DTActividad;
 import logica.datatypes.DTColecciones;
 import logica.datatypes.DTCompra;
-import logica.datatypes.DTSalida;
 import logica.datatypes.DTInscripcion;
+import logica.datatypes.DTSalida;
+
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -79,37 +81,50 @@ public class PublicadorUsuario {
 	}
 	
 	@WebMethod
-	public DTColecciones obtenerActividadesOfrecidas(String nickname) throws usuarioNoExisteException {
-		String[] actividades =  contU.obtenerActividadesOfrecidas(nickname);
-		DTColecciones col = new DTColecciones();
-		Set<String> setActividades = new HashSet<String>();
-		for (String act : actividades) {
-			setActividades.add(act);
+	public DTColecciones obtenerActividadesOfrecidasDT(String nickname) throws usuarioNoExisteException, actividadNoExisteException {
+		String[] actividadNombres = contU.obtenerActividadesOfrecidas(nickname);
+		Set<DTActividad> actividades = new HashSet<DTActividad>();
+		for (String act : actividadNombres) {
+			DTActividad nueva = contU.obtenerDatoActividadProveedor(nickname, act);
+			actividades.add(nueva);
 		}
-		col.setSetString(setActividades);
+		DTColecciones col = new DTColecciones();
+		col.setSetDtActividad(actividades);
 		return col;
 	}
 	
 	@WebMethod
-	public DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException {
-		return contU.obtenerDatoActividadProveedor(nickname, nombreAct);
-	}
-	
-	@WebMethod
-	public DTColecciones obtenerSalidasDeActividad(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException {
-		String[] salidas =  contU.obtenerSalidasDeActividad(nickname, nombreAct);
-		Set<String> setSalidas = new HashSet<String>();
-		for (String sal : salidas) {
-			setSalidas.add(sal);
+	public DTColecciones obtenerActividadesOfrecidasConfirmadasDT(String nickname) throws usuarioNoExisteException, actividadNoExisteException {
+		String[] actividadNombres = contU.obtenerActividadesOfrecidas(nickname);
+		Set<DTActividad> actividades = new HashSet<DTActividad>();
+		for (String act : actividadNombres) {
+			DTActividad nueva = contU.obtenerDatoActividadProveedor(nickname, act);
+			if (nueva.getEstado().equals(Estado.CONFIRMADA)) {
+				actividades.add(nueva);
+			}
 		}
 		DTColecciones col = new DTColecciones();
-		col.setSetString(setSalidas);	
+		col.setSetDtActividad(actividades);
 		return col;
 	}
 	
 	@WebMethod
-	public DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException {
-		return contU.obtenerDatoSalidaProveedor(nickname, nombreAct, nombreSal);
+	public DTColecciones obtenerSalidasConfirmadasDT(String nickname) throws usuarioNoExisteException, actividadNoExisteException {
+		String[] actividadNombres = contU.obtenerActividadesOfrecidas(nickname);
+		Set<DTSalida> salidas = new HashSet<DTSalida>();
+		for (String act : actividadNombres) {
+			DTActividad nuevaSal = contU.obtenerDatoActividadProveedor(nickname, act);
+			if (nuevaSal.getEstado().equals(Estado.CONFIRMADA)) {
+				String[] salidaNombres = contU.obtenerSalidasDeActividad(nickname, act);
+				for (String sal : salidaNombres) {
+					DTSalida nuevaAct = contU.obtenerDatoSalidaProveedor(nickname, act, sal);
+					salidas.add(nuevaAct);
+				}
+			}
+		}
+		DTColecciones col = new DTColecciones();
+		col.setSetDtSalida(salidas);
+		return col;
 	}
 	
 	@WebMethod
