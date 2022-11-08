@@ -1,7 +1,10 @@
 package publicadores;
 
 import java.util.GregorianCalendar;
+import java.util.Set;
+import java.util.HashSet;
 
+import excepciones.actividadNoExisteException;
 import excepciones.ingresoInvalidoException;
 import excepciones.inscripcionExisteException;
 import excepciones.limiteSuperadoException;
@@ -17,6 +20,11 @@ import jakarta.xml.ws.Endpoint;
 import logica.Fabrica;
 import logica.controladores.IControladorUsuario;
 import logica.datatypes.DTUsuario;
+import logica.datatypes.DTActividad;
+import logica.datatypes.DTColecciones;
+import logica.datatypes.DTCompra;
+import logica.datatypes.DTSalida;
+import logica.datatypes.DTInscripcion;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -47,6 +55,61 @@ public class PublicadorUsuario {
 			contU.ingresarDatosInscripcionPaq(nickname, nombreSal, cantidad, fecha, null);
 		else 
 			contU.ingresarDatosInscripcionPaq(nickname, nombreSal, cantidad, fecha, nombrePaq);
+	}
+	
+	@WebMethod
+	public DTUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException {
+		return contU.obtenerUsuario(nickname);
+	}
+	
+	@WebMethod
+	public DTColecciones obtenerInscripcionesTurista(String nickname) throws usuarioNoExisteException {
+		Set<DTInscripcion> inscripciones = (HashSet<DTInscripcion>) contU.obtenerInscripcionesTurista(nickname);
+		DTColecciones col = new DTColecciones();
+		col.setSetDtInscripcion(inscripciones);
+		return col;
+	}
+	
+	@WebMethod
+	public DTColecciones obtenerComprasTurista(String nickname) throws usuarioNoExisteException {
+		Set<DTCompra> compras = (HashSet<DTCompra>) contU.obtenerComprasTurista(nickname);
+		DTColecciones col = new DTColecciones();
+		col.setSetDtCompra(compras);
+		return col;
+	}
+	
+	@WebMethod
+	public DTColecciones obtenerActividadesOfrecidas(String nickname) throws usuarioNoExisteException {
+		String[] actividades =  contU.obtenerActividadesOfrecidas(nickname);
+		DTColecciones col = new DTColecciones();
+		Set<String> setActividades = new HashSet<String>();
+		for (String act : actividades) {
+			setActividades.add(act);
+		}
+		col.setSetString(setActividades);
+		return col;
+	}
+	
+	@WebMethod
+	public DTActividad obtenerDatoActividadProveedor(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException {
+		return contU.obtenerDatoActividadProveedor(nickname, nombreAct);
+	}
+	
+	@WebMethod
+	public DTColecciones obtenerSalidasDeActividad(String nickname, String nombreAct) throws usuarioNoExisteException, actividadNoExisteException {
+		String[] salidas =  contU.obtenerSalidasDeActividad(nickname, nombreAct);
+		Set<String> setSalidas = new HashSet<String>();
+		for (String sal : salidas) {
+			setSalidas.add(sal);
+		}
+		DTColecciones col = new DTColecciones();
+		col.setSetString(setSalidas);	
+		return col;
+	}
+	
+	@WebMethod
+	public DTSalida obtenerDatoSalidaProveedor(String nickname, String nombreAct, String nombreSal) throws usuarioNoExisteException, actividadNoExisteException {
+		return contU.obtenerDatoSalidaProveedor(nickname, nombreAct, nombreSal);
 	}
 	
 }
