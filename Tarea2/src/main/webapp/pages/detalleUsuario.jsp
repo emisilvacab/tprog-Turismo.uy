@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DTUsuario"%>
-<%@page import="logica.datatypes.DTProveedor"%>
-<%@page import="logica.datatypes.DTTurista"%>
-<%@page import="logica.datatypes.DTActividad"%>
-<%@page import="logica.datatypes.DTInscripcion"%>
-<%@page import="logica.datatypes.DTCompra"%>
-<%@page import="logica.datatypes.DTSalida"%>
-<%@page import="logica.Estado"%>
+
+<%@page import = "publicadores.DtUsuario" %>
+<%@page import = "publicadores.DtCompra" %>
+<%@page import = "publicadores.DtInscripcion" %>
+<%@page import = "publicadores.DtProveedor" %>
+<%@page import = "publicadores.DtTurista" %>
+<%@page import = "publicadores.DtColecciones" %>
+<%@page import = "publicadores.DtActividad" %>
+<%@page import = "publicadores.DtSalida" %>
+<%@page import = "publicadores.Estado" %>
 
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 
 
@@ -24,13 +27,13 @@
 	<jsp:include page="/template/aside-bar.jsp"/>
 
 	<%
-	DTUsuario usr = (DTUsuario) request.getAttribute("usuarioDetalle");
+	DtUsuario usr = (DtUsuario) request.getAttribute("usuarioDetalle");
 	String tipo = (String) request.getAttribute("usuarioDetalleTipo");
-	HashSet<DTInscripcion> inscripciones = (HashSet<DTInscripcion>) request.getAttribute("usuarioDetalleInscripciones");
-	HashSet<DTCompra> compras = (HashSet<DTCompra>) request.getAttribute("usuarioDetalleCompras");
+	//HashSet<DtInscripcion> inscripciones = (HashSet<DtInscripcion>) request.getAttribute("usuarioDetalleInscripciones");
+	//HashSet<DtCompra> compras = (HashSet<DtCompra>) request.getAttribute("usuarioDetalleCompras");
 	
 	String nick = null;
-	DTUsuario logged = (DTUsuario) session.getAttribute("usuario_logueado");
+	DtUsuario logged = (DtUsuario) session.getAttribute("usuario_logueado");
 	if(logged != null){
 		nick = logged.getNickname(); 
 	}
@@ -50,18 +53,16 @@
     				<div class="col-md-8">
       					<div class="card-body">
         					<h5 class="card-title"><%=usr.getNombre()%></h5>
-        					
+
         					<p class="card-text"><%=usr.getNickname()%> / <p1 class="text-muted"><%=usr.getCorreo()%></p1></p>
-        					<% GregorianCalendar nacimiento = usr.getNacimiento(); %>
+        					<% GregorianCalendar nacimiento = usr.getNacimiento().toGregorianCalendar(); %>
         					<p class="card-text">Fecha de nacimiento: <p1 class="text-muted"><%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%> </p1></p>
-        					<% if(usr.getNickname().equals(nick)){%>
-        					<a  href="modificarDatosUsuario.html" id="button-cargarDatos" class="btn btn-primary">Modificar</a>
-        					<%} %>
+
       					</div>
     				</div>
   				</div>
 			</div>
-			
+
 			<ul class="nav nav-tabs" id="myTab" role="tablist" style="max-width:950px;">
   				<li class="nav-item" role="presentation">
     				<button class="nav-link active" id="perfil-tab" data-bs-toggle="tab" data-bs-target="#perfil-tab-pane" type="button" role="tab" aria-controls="perfil-tab-pane" aria-selected="true" style="color: #2f3131;" >Perfil</button>
@@ -99,12 +100,12 @@
          			<p3 class="text">Fecha de nacimiento: <%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%></p3><br>
          			
          			<%if(tipo == "turista"){
-         				DTTurista tur = (DTTurista) usr;
+         				DtTurista tur = (DtTurista) usr;
          			%>
          				<p1 class="text">Nacionalidad: <%=tur.getNacionalidad()%></p1><br>
          			
          			<%}else if(tipo == "proveedor"){ 
-         				DTProveedor prov = (DTProveedor) usr;
+         				DtProveedor prov = (DtProveedor) usr;
 
          			%>
   					<p1 class="text">Link: <a href="<%=prov.getLink()%>" target="_blank"><%=prov.getLink()%></a></p1><br>
@@ -120,9 +121,10 @@
 	
 						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
 							<%
-							
-							for(DTInscripcion ins : inscripciones){
-								GregorianCalendar insFecha = ins.getFecha();
+							DtColecciones insCol = (DtColecciones) request.getAttribute("usuarioDetalleInscripciones");
+							Set<DtInscripcion> inscripciones = new HashSet<DtInscripcion>(insCol.getSetDtInscripcion());
+							for(DtInscripcion ins : inscripciones){
+								GregorianCalendar insFecha = ins.getFecha().toGregorianCalendar();
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<div class="card-body" id="card-body-paquete">
@@ -147,11 +149,13 @@
   				
   					<div class="container" id="container-cards-paquete-usuario" style="max-width:950px;">
 	
-						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
+						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">					
 							<%
+							DtColecciones compraCol = (DtColecciones) request.getAttribute("usuarioDetalleCompras");
+							Set<DtCompra> compras = new HashSet<DtCompra>(compraCol.getSetDtCompra());
 							if(usr.getNickname().equals(nick)){
-								for(DTCompra comp : compras){
-									GregorianCalendar fechaCompra = comp.getFecha();
+								for(DtCompra comp : compras){
+									GregorianCalendar fechaCompra = comp.getFecha().toGregorianCalendar();
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<div class="card-body" id="card-body-paquete">
@@ -167,8 +171,7 @@
 							<%	}
 							} 
 							%>
-						</div>
-  				
+						</div>	
   					</div>
   				</div>
   				
@@ -180,12 +183,12 @@
 	
 						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
 						<% 
-  						HashSet<DTActividad> actividades = (HashSet<DTActividad>) request.getAttribute("usuarioDetalleActividades");
-						
+  						//HashSet<DTActividad> actividades = (HashSet<DTActividad>) request.getAttribute("usuarioDetalleActividades");
+						Set<DtActividad> actividades = (HashSet<DtActividad>) request.getAttribute("usuarioDetalleActividades");
 						if(!usr.getNickname().equals(nick)){
-							for(DTActividad actividad : actividades){
+							for(DtActividad actividad : actividades){
 								if(actividad.getEstado().equals(Estado.CONFIRMADA)){
-  									GregorianCalendar alta = actividad.getAlta();
+  									GregorianCalendar alta = actividad.getAlta().toGregorianCalendar();
   						%>
   						
 							<div id="paquete-card" class="card" style="width: 18rem;">
@@ -206,8 +209,8 @@
 								}
   							}
 						}else{
-							for(DTActividad actividad : actividades){
-								GregorianCalendar alta = actividad.getAlta();
+							for(DtActividad actividad : actividades){
+								GregorianCalendar alta = actividad.getAlta().toGregorianCalendar();
 								Estado estadoAct = actividad.getEstado();
 								String estadoStr = "";
 																
@@ -217,7 +220,9 @@
 									estadoStr = "Agregada";
 								}else if(estadoAct.equals(Estado.RECHAZADA)){
 									estadoStr = "Rechazada";
-								}
+								}//else if(estadoAct.equals(Estado.FINALIZADA)){
+								//	estadoStr = "Finalizada";
+								//}
 				%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
@@ -236,8 +241,7 @@
 							</div>
 				<% 
 							}
-						}
-  				
+						}										
   				%>
   					
 						</div>
@@ -252,8 +256,8 @@
 						<% 
 						
 						if(usr.getNickname().equals(nick)){
-							HashSet<DTSalida> salidas = (HashSet<DTSalida>) request.getAttribute("usuarioDetalleSalidas");
-							for(DTSalida sal : salidas){							
+							HashSet<DtSalida> salidas = (HashSet<DtSalida>) request.getAttribute("usuarioDetalleSalidas");
+							for(DtSalida sal : salidas){							
   						%>
   						
 							<div id="paquete-card" class="card" style="width: 18rem;">
@@ -267,8 +271,8 @@
 					<%				
 							}
 						}else{
-							HashSet<DTSalida> salidasConf = (HashSet<DTSalida>) request.getAttribute("usuarioDetalleSalidasConfirmadas");
-							for(DTSalida sal : salidasConf){
+							HashSet<DtSalida> salidasConf = (HashSet<DtSalida>) request.getAttribute("usuarioDetalleSalidasConfirmadas");
+							for(DtSalida sal : salidasConf){
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
