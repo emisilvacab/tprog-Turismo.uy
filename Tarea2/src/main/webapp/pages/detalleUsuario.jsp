@@ -184,10 +184,10 @@
 						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
 						<% 
   						//HashSet<DTActividad> actividades = (HashSet<DTActividad>) request.getAttribute("usuarioDetalleActividades");
-						Set<DtActividad> actividades = (HashSet<DtActividad>) request.getAttribute("usuarioDetalleActividades");
 						if(!usr.getNickname().equals(nick)){
-							for(DtActividad actividad : actividades){
-								if(actividad.getEstado().equals(Estado.CONFIRMADA)){
+							DtColecciones confirmadasCol = (DtColecciones) request.getAttribute("usuarioDetalleActividadesConfirmadas");
+							Set<DtActividad> actividadesConfirmadas = new HashSet<DtActividad>(confirmadasCol.getSetDtActividad());
+							for(DtActividad actividad : actividadesConfirmadas){
   									GregorianCalendar alta = actividad.getAlta().toGregorianCalendar();
   						%>
   						
@@ -198,7 +198,6 @@
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%> días</p>
     								<p class="card-text"><strong>Costo: $</strong><%=actividad.getCosto()%></p>
     								<p class="card-text"><strong>Ciudad:</strong><%=actividad.getCiudad()%></p>	
-    								<!--   class="card-text"><strong>Departamento:</strong> Rocha</p>-->
     								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)+1%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
     			
     								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>" class="stretched-link"></a>
@@ -206,23 +205,13 @@
   								</div>  						
 							</div>
 				<%				
-								}
+								
   							}
 						}else{
-							for(DtActividad actividad : actividades){
+							DtColecciones ofrecidasCol = (DtColecciones) request.getAttribute("usuarioDetalleActividadesOfrecidas");
+							Set<DtActividad> actividadesOfrecidas = new HashSet<DtActividad>(ofrecidasCol.getSetDtActividad());
+							for(DtActividad actividad : actividadesOfrecidas){
 								GregorianCalendar alta = actividad.getAlta().toGregorianCalendar();
-								Estado estadoAct = actividad.getEstado();
-								String estadoStr = "";
-																
-								if(estadoAct.equals(Estado.CONFIRMADA)){
-									estadoStr = "Confirmada";
-								}else if(estadoAct.equals(Estado.AGREGADA)){
-									estadoStr = "Agregada";
-								}else if(estadoAct.equals(Estado.RECHAZADA)){
-									estadoStr = "Rechazada";
-								}//else if(estadoAct.equals(Estado.FINALIZADA)){
-								//	estadoStr = "Finalizada";
-								//}
 				%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
@@ -231,9 +220,8 @@
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%></p>
     								<p class="card-text"><strong>Costo: $</strong><%=actividad.getCosto()%></p>
     								<p class="card-text"><strong>Ciudad:</strong><%=actividad.getCiudad()%></p>	
-    								<!--   class="card-text"><strong>Departamento:</strong> Rocha</p>-->
     								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)+1%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
-    								<p class="card-text"><strong>Estado: </strong><%=estadoStr%></p>	
+    								<p class="card-text"><strong>Estado: </strong><%=actividad.getEstado().toString()%></p>	
     								
     								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>" class="stretched-link"></a>
    		
@@ -256,10 +244,10 @@
 						<% 
 						
 						if(usr.getNickname().equals(nick)){
-							HashSet<DtSalida> salidas = (HashSet<DtSalida>) request.getAttribute("usuarioDetalleSalidas");
-							for(DtSalida sal : salidas){							
-  						%>
-  						
+							DtColecciones salidasConfCol = (DtColecciones) request.getAttribute("usuarioDetalleSalidasConfirmadas");
+							Set<DtSalida> salidasConf = new HashSet<DtSalida>(salidasConfCol.getSetDtSalida());
+							for(DtSalida sal : salidasConf){
+							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
@@ -268,10 +256,13 @@
    		
   								</div>  						
 							</div>
-					<%				
+								
+								
+							<%
 							}
 						}else{
-							HashSet<DtSalida> salidasConf = (HashSet<DtSalida>) request.getAttribute("usuarioDetalleSalidasConfirmadas");
+							DtColecciones salidasConfCol = (DtColecciones) request.getAttribute("usuarioDetalleSalidasConfirmadas");
+							Set<DtSalida> salidasConf = new HashSet<DtSalida>(salidasConfCol.getSetDtSalida());
 							for(DtSalida sal : salidasConf){
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
