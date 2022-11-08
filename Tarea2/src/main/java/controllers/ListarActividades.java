@@ -1,8 +1,6 @@
 package controllers;
 
-import java.awt.Image;
 import java.io.IOException;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 
 import javax.servlet.ServletException;
@@ -11,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import excepciones.categoriaNoExisteException;
-import excepciones.departamentoNoExisteException;
-import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorUsuario;
-import logica.datatypes.DTActividad;
+import publicadores.CategoriaNoExisteException_Exception;
+import publicadores.DepartamentoNoExisteException_Exception;
+import publicadores.DtActividad;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
 
 /* import Presentacion.CargarDatos;
 import logica.controladores.IControladorPaquete; */
@@ -41,15 +38,15 @@ public class ListarActividades extends HttpServlet {
 	 */
     
     private void cargarActividades(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento ctrlDepartamentos = fact.getIControladorDepartamento();
+    	PublicadorDepartamentoService serviceDepartamento = new PublicadorDepartamentoService();
+        PublicadorDepartamento portDepartamento = serviceDepartamento.getPublicadorDepartamentoPort();
     	
     	String tipo = request.getParameter("tipoPedidoActividad");
-    	HashSet<DTActividad> actividades = null;
+    	HashSet<DtActividad> actividades = null;
     	if (tipo.equals("departamento")) {
     		try {
-				actividades = (HashSet<DTActividad>) ctrlDepartamentos.obtenerDatosActividadesConfirmadasDpto(request.getParameter("nombreTipoActividad"));
-			} catch (departamentoNoExisteException deptoNoExiste) {
+				actividades = new HashSet<DtActividad>(portDepartamento.obtenerDatosActividadesConfirmadasDpto(request.getParameter("nombreTipoActividad")).getSetDtActividad());
+			} catch (DepartamentoNoExisteException_Exception deptoNoExiste) {
 				// TODO Auto-generated catch block
 				request.setAttribute("error", "departamentoNoExiste");
 				//request.getRequestDispatcher("/pages/algo.jsp").forward(request, response);
@@ -59,8 +56,8 @@ public class ListarActividades extends HttpServlet {
     		request.getRequestDispatcher("/pages/listarActividades.jsp").forward(request, response);
     	} else if (tipo.equals("categoria")) {
     		try {
-				actividades = (HashSet<DTActividad>) ctrlDepartamentos.obtenerDatosActividadesConfirmadasCat(request.getParameter("nombreTipoActividad"));
-			} catch (categoriaNoExisteException catNoExiste) {
+				actividades = new HashSet<DtActividad>(portDepartamento.obtenerDatosActividadesConfirmadasCat(request.getParameter("nombreTipoActividad")).getSetDtActividad());
+			} catch (CategoriaNoExisteException_Exception catNoExiste) {
 				// TODO Auto-generated catch block
 				request.setAttribute("error", "categoriaNoExiste");
 				//request.getRequestDispatcher("/pages/algo.jsp").forward(request, response);

@@ -8,6 +8,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DTColecciones {
 	private Set<String> setString = new HashSet<String>();
+	private Set<DTActividad> setDtActividad = new HashSet<DTActividad>();
 	private Set<DTInscripcion> setDtInscripcion = new HashSet<DTInscripcion>();
 	private Set<DTCompra> setDtCompra = new HashSet<DTCompra>();
 	
@@ -21,6 +22,14 @@ public class DTColecciones {
 		this.setString = setString;
 	}
 	
+	public Set<DTActividad> getSetDtActividad() {
+		return setDtActividad;
+	}
+
+	public void setSetDtActividad(Set<DTActividad> setDtActividad) {
+		this.setDtActividad = setDtActividad;
+	}
+
 	public Set<DTInscripcion> getSetDtInscripcion() {
 		return setDtInscripcion;
 	}

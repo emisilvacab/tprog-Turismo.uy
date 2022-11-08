@@ -45,6 +45,7 @@ public class PublicadorDepartamento {
 			res.add(act.getNombre());
 		}
 		DTColecciones col = new DTColecciones();
+		col.setSetDtActividad(acts);
 		col.setSetString(res);
 		return col;
 	}
@@ -56,6 +57,7 @@ public class PublicadorDepartamento {
 			res.add(act.getNombre());
 		}
 		DTColecciones col = new DTColecciones();
+		col.setSetDtActividad(acts);
 		col.setSetString(res);
 		return col;
 	}

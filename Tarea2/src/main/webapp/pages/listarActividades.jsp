@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DTActividad"%>
+<%@page import="publicadores.DtActividad"%>
 <%@page import="java.util.HashSet"%>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 				</h1>
 				
 				<%
-					HashSet<DTActividad> listaActividades = (HashSet<DTActividad>) request.getAttribute("actividades");
+					HashSet<DtActividad> listaActividades = (HashSet<DtActividad>) request.getAttribute("actividades");
 					
 					if (listaActividades.isEmpty()) {
 				%>
@@ -40,7 +40,7 @@
 						</h3>
 				<%
 					} else {
-						for (DTActividad actividad: listaActividades) {
+						for (DtActividad actividad: listaActividades) {
 				%>
 				
 				<div class="card mb-4 contenedor-actividad" style="max-width: 1000px;">
