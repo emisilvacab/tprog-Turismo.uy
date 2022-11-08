@@ -72,29 +72,28 @@ public class DetalleUsuario extends HttpServlet {
     		request.setAttribute("usuarioDetalleCompras", compras);
     		
     	}else {
-    		Set<String> actividadesNombres = new HashSet<String>();
     		
+    		DtColecciones actividadesConfirmadas = new DtColecciones();
+			try {
+				actividadesConfirmadas = port.obtenerActividadesOfrecidasConfirmadasDT(nickname);
+			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
+				request.setAttribute("error", "usuario-actividad-no-existe");
+			}
+    
+    		DtColecciones actividadesOfrecidas = new DtColecciones();
+			try {
+				actividadesOfrecidas = port.obtenerActividadesOfrecidasDT(nickname);
+			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
+				request.setAttribute("error", "usuario-actividad-no-existe");
+			}
+    		
+			DtColecciones salidasConfirmadas = new DtColecciones();
     		try {
-    			actividadesNombres = new HashSet<String>(port.obtenerActividadesOfrecidas(nickname).getSetString());
-    		} catch (UsuarioNoExisteException_Exception usuarioNoExiste) {
-				request.setAttribute("error", "usuario-no-existe"); 
-    		}
-    		
-    		
-    		Set<DtActividad> actividades = new HashSet<DtActividad>();
-    		
-    		for(String act : actividadesNombres) {
-    			
-    			DtActividad aux = null;		
-    			try {
-					aux = port.obtenerDatoActividadProveedor(nickname, act);
-					actividades.add(aux);
-				} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception actividadUsuarioNoExiste) {
-					request.setAttribute("error", "usuario-actividad-no-existe");
-				}
-    		}
-    		
-    		
+				salidasConfirmadas = port.obtenerSalidasConfirmadasDT(nickname);
+			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
+				request.setAttribute("error", "usuario-actividad-no-existe");
+			}
+    		/*
     		Set<DtSalida> salidasProveedor = new HashSet<DtSalida>();
     		for(String act : actividadesNombres) {
     			try {
@@ -127,10 +126,12 @@ public class DetalleUsuario extends HttpServlet {
     				
     			}
     		}
+    		*/
     		
     		request.setAttribute("usuarioDetalleSalidasConfirmadas", salidasConfirmadas);
-    		request.setAttribute("usuarioDetalleSalidas", salidasProveedor);
-    		request.setAttribute("usuarioDetalleActividades", actividades);
+    		//request.setAttribute("usuarioDetalleSalidas", salidasProveedor);
+    		request.setAttribute("usuarioDetalleActividadesOfrecidas", actividadesOfrecidas);
+    		request.setAttribute("usuarioDetalleActividadesConfirmadas", actividadesConfirmadas);
     		request.setAttribute("usuarioDetalle", usuario);
     		request.setAttribute("usuarioDetalleTipo", "proveedor");
 

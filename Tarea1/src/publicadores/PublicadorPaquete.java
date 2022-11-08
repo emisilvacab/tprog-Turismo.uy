@@ -35,7 +35,8 @@ public class PublicadorPaquete {
     public Endpoint getEndpoint() {
          return endpoint;
     }
-	
+
+	@WebMethod
 	public DTColecciones obtenerPaquetesDisponibles(String nickname, String nombreSalida, int cantTuristas) throws usuarioNoExisteException {
 		Set<DTPaquete> paqs = contP.obtenerPaquetesDisponibles(nickname, nombreSalida, cantTuristas);
 		Set<String> paqsInsc = new HashSet<String>();
@@ -46,7 +47,8 @@ public class PublicadorPaquete {
 		col.setSetString(paqsInsc);
 		return col;
 	}
-	
+
+	@WebMethod
 	public DTColecciones obtenerPaquetesConActividades() {
 		HashSet<DTPaquete> paqs = (HashSet<DTPaquete>) contP.obtenerPaquetesConActividades();
 		Set<String> paqsCompra = new HashSet<String>();
@@ -57,9 +59,18 @@ public class PublicadorPaquete {
 		col.setSetString(paqsCompra);
 		return col;
 	}
-	
+
+	@WebMethod
 	public void comprarPaquete(String nickname, String nombrePaq, GregorianCalendar fechaCompra, int cantidadTuristas) throws usuarioNoExisteException, paqueteNoExisteException, compraExisteException {
 		contP.comprarPaquete(nickname, nombrePaq, fechaCompra, cantidadTuristas);
 	}
 
+	@WebMethod
+	public DTColecciones obtenerDatosPaquetesParaActividad(String nombreAct) {
+		Set<DTPaquete> paquetes = (HashSet<DTPaquete>) contP.obtenerDatosPaquetesParaActividad(nombreAct);
+		DTColecciones coleccion = new DTColecciones();
+		coleccion.setSetDtPaquete(paquetes);
+		return coleccion;
+	}
+	
 }

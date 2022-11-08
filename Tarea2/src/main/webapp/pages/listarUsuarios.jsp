@@ -4,7 +4,14 @@
 <%@page import="logica.datatypes.DTUsuario"%>
 <%@page import="logica.datatypes.DTTurista"%>
 <%@page import="logica.datatypes.DTProveedor"%>
+<%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
+
+<%@page import="publicadores.DtUsuario"%>
+<%@page import="publicadores.DtTurista"%>
+<%@page import="publicadores.DtProveedor"%>
+<%@page import="publicadores.DtColecciones"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -29,8 +36,9 @@
 	    
 		<div class="d-flex align-items-stretch" id="flex-cards-usuarios">
 			<%
-				HashSet<DTUsuario> listaUsuarios = (HashSet<DTUsuario>) request.getAttribute("usuarios");
-				for (DTUsuario usuario: listaUsuarios) {
+				DtColecciones usuarios = (DtColecciones) request.getAttribute("usuarios");
+				Set<DtUsuario> listaUsuarios = new HashSet<DtUsuario>(usuarios.getSetDtUsuario());
+				for (DtUsuario usuario: listaUsuarios) {
 					String nick = usuario.getNickname();
 			%>
 	
@@ -39,8 +47,8 @@
   				<div class="card-body" id="card-body-paquete">
 
     				<h3 class="card-title"><%=nick%></h3>
-    				<p class="card-text"><%=usuario.getApellido()%>, <%=usuario.getNombre()%></p>
-    				<h6 class="card-text"><% if (usuario instanceof DTTurista) {%>Turista<%} else {%>Proveedor<%}%></h6>
+    				<p class="card-text"><%=usuario.getApellido()%>, <%=usuario.getNombre() %></p>
+    				<h6 class="card-text"><% if (usuario instanceof DtTurista) {%>Turista<%} else {%>Proveedor<%}%></h6>
         			<p class="card-text"><small class="text-muted"><%=usuario.getCorreo()%></small></p>
     				<a href="DetalleUsuario?usuarioDetalleNickname=<%=nick%>" class="stretched-link"></a>
     			
