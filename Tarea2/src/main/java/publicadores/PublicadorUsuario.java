@@ -31,24 +31,111 @@ public interface PublicadorUsuario {
      * @param arg0
      * @param arg1
      * @param arg2
-     * @return
-     *     returns publicadores.DtSalida
-     * @throws ActividadNoExisteException_Exception
+     * @param arg3
+     * @param arg4
+     * @throws InscripcionExisteException_Exception
+     * @throws LimiteSuperadoException_Exception
+     * @throws PaqueteNoExisteException_Exception
+     * @throws SalidaNoExisteException_Exception
      * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorUsuario/obtenerDatoSalidaProveedorRequest", output = "http://publicadores/PublicadorUsuario/obtenerDatoSalidaProveedorResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerDatoSalidaProveedor/Fault/usuarioNoExisteException"),
-        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerDatoSalidaProveedor/Fault/actividadNoExisteException")
+    @Action(input = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaqRequest", output = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaqResponse", fault = {
+        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/salidaNoExisteException"),
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/usuarioNoExisteException"),
+        @FaultAction(className = PaqueteNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/paqueteNoExisteException"),
+        @FaultAction(className = InscripcionExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/inscripcionExisteException"),
+        @FaultAction(className = LimiteSuperadoException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/limiteSuperadoException")
     })
-    public DtSalida obtenerDatoSalidaProveedor(
+    public void ingresarDatosInscripcionPaq(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1,
         @WebParam(name = "arg2", partName = "arg2")
-        String arg2)
+        int arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        XMLGregorianCalendar arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4)
+        throws InscripcionExisteException_Exception, LimiteSuperadoException_Exception, PaqueteNoExisteException_Exception, SalidaNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorUsuario/obtenerInscripcionesTuristaRequest", output = "http://publicadores/PublicadorUsuario/obtenerInscripcionesTuristaResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerInscripcionesTurista/Fault/usuarioNoExisteException")
+    })
+    public DtColecciones obtenerInscripcionesTurista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws ActividadNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasConfirmadasDTRequest", output = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasConfirmadasDTResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasConfirmadasDT/Fault/usuarioNoExisteException"),
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasConfirmadasDT/Fault/actividadNoExisteException")
+    })
+    public DtColecciones obtenerActividadesOfrecidasConfirmadasDT(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ActividadNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws ActividadNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasDTRequest", output = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasDTResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasDT/Fault/usuarioNoExisteException"),
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasDT/Fault/actividadNoExisteException")
+    })
+    public DtColecciones obtenerActividadesOfrecidasDT(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ActividadNoExisteException_Exception, UsuarioNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws ActividadNoExisteException_Exception
+     * @throws UsuarioNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorUsuario/obtenerSalidasConfirmadasDTRequest", output = "http://publicadores/PublicadorUsuario/obtenerSalidasConfirmadasDTResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerSalidasConfirmadasDT/Fault/usuarioNoExisteException"),
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerSalidasConfirmadasDT/Fault/actividadNoExisteException")
+    })
+    public DtColecciones obtenerSalidasConfirmadasDT(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
         throws ActividadNoExisteException_Exception, UsuarioNoExisteException_Exception
     ;
 
@@ -112,7 +199,6 @@ public interface PublicadorUsuario {
     /**
      * 
      * @param arg0
-     * @param arg1
      * @return
      *     returns publicadores.DtColecciones
      * @throws ActividadNoExisteException_Exception
@@ -120,109 +206,28 @@ public interface PublicadorUsuario {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorUsuario/obtenerSalidasDeActividadRequest", output = "http://publicadores/PublicadorUsuario/obtenerSalidasDeActividadResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerSalidasDeActividad/Fault/usuarioNoExisteException"),
-        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerSalidasDeActividad/Fault/actividadNoExisteException")
+    @Action(input = "http://publicadores/PublicadorUsuario/obtenerSalidasOfrecidasDTRequest", output = "http://publicadores/PublicadorUsuario/obtenerSalidasOfrecidasDTResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerSalidasOfrecidasDT/Fault/usuarioNoExisteException"),
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerSalidasOfrecidasDT/Fault/actividadNoExisteException")
     })
-    public DtColecciones obtenerSalidasDeActividad(
+    public DtColecciones obtenerSalidasOfrecidasDT(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
+        String arg0)
         throws ActividadNoExisteException_Exception, UsuarioNoExisteException_Exception
     ;
 
     /**
      * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @throws InscripcionExisteException_Exception
-     * @throws LimiteSuperadoException_Exception
-     * @throws PaqueteNoExisteException_Exception
-     * @throws SalidaNoExisteException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaqRequest", output = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaqResponse", fault = {
-        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/salidaNoExisteException"),
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/usuarioNoExisteException"),
-        @FaultAction(className = PaqueteNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/paqueteNoExisteException"),
-        @FaultAction(className = InscripcionExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/inscripcionExisteException"),
-        @FaultAction(className = LimiteSuperadoException_Exception.class, value = "http://publicadores/PublicadorUsuario/ingresarDatosInscripcionPaq/Fault/limiteSuperadoException")
-    })
-    public void ingresarDatosInscripcionPaq(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        int arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        XMLGregorianCalendar arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4)
-        throws InscripcionExisteException_Exception, LimiteSuperadoException_Exception, PaqueteNoExisteException_Exception, SalidaNoExisteException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @return
-     *     returns publicadores.DtActividad
-     * @throws ActividadNoExisteException_Exception
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorUsuario/obtenerDatoActividadProveedorRequest", output = "http://publicadores/PublicadorUsuario/obtenerDatoActividadProveedorResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerDatoActividadProveedor/Fault/usuarioNoExisteException"),
-        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerDatoActividadProveedor/Fault/actividadNoExisteException")
-    })
-    public DtActividad obtenerDatoActividadProveedor(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws ActividadNoExisteException_Exception, UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
      * @return
      *     returns publicadores.DtColecciones
      * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorUsuario/obtenerInscripcionesTuristaRequest", output = "http://publicadores/PublicadorUsuario/obtenerInscripcionesTuristaResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerInscripcionesTurista/Fault/usuarioNoExisteException")
+    @Action(input = "http://publicadores/PublicadorUsuario/obtenerUsuariosDTRequest", output = "http://publicadores/PublicadorUsuario/obtenerUsuariosDTResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerUsuariosDT/Fault/usuarioNoExisteException")
     })
-    public DtColecciones obtenerInscripcionesTurista(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws UsuarioNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.DtColecciones
-     * @throws UsuarioNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasRequest", output = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidasResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorUsuario/obtenerActividadesOfrecidas/Fault/usuarioNoExisteException")
-    })
-    public DtColecciones obtenerActividadesOfrecidas(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
+    public DtColecciones obtenerUsuariosDT()
         throws UsuarioNoExisteException_Exception
     ;
 

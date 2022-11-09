@@ -15,6 +15,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     <enumeration value="AGREGADA"/>
  *     <enumeration value="CONFIRMADA"/>
  *     <enumeration value="RECHAZADA"/>
+ *     <enumeration value="FINALIZADA"/>
  *   </restriction>
  * </simpleType>
  * }</pre>
@@ -26,7 +27,8 @@ public enum Estado {
 
     AGREGADA,
     CONFIRMADA,
-    RECHAZADA;
+    RECHAZADA,
+    FINALIZADA;
 
     public String value() {
         return name();

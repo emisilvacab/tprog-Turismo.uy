@@ -24,8 +24,12 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CompraExisteException_QNAME = new QName("http://publicadores/", "compraExisteException");
+    private final static QName _ActividadNoExisteException_QNAME = new QName("http://publicadores/", "actividadNoExisteException");
+    private final static QName _IngresoInvalidoException_QNAME = new QName("http://publicadores/", "ingresoInvalidoException");
+    private final static QName _InscripcionExisteException_QNAME = new QName("http://publicadores/", "inscripcionExisteException");
+    private final static QName _LimiteSuperadoException_QNAME = new QName("http://publicadores/", "limiteSuperadoException");
     private final static QName _PaqueteNoExisteException_QNAME = new QName("http://publicadores/", "paqueteNoExisteException");
+    private final static QName _SalidaNoExisteException_QNAME = new QName("http://publicadores/", "salidaNoExisteException");
     private final static QName _UsuarioNoExisteException_QNAME = new QName("http://publicadores/", "usuarioNoExisteException");
 
     /**
@@ -36,13 +40,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CompraExisteException }
+     * Create an instance of {@link ActividadNoExisteException }
      * 
      * @return
-     *     the new instance of {@link CompraExisteException }
+     *     the new instance of {@link ActividadNoExisteException }
      */
-    public CompraExisteException createCompraExisteException() {
-        return new CompraExisteException();
+    public ActividadNoExisteException createActividadNoExisteException() {
+        return new ActividadNoExisteException();
+    }
+
+    /**
+     * Create an instance of {@link IngresoInvalidoException }
+     * 
+     * @return
+     *     the new instance of {@link IngresoInvalidoException }
+     */
+    public IngresoInvalidoException createIngresoInvalidoException() {
+        return new IngresoInvalidoException();
+    }
+
+    /**
+     * Create an instance of {@link InscripcionExisteException }
+     * 
+     * @return
+     *     the new instance of {@link InscripcionExisteException }
+     */
+    public InscripcionExisteException createInscripcionExisteException() {
+        return new InscripcionExisteException();
+    }
+
+    /**
+     * Create an instance of {@link LimiteSuperadoException }
+     * 
+     * @return
+     *     the new instance of {@link LimiteSuperadoException }
+     */
+    public LimiteSuperadoException createLimiteSuperadoException() {
+        return new LimiteSuperadoException();
     }
 
     /**
@@ -56,6 +90,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SalidaNoExisteException }
+     * 
+     * @return
+     *     the new instance of {@link SalidaNoExisteException }
+     */
+    public SalidaNoExisteException createSalidaNoExisteException() {
+        return new SalidaNoExisteException();
+    }
+
+    /**
      * Create an instance of {@link UsuarioNoExisteException }
      * 
      * @return
@@ -63,6 +107,16 @@ public class ObjectFactory {
      */
     public UsuarioNoExisteException createUsuarioNoExisteException() {
         return new UsuarioNoExisteException();
+    }
+
+    /**
+     * Create an instance of {@link DtActividad }
+     * 
+     * @return
+     *     the new instance of {@link DtActividad }
+     */
+    public DtActividad createDtActividad() {
+        return new DtActividad();
     }
 
     /**
@@ -76,16 +130,125 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CompraExisteException }{@code >}
+     * Create an instance of {@link DtCompra }
+     * 
+     * @return
+     *     the new instance of {@link DtCompra }
+     */
+    public DtCompra createDtCompra() {
+        return new DtCompra();
+    }
+
+    /**
+     * Create an instance of {@link DtInscripcion }
+     * 
+     * @return
+     *     the new instance of {@link DtInscripcion }
+     */
+    public DtInscripcion createDtInscripcion() {
+        return new DtInscripcion();
+    }
+
+    /**
+     * Create an instance of {@link DtPaquete }
+     * 
+     * @return
+     *     the new instance of {@link DtPaquete }
+     */
+    public DtPaquete createDtPaquete() {
+        return new DtPaquete();
+    }
+
+    /**
+     * Create an instance of {@link DtProveedor }
+     * 
+     * @return
+     *     the new instance of {@link DtProveedor }
+     */
+    public DtProveedor createDtProveedor() {
+        return new DtProveedor();
+    }
+
+    /**
+     * Create an instance of {@link DtSalida }
+     * 
+     * @return
+     *     the new instance of {@link DtSalida }
+     */
+    public DtSalida createDtSalida() {
+        return new DtSalida();
+    }
+
+    /**
+     * Create an instance of {@link DtTurista }
+     * 
+     * @return
+     *     the new instance of {@link DtTurista }
+     */
+    public DtTurista createDtTurista() {
+        return new DtTurista();
+    }
+
+    /**
+     * Create an instance of {@link DtUsuario }
+     * 
+     * @return
+     *     the new instance of {@link DtUsuario }
+     */
+    public DtUsuario createDtUsuario() {
+        return new DtUsuario();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadNoExisteException }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link CompraExisteException }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ActividadNoExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://publicadores/", name = "compraExisteException")
-    public JAXBElement<CompraExisteException> createCompraExisteException(CompraExisteException value) {
-        return new JAXBElement<>(_CompraExisteException_QNAME, CompraExisteException.class, null, value);
+    @XmlElementDecl(namespace = "http://publicadores/", name = "actividadNoExisteException")
+    public JAXBElement<ActividadNoExisteException> createActividadNoExisteException(ActividadNoExisteException value) {
+        return new JAXBElement<>(_ActividadNoExisteException_QNAME, ActividadNoExisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IngresoInvalidoException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link IngresoInvalidoException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "ingresoInvalidoException")
+    public JAXBElement<IngresoInvalidoException> createIngresoInvalidoException(IngresoInvalidoException value) {
+        return new JAXBElement<>(_IngresoInvalidoException_QNAME, IngresoInvalidoException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link InscripcionExisteException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link InscripcionExisteException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "inscripcionExisteException")
+    public JAXBElement<InscripcionExisteException> createInscripcionExisteException(InscripcionExisteException value) {
+        return new JAXBElement<>(_InscripcionExisteException_QNAME, InscripcionExisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link LimiteSuperadoException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link LimiteSuperadoException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "limiteSuperadoException")
+    public JAXBElement<LimiteSuperadoException> createLimiteSuperadoException(LimiteSuperadoException value) {
+        return new JAXBElement<>(_LimiteSuperadoException_QNAME, LimiteSuperadoException.class, null, value);
     }
 
     /**
@@ -99,6 +262,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://publicadores/", name = "paqueteNoExisteException")
     public JAXBElement<PaqueteNoExisteException> createPaqueteNoExisteException(PaqueteNoExisteException value) {
         return new JAXBElement<>(_PaqueteNoExisteException_QNAME, PaqueteNoExisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SalidaNoExisteException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link SalidaNoExisteException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "salidaNoExisteException")
+    public JAXBElement<SalidaNoExisteException> createSalidaNoExisteException(SalidaNoExisteException value) {
+        return new JAXBElement<>(_SalidaNoExisteException_QNAME, SalidaNoExisteException.class, null, value);
     }
 
     /**

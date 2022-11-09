@@ -28,6 +28,47 @@ public interface PublicadorPaquete {
 
     /**
      * 
+     * @return
+     *     returns publicadores.DtColecciones
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
+    public DtColecciones obtenerPaquetesConActividades();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerDatosPaquetesParaActividadRequest", output = "http://publicadores/PublicadorPaquete/obtenerDatosPaquetesParaActividadResponse")
+    public DtColecciones obtenerDatosPaquetesParaActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtPaquete
+     * @throws PaqueteNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerDatosPaqueteRequest", output = "http://publicadores/PublicadorPaquete/obtenerDatosPaqueteResponse", fault = {
+        @FaultAction(className = PaqueteNoExisteException_Exception.class, value = "http://publicadores/PublicadorPaquete/obtenerDatosPaquete/Fault/paqueteNoExisteException")
+    })
+    public DtPaquete obtenerDatosPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PaqueteNoExisteException_Exception
+    ;
+
+    /**
+     * 
      * @param arg0
      * @param arg1
      * @param arg2
@@ -85,7 +126,43 @@ public interface PublicadorPaquete {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
-    public DtColecciones obtenerPaquetesConActividades();
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesAllRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesAllResponse")
+    public DtColecciones obtenerPaquetesAll();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws PaqueteNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerActividadesPaqueteRequest", output = "http://publicadores/PublicadorPaquete/obtenerActividadesPaqueteResponse", fault = {
+        @FaultAction(className = PaqueteNoExisteException_Exception.class, value = "http://publicadores/PublicadorPaquete/obtenerActividadesPaquete/Fault/paqueteNoExisteException")
+    })
+    public DtColecciones obtenerActividadesPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PaqueteNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws PaqueteNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerCategoriasPaqueteRequest", output = "http://publicadores/PublicadorPaquete/obtenerCategoriasPaqueteResponse", fault = {
+        @FaultAction(className = PaqueteNoExisteException_Exception.class, value = "http://publicadores/PublicadorPaquete/obtenerCategoriasPaquete/Fault/paqueteNoExisteException")
+    })
+    public DtColecciones obtenerCategoriasPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws PaqueteNoExisteException_Exception
+    ;
 
 }
