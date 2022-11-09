@@ -261,9 +261,9 @@
 							<%
 							}
 						}else{
-							DtColecciones salidasConfCol = (DtColecciones) request.getAttribute("usuarioDetalleSalidasConfirmadas");
-							Set<DtSalida> salidasConf = new HashSet<DtSalida>(salidasConfCol.getSetDtSalida());
-							for(DtSalida sal : salidasConf){
+							DtColecciones salidasOfCol = (DtColecciones) request.getAttribute("usuarioDetalleSalidasOfrecidas");
+							Set<DtSalida> salidasOf = new HashSet<DtSalida>(salidasOfCol.getSetDtSalida());
+							for(DtSalida sal : salidasOf){
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">

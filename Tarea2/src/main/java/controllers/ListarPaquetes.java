@@ -1,11 +1,5 @@
 package controllers;
 
-import java.awt.Image;
-import java.util.GregorianCalendar;
-import java.util.Set;
-import java.util.HashSet;
-
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logica.Fabrica;
-import logica.controladores.IControladorPaquete;
-import logica.controladores.IControladorDepartamento;
-import logica.datatypes.DTPaquete;
+import publicadores.PublicadorPaquete;
+import publicadores.PublicadorPaqueteService;
+import publicadores.DtColecciones;
 
 /**
  * Servlet implementation class ListarUsuarios
@@ -34,10 +27,11 @@ public class ListarPaquetes extends HttpServlet {
     }
     
     protected void cargarPaquetes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
+    	PublicadorPaqueteService service = new PublicadorPaqueteService();
+        PublicadorPaquete port = service.getPublicadorPaquetePort();
+        
+        DtColecciones paquetes = port.obtenerPaquetesAll();
     	
-    	HashSet<DTPaquete> paquetes = (HashSet<DTPaquete>) ctrlPaq.obtenerPaquetesAll();
     	request.setAttribute("listarPaquetes", paquetes);
 		request.getRequestDispatcher("/pages/listarPaquetes.jsp").forward(request, response);
 

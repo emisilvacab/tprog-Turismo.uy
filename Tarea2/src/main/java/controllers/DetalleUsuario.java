@@ -93,6 +93,13 @@ public class DetalleUsuario extends HttpServlet {
 			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
 				request.setAttribute("error", "usuario-actividad-no-existe");
 			}
+    		
+    		DtColecciones salidasOfrecidas = new DtColecciones();
+    		try {
+				salidasOfrecidas = port.obtenerSalidasOfrecidasDT(nickname);
+			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
+				request.setAttribute("error", "usuario-actividad-no-existe");
+			}
     		/*
     		Set<DtSalida> salidasProveedor = new HashSet<DtSalida>();
     		for(String act : actividadesNombres) {
@@ -129,7 +136,7 @@ public class DetalleUsuario extends HttpServlet {
     		*/
     		
     		request.setAttribute("usuarioDetalleSalidasConfirmadas", salidasConfirmadas);
-    		//request.setAttribute("usuarioDetalleSalidas", salidasProveedor);
+    		request.setAttribute("usuarioDetalleSalidasOfrecidas", salidasOfrecidas);
     		request.setAttribute("usuarioDetalleActividadesOfrecidas", actividadesOfrecidas);
     		request.setAttribute("usuarioDetalleActividadesConfirmadas", actividadesConfirmadas);
     		request.setAttribute("usuarioDetalle", usuario);
