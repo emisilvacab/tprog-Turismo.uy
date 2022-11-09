@@ -1,6 +1,7 @@
 
 package publicadores;
 
+import javax.xml.datatype.XMLGregorianCalendar;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
@@ -41,6 +42,118 @@ public interface PublicadorDepartamento {
     /**
      * 
      * @param arg0
+     * @param arg1
+     * @param arg10
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @param arg8
+     * @param arg9
+     * @return
+     *     returns boolean
+     * @throws DepartamentoNoExisteException_Exception
+     * @throws ProveedorNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/ingresarDatosActividadRequest", output = "http://publicadores/PublicadorDepartamento/ingresarDatosActividadResponse", fault = {
+        @FaultAction(className = ProveedorNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/ingresarDatosActividad/Fault/proveedorNoExisteException"),
+        @FaultAction(className = DepartamentoNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/ingresarDatosActividad/Fault/departamentoNoExisteException")
+    })
+    public boolean ingresarDatosActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        int arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        float arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        XMLGregorianCalendar arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7,
+        @WebParam(name = "arg8", partName = "arg8")
+        SetOfString arg8,
+        @WebParam(name = "arg9", partName = "arg9")
+        String arg9,
+        @WebParam(name = "arg10", partName = "arg10")
+        String arg10)
+        throws DepartamentoNoExisteException_Exception, ProveedorNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @param arg8
+     * @return
+     *     returns boolean
+     * @throws ActividadNoExisteException_Exception
+     * @throws DepartamentoNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/ingresarDatosSalidaRequest", output = "http://publicadores/PublicadorDepartamento/ingresarDatosSalidaResponse", fault = {
+        @FaultAction(className = DepartamentoNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/ingresarDatosSalida/Fault/departamentoNoExisteException"),
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/ingresarDatosSalida/Fault/actividadNoExisteException")
+    })
+    public boolean ingresarDatosSalida(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        int arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        XMLGregorianCalendar arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        XMLGregorianCalendar arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        int arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7,
+        @WebParam(name = "arg8", partName = "arg8")
+        String arg8)
+        throws ActividadNoExisteException_Exception, DepartamentoNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws CategoriaNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatResponse", fault = {
+        @FaultAction(className = CategoriaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCat/Fault/categoriaNoExisteException")
+    })
+    public DtColecciones obtenerDatosActividadesConfirmadasCat(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws CategoriaNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns publicadores.DtColecciones
      * @throws ActividadNoExisteException_Exception
@@ -72,24 +185,6 @@ public interface PublicadorDepartamento {
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
         throws DepartamentoNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.DtColecciones
-     * @throws CategoriaNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatResponse", fault = {
-        @FaultAction(className = CategoriaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCat/Fault/categoriaNoExisteException")
-    })
-    public DtColecciones obtenerDatosActividadesConfirmadasCat(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws CategoriaNoExisteException_Exception
     ;
 
 }

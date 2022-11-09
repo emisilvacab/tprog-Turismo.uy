@@ -20,6 +20,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
  *         <element name="setString" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="setDtInscripcion" type="{http://publicadores/}dtInscripcion" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="setDtCompra" type="{http://publicadores/}dtCompra" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -30,12 +32,18 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dtColecciones", propOrder = {
-    "setString"
+    "setString",
+    "setDtInscripcion",
+    "setDtCompra"
 })
 public class DtColecciones {
 
     @XmlElement(nillable = true)
     protected List<String> setString;
+    @XmlElement(nillable = true)
+    protected List<DtInscripcion> setDtInscripcion;
+    @XmlElement(nillable = true)
+    protected List<DtCompra> setDtCompra;
 
     /**
      * Gets the value of the setString property.
@@ -66,6 +74,68 @@ public class DtColecciones {
             setString = new ArrayList<>();
         }
         return this.setString;
+    }
+
+    /**
+     * Gets the value of the setDtInscripcion property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the setDtInscripcion property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSetDtInscripcion().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtInscripcion }
+     * 
+     * 
+     * @return
+     *     The value of the setDtInscripcion property.
+     */
+    public List<DtInscripcion> getSetDtInscripcion() {
+        if (setDtInscripcion == null) {
+            setDtInscripcion = new ArrayList<>();
+        }
+        return this.setDtInscripcion;
+    }
+
+    /**
+     * Gets the value of the setDtCompra property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the setDtCompra property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSetDtCompra().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DtCompra }
+     * 
+     * 
+     * @return
+     *     The value of the setDtCompra property.
+     */
+    public List<DtCompra> getSetDtCompra() {
+        if (setDtCompra == null) {
+            setDtCompra = new ArrayList<>();
+        }
+        return this.setDtCompra;
     }
 
 }
