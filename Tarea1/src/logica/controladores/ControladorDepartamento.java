@@ -1,11 +1,14 @@
 package logica.controladores;
 
+import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.actividadNoExisteException;
+import excepciones.actividadPerteneceAPaqueteException;
+import excepciones.actividadTieneSalidasVigentesException;
 import excepciones.categoriaNoExisteException;
 import excepciones.categoriaYaExisteException;
 import excepciones.departamentoNoExisteException;
@@ -302,6 +305,26 @@ public class ControladorDepartamento implements IControladorDepartamento {
 		return nombreProveedor;
 	}
 	
+	@Override
+	public void finalizarActividad(String nombreAct) throws actividadTieneSalidasVigentesException, actividadPerteneceAPaqueteException {
+		ManejadorDepartamentoCategoria manDepartamento = ManejadorDepartamentoCategoria.getInstance();
+		String nombreDepartamento = obtenerDeptoActividad(nombreAct);
+		Actividad act = manDepartamento.getDepartamento(nombreDepartamento).obtenerActividad(nombreAct);
+		if (act.obtenerSalidasVigentes().size() != 0) 
+			throw new actividadTieneSalidasVigentesException("La actividad tiene salidas vigentes");
+		if (act.getPaquetes().size() != 0)
+			throw new actividadPerteneceAPaqueteException("La actividad pertenece a al menos un paquete");
+		act.setEstado(Estado.FINALIZADA);
+	}
+	
+	@Override
+	public boolean salidaEstaVigente(String nombreSal) throws salidaNoExisteException {
+		ManejadorSalida mSalidas = ManejadorSalida.getInstance();
+		Salida sal = mSalidas.getSalida(nombreSal);
+		if (sal == null)
+			throw new salidaNoExisteException("No existe una salida con ese nombre");
+		return sal.getFechaSalida().after(GregorianCalendar.from(ZonedDateTime.now()));
+	}
 }
 
 

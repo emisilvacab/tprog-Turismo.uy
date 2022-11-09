@@ -40,7 +40,29 @@
 
 	%>
 	<section id="section-usario-detalle" class="section">
+
 	<h1 class="section-header" id="section-header-middle"> Información del Usuario: </h1>
+	<%  //CARTELES DE ERRORES
+		String error = (String) request.getAttribute("error");
+		if (error != null && error.equals("pertenece-paquete")) {
+	%>
+	<h6 class="error-finalizar" style="color:#FF0000">La actividad no se puede finalizar porque pertenece a paquetes de actividades.</h6>
+	<%
+		} else { 
+			if (error != null && error.equals("tiene-salidas-vigentes")) {
+		
+	%>
+	<h6 class="error-finalizar" style="color:#FF0000">La actividad no se puede finalizar porque aún tiene salidas vigentes.</h6>
+	<%
+			}
+		}
+		String exito = (String) request.getAttribute("exito");
+		if (exito != null && exito.equals("finalizada")){
+	%>
+	<h6 class="error-finalizar" style="color:#008000">La actividad fue finalizada con éxito.</h6>
+	<%
+		} 
+	%>
 	<div class="container" id="container-detalle-turista">
 	
 		<div class="container" id="informacion-usuario">
@@ -214,7 +236,9 @@
 								GregorianCalendar alta = actividad.getAlta().toGregorianCalendar();
 				%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
+  								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
   								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
+  								</a>
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=actividad.getNombre() %></h3>
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%></p>
@@ -222,9 +246,9 @@
     								<p class="card-text"><strong>Ciudad:</strong><%=actividad.getCiudad()%></p>	
     								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)+1%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
     								<p class="card-text"><strong>Estado: </strong><%=actividad.getEstado().toString()%></p>	
-    								
-    								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>" class="stretched-link"></a>
-   		
+    								<%if (actividad.getEstado() == Estado.CONFIRMADA) {%>
+    									<a href="DetalleUsuario?usuarioDetalleNickname=<%=usr.getNickname()%>&finalizar=<%=actividad.getNombre()%>" class="btn btn-outline-dark">Finalizar actividad</a>
+    								<%}%>
   								</div>  						
 							</div>
 				<% 

@@ -17,9 +17,13 @@ import publicadores.UsuarioNoExisteException_Exception;
 import publicadores.DtTurista;
 import publicadores.DtColecciones;
 import publicadores.ActividadNoExisteException_Exception;
+import publicadores.ActividadPerteneceAPaqueteException_Exception;
+import publicadores.ActividadTieneSalidasVigentesException_Exception;
 import publicadores.DtActividad;
 import publicadores.DtSalida;
 import publicadores.Estado;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
 
 /**
  * Servlet implementation class DetalleUsuario
@@ -144,7 +148,21 @@ public class DetalleUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		if (request.getParameter("finalizar") != null) {
+			PublicadorDepartamentoService service = new PublicadorDepartamentoService();
+			PublicadorDepartamento port = service.getPublicadorDepartamentoPort();
+			
+			try {
+				port.finalizarActividad(request.getParameter("finalizar"));
+				request.setAttribute("exito", "finalizada");
+			} catch (ActividadPerteneceAPaqueteException_Exception e) {
+				request.setAttribute("error", "pertenece-paquete");
+			} catch (ActividadTieneSalidasVigentesException_Exception e) {
+				request.setAttribute("error", "tiene-salidas-vigentes");
+			}
+		} 
+       
 		cargarUsuario(request,response);
 	}
 

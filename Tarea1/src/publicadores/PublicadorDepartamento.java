@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.actividadNoExisteException;
+import excepciones.actividadPerteneceAPaqueteException;
+import excepciones.actividadTieneSalidasVigentesException;
 import excepciones.categoriaNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
@@ -134,4 +136,8 @@ public class PublicadorDepartamento {
 		return contD.obtenerNombreActividadDeSalida(nombreSalida);
 	}
 	
+	@WebMethod
+	public void finalizarActividad(String nombreAct) throws actividadTieneSalidasVigentesException, actividadPerteneceAPaqueteException {
+		contD.finalizarActividad(nombreAct);
+	}
 }
