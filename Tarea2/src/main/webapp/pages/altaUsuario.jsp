@@ -37,7 +37,7 @@
 							}
 						%>		
 						<label class="lbltxt">Nickname*</label><br>
-						<input class="inputbox" name="nickname" id="fieldNickname" oninput="validarEnEjecucion()" <%if (request.getAttribute("nickname") != null){String nickname = (String)request.getAttribute("nickname"); %> value='<%=nickname%>' <%} %>><br>
+						<input class="inputbox" name="nickname" id="fieldNickname" onkeyup="validarEnEjecucion()" <%if (request.getAttribute("nickname") != null){String nickname = (String)request.getAttribute("nickname"); %> value='<%=nickname%>' <%} %>><br>
 						
 						<label class="lbltxt">Nombre*</label><br>
 						<input class="inputbox" type="text" id="nombrePersona" name="nombrePersona" <%String nombre = (String) request.getAttribute("nombre"); if (nombre == null) nombre = "";  System.out.println(nombre); %> value='<%=nombre%>'><br>	

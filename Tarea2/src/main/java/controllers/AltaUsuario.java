@@ -220,6 +220,7 @@ public class AltaUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/pages/altaUsuario.jsp").forward(request, response);
+		System.out.println("se llamo ajax get");
 	}
 
 	/**
@@ -227,6 +228,9 @@ public class AltaUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		registrarUsuario(request,response);
+		System.out.println("se llamo ajax post");
+		System.out.println(request.getParameter("nicknameDinamico"));
+
 	}
 
 }
