@@ -28,29 +28,6 @@ public interface PublicadorPaquete {
 
     /**
      * 
-     * @return
-     *     returns publicadores.DtColecciones
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
-    public DtColecciones obtenerPaquetesConActividades();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.DtColecciones
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorPaquete/obtenerDatosPaquetesParaActividadRequest", output = "http://publicadores/PublicadorPaquete/obtenerDatosPaquetesParaActividadResponse")
-    public DtColecciones obtenerDatosPaquetesParaActividad(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns publicadores.DtPaquete
@@ -164,5 +141,28 @@ public interface PublicadorPaquete {
         String arg0)
         throws PaqueteNoExisteException_Exception
     ;
+
+    /**
+     * 
+     * @return
+     *     returns publicadores.DtColecciones
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
+    public DtColecciones obtenerPaquetesConActividades();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerDatosPaquetesParaActividadRequest", output = "http://publicadores/PublicadorPaquete/obtenerDatosPaquetesParaActividadResponse")
+    public DtColecciones obtenerDatosPaquetesParaActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
 }

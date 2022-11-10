@@ -39,24 +39,25 @@ public class PublicadorImagenes {
                     throws  IOException {
         byte[] byteArray = null;
         try {
-                File f = new File("files/" + name);
-                FileInputStream streamer = new FileInputStream(f);
-                byteArray = new byte[streamer.available()];
-                streamer.read(byteArray);
+            File f = new File("files/" + name);
+            FileInputStream streamer = new FileInputStream(f);
+            byteArray = new byte[streamer.available()];
+            streamer.read(byteArray);
         } catch (IOException e) {
-                throw e;
+            throw e;
         }
         return byteArray;
     }
 	
 	@WebMethod
-	public void guardarImagen(byte[] byteArray, String name) {
+	public String guardarImagen(byte[] byteArray, String name) {
 		
 		int num = 0;
-		File file = new File("files/" + name);
+		String extension = ".jpg";
+		File file = new File("files/" + name + extension);
 		while (file.exists()) { //le agrega 1 al numero del nombre si ya existe
-			name = name + (num++);
-			file = new File("files/" + name);
+			name = name + (num++) + extension;
+			file = new File("files/" + name + extension);
 		}
 		
 		// create the object of ByteArrayInputStream class
@@ -71,6 +72,7 @@ public class PublicadorImagenes {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return name + extension;
 		
 	}
 }
