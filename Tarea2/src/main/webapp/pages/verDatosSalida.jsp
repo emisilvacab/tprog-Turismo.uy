@@ -89,7 +89,7 @@
 			  			<div class="col-md-12">
 			  				<%
 			  				DtUsuario usr = (DtUsuario) session.getAttribute("usuario_logueado");
-			  				if ((usr != null && usr.getClass().getName().equals("logica.datatypes.DTTurista")) && (actividad.getEstado() == Estado.CONFIRMADA) && esVigente) {
+			  				if ((usr != null && usr.getClass().getName().equals("publicadores.DtTurista")) && (actividad.getEstado() == Estado.CONFIRMADA) && esVigente) {
 			  				%>
 				  			<div class="card-body mb-0 mt-0 pt-2 pb-1" style="max-width: 100%;">
 					  			<div class="row">

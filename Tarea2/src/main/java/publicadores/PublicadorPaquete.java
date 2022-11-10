@@ -28,16 +28,6 @@ public interface PublicadorPaquete {
 
     /**
      * 
-     * @return
-     *     returns publicadores.DtColecciones
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
-    public DtColecciones obtenerPaquetesConActividades();
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns publicadores.DtColecciones
@@ -48,6 +38,16 @@ public interface PublicadorPaquete {
     public DtColecciones obtenerDatosPaquetesParaActividad(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns publicadores.DtColecciones
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
+    public DtColecciones obtenerPaquetesConActividades();
 
     /**
      * 

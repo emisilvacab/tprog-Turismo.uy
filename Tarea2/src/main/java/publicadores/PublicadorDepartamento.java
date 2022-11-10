@@ -31,17 +31,17 @@ public interface PublicadorDepartamento {
      * @param arg0
      * @return
      *     returns publicadores.DtColecciones
-     * @throws ActividadNoExisteException_Exception
+     * @throws CategoriaNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidasVigentesRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidasVigentesResponse", fault = {
-        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidasVigentes/Fault/actividadNoExisteException")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatResponse", fault = {
+        @FaultAction(className = CategoriaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCat/Fault/categoriaNoExisteException")
     })
-    public DtColecciones obtenerDatosSalidasVigentes(
+    public DtColecciones obtenerDatosActividadesConfirmadasCat(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws ActividadNoExisteException_Exception
+        throws CategoriaNoExisteException_Exception
     ;
 
     /**
@@ -67,17 +67,17 @@ public interface PublicadorDepartamento {
      * @param arg0
      * @return
      *     returns publicadores.DtColecciones
-     * @throws CategoriaNoExisteException_Exception
+     * @throws ActividadNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCatResponse", fault = {
-        @FaultAction(className = CategoriaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasCat/Fault/categoriaNoExisteException")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidasVigentesRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidasVigentesResponse", fault = {
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidasVigentes/Fault/actividadNoExisteException")
     })
-    public DtColecciones obtenerDatosActividadesConfirmadasCat(
+    public DtColecciones obtenerDatosSalidasVigentes(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws CategoriaNoExisteException_Exception
+        throws ActividadNoExisteException_Exception
     ;
 
     /**
@@ -137,6 +137,37 @@ public interface PublicadorDepartamento {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDeptoActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDeptoActividadResponse")
+    public String obtenerDeptoActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtColecciones
+     * @throws ActividadNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerCategoriasActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerCategoriasActividadResponse", fault = {
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerCategoriasActividad/Fault/actividadNoExisteException")
+    })
+    public DtColecciones obtenerCategoriasActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ActividadNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @param arg1
      * @param arg10
      * @param arg2
@@ -176,7 +207,7 @@ public interface PublicadorDepartamento {
         @WebParam(name = "arg7", partName = "arg7")
         String arg7,
         @WebParam(name = "arg8", partName = "arg8")
-        SetOfString arg8,
+        DtColecciones arg8,
         @WebParam(name = "arg9", partName = "arg9")
         String arg9,
         @WebParam(name = "arg10", partName = "arg10")
@@ -285,31 +316,18 @@ public interface PublicadorDepartamento {
      * 
      * @param arg0
      * @return
-     *     returns publicadores.DtColecciones
-     * @throws ActividadNoExisteException_Exception
+     *     returns boolean
+     * @throws SalidaNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerCategoriasActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerCategoriasActividadResponse", fault = {
-        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerCategoriasActividad/Fault/actividadNoExisteException")
+    @Action(input = "http://publicadores/PublicadorDepartamento/salidaEstaVigenteRequest", output = "http://publicadores/PublicadorDepartamento/salidaEstaVigenteResponse", fault = {
+        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/salidaEstaVigente/Fault/salidaNoExisteException")
     })
-    public DtColecciones obtenerCategoriasActividad(
+    public boolean salidaEstaVigente(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws ActividadNoExisteException_Exception
+        throws SalidaNoExisteException_Exception
     ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDeptoActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDeptoActividadResponse")
-    public String obtenerDeptoActividad(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
 
 }
