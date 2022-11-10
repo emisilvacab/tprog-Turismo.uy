@@ -36,7 +36,6 @@ import publicadores.DtUsuario;
 import publicadores.ProveedorNoExisteException_Exception;
 import publicadores.PublicadorDepartamento;
 import publicadores.PublicadorDepartamentoService;
-import publicadores.SetOfString;
 
 /**
  * Servlet implementation class AltaActividad
