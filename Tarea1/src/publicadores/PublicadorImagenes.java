@@ -1,8 +1,12 @@
 package publicadores;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
@@ -22,7 +26,7 @@ public class PublicadorImagenes {
 	
 	@WebMethod(exclude = true) //el exclude = true hace que no se publique ese método
     public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:2023/publicadorUsuario", this);
+         endpoint = Endpoint.publish("http://localhost:2023/publicadorImagenes", this);
     }
 	
 	@WebMethod(exclude = true)
@@ -44,4 +48,29 @@ public class PublicadorImagenes {
         }
         return byteArray;
     }
+	
+	@WebMethod
+	public void guardarImagen(byte[] byteArray, String name) {
+		
+		int num = 0;
+		File file = new File("files/" + name);
+		while (file.exists()) { //le agrega 1 al numero del nombre si ya existe
+			name = name + (num++);
+			file = new File("files/" + name);
+		}
+		
+		// create the object of ByteArrayInputStream class
+        // and initialized it with the byte array.
+        ByteArrayInputStream inStreambj = new ByteArrayInputStream(byteArray);
+        BufferedImage newImage;
+		try {
+			// read image from byte array
+			newImage = ImageIO.read(inStreambj);
+            // write output image
+			ImageIO.write(newImage, "jpg", file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

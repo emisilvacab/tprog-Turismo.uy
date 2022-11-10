@@ -1,5 +1,8 @@
 package controllers;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +15,7 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -35,6 +39,8 @@ import publicadores.DtColecciones;
 import publicadores.ProveedorNoExisteException_Exception;
 import publicadores.PublicadorDepartamento;
 import publicadores.PublicadorDepartamentoService;
+import publicadores.PublicadorImagenes;
+import publicadores.PublicadorImagenesService;
 import publicadores.SetOfString;
 
 /**
@@ -54,7 +60,28 @@ public class AltaActividad extends HttpServlet {
     }
     
     protected String guardarImagen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    	String pathFiles = this.getServletContext().getRealPath("/resources/img");
+    	PublicadorImagenesService serviceI = new PublicadorImagenesService();
+		PublicadorImagenes portI = serviceI.getPublicadorImagenesPort();
+		
+		Part filePart = request.getPart("imgAct");
+
+	    InputStream inputS = null;
+	    ByteArrayOutputStream os = null;
+	    
+	        inputS = filePart.getInputStream();
+
+	        // Escalar la imagen
+	        BufferedImage imageBuffer = ImageIO.read(inputS);
+	        Image tmp = imageBuffer.getScaledInstance(640, 640, BufferedImage.SCALE_FAST);
+	        BufferedImage buffered = new BufferedImage(640, 640, BufferedImage.TYPE_INT_RGB);
+	        buffered.getGraphics().drawImage(tmp, 0, 0, null);
+
+	        os = new ByteArrayOutputStream();
+	        ImageIO.write(buffered, "jpg", os);
+	        portI.guardarImagen(os.toByteArray(), request.getParameter("nombreAct"));
+	        return request.getParameter("nombreAct")+".jpg";
+	    
+    	/*String pathFiles = this.getServletContext().getRealPath("/resources/img");
     	
     	File uploads = new File(pathFiles);
     	
@@ -75,7 +102,7 @@ public class AltaActividad extends HttpServlet {
 		}
 		Files.copy(input, file.toPath()); //guardo el archivo en la carpeta img
 		
-		return save;
+		return save;*/
     }
     
     protected void errorActividad(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -128,7 +155,7 @@ public class AltaActividad extends HttpServlet {
     		Part part = request.getPart("imgAct");
 			if(part.getContentType().contains("image") && part.getInputStream() != null) {
 				nuevoNombre = guardarImagen(request,response);
-				linkImagen = "resources/img/" + nuevoNombre;
+				linkImagen = "/Tarea2/img/" + nuevoNombre;
 			}
 			else
 				linkImagen = "sin";

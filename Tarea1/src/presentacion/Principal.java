@@ -14,6 +14,7 @@ import logica.controladores.IControladorDepartamento;
 import logica.controladores.IControladorPaquete;
 import logica.controladores.IControladorUsuario;
 import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorImagenes;
 import publicadores.PublicadorPaquete;
 import publicadores.PublicadorUsuario;
 
@@ -51,6 +52,8 @@ public class Principal {
                 pubPaquete.publicar();
                 PublicadorDepartamento pubDepartamento = new PublicadorDepartamento();
                 pubDepartamento.publicar();
+                PublicadorImagenes pubImagenes = new PublicadorImagenes();
+                pubImagenes.publicar();
             }
         });
     }
