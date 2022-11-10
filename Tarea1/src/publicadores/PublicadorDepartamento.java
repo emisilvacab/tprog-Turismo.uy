@@ -85,12 +85,12 @@ public class PublicadorDepartamento {
 	}
 
 	@WebMethod
-	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias, String linkImagen, String linkVideo) throws excepciones.proveedorNoExisteException, departamentoNoExisteException{ 
+	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, DTColecciones colCats, String linkImagen, String linkVideo) throws excepciones.proveedorNoExisteException, departamentoNoExisteException{ 
 		if (linkImagen.equals("sin"))
 			linkImagen = null;
 		if (linkVideo.equals("sin"))
 			linkVideo = null;
-		return contD.ingresarDatosActividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, nicknameProv, nombreDep, categorias, linkImagen, linkVideo);
+		return contD.ingresarDatosActividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, nicknameProv, nombreDep, colCats.getSetString(), linkImagen, linkVideo);
 	}
 
 	@WebMethod
@@ -139,5 +139,10 @@ public class PublicadorDepartamento {
 	@WebMethod
 	public void finalizarActividad(String nombreAct) throws actividadTieneSalidasVigentesException, actividadPerteneceAPaqueteException {
 		contD.finalizarActividad(nombreAct);
+	}
+	
+	@WebMethod
+	public boolean salidaEstaVigente(String nombreSal) throws salidaNoExisteException {
+		return contD.salidaEstaVigente(nombreSal);
 	}
 }

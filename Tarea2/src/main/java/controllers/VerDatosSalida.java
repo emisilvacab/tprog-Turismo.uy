@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
-import logica.datatypes.DTActividad;
-import logica.datatypes.DTSalida;
+import publicadores.ActividadNoExisteException_Exception;
+import publicadores.SalidaNoExisteException_Exception;
+import publicadores.DtActividad;
+import publicadores.DtSalida;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
 
 /**
  * Servlet implementation class VerDatosSalida
@@ -32,27 +34,31 @@ public class VerDatosSalida extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento ctrlDepartamentos = fact.getIControladorDepartamento();
+		PublicadorDepartamentoService serviceDepartamento = new PublicadorDepartamentoService();
+        PublicadorDepartamento portDepartamento = serviceDepartamento.getPublicadorDepartamentoPort();
     	
     	String salidaSeleccionada = request.getParameter("salSeleccionada");
     	try {
-			DTSalida salida = ctrlDepartamentos.obtenerDatosSalida(salidaSeleccionada);
+			DtSalida salida = portDepartamento.obtenerDatosSalida(salidaSeleccionada);
 			request.setAttribute("salida", salida);
-		} catch (Exception salNoExiste) {
+			boolean esVigente = portDepartamento.salidaEstaVigente(salidaSeleccionada);
+			request.setAttribute("vigencia", esVigente);
+		} catch (SalidaNoExisteException_Exception salNoExiste) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "salidaNoExiste");
 		}
     	
     	try {
-			String nombreActividad = ctrlDepartamentos.obtenerNombreActividadDeSalida(salidaSeleccionada);
-			DTActividad actividad = ctrlDepartamentos.obtenerDatosActividad(nombreActividad);
-			
+			String nombreActividad = portDepartamento.obtenerNombreActividadDeSalida(salidaSeleccionada);
+			DtActividad actividad = portDepartamento.obtenerDatosActividad(nombreActividad);
 			request.setAttribute("actividad", actividad);
-		} catch (Exception salNoExiste) {
+		} catch (SalidaNoExisteException_Exception salNoExiste) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "salidaNoExiste");
-		}
+		} catch (ActividadNoExisteException_Exception noExisteActividad) {
+    	// TODO Auto-generated catch block
+    		request.setAttribute("error", "salidaNoExiste");
+    	}
 		
 		request.getRequestDispatcher("/pages/verDatosSalida.jsp").forward(request, response);
 	}
