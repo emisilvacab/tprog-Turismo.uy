@@ -6,11 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
@@ -25,15 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.sun.tools.ws.processor.model.Service;
-
-import excepciones.departamentoNoExisteException;
-import excepciones.proveedorNoExisteException;
-import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
-import logica.datatypes.DTUsuario;
 import publicadores.DepartamentoNoExisteException_Exception;
 import publicadores.DtColecciones;
 import publicadores.DtUsuario;
@@ -42,7 +30,7 @@ import publicadores.PublicadorDepartamento;
 import publicadores.PublicadorDepartamentoService;
 import publicadores.PublicadorImagenes;
 import publicadores.PublicadorImagenesService;
-import publicadores.SetOfString;
+
 
 /**
  * Servlet implementation class AltaActividad
@@ -69,41 +57,18 @@ public class AltaActividad extends HttpServlet {
 	    InputStream inputS = null;
 	    ByteArrayOutputStream os = null;
 	    
-	        inputS = filePart.getInputStream();
+        inputS = filePart.getInputStream();
 
-	        // Escalar la imagen
-	        BufferedImage imageBuffer = ImageIO.read(inputS);
-	        Image tmp = imageBuffer.getScaledInstance(640, 640, BufferedImage.SCALE_FAST);
-	        BufferedImage buffered = new BufferedImage(640, 640, BufferedImage.TYPE_INT_RGB);
-	        buffered.getGraphics().drawImage(tmp, 0, 0, null);
+        // Escalar la imagen
+        BufferedImage imageBuffer = ImageIO.read(inputS);
+        Image tmp = imageBuffer.getScaledInstance(640, 640, BufferedImage.SCALE_FAST);
+        BufferedImage buffered = new BufferedImage(640, 640, BufferedImage.TYPE_INT_RGB);
+        buffered.getGraphics().drawImage(tmp, 0, 0, null);
 
-	        os = new ByteArrayOutputStream();
-	        ImageIO.write(buffered, "jpg", os);
-	        portI.guardarImagen(os.toByteArray(), request.getParameter("nombreAct"));
-	        return request.getParameter("nombreAct")+".jpg";
-	    
-    	/*String pathFiles = this.getServletContext().getRealPath("/resources/img");
-    	
-    	File uploads = new File(pathFiles);
-    	
-    	Part part = request.getPart("imgAct"); //obtengo el part que se mandó por el request
-		Path path = Paths.get(part.getSubmittedFileName()); 
-		
-		String fileName = path.getFileName().toString(); //obtengo el nombre del archivo
-		String extension = fileName.substring(fileName.lastIndexOf('.'));
-		String nombre  = request.getParameter("nombreAct"); //Le pongo el nombre de la actividad a la imagen
-		String save = nombre + "." + extension;
-		
-		InputStream input = part.getInputStream(); //obtengo el archivo
-		File file = new File(uploads, save);
-		int num = 0;
-		while (file.exists()) { //le agrega 1 al numero del nombre si ya existe
-			save = nombre + (num++) + "." + extension;
-			file = new File(uploads, save);
-		}
-		Files.copy(input, file.toPath()); //guardo el archivo en la carpeta img
-		
-		return save;*/
+        os = new ByteArrayOutputStream();
+        ImageIO.write(buffered, "jpg", os);
+        String name = portI.guardarImagen(os.toByteArray(), request.getParameter("nombreAct"));
+        return name;
     }
     
     protected void errorActividad(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -158,7 +123,7 @@ public class AltaActividad extends HttpServlet {
     		Part part = request.getPart("imgAct");
 			if(part.getContentType().contains("image") && part.getInputStream() != null) {
 				nuevoNombre = guardarImagen(request,response);
-				linkImagen = "/Tarea2/img/" + nuevoNombre;
+				linkImagen = "/Tarea2/img?id=" + nuevoNombre;
 			}
 			else
 				linkImagen = "sin";

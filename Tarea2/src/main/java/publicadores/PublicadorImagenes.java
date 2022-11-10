@@ -29,10 +29,13 @@ public interface PublicadorImagenes {
      * 
      * @param arg0
      * @param arg1
+     * @return
+     *     returns java.lang.String
      */
     @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://publicadores/PublicadorImagenes/guardarImagenRequest", output = "http://publicadores/PublicadorImagenes/guardarImagenResponse")
-    public void guardarImagen(
+    public String guardarImagen(
         @WebParam(name = "arg0", partName = "arg0")
         byte[] arg0,
         @WebParam(name = "arg1", partName = "arg1")
