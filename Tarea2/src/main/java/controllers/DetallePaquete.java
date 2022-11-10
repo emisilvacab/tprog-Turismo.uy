@@ -1,22 +1,17 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.HashSet;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import excepciones.paqueteNoExisteException;
-import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorPaquete;
-import logica.datatypes.DTPaquete;
-import logica.datatypes.DTActividad;
+import publicadores.DtColecciones;
+import publicadores.DtPaquete;
+import publicadores.PaqueteNoExisteException_Exception;
+import publicadores.PublicadorPaquete;
+import publicadores.PublicadorPaqueteService;
 
 
 /**
@@ -35,36 +30,40 @@ public class DetallePaquete extends HttpServlet {
     }
 
     protected void cargarPaquete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
+    	//Fabrica fact = Fabrica.getInstance();
+    	//IControladorPaquete ctrlPaq = fact.getIControladorPaquete();
+    	
+    	PublicadorPaqueteService service = new PublicadorPaqueteService();
+        PublicadorPaquete port = service.getPublicadorPaquetePort();
     	
     	String nombre = (String) request.getParameter("detallePaqueteNombre");
     	
-    	DTPaquete paquete = null;
+    	DtPaquete paquete = null;    
     	try {
-    		paquete = ctrlPaq.obtenerDatosPaquete(nombre);
-    		
-    	} catch (paqueteNoExisteException paqueteNoExiste) {
+			paquete = port.obtenerDatosPaquete(nombre);
+		} catch (PaqueteNoExisteException_Exception paqueteNoExiste) {
 			request.setAttribute("error", "paquete-no-existe");
-    	}
+		}		
     	
-    	HashSet<DTActividad> actConfirmadas = new HashSet<DTActividad>();
+    	DtColecciones actividades = new DtColecciones();
+    	
     	try {
-    		actConfirmadas = (HashSet<DTActividad>) ctrlPaq.obtenerActividadesPaquete(nombre);
-    	} catch (paqueteNoExisteException paqueteNoExiste) {
-    		
-    	}
+			actividades = port.obtenerActividadesPaquete(nombre);
+    	} catch (PaqueteNoExisteException_Exception paqueteNoExiste) {
+			request.setAttribute("error", "paquete-no-existe");
+		}	
     	
-    	HashSet<String> categorias = new HashSet<String>();
+    	DtColecciones categorias = new DtColecciones();
+    	
     	try {
-    		categorias = (HashSet<String>) ctrlPaq.obtenerCategoriasPaquete(nombre);
-    	} catch (paqueteNoExisteException paqueteNoExiste) {
-    		
-    	}
+			categorias = port.obtenerCategoriasPaquete(nombre);
+    	} catch (PaqueteNoExisteException_Exception paqueteNoExiste) {
+			request.setAttribute("error", "paquete-no-existe");
+		}
     	
-		request.setAttribute("detallePaqueteCategorias",categorias);
-		request.setAttribute("detallePaqueteActividades",actConfirmadas);
-    	request.setAttribute("detallePaquete",paquete);
+		request.setAttribute("detallePaqueteCategorias", categorias);
+		request.setAttribute("detallePaqueteActividades", actividades);
+    	request.setAttribute("detallePaquete", paquete);
 		request.getRequestDispatcher("/pages/detallePaquete.jsp").forward(request, response);
 
     }

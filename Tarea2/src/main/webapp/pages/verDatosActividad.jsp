@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DTActividad"%>
-<%@page import="logica.datatypes.DTSalida"%>
-<%@page import="logica.datatypes.DTPaquete"%>
+<%@page import="publicadores.DtActividad"%>
+<%@page import="publicadores.DtSalida"%>
+<%@page import="publicadores.DtPaquete"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="javax.xml.datatype.XMLGregorianCalendar"%>
 <%@page import="java.util.regex.Matcher"%>
 <%@page import="java.util.regex.Pattern"%>
 
@@ -32,7 +33,7 @@
 		<div class="row">
 		
 			<%
-				DTActividad actividad = (DTActividad) request.getAttribute("actividad");
+				DtActividad actividad = (DtActividad) request.getAttribute("actividad");
 				String nombreProveedor = (String) request.getAttribute("proveedor");
 				if (actividad != null) {
 			%>
@@ -127,9 +128,9 @@
 		  	
 		  	<%
 		  	
-		  	HashSet<DTSalida> listaSalidas = (HashSet<DTSalida>) request.getAttribute("salidas");
+		  	HashSet<DtSalida> listaSalidas = (HashSet<DtSalida>) request.getAttribute("salidas");
 		  	GregorianCalendar fechaSalida;
-			for (DTSalida salida: listaSalidas) {
+			for (DtSalida salida: listaSalidas) {
 				// Para tener la hora con el formato hh:mm
 				String minS, horaS;
 		        int min = salida.getHora() % 100;
@@ -143,7 +144,7 @@
 		        String horaConvertida = horaS + ":" + minS;
 		        
 		        //Para sacar las partes de la fecha
-		        fechaSalida = salida.getFechaDTSalida();
+		        fechaSalida = salida.getFechaDTSalida().toGregorianCalendar();
 		        Integer diaSalida = fechaSalida.get(fechaSalida.DAY_OF_MONTH);
 		        Integer mesSalida = fechaSalida.get(fechaSalida.MONTH) + 1;
 		        Integer anioSalida = fechaSalida.get(fechaSalida.YEAR);
@@ -174,8 +175,8 @@
 		  	<h3>Paquetes</h3>
 		  	
 		  	<%
-		  	HashSet<DTPaquete> listaPaquetes = (HashSet<DTPaquete>) request.getAttribute("paquetes");
-		  	for (DTPaquete paquete: listaPaquetes) {
+		  	HashSet<DtPaquete> listaPaquetes = (HashSet<DtPaquete>) request.getAttribute("paquetes");
+		  	for (DtPaquete paquete: listaPaquetes) {
 		  	%>
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem">

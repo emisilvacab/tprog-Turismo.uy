@@ -5,9 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.actividadNoExisteException;
+import excepciones.actividadPerteneceAPaqueteException;
+import excepciones.actividadTieneSalidasVigentesException;
 import excepciones.categoriaNoExisteException;
 import excepciones.departamentoNoExisteException;
 import excepciones.proveedorNoExisteException;
+import excepciones.salidaNoExisteException;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
@@ -38,6 +41,7 @@ public class PublicadorDepartamento {
          return endpoint;
     }
 	
+	@WebMethod
 	public DTColecciones obtenerDatosActividadesConfirmadasDpto(String nombreDpto) throws departamentoNoExisteException {
 		HashSet<DTActividad> acts = (HashSet<DTActividad>) contD.obtenerDatosActividadesConfirmadasDpto(nombreDpto);
 		Set<String> res = new HashSet<String>();
@@ -45,10 +49,12 @@ public class PublicadorDepartamento {
 			res.add(act.getNombre());
 		}
 		DTColecciones col = new DTColecciones();
+		col.setSetDtActividad(acts);
 		col.setSetString(res);
 		return col;
 	}
 	
+	@WebMethod
 	public DTColecciones obtenerDatosActividadesConfirmadasCat(String nombreDpto) throws categoriaNoExisteException {
 		HashSet<DTActividad> acts = (HashSet<DTActividad>) contD.obtenerDatosActividadesConfirmadasCat(nombreDpto);
 		Set<String> res = new HashSet<String>();
@@ -56,10 +62,12 @@ public class PublicadorDepartamento {
 			res.add(act.getNombre());
 		}
 		DTColecciones col = new DTColecciones();
+		col.setSetDtActividad(acts);
 		col.setSetString(res);
 		return col;
 	}
 	
+	@WebMethod
 	public DTColecciones obtenerDatosSalidasVigentes(String nombreAct) throws actividadNoExisteException {
 		HashSet<DTSalida> sals = (HashSet<DTSalida>) contD.obtenerDatosSalidasVigentes(nombreAct);
 		Set<String> salsInsc = new HashSet<String>();
@@ -71,21 +79,70 @@ public class PublicadorDepartamento {
 		return col;
 	}
 	
+	@WebMethod
 	public String obtenerDeptoActividad(String actividad) {
 		return contD.obtenerDeptoActividad(actividad);
 	}
-	
-	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, Set<String> categorias, String linkImagen, String linkVideo) throws excepciones.proveedorNoExisteException, departamentoNoExisteException{ 
+
+	@WebMethod
+	public boolean ingresarDatosActividad(String nombreAct, String descripcion, int duracion, float costo, String ciudad, GregorianCalendar fecha, String nicknameProv, String nombreDep, DTColecciones colCats, String linkImagen, String linkVideo) throws excepciones.proveedorNoExisteException, departamentoNoExisteException{ 
 		if (linkImagen.equals("sin"))
 			linkImagen = null;
 		if (linkVideo.equals("sin"))
 			linkVideo = null;
-		return contD.ingresarDatosActividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, nicknameProv, nombreDep, categorias, linkImagen, linkVideo);
+		return contD.ingresarDatosActividad(nombreAct, descripcion, duracion, costo, ciudad, fecha, nicknameProv, nombreDep, colCats.getSetString(), linkImagen, linkVideo);
 	}
-	
+
+	@WebMethod
 	public boolean ingresarDatosSalida(String nombre, int maxTuristas, GregorianCalendar fechaAlta, GregorianCalendar fechaSalida, int horaSalida, String lugarSalida, String nombreDpto, String nombreAct, String linkImagen) throws excepciones.departamentoNoExisteException, actividadNoExisteException{
 		if (linkImagen.equals("sin"))
 			linkImagen = null;
 		return contD.ingresarDatosSalida(nombre, maxTuristas, fechaAlta, fechaSalida, horaSalida, lugarSalida, nombreDpto, nombreAct, linkImagen);
+	}
+
+	@WebMethod
+	public DTActividad obtenerDatosActividad(String actividadSeleccionada) throws actividadNoExisteException {
+		return contD.obtenerDatosActividad(actividadSeleccionada);
+	}
+
+	@WebMethod
+	public String obtenerNombreProveedorDeActividad(String nombreAct) throws actividadNoExisteException {
+		return contD.obtenerNombreProveedorDeActividad(nombreAct);
+	}
+
+	@WebMethod
+	public DTColecciones obtenerCategoriasActividad(String actividad) throws actividadNoExisteException {
+		Set<String> salidas = (HashSet<String>) contD.obtenerCategoriasActividad(actividad);
+		DTColecciones coleccion = new DTColecciones();
+		coleccion.setSetString(salidas);
+		return coleccion;
+	}
+
+	@WebMethod
+	public DTColecciones obtenerDatosSalidasParaActividad(String nombreAct) throws actividadNoExisteException {
+		Set<DTSalida> salidas = (HashSet<DTSalida>) contD.obtenerDatosSalidasParaActividad(nombreAct);
+		DTColecciones coleccion = new DTColecciones();
+		coleccion.setSetDtSalida(salidas);
+		return coleccion;
+	}
+
+	@WebMethod
+	public DTSalida obtenerDatosSalida(String nombreSalida) throws salidaNoExisteException {
+		return contD.obtenerDatosSalida(nombreSalida);
+	}
+
+	@WebMethod
+	public String obtenerNombreActividadDeSalida(String nombreSalida) throws salidaNoExisteException {
+		return contD.obtenerNombreActividadDeSalida(nombreSalida);
+	}
+	
+	@WebMethod
+	public void finalizarActividad(String nombreAct) throws actividadTieneSalidasVigentesException, actividadPerteneceAPaqueteException {
+		contD.finalizarActividad(nombreAct);
+	}
+	
+	@WebMethod
+	public boolean salidaEstaVigente(String nombreSal) throws salidaNoExisteException {
+		return contD.salidaEstaVigente(nombreSal);
 	}
 }

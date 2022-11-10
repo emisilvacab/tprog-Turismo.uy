@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="logica.datatypes.DTPaquete"%>
-<%@page import="logica.datatypes.DTActividad"%>
+<%@page import="publicadores.DtPaquete"%>
+<%@page import="publicadores.DtActividad"%>
+<%@page import="publicadores.DtColecciones"%>
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 
 
@@ -19,9 +21,10 @@
 		<h1 class="section-header" id="section-header-middle"> Información del Paquete: </h1>
 	
 			<%
-			DTPaquete paquete = (DTPaquete) request.getAttribute("detallePaquete"); 
-			GregorianCalendar fecha = paquete.getFechaAlta();
-			HashSet<String> categorias = (HashSet<String>) request.getAttribute("detallePaqueteCategorias");
+			DtPaquete paquete = (DtPaquete) request.getAttribute("detallePaquete"); 
+			GregorianCalendar fecha = paquete.getFechaAlta().toGregorianCalendar();
+			DtColecciones categoriasCol = (DtColecciones) request.getAttribute("detallePaqueteCategorias");
+			HashSet<String> categorias = new HashSet<String>(categoriasCol.getSetString());
 			%>
 			<div class="container" id="container-paquete">
 		
@@ -48,8 +51,9 @@
 	
 			<div class="d-flex align-items-stretch" id="flex-actividades-paquete">
 				<%
-				HashSet<DTActividad> actividades = (HashSet<DTActividad>) request.getAttribute("detallePaqueteActividades");
-				for(DTActividad act : actividades){
+				DtColecciones actividadesCol = (DtColecciones) request.getAttribute("detallePaqueteActividades");
+				Set<DtActividad> actividades = new HashSet<DtActividad>(actividadesCol.getSetDtActividad());
+				for(DtActividad act : actividades){
 				%>
 				<div id="paquete-card" class="card" style="width: 18rem;">
   					<img id="card-img-paquete" <%if (act.getLinkImagen() != null){%> src="<%=act.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">

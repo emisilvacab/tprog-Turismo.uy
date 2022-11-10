@@ -1,5 +1,8 @@
 package controllers;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +14,7 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +34,8 @@ import publicadores.ActividadNoExisteException_Exception;
 import publicadores.DepartamentoNoExisteException_Exception;
 import publicadores.PublicadorDepartamento;
 import publicadores.PublicadorDepartamentoService;
+import publicadores.PublicadorImagenes;
+import publicadores.PublicadorImagenesService;
 
 /**
  * Servlet implementation class AltaSalida
@@ -47,28 +53,26 @@ public class AltaSalida extends HttpServlet {
     }
     
     protected String guardarImagen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    	String pathFiles = this.getServletContext().getRealPath("/resources/img");
-    	
-    	File uploads = new File(pathFiles);
-    	
-    	Part part = request.getPart("imgSal"); //obtengo el part que se mandó por el request
-		Path path = Paths.get(part.getSubmittedFileName()); 
+    	PublicadorImagenesService serviceI = new PublicadorImagenesService();
+		PublicadorImagenes portI = serviceI.getPublicadorImagenesPort();
 		
-		String fileName = path.getFileName().toString(); //obtengo el nombre del archivo
-		String extension = fileName.substring(fileName.lastIndexOf('.'));
-		String nombre  = request.getParameter("nombreSal"); //Le pongo el nombre de la salida a la imagen
-		String save = nombre + "." + extension;
-		
-		InputStream input = part.getInputStream(); //obtengo el archivo
-		File file = new File(uploads, save);
-		int num = 0;
-		while (file.exists()) { //le agrega 1 al numero del nombre si ya existe
-			save = nombre + (num++) + "." + extension;
-			file = new File(uploads, save);
-		}
-		Files.copy(input, file.toPath()); //guardo el archivo en la carpeta img
+		Part filePart = request.getPart("imgSal");
 
-		return save;
+	    InputStream inputS = null;
+	    ByteArrayOutputStream os = null;
+	    
+        inputS = filePart.getInputStream();
+
+        // Escalar la imagen
+        BufferedImage imageBuffer = ImageIO.read(inputS);
+        Image tmp = imageBuffer.getScaledInstance(640, 640, BufferedImage.SCALE_FAST);
+        BufferedImage buffered = new BufferedImage(640, 640, BufferedImage.TYPE_INT_RGB);
+        buffered.getGraphics().drawImage(tmp, 0, 0, null);
+
+        os = new ByteArrayOutputStream();
+        ImageIO.write(buffered, "jpg", os);
+        String name = portI.guardarImagen(os.toByteArray(), request.getParameter("nombreSal"));
+        return name;
     }
     
     protected void errorSalida(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -172,11 +176,11 @@ public class AltaSalida extends HttpServlet {
     		Part part = request.getPart("imgSal");
 			if(part.getContentType().contains("image") && part.getInputStream() != null) { //Solo guardo la imagen si la seteó el usuario
 				nuevoNombre = guardarImagen(request,response);
-				linkImagen = "resources/img/" + nuevoNombre;
+				linkImagen = "/Tarea2/img?id=" + nuevoNombre;
 			}
 			else
 				linkImagen = "sin";
-			boolean existe = portD.ingresarDatosSalida(request.getParameter("nombreSal"), Integer.parseInt(request.getParameter("cantTurSal")), DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaSal), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())), horaSal, request.getParameter("lugarSal"), request.getParameter("dpto"), request.getParameter("act"), linkImagen);
+			boolean existe = portD.ingresarDatosSalida(request.getParameter("nombreSal"), Integer.parseInt(request.getParameter("cantTurSal")), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())),  DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaSal), horaSal, request.getParameter("lugarSal"), request.getParameter("dpto"), request.getParameter("act"), linkImagen);
 			if (existe) {
 				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
 					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);

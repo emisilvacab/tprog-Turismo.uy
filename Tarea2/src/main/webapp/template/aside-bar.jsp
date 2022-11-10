@@ -51,6 +51,11 @@
 	        	<a class="ref" href="ListarUsuarios">Usuarios registrados</a>
 	         </div>
 	      </div>
+	      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	         <div class="accordion-body">
+	        	<a class="ref" href="ListarPaquetes">Paquetes registrados</a>
+	         </div>
+	      </div>
 	  </div>
 
       <div class="accordion-item">

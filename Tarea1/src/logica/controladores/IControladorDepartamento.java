@@ -4,6 +4,8 @@ import java.util.GregorianCalendar;
 import java.util.Set;
 
 import excepciones.actividadNoExisteException;
+import excepciones.actividadPerteneceAPaqueteException;
+import excepciones.actividadTieneSalidasVigentesException;
 import excepciones.categoriaNoExisteException;
 import excepciones.categoriaYaExisteException;
 import excepciones.departamentoNoExisteException;
@@ -53,4 +55,8 @@ public interface IControladorDepartamento {
 	public abstract String obtenerNombreActividadDeSalida(String nombreSalida) throws salidaNoExisteException;
 	
 	public abstract String obtenerNombreProveedorDeActividad(String nombreAct) throws actividadNoExisteException;
+
+	public abstract void finalizarActividad(String nombreAct) throws actividadTieneSalidasVigentesException, actividadPerteneceAPaqueteException;
+
+	public abstract boolean salidaEstaVigente(String nombreSal) throws salidaNoExisteException;
 }

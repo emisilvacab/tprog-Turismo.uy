@@ -1,9 +1,8 @@
 package controllers;
 
-import java.awt.Image;
 import java.io.IOException;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,24 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import excepciones.actividadNoExisteException;
-import excepciones.categoriaNoExisteException;
-import excepciones.departamentoNoExisteException;
-import excepciones.usuarioNoExisteException;
-import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorUsuario;
-import logica.datatypes.DTUsuario;
-import logica.datatypes.DTProveedor;
-import logica.datatypes.DTTurista;
-import logica.datatypes.DTActividad;
-import logica.datatypes.DTInscripcion;
-import logica.datatypes.DTCompra;
-import logica.datatypes.DTSalida;
-import logica.Estado;
-
-import java.util.Set;
-import java.util.HashSet;
+import publicadores.DtUsuario;
+import publicadores.PublicadorUsuario;
+import publicadores.PublicadorUsuarioService;
+import publicadores.UsuarioNoExisteException_Exception;
+import publicadores.DtTurista;
+import publicadores.DtColecciones;
+import publicadores.ActividadNoExisteException_Exception;
+import publicadores.ActividadPerteneceAPaqueteException_Exception;
+import publicadores.ActividadTieneSalidasVigentesException_Exception;
+import publicadores.DtActividad;
+import publicadores.DtSalida;
+import publicadores.Estado;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
 
 /**
  * Servlet implementation class DetalleUsuario
@@ -47,102 +42,110 @@ public class DetalleUsuario extends HttpServlet {
 
     
     protected void cargarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	Fabrica fact = Fabrica.getInstance();
-    	IControladorUsuario ctrlUsr = fact.getIControladorUsuario();
+    	
+    	PublicadorUsuarioService service = new PublicadorUsuarioService();
+        PublicadorUsuario port = service.getPublicadorUsuarioPort();
     	
     	String nickname = request.getParameter("usuarioDetalleNickname");
-    	DTUsuario usuario = null;
-    			
+    	DtUsuario usuario = null;
     	try {
-    		usuario = ctrlUsr.obtenerUsuario(nickname);
-    		
-    	} catch (usuarioNoExisteException usuarioNoExiste) {
-			request.setAttribute("error", "usuario-no-existe"); 		
-    	}    	
+			usuario = port.obtenerUsuario(nickname);
+		} catch (UsuarioNoExisteException_Exception usuarioNoExiste) {
+			request.setAttribute("error", "usuario-no-existe");
+		}
     	
-    	if (usuario instanceof DTTurista) {			
-    		
-    		Set<DTInscripcion> inscripciones = new HashSet<DTInscripcion>();
-    		try {
-    			inscripciones = ctrlUsr.obtenerInscripcionesTurista(nickname);
-    		} catch (usuarioNoExisteException usuarioNoExiste) {
-				request.setAttribute("error", "usuario-no-existe"); 
+    	if (usuario instanceof DtTurista) {			
+
+    		DtColecciones inscripciones = null;
+    		try{
+    			inscripciones = port.obtenerInscripcionesTurista(nickname);
+    		} catch (UsuarioNoExisteException_Exception usuarioNoExiste) {
+    			request.setAttribute("error", "usuario-no-existe");
+    		}
+
+    		DtColecciones compras = null;
+    		try{
+    			compras = port.obtenerComprasTurista(nickname);
+    		} catch (UsuarioNoExisteException_Exception usuarioNoExiste) {
+    			request.setAttribute("error", "usuario-no-existe");
     		}
     		
-    		HashSet<DTCompra> compras = new HashSet<DTCompra>();
-    		try {
-    			compras = (HashSet<DTCompra>) ctrlUsr.obtenerComprasTurista(nickname);
-    		} catch (usuarioNoExisteException usuarioNoExiste) {
-				request.setAttribute("error", "usuario-no-existe"); 
-    		}
-    		   		
     		request.setAttribute("usuarioDetalle", usuario);
     		request.setAttribute("usuarioDetalleTipo", "turista");
     		request.setAttribute("usuarioDetalleInscripciones", inscripciones);
     		request.setAttribute("usuarioDetalleCompras", compras);
+    		
     	}else {
     		
-    		String[] actividadesNombres = {};
+    		DtColecciones actividadesConfirmadas = new DtColecciones();
+			try {
+				actividadesConfirmadas = port.obtenerActividadesOfrecidasConfirmadasDT(nickname);
+			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
+				request.setAttribute("error", "usuario-actividad-no-existe");
+			}
+    
+    		DtColecciones actividadesOfrecidas = new DtColecciones();
+			try {
+				actividadesOfrecidas = port.obtenerActividadesOfrecidasDT(nickname);
+			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
+				request.setAttribute("error", "usuario-actividad-no-existe");
+			}
     		
+			DtColecciones salidasConfirmadas = new DtColecciones();
     		try {
-    			actividadesNombres = ctrlUsr.obtenerActividadesOfrecidas(nickname);
-    		} catch (usuarioNoExisteException usuarioNoExiste) {
-				request.setAttribute("error", "usuario-no-existe"); 
-    		}
+				salidasConfirmadas = port.obtenerSalidasConfirmadasDT(nickname);
+			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
+				request.setAttribute("error", "usuario-actividad-no-existe");
+			}
     		
-    		Set<DTActividad> actividades = new HashSet<DTActividad>();
-    		
-    		for(String act : actividadesNombres) {
-    			
-    			DTActividad aux = null;
-    			try {
-    				aux = ctrlUsr.obtenerDatoActividadProveedor(nickname, act);
-    			} catch (usuarioNoExisteException | actividadNoExisteException usuarioActividadNoExiste) {
-    				request.setAttribute("error", "usuario-actividad-no-existe"); 		
-    				
-    			}
-    			actividades.add(aux);
-    			
-    		}
-
-    		HashSet<DTSalida> salidasProveedor = new HashSet<DTSalida>();
+    		DtColecciones salidasOfrecidas = new DtColecciones();
+    		try {
+				salidasOfrecidas = port.obtenerSalidasOfrecidasDT(nickname);
+			} catch (ActividadNoExisteException_Exception | UsuarioNoExisteException_Exception usuarioActividadNoExiste) {
+				request.setAttribute("error", "usuario-actividad-no-existe");
+			}
+    		/*
+    		Set<DtSalida> salidasProveedor = new HashSet<DtSalida>();
     		for(String act : actividadesNombres) {
     			try {
-    				String[] salidasAct = ctrlUsr.obtenerSalidasDeActividad(nickname, act);
+    				Set<String> salidasAct = new HashSet<String>(port.obtenerSalidasDeActividad(nickname, act).getSetString());
     				for(String sal : salidasAct) {
-    					DTSalida nueva = ctrlUsr.obtenerDatoSalidaProveedor(nickname, act, sal);
+    					DtSalida nueva = port.obtenerDatoSalidaProveedor(nickname, act, sal);
     					salidasProveedor.add(nueva);
     				}
     							
-    			} catch(usuarioNoExisteException | actividadNoExisteException usuarioActividadNoExiste) {
+    			} catch(UsuarioNoExisteException_Exception | ActividadNoExisteException_Exception usuarioActividadNoExiste) {
     				request.setAttribute("error", "usuario-actividad-no-existe"); 	
     			}
     		}
     		
-    		HashSet<DTSalida> salidasConfirmadas = new HashSet<DTSalida>();
+    		Set<DtSalida> salidasConfirmadas = new HashSet<DtSalida>();
     		for(String act : actividadesNombres) {
     			try {
-    				DTActividad actividad = ctrlUsr.obtenerDatoActividadProveedor(nickname, act);
+    				DtActividad actividad = port.obtenerDatoActividadProveedor(nickname, act);
     			
     				if(actividad.getEstado().equals(Estado.CONFIRMADA)){
-    					String[] salidasAct = ctrlUsr.obtenerSalidasDeActividad(nickname, act);
+    					Set<String> salidasAct = new HashSet<String>(port.obtenerSalidasDeActividad(nickname, act).getSetString());
     					for(String sal : salidasAct) {
-    						DTSalida nueva = ctrlUsr.obtenerDatoSalidaProveedor(nickname, act, sal);
+    						DtSalida nueva = port.obtenerDatoSalidaProveedor(nickname, act, sal);
     						salidasConfirmadas.add(nueva);
     					}	
     				}	
     							
-    				} catch(usuarioNoExisteException | actividadNoExisteException usuarioActividadNoExiste) {
+    				} catch(UsuarioNoExisteException_Exception | ActividadNoExisteException_Exception usuarioActividadNoExiste) {
     					request.setAttribute("error", "usuario-actividad-no-existe"); 	
     				
     			}
     		}
-     		
+    		*/
+    		
     		request.setAttribute("usuarioDetalleSalidasConfirmadas", salidasConfirmadas);
-    		request.setAttribute("usuarioDetalleSalidas", salidasProveedor);
-    		request.setAttribute("usuarioDetalleActividades", actividades);
+    		request.setAttribute("usuarioDetalleSalidasOfrecidas", salidasOfrecidas);
+    		request.setAttribute("usuarioDetalleActividadesOfrecidas", actividadesOfrecidas);
+    		request.setAttribute("usuarioDetalleActividadesConfirmadas", actividadesConfirmadas);
     		request.setAttribute("usuarioDetalle", usuario);
     		request.setAttribute("usuarioDetalleTipo", "proveedor");
+
     	}
     	
 		request.getRequestDispatcher("/pages/detalleUsuario.jsp").forward(request, response);
@@ -152,7 +155,21 @@ public class DetalleUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		if (request.getParameter("finalizar") != null) {
+			PublicadorDepartamentoService service = new PublicadorDepartamentoService();
+			PublicadorDepartamento port = service.getPublicadorDepartamentoPort();
+			
+			try {
+				port.finalizarActividad(request.getParameter("finalizar"));
+				request.setAttribute("exito", "finalizada");
+			} catch (ActividadPerteneceAPaqueteException_Exception e) {
+				request.setAttribute("error", "pertenece-paquete");
+			} catch (ActividadTieneSalidasVigentesException_Exception e) {
+				request.setAttribute("error", "tiene-salidas-vigentes");
+			}
+		} 
+       
 		cargarUsuario(request,response);
 	}
 

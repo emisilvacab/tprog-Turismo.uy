@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.IOException;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.servlet.ServletException;
@@ -11,16 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import excepciones.actividadNoExisteException;
-import excepciones.departamentoNoExisteException;
-import logica.Departamento;
-import logica.Fabrica;
-import logica.controladores.IControladorDepartamento;
-import logica.controladores.IControladorPaquete;
-import logica.datatypes.DTActividad;
-import logica.datatypes.DTPaquete;
-import logica.datatypes.DTSalida;
-import logica.manejadores.ManejadorDepartamentoCategoria;
+import publicadores.DtActividad;
+import publicadores.DtPaquete;
+import publicadores.DtSalida;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
+import publicadores.PublicadorPaquete;
+import publicadores.PublicadorPaqueteService;
+import publicadores.ActividadNoExisteException_Exception;
 
 /**
  * Servlet implementation class verDatosActividad
@@ -42,47 +39,49 @@ public class verDatosActividad extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento ctrlDepartamentos = fact.getIControladorDepartamento();
-    	IControladorPaquete ctrlPaquete = fact.getIControladorPaquete();
+		PublicadorDepartamentoService serviceDepartamento = new PublicadorDepartamentoService();
+        PublicadorDepartamento portDepartamento = serviceDepartamento.getPublicadorDepartamentoPort();
+        PublicadorPaqueteService servicePaquete = new PublicadorPaqueteService();
+        PublicadorPaquete portPaquete = servicePaquete.getPublicadorPaquetePort();
+        
     	String NombreAct = (String) request.getParameter("actSeleccionada");
-    	DTActividad actividad;
+    	DtActividad actividad;
     	String nombreProveedor;
 		try {
-			actividad = ctrlDepartamentos.obtenerDatosActividad(NombreAct);
+			actividad = portDepartamento.obtenerDatosActividad(NombreAct);
 			request.setAttribute("actividad", actividad);
-			GregorianCalendar fechaAlta = actividad.getAlta();
+			GregorianCalendar fechaAlta = actividad.getAlta().toGregorianCalendar();
 			request.setAttribute("fechaAltaDia", fechaAlta.get(fechaAlta.DAY_OF_MONTH));
 			request.setAttribute("fechaAltaMes", fechaAlta.get(fechaAlta.MONTH) + 1);
 			request.setAttribute("fechaAltaAño", fechaAlta.get(fechaAlta.YEAR));
-			nombreProveedor = ctrlDepartamentos.obtenerNombreProveedorDeActividad(NombreAct);
+			nombreProveedor = portDepartamento.obtenerNombreProveedorDeActividad(NombreAct);
 			request.setAttribute("proveedor", nombreProveedor);
-		} catch (actividadNoExisteException noExisteActividad) {
+		} catch (ActividadNoExisteException_Exception noExisteActividad) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
 		}
     	
-    	request.setAttribute("departamento", ctrlDepartamentos.obtenerDeptoActividad(NombreAct));
+    	request.setAttribute("departamento", portDepartamento.obtenerDeptoActividad(NombreAct));
     	
     	HashSet<String> listaCategorias;
 		try {
-			listaCategorias = (HashSet<String>) ctrlDepartamentos.obtenerCategoriasActividad(NombreAct);
+			listaCategorias = new HashSet<String>(portDepartamento.obtenerCategoriasActividad(NombreAct).getSetString());
 			request.setAttribute("categorias", listaCategorias);
-		} catch (Exception actNoExiste) {
+		} catch (ActividadNoExisteException_Exception actNoExiste) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
 		}
     	
 		try {
-    		HashSet<DTSalida> listaSalidas = new HashSet<DTSalida>();
-			listaSalidas = (HashSet<DTSalida>) ctrlDepartamentos.obtenerDatosSalidasParaActividad(NombreAct);
+    		HashSet<DtSalida> listaSalidas = new HashSet<DtSalida>();
+			listaSalidas = new HashSet<DtSalida>(portDepartamento.obtenerDatosSalidasParaActividad(NombreAct).getSetDtSalida());
 			request.setAttribute("salidas", listaSalidas);
-		} catch (actividadNoExisteException noExisteAct) {
+		} catch (ActividadNoExisteException_Exception noExisteAct) {
 			// TODO Auto-generated catch block
 			request.setAttribute("error", "actividadNoExiste");
 		}
-    	HashSet<DTPaquete> listaPaquetes = new HashSet<DTPaquete>();
-    	listaPaquetes = (HashSet<DTPaquete>) ctrlPaquete.obtenerDatosPaquetesParaActividad(NombreAct);
+    	HashSet<DtPaquete> listaPaquetes = new HashSet<DtPaquete>();
+    	listaPaquetes = new HashSet<DtPaquete>(portPaquete.obtenerDatosPaquetesParaActividad(NombreAct).getSetDtPaquete());
     	request.setAttribute("paquetes", listaPaquetes);
 		
 		request.getRequestDispatcher("/pages/verDatosActividad.jsp").forward(request, response);

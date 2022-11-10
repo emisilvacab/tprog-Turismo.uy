@@ -1,5 +1,5 @@
 package logica;
 
 public enum Estado {
-	AGREGADA, CONFIRMADA, RECHAZADA
+	AGREGADA, CONFIRMADA, RECHAZADA, FINALIZADA 
 }

@@ -25,6 +25,7 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 public class ObjectFactory {
 
     private final static QName _UsuarioRepetidoException_QNAME = new QName("http://publicadores/", "UsuarioRepetidoException");
+    private final static QName _ActividadNoExisteException_QNAME = new QName("http://publicadores/", "actividadNoExisteException");
     private final static QName _IngresoInvalidoException_QNAME = new QName("http://publicadores/", "ingresoInvalidoException");
     private final static QName _InscripcionExisteException_QNAME = new QName("http://publicadores/", "inscripcionExisteException");
     private final static QName _LimiteSuperadoException_QNAME = new QName("http://publicadores/", "limiteSuperadoException");
@@ -47,6 +48,16 @@ public class ObjectFactory {
      */
     public UsuarioRepetidoException createUsuarioRepetidoException() {
         return new UsuarioRepetidoException();
+    }
+
+    /**
+     * Create an instance of {@link ActividadNoExisteException }
+     * 
+     * @return
+     *     the new instance of {@link ActividadNoExisteException }
+     */
+    public ActividadNoExisteException createActividadNoExisteException() {
+        return new ActividadNoExisteException();
     }
 
     /**
@@ -110,6 +121,56 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtActividad }
+     * 
+     * @return
+     *     the new instance of {@link DtActividad }
+     */
+    public DtActividad createDtActividad() {
+        return new DtActividad();
+    }
+
+    /**
+     * Create an instance of {@link DtColecciones }
+     * 
+     * @return
+     *     the new instance of {@link DtColecciones }
+     */
+    public DtColecciones createDtColecciones() {
+        return new DtColecciones();
+    }
+
+    /**
+     * Create an instance of {@link DtCompra }
+     * 
+     * @return
+     *     the new instance of {@link DtCompra }
+     */
+    public DtCompra createDtCompra() {
+        return new DtCompra();
+    }
+
+    /**
+     * Create an instance of {@link DtInscripcion }
+     * 
+     * @return
+     *     the new instance of {@link DtInscripcion }
+     */
+    public DtInscripcion createDtInscripcion() {
+        return new DtInscripcion();
+    }
+
+    /**
+     * Create an instance of {@link DtPaquete }
+     * 
+     * @return
+     *     the new instance of {@link DtPaquete }
+     */
+    public DtPaquete createDtPaquete() {
+        return new DtPaquete();
+    }
+
+    /**
      * Create an instance of {@link DtProveedor }
      * 
      * @return
@@ -117,6 +178,16 @@ public class ObjectFactory {
      */
     public DtProveedor createDtProveedor() {
         return new DtProveedor();
+    }
+
+    /**
+     * Create an instance of {@link DtSalida }
+     * 
+     * @return
+     *     the new instance of {@link DtSalida }
+     */
+    public DtSalida createDtSalida() {
+        return new DtSalida();
     }
 
     /**
@@ -150,6 +221,19 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://publicadores/", name = "UsuarioRepetidoException")
     public JAXBElement<UsuarioRepetidoException> createUsuarioRepetidoException(UsuarioRepetidoException value) {
         return new JAXBElement<>(_UsuarioRepetidoException_QNAME, UsuarioRepetidoException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadNoExisteException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ActividadNoExisteException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "actividadNoExisteException")
+    public JAXBElement<ActividadNoExisteException> createActividadNoExisteException(ActividadNoExisteException value) {
+        return new JAXBElement<>(_ActividadNoExisteException_QNAME, ActividadNoExisteException.class, null, value);
     }
 
     /**

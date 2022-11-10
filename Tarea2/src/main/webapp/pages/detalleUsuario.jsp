@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DTUsuario"%>
-<%@page import="logica.datatypes.DTProveedor"%>
-<%@page import="logica.datatypes.DTTurista"%>
-<%@page import="logica.datatypes.DTActividad"%>
-<%@page import="logica.datatypes.DTInscripcion"%>
-<%@page import="logica.datatypes.DTCompra"%>
-<%@page import="logica.datatypes.DTSalida"%>
-<%@page import="logica.Estado"%>
+
+<%@page import = "publicadores.DtUsuario" %>
+<%@page import = "publicadores.DtCompra" %>
+<%@page import = "publicadores.DtInscripcion" %>
+<%@page import = "publicadores.DtProveedor" %>
+<%@page import = "publicadores.DtTurista" %>
+<%@page import = "publicadores.DtColecciones" %>
+<%@page import = "publicadores.DtActividad" %>
+<%@page import = "publicadores.DtSalida" %>
+<%@page import = "publicadores.Estado" %>
 
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 
 
@@ -24,20 +27,42 @@
 	<jsp:include page="/template/aside-bar.jsp"/>
 
 	<%
-	DTUsuario usr = (DTUsuario) request.getAttribute("usuarioDetalle");
+	DtUsuario usr = (DtUsuario) request.getAttribute("usuarioDetalle");
 	String tipo = (String) request.getAttribute("usuarioDetalleTipo");
-	HashSet<DTInscripcion> inscripciones = (HashSet<DTInscripcion>) request.getAttribute("usuarioDetalleInscripciones");
-	HashSet<DTCompra> compras = (HashSet<DTCompra>) request.getAttribute("usuarioDetalleCompras");
+	//HashSet<DtInscripcion> inscripciones = (HashSet<DtInscripcion>) request.getAttribute("usuarioDetalleInscripciones");
+	//HashSet<DtCompra> compras = (HashSet<DtCompra>) request.getAttribute("usuarioDetalleCompras");
 	
 	String nick = null;
-	DTUsuario logged = (DTUsuario) session.getAttribute("usuario_logueado");
+	DtUsuario logged = (DtUsuario) session.getAttribute("usuario_logueado");
 	if(logged != null){
 		nick = logged.getNickname(); 
 	}
 
 	%>
 	<section id="section-usario-detalle" class="section">
+
 	<h1 class="section-header" id="section-header-middle"> Información del Usuario: </h1>
+	<%  //CARTELES DE ERRORES
+		String error = (String) request.getAttribute("error");
+		if (error != null && error.equals("pertenece-paquete")) {
+	%>
+	<h6 class="error-finalizar" style="color:#FF0000">La actividad no se puede finalizar porque pertenece a paquetes de actividades.</h6>
+	<%
+		} else { 
+			if (error != null && error.equals("tiene-salidas-vigentes")) {
+		
+	%>
+	<h6 class="error-finalizar" style="color:#FF0000">La actividad no se puede finalizar porque aún tiene salidas vigentes.</h6>
+	<%
+			}
+		}
+		String exito = (String) request.getAttribute("exito");
+		if (exito != null && exito.equals("finalizada")){
+	%>
+	<h6 class="error-finalizar" style="color:#008000">La actividad fue finalizada con éxito.</h6>
+	<%
+		} 
+	%>
 	<div class="container" id="container-detalle-turista">
 	
 		<div class="container" id="informacion-usuario">
@@ -50,18 +75,16 @@
     				<div class="col-md-8">
       					<div class="card-body">
         					<h5 class="card-title"><%=usr.getNombre()%></h5>
-        					
+
         					<p class="card-text"><%=usr.getNickname()%> / <p1 class="text-muted"><%=usr.getCorreo()%></p1></p>
-        					<% GregorianCalendar nacimiento = usr.getNacimiento(); %>
+        					<% GregorianCalendar nacimiento = usr.getNacimiento().toGregorianCalendar(); %>
         					<p class="card-text">Fecha de nacimiento: <p1 class="text-muted"><%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%> </p1></p>
-        					<% if(usr.getNickname().equals(nick)){%>
-        					<a  href="modificarDatosUsuario.html" id="button-cargarDatos" class="btn btn-primary">Modificar</a>
-        					<%} %>
+
       					</div>
     				</div>
   				</div>
 			</div>
-			
+
 			<ul class="nav nav-tabs" id="myTab" role="tablist" style="max-width:950px;">
   				<li class="nav-item" role="presentation">
     				<button class="nav-link active" id="perfil-tab" data-bs-toggle="tab" data-bs-target="#perfil-tab-pane" type="button" role="tab" aria-controls="perfil-tab-pane" aria-selected="true" style="color: #2f3131;" >Perfil</button>
@@ -99,12 +122,12 @@
          			<p3 class="text">Fecha de nacimiento: <%=nacimiento.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=nacimiento.get(GregorianCalendar.MONTH) +1%>/<%=nacimiento.get(GregorianCalendar.YEAR)%></p3><br>
          			
          			<%if(tipo == "turista"){
-         				DTTurista tur = (DTTurista) usr;
+         				DtTurista tur = (DtTurista) usr;
          			%>
          				<p1 class="text">Nacionalidad: <%=tur.getNacionalidad()%></p1><br>
          			
          			<%}else if(tipo == "proveedor"){ 
-         				DTProveedor prov = (DTProveedor) usr;
+         				DtProveedor prov = (DtProveedor) usr;
 
          			%>
   					<p1 class="text">Link: <a href="<%=prov.getLink()%>" target="_blank"><%=prov.getLink()%></a></p1><br>
@@ -120,9 +143,10 @@
 	
 						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
 							<%
-							
-							for(DTInscripcion ins : inscripciones){
-								GregorianCalendar insFecha = ins.getFecha();
+							DtColecciones insCol = (DtColecciones) request.getAttribute("usuarioDetalleInscripciones");
+							Set<DtInscripcion> inscripciones = new HashSet<DtInscripcion>(insCol.getSetDtInscripcion());
+							for(DtInscripcion ins : inscripciones){
+								GregorianCalendar insFecha = ins.getFecha().toGregorianCalendar();
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<div class="card-body" id="card-body-paquete">
@@ -147,11 +171,13 @@
   				
   					<div class="container" id="container-cards-paquete-usuario" style="max-width:950px;">
 	
-						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
+						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">					
 							<%
+							DtColecciones compraCol = (DtColecciones) request.getAttribute("usuarioDetalleCompras");
+							Set<DtCompra> compras = new HashSet<DtCompra>(compraCol.getSetDtCompra());
 							if(usr.getNickname().equals(nick)){
-								for(DTCompra comp : compras){
-									GregorianCalendar fechaCompra = comp.getFecha();
+								for(DtCompra comp : compras){
+									GregorianCalendar fechaCompra = comp.getFecha().toGregorianCalendar();
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<div class="card-body" id="card-body-paquete">
@@ -167,8 +193,7 @@
 							<%	}
 							} 
 							%>
-						</div>
-  				
+						</div>	
   					</div>
   				</div>
   				
@@ -180,12 +205,12 @@
 	
 						<div class="d-flex align-items-stretch" id="flex-cards-paquete" style="max-width:950px;">
 						<% 
-  						HashSet<DTActividad> actividades = (HashSet<DTActividad>) request.getAttribute("usuarioDetalleActividades");
-						
+  						//HashSet<DTActividad> actividades = (HashSet<DTActividad>) request.getAttribute("usuarioDetalleActividades");
 						if(!usr.getNickname().equals(nick)){
-							for(DTActividad actividad : actividades){
-								if(actividad.getEstado().equals(Estado.CONFIRMADA)){
-  									GregorianCalendar alta = actividad.getAlta();
+							DtColecciones confirmadasCol = (DtColecciones) request.getAttribute("usuarioDetalleActividadesConfirmadas");
+							Set<DtActividad> actividadesConfirmadas = new HashSet<DtActividad>(confirmadasCol.getSetDtActividad());
+							for(DtActividad actividad : actividadesConfirmadas){
+  									GregorianCalendar alta = actividad.getAlta().toGregorianCalendar();
   						%>
   						
 							<div id="paquete-card" class="card" style="width: 18rem;">
@@ -195,7 +220,6 @@
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%> días</p>
     								<p class="card-text"><strong>Costo: $</strong><%=actividad.getCosto()%></p>
     								<p class="card-text"><strong>Ciudad:</strong><%=actividad.getCiudad()%></p>	
-    								<!--   class="card-text"><strong>Departamento:</strong> Rocha</p>-->
     								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)+1%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
     			
     								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>" class="stretched-link"></a>
@@ -203,41 +227,33 @@
   								</div>  						
 							</div>
 				<%				
-								}
+								
   							}
 						}else{
-							for(DTActividad actividad : actividades){
-								GregorianCalendar alta = actividad.getAlta();
-								Estado estadoAct = actividad.getEstado();
-								String estadoStr = "";
-																
-								if(estadoAct.equals(Estado.CONFIRMADA)){
-									estadoStr = "Confirmada";
-								}else if(estadoAct.equals(Estado.AGREGADA)){
-									estadoStr = "Agregada";
-								}else if(estadoAct.equals(Estado.RECHAZADA)){
-									estadoStr = "Rechazada";
-								}
+							DtColecciones ofrecidasCol = (DtColecciones) request.getAttribute("usuarioDetalleActividadesOfrecidas");
+							Set<DtActividad> actividadesOfrecidas = new HashSet<DtActividad>(ofrecidasCol.getSetDtActividad());
+							for(DtActividad actividad : actividadesOfrecidas){
+								GregorianCalendar alta = actividad.getAlta().toGregorianCalendar();
 				%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
+  								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
   								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
+  								</a>
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=actividad.getNombre() %></h3>
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%></p>
     								<p class="card-text"><strong>Costo: $</strong><%=actividad.getCosto()%></p>
     								<p class="card-text"><strong>Ciudad:</strong><%=actividad.getCiudad()%></p>	
-    								<!--   class="card-text"><strong>Departamento:</strong> Rocha</p>-->
     								<p class="card-text"><strong>Fecha de alta: </strong><%=alta.get(GregorianCalendar.DAY_OF_MONTH)%>/<%=alta.get(GregorianCalendar.MONTH)+1%>/<%=alta.get(GregorianCalendar.YEAR)%></p>	
-    								<p class="card-text"><strong>Estado: </strong><%=estadoStr%></p>	
-    								
-    								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>" class="stretched-link"></a>
-   		
+    								<p class="card-text"><strong>Estado: </strong><%=actividad.getEstado().toString()%></p>	
+    								<%if (actividad.getEstado() == Estado.CONFIRMADA) {%>
+    									<a href="DetalleUsuario?usuarioDetalleNickname=<%=usr.getNickname()%>&finalizar=<%=actividad.getNombre()%>" class="btn btn-outline-dark">Finalizar actividad</a>
+    								<%}%>
   								</div>  						
 							</div>
 				<% 
 							}
-						}
-  				
+						}										
   				%>
   					
 						</div>
@@ -252,10 +268,10 @@
 						<% 
 						
 						if(usr.getNickname().equals(nick)){
-							HashSet<DTSalida> salidas = (HashSet<DTSalida>) request.getAttribute("usuarioDetalleSalidas");
-							for(DTSalida sal : salidas){							
-  						%>
-  						
+							DtColecciones salidasConfCol = (DtColecciones) request.getAttribute("usuarioDetalleSalidasConfirmadas");
+							Set<DtSalida> salidasConf = new HashSet<DtSalida>(salidasConfCol.getSetDtSalida());
+							for(DtSalida sal : salidasConf){
+							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
@@ -264,11 +280,14 @@
    		
   								</div>  						
 							</div>
-					<%				
+								
+								
+							<%
 							}
 						}else{
-							HashSet<DTSalida> salidasConf = (HashSet<DTSalida>) request.getAttribute("usuarioDetalleSalidasConfirmadas");
-							for(DTSalida sal : salidasConf){
+							DtColecciones salidasOfCol = (DtColecciones) request.getAttribute("usuarioDetalleSalidasOfrecidas");
+							Set<DtSalida> salidasOf = new HashSet<DtSalida>(salidasOfCol.getSetDtSalida());
+							for(DtSalida sal : salidasOf){
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
