@@ -140,4 +140,9 @@ public class PublicadorDepartamento {
 	public void finalizarActividad(String nombreAct) throws actividadTieneSalidasVigentesException, actividadPerteneceAPaqueteException {
 		contD.finalizarActividad(nombreAct);
 	}
+	
+	@WebMethod
+	public boolean salidaEstaVigente(String nombreSal) throws salidaNoExisteException {
+		return contD.salidaEstaVigente(nombreSal);
+	}
 }

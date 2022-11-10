@@ -56,7 +56,7 @@ public interface IControladorDepartamento {
 	
 	public abstract String obtenerNombreProveedorDeActividad(String nombreAct) throws actividadNoExisteException;
 
-	void finalizarActividad(String nombreAct) throws actividadTieneSalidasVigentesException, actividadPerteneceAPaqueteException;
+	public abstract void finalizarActividad(String nombreAct) throws actividadTieneSalidasVigentesException, actividadPerteneceAPaqueteException;
 
-	boolean salidaEstaVigente(String nombreSal) throws salidaNoExisteException;
+	public abstract boolean salidaEstaVigente(String nombreSal) throws salidaNoExisteException;
 }

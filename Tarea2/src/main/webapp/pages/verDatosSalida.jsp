@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.EstadoSesion"%>
-<%@page import="logica.datatypes.DTSalida"%>
-<%@page import="logica.datatypes.DTUsuario"%>
-<%@page import="logica.datatypes.DTActividad"%>
+<%@page import="publicadores.DtSalida"%>
+<%@page import="publicadores.DtUsuario"%>
+<%@page import="publicadores.DtActividad"%>
+<%@page import="publicadores.Estado"%>
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="javax.xml.datatype.XMLGregorianCalendar"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +29,7 @@
 		<section id="contenedor-verAct">
 		<%
 		
-		DTSalida salida = (DTSalida) request.getAttribute("salida");
+		DtSalida salida = (DtSalida) request.getAttribute("salida");
 		if (salida != null) {
 		
 		// Para tener la hora con el formato hh:mm
@@ -42,17 +45,18 @@
         String horaConvertida = horaS + ":" + minS;
 		
 		//Para sacar las partes de la fecha
-		GregorianCalendar fechaSalida = salida.getFechaDTSalida();
+		GregorianCalendar fechaSalida = salida.getFechaDTSalida().toGregorianCalendar();
         Integer diaSalida = fechaSalida.get(fechaSalida.DAY_OF_MONTH);
         Integer mesSalida = fechaSalida.get(fechaSalida.MONTH) + 1;
         Integer anioSalida = fechaSalida.get(fechaSalida.YEAR);
         
-        GregorianCalendar fechaAlta = salida.getAlta();
+        GregorianCalendar fechaAlta = salida.getAlta().toGregorianCalendar();
         Integer diaAlta = fechaAlta.get(fechaAlta.DAY_OF_MONTH);
         Integer mesAlta = fechaAlta.get(fechaAlta.MONTH) + 1;
         Integer anioAlta = fechaAlta.get(fechaAlta.YEAR);
         
-        DTActividad actividad = (DTActividad) request.getAttribute("actividad");
+        boolean esVigente = (boolean) request.getAttribute("vigencia");
+        DtActividad actividad = (DtActividad) request.getAttribute("actividad");
         
 		%>
 		
@@ -84,8 +88,8 @@
 			  		<div class="row">
 			  			<div class="col-md-12">
 			  				<%
-			  				DTUsuario usr = (DTUsuario) session.getAttribute("usuario_logueado");
-			  				if (usr != null && usr.getClass().getName().equals("logica.datatypes.DTTurista")) {
+			  				DtUsuario usr = (DtUsuario) session.getAttribute("usuario_logueado");
+			  				if ((usr != null && usr.getClass().getName().equals("logica.datatypes.DTTurista")) && (actividad.getEstado() == Estado.CONFIRMADA) && esVigente) {
 			  				%>
 				  			<div class="card-body mb-0 mt-0 pt-2 pb-1" style="max-width: 100%;">
 					  			<div class="row">
