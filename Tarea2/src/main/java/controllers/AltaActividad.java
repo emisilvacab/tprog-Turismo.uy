@@ -32,6 +32,7 @@ import logica.controladores.IControladorDepartamento;
 import logica.datatypes.DTUsuario;
 import publicadores.DepartamentoNoExisteException_Exception;
 import publicadores.DtColecciones;
+import publicadores.DtUsuario;
 import publicadores.ProveedorNoExisteException_Exception;
 import publicadores.PublicadorDepartamento;
 import publicadores.PublicadorDepartamentoService;
@@ -114,9 +115,11 @@ public class AltaActividad extends HttpServlet {
 		PublicadorDepartamentoService serviceD = new PublicadorDepartamentoService();
 		PublicadorDepartamento portD = serviceD.getPublicadorDepartamentoPort();
 		
-		DTUsuario usr = (DTUsuario) request.getSession().getAttribute("usuario_logueado");
+		DtUsuario usr = (DtUsuario) request.getSession().getAttribute("usuario_logueado");
 		String nicknameProv = usr.getNickname();//nickname del proveedor que tiene la sesion inciada
-		List<String> categorias = new ArrayList<String>();
+		
+		DtColecciones colCats = new DtColecciones();
+		List<String> categorias = colCats.getSetString();
 		String[] cates = request.getParameterValues("catsAct");
 		for (String cat: cates) {
 			cat = cat.replace("+"," ");
@@ -135,7 +138,7 @@ public class AltaActividad extends HttpServlet {
 			String linkVideo = request.getParameter("linkVideo");
 			if (linkVideo == null)
 				linkVideo = "sin";
-			boolean existe = portD.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())), nicknameProv, request.getParameter("depAct"), (SetOfString) categorias, linkImagen, linkVideo);
+			boolean existe = portD.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())), nicknameProv, request.getParameter("depAct"), colCats, linkImagen, linkVideo);
 			if (existe) {
 				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
 					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
