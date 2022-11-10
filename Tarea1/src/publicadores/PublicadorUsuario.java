@@ -2,6 +2,7 @@ package publicadores;
 
 import java.util.GregorianCalendar;
 
+import excepciones.UsuarioRepetidoException;
 import excepciones.ingresoInvalidoException;
 import excepciones.inscripcionExisteException;
 import excepciones.limiteSuperadoException;
@@ -16,6 +17,8 @@ import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
 import logica.Fabrica;
 import logica.controladores.IControladorUsuario;
+import logica.datatypes.DTProveedor;
+import logica.datatypes.DTTurista;
 import logica.datatypes.DTUsuario;
 
 @WebService
@@ -49,4 +52,16 @@ public class PublicadorUsuario {
 			contU.ingresarDatosInscripcionPaq(nickname, nombreSal, cantidad, fecha, nombrePaq);
 	}
 	
+	@WebMethod
+	public void altaTurista(DTTurista nuevoTurista) throws UsuarioRepetidoException{
+		contU.altaUsuario(nuevoTurista);
+	}
+	
+	@WebMethod
+	public void altaProveedor(DTProveedor nuevoProveedor) throws UsuarioRepetidoException{
+		if (nuevoProveedor.getLink().equals("null")) {
+			nuevoProveedor.setLink(null);
+		}
+		contU.altaUsuario(nuevoProveedor);
+	}
 }

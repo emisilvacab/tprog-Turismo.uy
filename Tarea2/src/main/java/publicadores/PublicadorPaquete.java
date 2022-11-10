@@ -28,27 +28,13 @@ public interface PublicadorPaquete {
 
     /**
      * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
      * @return
      *     returns publicadores.DtColecciones
-     * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesDisponiblesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesDisponiblesResponse", fault = {
-        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorPaquete/obtenerPaquetesDisponibles/Fault/usuarioNoExisteException")
-    })
-    public DtColecciones obtenerPaquetesDisponibles(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        int arg2)
-        throws UsuarioNoExisteException_Exception
-    ;
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
+    public DtColecciones obtenerPaquetesConActividades();
 
     /**
      * 
@@ -80,12 +66,26 @@ public interface PublicadorPaquete {
 
     /**
      * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
      * @return
      *     returns publicadores.DtColecciones
+     * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesConActividadesResponse")
-    public DtColecciones obtenerPaquetesConActividades();
+    @Action(input = "http://publicadores/PublicadorPaquete/obtenerPaquetesDisponiblesRequest", output = "http://publicadores/PublicadorPaquete/obtenerPaquetesDisponiblesResponse", fault = {
+        @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicadores/PublicadorPaquete/obtenerPaquetesDisponibles/Fault/usuarioNoExisteException")
+    })
+    public DtColecciones obtenerPaquetesDisponibles(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        int arg2)
+        throws UsuarioNoExisteException_Exception
+    ;
 
 }

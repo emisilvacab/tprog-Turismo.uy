@@ -64,6 +64,36 @@ public interface PublicadorUsuario {
     /**
      * 
      * @param arg0
+     * @throws UsuarioRepetidoException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://publicadores/PublicadorUsuario/altaProveedorRequest", output = "http://publicadores/PublicadorUsuario/altaProveedorResponse", fault = {
+        @FaultAction(className = UsuarioRepetidoException_Exception.class, value = "http://publicadores/PublicadorUsuario/altaProveedor/Fault/UsuarioRepetidoException")
+    })
+    public void altaProveedor(
+        @WebParam(name = "arg0", partName = "arg0")
+        DtProveedor arg0)
+        throws UsuarioRepetidoException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws UsuarioRepetidoException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://publicadores/PublicadorUsuario/altaTuristaRequest", output = "http://publicadores/PublicadorUsuario/altaTuristaResponse", fault = {
+        @FaultAction(className = UsuarioRepetidoException_Exception.class, value = "http://publicadores/PublicadorUsuario/altaTurista/Fault/UsuarioRepetidoException")
+    })
+    public void altaTurista(
+        @WebParam(name = "arg0", partName = "arg0")
+        DtTurista arg0)
+        throws UsuarioRepetidoException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @param arg1
      * @return
      *     returns publicadores.DtUsuario
