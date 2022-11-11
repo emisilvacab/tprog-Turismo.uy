@@ -214,7 +214,7 @@
   						%>
   						
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
+  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=actividad.getNombre() %></h3>
     								<p class="card-text"><strong>Duración: </strong><%=actividad.getDuracion()%> días</p>
@@ -237,7 +237,7 @@
 				%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
   								<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
-  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
+  								<img id="card-img-paquete" <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
   								</a>
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=actividad.getNombre() %></h3>
@@ -273,7 +273,7 @@
 							for(DtSalida sal : salidasConf){
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
+  								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=sal.getNombre()%></h3>    			
     								<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=sal.getNombre()%>" class="stretched-link"></a>
@@ -290,7 +290,7 @@
 							for(DtSalida sal : salidasOf){
 							%>
 							<div id="paquete-card" class="card" style="width: 18rem;">
-  								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
+  								<img <%if (sal.getLinkImagen() != null){%> src="<%=sal.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultSalida.png"<%}%> class="card-img-top" alt="...">
   								<div class="card-body" id="card-body-paquete">
     								<h3 class="card-title"><%=sal.getNombre()%></h3>    			
     								<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=sal.getNombre()%>" class="stretched-link"></a>

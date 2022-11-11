@@ -49,21 +49,21 @@
 	      </div> 
 	      <div class="carousel-inner">
 	        <div class="carousel-item active">
-	          <img src="resources/img/campo.jpg" class="d-block w-100" alt="...">
+	          <img src="/Tarea2/img?id=campo.jpg" class="d-block w-100" alt="...">
 	          <div class="carousel-caption d-none d-md-block">
 	            <h5>Colonia</h5>
 	            <p>Campos que generan paz.</p>
 	          </div>
 	        </div>  
 	        <div class="carousel-item">
-	          <img src="resources/img/piria.jpg" class="d-block w-100" alt="...">
+	          <img src="/Tarea2/img?id=piria.jpg" class="d-block w-100" alt="...">
 	          <div class="carousel-caption d-none d-md-block">
 	            <h5>Piriapolis, Maldonado</h5>
 	            <p>Atardeceres mágicos.</p>
 	          </div>
 	        </div>
 	        <div class="carousel-item">
-	          <img src="resources/img/rodo.jpg" class="d-block w-100" alt="...">
+	          <img src="/Tarea2/img?id=rodo.jpg" class="d-block w-100" alt="...">
 	          <div class="carousel-caption d-none d-md-block">
 	            <h5>Parque rodó, Montevideo</h5>
 	            <p>Divertidos juegos sobre la rambla.</p>

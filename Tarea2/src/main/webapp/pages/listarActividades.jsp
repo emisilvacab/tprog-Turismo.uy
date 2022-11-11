@@ -47,7 +47,7 @@
 					<div class="row g-0">
 						<div class="col-md-4">
 							<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
-							<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultActividad.png"<%}%> class="img-fluid rounded-start" alt="Actividad">
+							<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded-start" alt="Actividad">
 							</a>
 						</div>
 						<div class="col-md-8">

@@ -63,6 +63,8 @@ public class PublicadorUsuario {
 	}
 	
 	public void altaTurista(DTTurista nuevoTurista) throws UsuarioRepetidoException{
+		if (nuevoTurista.getLinkImagen().equals("null"))
+			nuevoTurista.setLinkImagen(null);
 		contU.altaUsuario(nuevoTurista);
 	}
 	
@@ -71,6 +73,8 @@ public class PublicadorUsuario {
 		if (nuevoProveedor.getLink().equals("null")) {
 			nuevoProveedor.setLink(null);
 		}
+		if (nuevoProveedor.getLinkImagen().equals("null"))
+			nuevoProveedor.setLinkImagen(null);
 		contU.altaUsuario(nuevoProveedor);
 	}
 	public DTUsuario obtenerUsuario(String nickname) throws usuarioNoExisteException {

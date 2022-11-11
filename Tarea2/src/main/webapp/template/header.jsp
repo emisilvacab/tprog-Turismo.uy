@@ -8,7 +8,7 @@
      <div class="container-fluid">
     
       <a class="navbar-brand" href="/Tarea2/Home">
-        <img src="resources/img/logo.png" alt="Turismo.uy" class="logopic">
+        <img src="/Tarea2/img?id=logo.png" alt="Turismo.uy" class="logopic">
       </a>
       
       <form class="d-flex" role="search">
