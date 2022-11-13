@@ -1,0 +1,62 @@
+    body,
+    html {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        background:#fbf7f0;
+    }
+    .form-control{
+        font-size: 40px;
+        height: 5rem;
+        margin-bottom: 10%;
+    }
+    .form-floating{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 66%;
+        justify-content: center;
+        align-items: center;
+        vertical-align:middle;
+        padding-top: 30%;
+    }
+    .background{
+        justify-content: center;
+        align-items: center;
+        background: #012970;
+        position: fixed;
+        /* margin-left: auto;
+        margin-right: auto;
+        display: table; */
+        /* top: 50%;
+        left: 50%; 
+        bottom: 50%;
+        right: 50%; */
+        /* transform: translate(-50%, -50%);  */
+        height: 70%;
+        width: 90%;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .btn{
+        font-family: monospace;
+        height: fit-content;
+        font-size: 5.5vw;
+        border-radius: 5%;
+        width: fit-content;
+    }
+    .tituloIniciarSesion{
+    	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        height:33%;
+        vertical-align:middle;
+        color: cornflowerblue;
+        padding-top: 50%;
+        font-size: 70px;
+        
+
+    }
