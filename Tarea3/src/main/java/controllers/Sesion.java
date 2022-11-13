@@ -34,8 +34,12 @@ public class Sesion extends HttpServlet {
 
     	try {
 			DtUsuario usr = port.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password"));
-			if (usr.getClass() == DtProveedor.class) {
+			/*if (usr.getClass() == DtProveedor.class) {
 				throw new Exception("No hay niingun turista con ese nickname o correo");
+			} */
+			if (usr.getClass().getName().equals("publicadores.DtProveedor")) {
+				request.getSession().setAttribute("error", "esProveedor"); // leer en el jsp si se manda este error como atributo
+				request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
 			}
 			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_CORRECTO);
     		request.getSession().setAttribute("usuario_logueado", usr);
