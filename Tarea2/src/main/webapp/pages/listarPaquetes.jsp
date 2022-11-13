@@ -34,7 +34,7 @@
 				
 				%>
 				<div id="paquete-card" class="card" style="width: 18rem;">
- 					<img id="card-img-paquete" <%if (paq.getLinkImagen() != null){%> src="<%=paq.getLinkImagen()%>" <%} else {%>src="resources/img/imgDefaultPaquete.png"<%}%> class="card-img-top" alt="...">
+ 					<img id="card-img-paquete" <%if (paq.getLinkImagen() != null){%> src="<%=paq.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultPaquete.png"<%}%> class="card-img-top" alt="...">
  						<div class="card-body" id="card-body-paquete">
    							<h3 class="card-title"><%=paq.getNombre()%></h3>
    							<p class="card-text"><%=paq.getDescripcion()%></p>	

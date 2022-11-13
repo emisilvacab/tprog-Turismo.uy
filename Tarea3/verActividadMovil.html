@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+  </head>
+  <style>
+  .cuerpo{
+    position: fixed;
+    top: 0;
+    bottom:0;
+    width: 100vw; /* viewport width */
+    height: 100vh; /* viewport height */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #fbf7f0;
+  }
+
+  .section{
+  overflow:scroll;
+  bottom: 0;
+  width: calc(100vw);
+  height: calc(100vh - 55px);
+  overflow-y: scroll;
+  overflow-x: scroll;
+  padding: 0px;
+  background-color: #fbf7f0;
+  }
+  .max-lines {
+  white-space: nowrap;
+  max-width: 60vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
+  @media only screen and (max-device-width: 324px) {
+    .max-lines{display:none;}
+  }
+
+  .dropdown-menu {
+    max-height: 45vh;
+    overflow-y: auto;
+  }
+
+  /* #flex-cards-usuarios{
+	gap: 10px;
+	flex-flow: row wrap;
+	display: flex;
+  }
+
+  #container-cards-usuarios{
+    position: absolute;
+  }
+
+#card-img-usuario{
+  	width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#card-body-paquete{
+	display: flex;
+	flex-direction: column;
+} */
+
+
+
+#section-listdo-usuarios{
+	overflow-y: auto;
+}
+
+#flex-cards-usuarios{
+	gap: 10px;
+	flex-flow: row wrap;
+	display: flex;
+}
+
+#container-cards-usuarios{
+	position: absolute;
+}
+
+.card-img-usuario{
+  height: 37vh;
+  object-fit: cover
+}
+
+.card-lines {
+	display: block;
+	display: -webkit-box;
+	height: 4.5em; /* calcular a partir de line-height por la cantidad de lineas */
+	line-height: 1.5em;
+	-webkit-line-clamp: 3; /* aca se pone cantidad de lineas */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+  </style>
+  <body>
+    <div class="cuerpo">
+    <nav class="navbar navbar-expand-lg" id="accordionPanelsStayOpenExample" style="background-color: #fbf7f0; box-shadow: 0px 10px 10px rgba(1, 41, 112, 0.1); position: sticky;">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="margin-right: 4px;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand max-lines" href="#">Bienvenido Washington</a>
+          <img src="C:/Users/Matías/Documents/Facultad/TallerDeProgramacion/icono.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-end">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mx-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Ver actividades turisticas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Cerrar sesion</a>
+              </li>
+            </ul>
+            <!-- <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+              <button class="btn btn-outline-primary" type="submit">Buscar</button>
+            </form> -->
+          </div>
+        </div>
+    </nav>
+    <!--<div class="d-flex justify-content-center mx-2 my-5">
+    <form>
+        <div style="min-width: 70vw; min-height: 10vh;">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    </div> -->
+    <div class="container" style="min-width: 97%">
+        <div class="row gx-1" style="min-width: 97%">
+            <div class="col my-3">
+                <div class="row gx-0 mx-3">
+                    <div class="col-sm-6 mt-1">
+                        <div class="card" style="min-height:100%">
+                            <img src="https://televisa.brightspotcdn.com/dims4/default/435e487/2147483647/strip/true/crop/652x489+30+0/resize/818x614!/quality/90/?url=https%3A%2F%2Ftelevisa-brightspot.s3.amazonaws.com%2Fapi%2Fd3%2F61%2F88c3fa754ab185eb12a5ee5209b3%2F01-pinguinos-madagascar.png" class="card-img-top card-img-usuario" alt="...">
+                            <div class="card-body" style="font-size: 110%;">
+                                <h2 class="title">Degusta</h2>
+                                    <div class="card-text">
+                                        Festival gastronómico de productos locales en Rocha.
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mt-1">
+                        <div class="card d-flex justify-content-center flex-wrap" style="min-height:100%">
+                            <div class="card-body pt-1">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item" style="font-size: 150%;">Rocha</li>
+                                    <li class="list-group-item" style="font-size: 150%;">3 días</li>
+                                    <li class="list-group-item" style="font-weight: 600; font-size: 150%;">$800</li>
+                                    <li class="list-group-item" style="font-size: 130%;">Proveedor: <em style="color: #2f3131;">washington</em></li>
+                                    <li class="list-group-item" style="font-size: 130%;">Departamento: Rocha</li>
+                                    <li class="list-group-item" style="font-size: 130%;">Categoría: Gastronomía</li>
+                                    <li class="list-group-item" style="font-size: 130%;">Confirmada</li>
+                                </ul>
+                                <p class="card-text"><small class="text-muted">Dada de alta el 20/7/2022</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="row gx-1" style="min-width: 47vw;">
+                <div class="col-sm-6">
+                    <h2 class="mx-3">Salidas</h3>
+                    <div class="card mx-3 my-3">
+                        <img src="https://urbanaplayfm.com/file/2021/12/mo.jpg" class="card-img-top card-img-usuario" alt="...">
+                        <div class="card-body">
+                        <h3 class="card-title" style="overflow-wrap:break-word">Actividad</h3>
+                        <p class="card-text card-lines">Sexo? Que capa ofrece ese protocolo?</h6>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6">
+                    <h2 class="mx-3">Paquetes</h3>
+                    <div class="card mx-3 my-3">
+                        <img src="https://static.wikia.nocookie.net/el-planeta-de-los-simios/images/4/47/Caesar.jpg/revision/latest?cb=20140722075724&path-prefix=es" class="card-img-top card-img-usuario" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title" style="overflow-wrap:break-word; hyphens: auto;">Panfleto comunista</h3>
+                            <p class="card-text card-lines">Como que la entrega es el lunes?</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>
