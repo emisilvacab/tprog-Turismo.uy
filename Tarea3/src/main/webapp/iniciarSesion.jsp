@@ -19,9 +19,9 @@
 		<h1 class="tituloIniciarSesion">Turismo.uy</h1>
 		<form class="form-floating" action="log" method="post" onsubmit = "return validarIniciarSesion()">
 		
-			<input type="text" class="form-control" id="nickname" placeholder="nickname / correo">
+			<input type="text" class="form-control" id="nickname" name="id_logging" placeholder="nickname / correo">
 			
-			<input type="password" class="form-control" id="password" placeholder="contraseña">
+			<input type="password" class="form-control" id="password" name="password" placeholder="contraseña">
 			
 			<button type="submit" class="btn btn-outline-primary btn-lg btn-block col">Iniciar Sesión</button>
 		</form>

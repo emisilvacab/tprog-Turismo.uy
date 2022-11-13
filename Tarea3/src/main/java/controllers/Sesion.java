@@ -43,7 +43,7 @@ public class Sesion extends HttpServlet {
 			}
 			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_CORRECTO);
     		request.getSession().setAttribute("usuario_logueado", usr);
-    		request.getRequestDispatcher("pages/index.jsp").forward(request, response); //NO HAY INDEX, FALTA ESO
+    		request.getRequestDispatcher("/pages/index.jsp").forward(request, response); //NO HAY INDEX, FALTA ESO
 		} catch (IngresoInvalidoException_Exception e) {
 			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_INCORRECTO);
     		request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
