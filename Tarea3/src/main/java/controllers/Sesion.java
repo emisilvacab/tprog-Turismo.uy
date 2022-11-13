@@ -39,14 +39,14 @@ public class Sesion extends HttpServlet {
 			} */
 			if (usr.getClass().getName().equals("publicadores.DtProveedor")) {
 				request.getSession().setAttribute("error", "esProveedor"); // leer en el jsp si se manda este error como atributo
-				request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
+				request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
 			}
 			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_CORRECTO);
     		request.getSession().setAttribute("usuario_logueado", usr);
-    		request.getRequestDispatcher("index.jsp").forward(request, response);
+    		request.getRequestDispatcher("pages/index.jsp").forward(request, response); //NO HAY INDEX, FALTA ESO
 		} catch (IngresoInvalidoException_Exception e) {
 			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_INCORRECTO);
-    		request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
+    		request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
 		} 
     	
 
@@ -55,7 +55,7 @@ public class Sesion extends HttpServlet {
     protected void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.getSession().setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
     	request.getSession().setAttribute("usuario_logueado", null);
-    	request.getRequestDispatcher("index.jsp").forward(request, response);
+    	request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
     }
 
 	/**
