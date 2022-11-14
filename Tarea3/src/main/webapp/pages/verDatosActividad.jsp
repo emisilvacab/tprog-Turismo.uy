@@ -118,7 +118,9 @@
 					        Integer anioSalida = fechaSalida.get(fechaSalida.YEAR);
 					  	%>
 	                    <div class="card mx-3 my-3">
-	                        <img <%if (salida.getLinkImagen() != null){%>src="<%=salida.getLinkImagen()%>"<%} else {%>src="img?id=imgDefaultSalida.png"<%}%> class="card-img-top card-img-usuario" alt="...">
+	                    	<a href="VerDatosSalida?salSeleccionada=<%=salida.getNombre()%>">
+	                        	<img <%if (salida.getLinkImagen() != null){%>src="<%=salida.getLinkImagen()%>"<%} else {%>src="img?id=imgDefaultSalida.png"<%}%> class="card-img-top card-img-usuario" alt="...">
+	                        </a>
 	                        <div class="card-body">
 	                        <h3 class="card-title" style="overflow-wrap:break-word"><%=salida.getNombre()%></h3>
 	                        <ul class="list-group list-group">
