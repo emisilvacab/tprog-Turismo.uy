@@ -42,7 +42,7 @@
 				<div class="row">
 			      <div class="col-sm-6" style="min-width: 300px;">
 			        <div class="card" style="max-width: 100%;">
-			   			<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded" alt="Actividad">
+			   			<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded" alt="Actividad">
 			   		</div>
 			      </div>
 			      <div class="col-sm-6"  style="min-width: 300px;">
@@ -151,8 +151,8 @@
 		  	%>
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem;">
-		  		<a href="/Tarea2/VerDatosSalida?salSeleccionada=<%=salida.getNombre()%>">
-			  	<img class="card-img-top"  <%if (salida.getLinkImagen() != null){%>src="<%=salida.getLinkImagen()%>"<%} else {%>src="/Tarea2/img?id=imgDefaultSalida.png"<%}%> alt="Card image cap">
+		  		<a href="VerDatosSalida?salSeleccionada=<%=salida.getNombre()%>">
+			  	<img class="card-img-top"  <%if (salida.getLinkImagen() != null){%>src="<%=salida.getLinkImagen()%>"<%} else {%>src="img?id=imgDefaultSalida.png"<%}%> alt="Card image cap">
 			  	</a>
 			  <div class="card-body">
 			    <h5 class="card-title"><%=salida.getNombre()%></h5>
@@ -180,8 +180,8 @@
 		  	%>
 		  	
 		  	<div class="card mb-3 contenedor-verSalPaq" style="max-width: 20rem">
-		  		<a href="/Tarea2/DetallePaquete?detallePaqueteNombre=<%=paquete.getNombre()%>">
-			  		<img class="card-img-top" <%if (paquete.getLinkImagen() != null){%> src="<%=paquete.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultPaquete.png"<%}%> alt="Card image cap">
+		  		<a href="DetallePaquete?detallePaqueteNombre=<%=paquete.getNombre()%>">
+			  		<img class="card-img-top" <%if (paquete.getLinkImagen() != null){%> src="<%=paquete.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultPaquete.png"<%}%> alt="Card image cap">
 			  	</a>
 			  <div class="card-body">
 			    <h5 class="card-title"><%=paquete.getNombre()%></h5>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_war" name="Create Runnable Jar for Project Tarea2 with War-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="C:/Users/emisi/eclipse-workspace"/>
+    <property name="dir.warfile" value="${dir.buildfile}"/>
+    <target name="create_run_war">
+        <war destfile="${dir.warfile}/web.war"  webxml="src\main\webapp\WEB-INF\web.xml">
+            <fileset dir="src\main\webapp"/>
+            <classes dir="${dir.warfile}/build/classes"/>
+            <zipfileset dir="${dir.warfile}" includes="jdatepicker-1.3.4.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.api_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.engine_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.migrationsupport_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.params_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.commons_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.engine_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.launcher_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.runner_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.api_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.engine_1.8.1.v20211028-1957.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.commons_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.vintage.engine_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.opentest4j_1.2.0.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.apiguardian_1.1.2.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit_4.13.2.v20211018-1956.jar"/>
+            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="angus-activation.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="angus-mail.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="FastInfoset.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="gmbal-api-only.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="ha-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jakarta.activation-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jakarta.annotation-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jakarta.mail-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jakarta.xml.bind-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jakarta.xml.soap-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jakarta.xml.ws-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jaxb-core.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jaxb-impl.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jaxb-xjc.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jaxb-jxc.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jaxws-eclipselink-plugin.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="management-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="mimepull.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="saaj-impl.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="stax-ex.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="stax2-api.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="streambuffer.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="woodstox-core.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jaxws-rt.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="jaxws-tools.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="org.eclipse.persistence.asm.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="org.eclipse.persistence.core.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="org.eclipse.persistence.moxy.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="org.eclipse.persistence.sdo.jar"/>
+            <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="sdo-eclipselink-plugin.jar"/>
+        </war>
+    </target>
+</project>

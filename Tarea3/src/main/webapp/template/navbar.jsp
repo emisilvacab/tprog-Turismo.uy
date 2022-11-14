@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mx-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Ver actividades turisticas</a>
+                    <a class="nav-link" aria-current="page" href="/Tarea3/ListarActividades">Ver actividades turisticas</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#">Cerrar sesion</a>

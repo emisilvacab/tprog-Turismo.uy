@@ -47,13 +47,13 @@ function limpiar(select){
 function getURL(cambio) {
 	if (cambio == "dpto"){
 		var dpto = document.getElementById("form-select-dpto").options[document.getElementById("form-select-dpto").selectedIndex].text;
-		return "/Tarea2/altaSalida?cambio=dpto&dpto=" + encodeURIComponent(dpto);
+		return "altaSalida?cambio=dpto&dpto=" + encodeURIComponent(dpto);
 	}
 	if (cambio == "act") {
 		var dpto = document.getElementById("form-select-dpto").options[document.getElementById("form-select-dpto").selectedIndex].text;
     	var act = document.getElementById("form-select-act").options[document.getElementById("form-select-act").selectedIndex].text;
 		if(dpto.length != 0){
-			return "/Tarea2/altaSalida?cambio=act&dpto=" + encodeURIComponent(dpto) + "&act=" + encodeURIComponent(act);
+			return "altaSalida?cambio=act&dpto=" + encodeURIComponent(dpto) + "&act=" + encodeURIComponent(act);
 		}
 	}
 	return "";

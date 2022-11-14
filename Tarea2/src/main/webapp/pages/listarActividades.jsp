@@ -46,8 +46,8 @@
 				<div class="card mb-4 contenedor-actividad" style="max-width: 1000px;">
 					<div class="row g-0">
 						<div class="col-md-4">
-							<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
-							<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded-start" alt="Actividad">
+							<a href="VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
+							<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded-start" alt="Actividad">
 							</a>
 						</div>
 						<div class="col-md-8">

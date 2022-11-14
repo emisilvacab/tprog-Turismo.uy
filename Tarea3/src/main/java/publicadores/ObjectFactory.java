@@ -24,9 +24,13 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CompraExisteException_QNAME = new QName("http://publicadores/", "compraExisteException");
-    private final static QName _PaqueteNoExisteException_QNAME = new QName("http://publicadores/", "paqueteNoExisteException");
-    private final static QName _UsuarioNoExisteException_QNAME = new QName("http://publicadores/", "usuarioNoExisteException");
+    private final static QName _ActividadNoExisteException_QNAME = new QName("http://publicadores/", "actividadNoExisteException");
+    private final static QName _ActividadPerteneceAPaqueteException_QNAME = new QName("http://publicadores/", "actividadPerteneceAPaqueteException");
+    private final static QName _ActividadTieneSalidasVigentesException_QNAME = new QName("http://publicadores/", "actividadTieneSalidasVigentesException");
+    private final static QName _CategoriaNoExisteException_QNAME = new QName("http://publicadores/", "categoriaNoExisteException");
+    private final static QName _DepartamentoNoExisteException_QNAME = new QName("http://publicadores/", "departamentoNoExisteException");
+    private final static QName _ProveedorNoExisteException_QNAME = new QName("http://publicadores/", "proveedorNoExisteException");
+    private final static QName _SalidaNoExisteException_QNAME = new QName("http://publicadores/", "salidaNoExisteException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: publicadores
@@ -36,33 +40,73 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CompraExisteException }
+     * Create an instance of {@link ActividadNoExisteException }
      * 
      * @return
-     *     the new instance of {@link CompraExisteException }
+     *     the new instance of {@link ActividadNoExisteException }
      */
-    public CompraExisteException createCompraExisteException() {
-        return new CompraExisteException();
+    public ActividadNoExisteException createActividadNoExisteException() {
+        return new ActividadNoExisteException();
     }
 
     /**
-     * Create an instance of {@link PaqueteNoExisteException }
+     * Create an instance of {@link ActividadPerteneceAPaqueteException }
      * 
      * @return
-     *     the new instance of {@link PaqueteNoExisteException }
+     *     the new instance of {@link ActividadPerteneceAPaqueteException }
      */
-    public PaqueteNoExisteException createPaqueteNoExisteException() {
-        return new PaqueteNoExisteException();
+    public ActividadPerteneceAPaqueteException createActividadPerteneceAPaqueteException() {
+        return new ActividadPerteneceAPaqueteException();
     }
 
     /**
-     * Create an instance of {@link UsuarioNoExisteException }
+     * Create an instance of {@link ActividadTieneSalidasVigentesException }
      * 
      * @return
-     *     the new instance of {@link UsuarioNoExisteException }
+     *     the new instance of {@link ActividadTieneSalidasVigentesException }
      */
-    public UsuarioNoExisteException createUsuarioNoExisteException() {
-        return new UsuarioNoExisteException();
+    public ActividadTieneSalidasVigentesException createActividadTieneSalidasVigentesException() {
+        return new ActividadTieneSalidasVigentesException();
+    }
+
+    /**
+     * Create an instance of {@link CategoriaNoExisteException }
+     * 
+     * @return
+     *     the new instance of {@link CategoriaNoExisteException }
+     */
+    public CategoriaNoExisteException createCategoriaNoExisteException() {
+        return new CategoriaNoExisteException();
+    }
+
+    /**
+     * Create an instance of {@link DepartamentoNoExisteException }
+     * 
+     * @return
+     *     the new instance of {@link DepartamentoNoExisteException }
+     */
+    public DepartamentoNoExisteException createDepartamentoNoExisteException() {
+        return new DepartamentoNoExisteException();
+    }
+
+    /**
+     * Create an instance of {@link ProveedorNoExisteException }
+     * 
+     * @return
+     *     the new instance of {@link ProveedorNoExisteException }
+     */
+    public ProveedorNoExisteException createProveedorNoExisteException() {
+        return new ProveedorNoExisteException();
+    }
+
+    /**
+     * Create an instance of {@link SalidaNoExisteException }
+     * 
+     * @return
+     *     the new instance of {@link SalidaNoExisteException }
+     */
+    public SalidaNoExisteException createSalidaNoExisteException() {
+        return new SalidaNoExisteException();
     }
 
     /**
@@ -156,42 +200,94 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CompraExisteException }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadNoExisteException }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link CompraExisteException }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ActividadNoExisteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://publicadores/", name = "compraExisteException")
-    public JAXBElement<CompraExisteException> createCompraExisteException(CompraExisteException value) {
-        return new JAXBElement<>(_CompraExisteException_QNAME, CompraExisteException.class, null, value);
+    @XmlElementDecl(namespace = "http://publicadores/", name = "actividadNoExisteException")
+    public JAXBElement<ActividadNoExisteException> createActividadNoExisteException(ActividadNoExisteException value) {
+        return new JAXBElement<>(_ActividadNoExisteException_QNAME, ActividadNoExisteException.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PaqueteNoExisteException }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadPerteneceAPaqueteException }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link PaqueteNoExisteException }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ActividadPerteneceAPaqueteException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://publicadores/", name = "paqueteNoExisteException")
-    public JAXBElement<PaqueteNoExisteException> createPaqueteNoExisteException(PaqueteNoExisteException value) {
-        return new JAXBElement<>(_PaqueteNoExisteException_QNAME, PaqueteNoExisteException.class, null, value);
+    @XmlElementDecl(namespace = "http://publicadores/", name = "actividadPerteneceAPaqueteException")
+    public JAXBElement<ActividadPerteneceAPaqueteException> createActividadPerteneceAPaqueteException(ActividadPerteneceAPaqueteException value) {
+        return new JAXBElement<>(_ActividadPerteneceAPaqueteException_QNAME, ActividadPerteneceAPaqueteException.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioNoExisteException }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActividadTieneSalidasVigentesException }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link UsuarioNoExisteException }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ActividadTieneSalidasVigentesException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://publicadores/", name = "usuarioNoExisteException")
-    public JAXBElement<UsuarioNoExisteException> createUsuarioNoExisteException(UsuarioNoExisteException value) {
-        return new JAXBElement<>(_UsuarioNoExisteException_QNAME, UsuarioNoExisteException.class, null, value);
+    @XmlElementDecl(namespace = "http://publicadores/", name = "actividadTieneSalidasVigentesException")
+    public JAXBElement<ActividadTieneSalidasVigentesException> createActividadTieneSalidasVigentesException(ActividadTieneSalidasVigentesException value) {
+        return new JAXBElement<>(_ActividadTieneSalidasVigentesException_QNAME, ActividadTieneSalidasVigentesException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CategoriaNoExisteException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link CategoriaNoExisteException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "categoriaNoExisteException")
+    public JAXBElement<CategoriaNoExisteException> createCategoriaNoExisteException(CategoriaNoExisteException value) {
+        return new JAXBElement<>(_CategoriaNoExisteException_QNAME, CategoriaNoExisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DepartamentoNoExisteException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link DepartamentoNoExisteException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "departamentoNoExisteException")
+    public JAXBElement<DepartamentoNoExisteException> createDepartamentoNoExisteException(DepartamentoNoExisteException value) {
+        return new JAXBElement<>(_DepartamentoNoExisteException_QNAME, DepartamentoNoExisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ProveedorNoExisteException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ProveedorNoExisteException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "proveedorNoExisteException")
+    public JAXBElement<ProveedorNoExisteException> createProveedorNoExisteException(ProveedorNoExisteException value) {
+        return new JAXBElement<>(_ProveedorNoExisteException_QNAME, ProveedorNoExisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SalidaNoExisteException }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link SalidaNoExisteException }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://publicadores/", name = "salidaNoExisteException")
+    public JAXBElement<SalidaNoExisteException> createSalidaNoExisteException(SalidaNoExisteException value) {
+        return new JAXBElement<>(_SalidaNoExisteException_QNAME, SalidaNoExisteException.class, null, value);
     }
 
 }

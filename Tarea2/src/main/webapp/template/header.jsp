@@ -7,8 +7,8 @@
 	<nav class="navbar">
      <div class="container-fluid">
     
-      <a class="navbar-brand" href="/Tarea2/Home">
-        <img src="/Tarea2/img?id=logo.png" alt="Turismo.uy" class="logopic">
+      <a class="navbar-brand" href="Home">
+        <img src="img?id=logo.png" alt="Turismo.uy" class="logopic">
       </a>
       
       <form class="d-flex" role="search">
@@ -21,8 +21,8 @@
 		if (usr == null) {
 	  %>
       <div>
-	      <a class="navbar-text" href="/Tarea2/registrar">Registrarse</a>
-	      <a class="navbar-text" href="/Tarea2/log?iniciar=si">Iniciar sesión</a>
+	      <a class="navbar-text" href="registrar">Registrarse</a>
+	      <a class="navbar-text" href="log?iniciar=si">Iniciar sesión</a>
   	  </div>
   	  
   	  <%
@@ -47,7 +47,7 @@
 			<ul class="dropdown-menu dropdown-menu-dark">
 				<li><a class="dropdown-item" href="DetalleUsuario?usuarioDetalleNickname=<%=usr.getNickname()%>">Ver mi perfil</a></li>
 				<li><hr class="dropdown-divider"></li>
-			 	<li><a class="dropdown-item" onClick="cerrarSesion()" href="/Tarea2/log">Cerrar sesión</a></li>
+			 	<li><a class="dropdown-item" onClick="cerrarSesion()" href="log">Cerrar sesión</a></li>
 			</ul>
 		 </div>
 		</div>

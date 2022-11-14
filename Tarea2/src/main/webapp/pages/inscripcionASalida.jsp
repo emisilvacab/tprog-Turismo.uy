@@ -19,7 +19,7 @@
 	%>
 	<script type="text/javascript">
 		alert("La sesión ha expirado. Inicie sesión nuevamente para inscribirse a una salida.");
-		window.location.href = "/Tarea2/Home";
+		window.location.href = "Home";
 	</script>
 	<% 
 		}

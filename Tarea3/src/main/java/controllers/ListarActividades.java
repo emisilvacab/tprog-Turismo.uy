@@ -43,29 +43,31 @@ public class ListarActividades extends HttpServlet {
     	
     	String tipo = request.getParameter("tipoPedidoActividad");
     	HashSet<DtActividad> actividades = null;
-    	if (tipo.equals("departamento")) {
-    		try {
-				actividades = new HashSet<DtActividad>(portDepartamento.obtenerDatosActividadesConfirmadasDpto(request.getParameter("nombreTipoActividad")).getSetDtActividad());
-			} catch (DepartamentoNoExisteException_Exception deptoNoExiste) {
-				// TODO Auto-generated catch block
-				request.setAttribute("error", "departamentoNoExiste");
-				//request.getRequestDispatcher("/pages/algo.jsp").forward(request, response);
-			}
-    		request.setAttribute("actividades", actividades);
-    		
-    		request.getRequestDispatcher("/pages/listarActividades.jsp").forward(request, response);
-    	} else if (tipo.equals("categoria")) {
-    		try {
-				actividades = new HashSet<DtActividad>(portDepartamento.obtenerDatosActividadesConfirmadasCat(request.getParameter("nombreTipoActividad")).getSetDtActividad());
-			} catch (CategoriaNoExisteException_Exception catNoExiste) {
-				// TODO Auto-generated catch block
-				request.setAttribute("error", "categoriaNoExiste");
-				//request.getRequestDispatcher("/pages/algo.jsp").forward(request, response);
-			}
-    		request.setAttribute("actividades", actividades);
+    	if (tipo != null) {
+    		if (tipo.equals("departamento")) {
+	    		try {
+					actividades = new HashSet<DtActividad>(portDepartamento.obtenerDatosActividadesConfirmadasDpto(request.getParameter("nombreTipoActividad")).getSetDtActividad());
+				} catch (DepartamentoNoExisteException_Exception deptoNoExiste) {
+					// TODO Auto-generated catch block
+					request.setAttribute("error", "departamentoNoExiste");
+					//request.getRequestDispatcher("/pages/algo.jsp").forward(request, response);
+				}
+	    		request.setAttribute("actividades", actividades);
+	    	} else if (tipo.equals("categoria")) {
+	    		try {
+					actividades = new HashSet<DtActividad>(portDepartamento.obtenerDatosActividadesConfirmadasCat(request.getParameter("nombreTipoActividad")).getSetDtActividad());
+				} catch (CategoriaNoExisteException_Exception catNoExiste) {
+					// TODO Auto-generated catch block
+					request.setAttribute("error", "categoriaNoExiste");
+					//request.getRequestDispatcher("/pages/algo.jsp").forward(request, response);
+				}
+	    		request.setAttribute("actividades", actividades);
+	    	}
+    	}
+    		request.setAttribute("dptos", new HashSet<String>(portDepartamento.obtenerDepartamentos().getSetString()));
+    		request.setAttribute("cats", new HashSet<String>(portDepartamento.obtenerCategorias().getSetString()));
     		
 			request.getRequestDispatcher("/pages/listarActividades.jsp").forward(request, response);
-    	}
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

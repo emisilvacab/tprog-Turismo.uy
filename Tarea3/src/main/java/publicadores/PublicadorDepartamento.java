@@ -28,6 +28,16 @@ public interface PublicadorDepartamento {
 
     /**
      * 
+     * @return
+     *     returns publicadores.DtColecciones
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerCategoriasRequest", output = "http://publicadores/PublicadorDepartamento/obtenerCategoriasResponse")
+    public DtColecciones obtenerCategorias();
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns publicadores.DtColecciones
@@ -43,6 +53,16 @@ public interface PublicadorDepartamento {
         String arg0)
         throws ActividadNoExisteException_Exception
     ;
+
+    /**
+     * 
+     * @return
+     *     returns publicadores.DtColecciones
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDepartamentosRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDepartamentosResponse")
+    public DtColecciones obtenerDepartamentos();
 
     /**
      * 
@@ -78,19 +98,54 @@ public interface PublicadorDepartamento {
     /**
      * 
      * @param arg0
+     * @throws ActividadPerteneceAPaqueteException_Exception
+     * @throws ActividadTieneSalidasVigentesException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://publicadores/PublicadorDepartamento/finalizarActividadRequest", output = "http://publicadores/PublicadorDepartamento/finalizarActividadResponse", fault = {
+        @FaultAction(className = ActividadTieneSalidasVigentesException_Exception.class, value = "http://publicadores/PublicadorDepartamento/finalizarActividad/Fault/actividadTieneSalidasVigentesException"),
+        @FaultAction(className = ActividadPerteneceAPaqueteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/finalizarActividad/Fault/actividadPerteneceAPaqueteException")
+    })
+    public void finalizarActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ActividadPerteneceAPaqueteException_Exception, ActividadTieneSalidasVigentesException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @return
-     *     returns publicadores.DtColecciones
-     * @throws DepartamentoNoExisteException_Exception
+     *     returns publicadores.DtSalida
+     * @throws SalidaNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasDptoRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasDptoResponse", fault = {
-        @FaultAction(className = DepartamentoNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasDpto/Fault/departamentoNoExisteException")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidaRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidaResponse", fault = {
+        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosSalida/Fault/salidaNoExisteException")
     })
-    public DtColecciones obtenerDatosActividadesConfirmadasDpto(
+    public DtSalida obtenerDatosSalida(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws DepartamentoNoExisteException_Exception
+        throws SalidaNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     * @throws SalidaNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/salidaEstaVigenteRequest", output = "http://publicadores/PublicadorDepartamento/salidaEstaVigenteResponse", fault = {
+        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/salidaEstaVigente/Fault/salidaNoExisteException")
+    })
+    public boolean salidaEstaVigente(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws SalidaNoExisteException_Exception
     ;
 
     /**
@@ -124,6 +179,104 @@ public interface PublicadorDepartamento {
         @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidasVigentes/Fault/actividadNoExisteException")
     })
     public DtColecciones obtenerDatosSalidasVigentes(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ActividadNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns publicadores.DtActividad
+     * @throws ActividadNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadResponse", fault = {
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividad/Fault/actividadNoExisteException")
+    })
+    public DtActividad obtenerDatosActividad(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws ActividadNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     * @throws SalidaNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerNombreActividadDeSalidaRequest", output = "http://publicadores/PublicadorDepartamento/obtenerNombreActividadDeSalidaResponse", fault = {
+        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerNombreActividadDeSalida/Fault/salidaNoExisteException")
+    })
+    public String obtenerNombreActividadDeSalida(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0)
+        throws SalidaNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @param arg8
+     * @return
+     *     returns boolean
+     * @throws ActividadNoExisteException_Exception
+     * @throws DepartamentoNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/ingresarDatosSalidaRequest", output = "http://publicadores/PublicadorDepartamento/ingresarDatosSalidaResponse", fault = {
+        @FaultAction(className = DepartamentoNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/ingresarDatosSalida/Fault/departamentoNoExisteException"),
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/ingresarDatosSalida/Fault/actividadNoExisteException")
+    })
+    public boolean ingresarDatosSalida(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        int arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        XMLGregorianCalendar arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        XMLGregorianCalendar arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        int arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7,
+        @WebParam(name = "arg8", partName = "arg8")
+        String arg8)
+        throws ActividadNoExisteException_Exception, DepartamentoNoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     * @throws ActividadNoExisteException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerNombreProveedorDeActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerNombreProveedorDeActividadResponse", fault = {
+        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerNombreProveedorDeActividad/Fault/actividadNoExisteException")
+    })
+    public String obtenerNombreProveedorDeActividad(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
         throws ActividadNoExisteException_Exception
@@ -182,152 +335,19 @@ public interface PublicadorDepartamento {
     /**
      * 
      * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @param arg7
-     * @param arg8
      * @return
-     *     returns boolean
-     * @throws ActividadNoExisteException_Exception
+     *     returns publicadores.DtColecciones
      * @throws DepartamentoNoExisteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/ingresarDatosSalidaRequest", output = "http://publicadores/PublicadorDepartamento/ingresarDatosSalidaResponse", fault = {
-        @FaultAction(className = DepartamentoNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/ingresarDatosSalida/Fault/departamentoNoExisteException"),
-        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/ingresarDatosSalida/Fault/actividadNoExisteException")
+    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasDptoRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasDptoResponse", fault = {
+        @FaultAction(className = DepartamentoNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadesConfirmadasDpto/Fault/departamentoNoExisteException")
     })
-    public boolean ingresarDatosSalida(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        int arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        XMLGregorianCalendar arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        XMLGregorianCalendar arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        int arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7,
-        @WebParam(name = "arg8", partName = "arg8")
-        String arg8)
-        throws ActividadNoExisteException_Exception, DepartamentoNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.DtActividad
-     * @throws ActividadNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosActividadResponse", fault = {
-        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosActividad/Fault/actividadNoExisteException")
-    })
-    public DtActividad obtenerDatosActividad(
+    public DtColecciones obtenerDatosActividadesConfirmadasDpto(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0)
-        throws ActividadNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     * @throws ActividadNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerNombreProveedorDeActividadRequest", output = "http://publicadores/PublicadorDepartamento/obtenerNombreProveedorDeActividadResponse", fault = {
-        @FaultAction(className = ActividadNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerNombreProveedorDeActividad/Fault/actividadNoExisteException")
-    })
-    public String obtenerNombreProveedorDeActividad(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ActividadNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     * @throws SalidaNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerNombreActividadDeSalidaRequest", output = "http://publicadores/PublicadorDepartamento/obtenerNombreActividadDeSalidaResponse", fault = {
-        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerNombreActividadDeSalida/Fault/salidaNoExisteException")
-    })
-    public String obtenerNombreActividadDeSalida(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws SalidaNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     * @throws SalidaNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/salidaEstaVigenteRequest", output = "http://publicadores/PublicadorDepartamento/salidaEstaVigenteResponse", fault = {
-        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/salidaEstaVigente/Fault/salidaNoExisteException")
-    })
-    public boolean salidaEstaVigente(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws SalidaNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicadores.DtSalida
-     * @throws SalidaNoExisteException_Exception
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidaRequest", output = "http://publicadores/PublicadorDepartamento/obtenerDatosSalidaResponse", fault = {
-        @FaultAction(className = SalidaNoExisteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/obtenerDatosSalida/Fault/salidaNoExisteException")
-    })
-    public DtSalida obtenerDatosSalida(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws SalidaNoExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws ActividadPerteneceAPaqueteException_Exception
-     * @throws ActividadTieneSalidasVigentesException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://publicadores/PublicadorDepartamento/finalizarActividadRequest", output = "http://publicadores/PublicadorDepartamento/finalizarActividadResponse", fault = {
-        @FaultAction(className = ActividadTieneSalidasVigentesException_Exception.class, value = "http://publicadores/PublicadorDepartamento/finalizarActividad/Fault/actividadTieneSalidasVigentesException"),
-        @FaultAction(className = ActividadPerteneceAPaqueteException_Exception.class, value = "http://publicadores/PublicadorDepartamento/finalizarActividad/Fault/actividadPerteneceAPaqueteException")
-    })
-    public void finalizarActividad(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws ActividadPerteneceAPaqueteException_Exception, ActividadTieneSalidasVigentesException_Exception
+        throws DepartamentoNoExisteException_Exception
     ;
 
 }
