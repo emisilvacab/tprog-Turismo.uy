@@ -123,7 +123,7 @@ public class AltaActividad extends HttpServlet {
     		Part part = request.getPart("imgAct");
 			if(part.getContentType().contains("image") && part.getInputStream() != null) {
 				nuevoNombre = guardarImagen(request,response);
-				linkImagen = "/Tarea2/img?id=" + nuevoNombre;
+				linkImagen = "img?id=" + nuevoNombre;
 			}
 			else
 				linkImagen = "sin";

@@ -28,7 +28,7 @@
 			%>
 			<div class="container" id="container-paquete">
 		
-				<img id="img-paquete" <%if (paquete.getLinkImagen() != null){%> src="<%=paquete.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultPaquete.png"<%}%> class="img-thumbnail" alt="...">
+				<img id="img-paquete" <%if (paquete.getLinkImagen() != null){%> src="<%=paquete.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultPaquete.png"<%}%> class="img-thumbnail" alt="...">
 		
 				<p class="fw-bold">Nombre:</p>
 				<p class="text-break"><%=paquete.getNombre()%></p>
@@ -56,10 +56,10 @@
 				for(DtActividad act : actividades){
 				%>
 				<div id="paquete-card" class="card" style="width: 18rem;">
-  					<img id="card-img-paquete" <%if (act.getLinkImagen() != null){%> src="<%=act.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
+  					<img id="card-img-paquete" <%if (act.getLinkImagen() != null){%> src="<%=act.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="card-img-top" alt="...">
   					<div class="card-body" id="card-body-paquete">
     					<h3 class="card-title"><%=act.getNombre()%></h3>
-    					<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=act.getNombre()%>" class="stretched-link"></a>
+    					<a href="VerDatosActividad?actSeleccionada=<%=act.getNombre()%>" class="stretched-link"></a>
    		
   					</div>  						
 				</div>

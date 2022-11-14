@@ -97,21 +97,21 @@ function deshabilitarPaq() {
 function getURL(cambio) {
 	if (cambio == "dpto"){
 		var dpto = document.getElementById("form-select-dpto").options[document.getElementById("form-select-dpto").selectedIndex].text;
-		return "/Tarea2/inscribir?cambio=dpto&dpto=" + encodeURIComponent(dpto);
+		return "inscribir?cambio=dpto&dpto=" + encodeURIComponent(dpto);
 	}
 	if(cambio == "cat") {
 		var cat = document.getElementById("form-select-cat").options[document.getElementById("form-select-cat").selectedIndex].text;
-		return "/Tarea2/inscribir?cambio=cat&cat=" + encodeURIComponent(cat);
+		return "inscribir?cambio=cat&cat=" + encodeURIComponent(cat);
 	}
 	if (cambio == "act") {
 		var dpto = document.getElementById("form-select-dpto").options[document.getElementById("form-select-dpto").selectedIndex].text;
     	var cat = document.getElementById("form-select-cat").options[document.getElementById("form-select-cat").selectedIndex].text;
     	var act = document.getElementById("form-select-act").options[document.getElementById("form-select-act").selectedIndex].text;
 		if(dpto.length != 0){
-			return "/Tarea2/inscribir?cambio=act&dpto=" + encodeURIComponent(dpto) + "&act=" + encodeURIComponent(act);
+			return "inscribir?cambio=act&dpto=" + encodeURIComponent(dpto) + "&act=" + encodeURIComponent(act);
 		}
 		if(cat.legth != 0){
-			return "/Tarea2/inscribir?cambio=act&cat=" + encodeURIComponent(cat) + "&act=" + encodeURIComponent(act); 
+			return "inscribir?cambio=act&cat=" + encodeURIComponent(cat) + "&act=" + encodeURIComponent(act); 
 		}
 	}
 	if (cambio == "sal") {
@@ -121,10 +121,10 @@ function getURL(cambio) {
 		var cant = document.getElementById("form-cantTuristas").value;
 		var sal = document.getElementById("form-select-sal").options[document.getElementById("form-select-sal").selectedIndex].text;		
 		if(dpto.length != 0){
-			return "/Tarea2/inscribir?cambio=sal&dpto=" + encodeURIComponent(dpto) + "&act=" + encodeURIComponent(act) + "&cant=" + encodeURIComponent(cant) + "&sal=" + encodeURIComponent(sal);
+			return "inscribir?cambio=sal&dpto=" + encodeURIComponent(dpto) + "&act=" + encodeURIComponent(act) + "&cant=" + encodeURIComponent(cant) + "&sal=" + encodeURIComponent(sal);
 		}
 		if(cat.legth != 0){
-			return "/Tarea2/inscribir?cambio=sal&cat=" + encodeURIComponent(cat) + "&act=" + encodeURIComponent(act) + "&cant=" + encodeURIComponent(cant) + "&sal=" + encodeURIComponent(sal); 
+			return "inscribir?cambio=sal&cat=" + encodeURIComponent(cat) + "&act=" + encodeURIComponent(act) + "&cant=" + encodeURIComponent(cant) + "&sal=" + encodeURIComponent(sal); 
 		}
 	}
 	return "";

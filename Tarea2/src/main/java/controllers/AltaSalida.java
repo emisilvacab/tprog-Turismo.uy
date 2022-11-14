@@ -161,7 +161,7 @@ public class AltaSalida extends HttpServlet {
     		Part part = request.getPart("imgSal");
 			if(part.getContentType().contains("image") && part.getInputStream() != null) { //Solo guardo la imagen si la seteó el usuario
 				nuevoNombre = guardarImagen(request,response);
-				linkImagen = "/Tarea2/img?id=" + nuevoNombre;
+				linkImagen = "img?id=" + nuevoNombre;
 			}
 			else
 				linkImagen = "sin";

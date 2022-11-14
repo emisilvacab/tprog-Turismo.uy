@@ -15,7 +15,7 @@
 	
 	<section id="section-middle" class="section">
 		<h1 class="headerRegistrarUsuario">Registrar Usuario</h1><br>
-			<form class="formAltaUsuario" id="form-registrar-usuario" action="/Tarea2/registrar" method="post" enctype="multipart/form-data" style="margin-top:100px">
+			<form class="formAltaUsuario" id="form-registrar-usuario" action="registrar" method="post" enctype="multipart/form-data" style="margin-top:100px">
 				<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-4">

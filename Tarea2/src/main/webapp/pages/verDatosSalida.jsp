@@ -72,7 +72,7 @@
 				<div class="card mb-3" style="max-width: 100%;">
 					<div class="row">
 				      	<div class="col-md-6" style="min-width: 300px;">
-				   			<img <%if (salida.getLinkImagen() != null){%> src="<%=salida.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultSalida.png"<%}%> class="img-fluid rounded" style="max-width: 100%; min-height:243px; object-fit: cover" alt="Actividad">
+				   			<img <%if (salida.getLinkImagen() != null){%> src="<%=salida.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultSalida.png"<%}%> class="img-fluid rounded" style="max-width: 100%; min-height:243px; object-fit: cover" alt="Actividad">
 				      	</div>
 					     <div class="col-md-6" style="min-width: 300px;">
 					     	<div class="card-body pb-0 mb-0" style="max-width: 100%;">
@@ -93,7 +93,7 @@
 			  				%>
 				  			<div class="card-body mb-0 mt-0 pt-2 pb-1" style="max-width: 100%;">
 					  			<div class="row">
-					  				<a class="btn btn-primary btn-block" href="/Tarea2/inscribir?cambio=consulta&act=<%=actividad.getNombre()%>&sal=<%=salida.getNombre()%>">Inscribirse a salida</a>
+					  				<a class="btn btn-primary btn-block" href="inscribir?cambio=consulta&act=<%=actividad.getNombre()%>&sal=<%=salida.getNombre()%>">Inscribirse a salida</a>
 				  				</div>
 			  				</div>
 			  				<%
@@ -111,8 +111,8 @@
 			  	<div class="card mb-3 contenedor-actividad" style="max-width: 98.5%;">
 					<div class="row g-0">
 						<div class="col-md-4" style="min-width: 200px;">
-						<a href="/Tarea2/VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
-							<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="/Tarea2/img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded-start" alt="Actividad">
+						<a href="VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
+							<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded-start" alt="Actividad">
 						</a>
 						</div>
 						<div class="col-md-8" style="min-width: 300px;">

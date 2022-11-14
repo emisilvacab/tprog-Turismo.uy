@@ -22,12 +22,12 @@
 	  		%>
 	        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
-		        <a class="ref" href="/Tarea2/altaActividad">Alta de actividad</a>
+		        <a class="ref" href="altaActividad">Alta de actividad</a>
 		      </div>
 		    </div>    
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
-		        <a class="ref" href="/Tarea2/altaSalida?cambio=iniciar">Alta de salida</a>
+		        <a class="ref" href="altaSalida?cambio=iniciar">Alta de salida</a>
 		      </div>
 		    </div>
 		    <% 
@@ -35,12 +35,12 @@
 		    %>
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
-		        <a class="ref" href="/Tarea2/inscribir?cambio=iniciar">Inscripción a salida</a>
+		        <a class="ref" href="inscribir?cambio=iniciar">Inscripción a salida</a>
 		      </div>
 		    </div>
 		    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      <div class="accordion-body">
-		        <a class="ref" href="/Tarea2/comprar">Compra de paquete</a>
+		        <a class="ref" href="comprar">Compra de paquete</a>
 		      </div>
 		    </div>
 	      	<%
