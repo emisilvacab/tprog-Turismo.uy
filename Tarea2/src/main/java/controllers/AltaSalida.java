@@ -76,8 +76,9 @@ public class AltaSalida extends HttpServlet {
     }
     
     protected void errorSalida(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      	Fabrica fact = Fabrica.getInstance();
-    	IControladorDepartamento cd = fact.getIControladorDepartamento();     
+    	PublicadorDepartamentoService serviceD = new PublicadorDepartamentoService();
+        PublicadorDepartamento portD = serviceD.getPublicadorDepartamentoPort();
+    
 		request.setAttribute("dpto", request.getParameter("dpto"));
 		request.setAttribute("act", request.getParameter("act"));
 		request.setAttribute("nombreSal", request.getParameter("nombreSal"));
@@ -86,57 +87,42 @@ public class AltaSalida extends HttpServlet {
 		request.setAttribute("lugarSal", request.getParameter("lugarSal"));
 		request.setAttribute("cantTurSal", request.getParameter("cantTurSal"));
  		try {
-			HashSet<DTActividad> acts = (HashSet<DTActividad>) cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
-			Set<String> res = new HashSet<String>();
-			for (DTActividad act : acts) {
-				res.add(act.getNombre());
-			}
-			request.setAttribute("actsSal", res);
+			Set<String> acts = new HashSet<String>(portD.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto")).getSetString());
+			request.setAttribute("actsSal", acts);
 			request.getRequestDispatcher("/pages/altaSalida.jsp").forward(request, response);
 			
-		} catch (departamentoNoExisteException exc1) {
+		} catch (DepartamentoNoExisteException_Exception exc1) {
 			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 		}
     }
     
     protected void llenarComboboxes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 	Fabrica fact = Fabrica.getInstance();
-	 	IControladorDepartamento cd = fact.getIControladorDepartamento(); 
-	 	
+    	PublicadorDepartamentoService serviceD = new PublicadorDepartamentoService();
+        PublicadorDepartamento portD = serviceD.getPublicadorDepartamentoPort();
+	        	 	
 	 	String cambio = request.getParameter("cambio");
 	 	
 	 	if(cambio.equals("dpto")) {
 	 		try {
-	 				request.setAttribute("cats",cd.obtenerCategorias());
-		    		request.setAttribute("dptos",cd.obtenerDepartamentos());
-					HashSet<DTActividad> acts = (HashSet<DTActividad>) cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
-					Set<String> res = new HashSet<String>();
-					for (DTActividad act : acts) {
-						res.add(act.getNombre());
-					}
-					request.setAttribute("dpto", request.getParameter("dpto"));
-					request.setAttribute("actsSal", res);
-					request.getRequestDispatcher("/pages/altaSalida.jsp").forward(request, response);
-					
-				} catch (departamentoNoExisteException exc1) {
-					exc1.printStackTrace(); //solo pasaría con datos desactualizados  
-				}
+	 			System.out.println("0");
+	 			Set<String> acts = new HashSet<String>(portD.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto")).getSetString());
+				request.setAttribute("dpto", request.getParameter("dpto"));
+				System.out.println("1");
+				request.setAttribute("actsSal", acts);
+				System.out.println("2");
+				request.getRequestDispatcher("/pages/altaSalida.jsp").forward(request, response);
+			} catch (DepartamentoNoExisteException_Exception e) {
+				e.printStackTrace();
+			}
 	 	}
 	 	else if(cambio.equals("act")) {
 	 		try {
-				request.setAttribute("cats",cd.obtenerCategorias());
-	    		request.setAttribute("dptos",cd.obtenerDepartamentos());
-				
+				Set<String> acts = new HashSet<String>(portD.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto")).getSetString());
 				request.setAttribute("dpto", request.getParameter("dpto"));
-				HashSet<DTActividad> acts = (HashSet<DTActividad>) cd.obtenerDatosActividadesConfirmadasDpto(request.getParameter("dpto"));
-				Set<String> actsInsc = new HashSet<String>();
-				for (DTActividad act : acts) {
-					actsInsc.add(act.getNombre());
-				}
-				request.setAttribute("actsSal", actsInsc); // relleno las actividades por Dpto
+				request.setAttribute("actsSal", acts);
 				request.setAttribute("act", request.getParameter("act"));
 				request.getRequestDispatcher("/pages/altaSalida.jsp").forward(request, response);
-    		} catch (departamentoNoExisteException exc1) {
+    		} catch (DepartamentoNoExisteException_Exception exc1) {
     			exc1.printStackTrace(); //solo pasaría con datos desactualizados  
 			}
 	 	}
@@ -146,7 +132,6 @@ public class AltaSalida extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		String cambio = request.getParameter("cambio");
 		if (cambio.equals("iniciar")) {
 			request.getRequestDispatcher("/pages/altaSalida.jsp").forward(request, response);
