@@ -119,13 +119,15 @@
 
 		      <div class="col-sm">
 		        <div class="card mx-3 my-3">
-		          <img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="/Tarea3/img?id=imgDefaultActividad.png"<%}%> class="card-img-top card-img-usuario" alt="...">
-		          <div class="card-body">
-		            <h3 class="card-title"><%=actividad.getNombre()%></h3>
-		            <p class="card-text card-lines"><%=actividad.getDescripcion()%></p>
-		          </div>
-		        </div>
-		      </div>
+		        	<a href="VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
+		        	<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="/Tarea3/img?id=imgDefaultActividad.png"<%}%> class="card-img-top card-img-usuario" alt="...">
+		        	</a>
+		          	<div class="card-body">
+			            <h3 class="card-title"><%=actividad.getNombre()%></h3>
+			            <p class="card-text card-lines"><%=actividad.getDescripcion()%></p>
+				    </div>
+				  </div>
+				</div>
 			<%
 					}
 			%>

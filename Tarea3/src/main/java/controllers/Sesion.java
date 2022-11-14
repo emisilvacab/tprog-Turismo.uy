@@ -64,7 +64,7 @@ public class Sesion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("iniciar");
 		if (accion != null && accion.equals("si")) { //si iniciar es si entonces vamos a iniciar Sesion 
-			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response); 
+			request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response); 
 		}
 		else
 			cerrarSesion(request,response);
