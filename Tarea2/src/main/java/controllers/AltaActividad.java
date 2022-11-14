@@ -132,10 +132,6 @@ public class AltaActividad extends HttpServlet {
 				linkVideo = "sin";
 			boolean existe = portD.ingresarDatosActividad(request.getParameter("nombreAct"), request.getParameter("descripcionAct"), Integer.parseInt(request.getParameter("durAct")), Float.parseFloat(request.getParameter("costoAct")), request.getParameter("ciudadAct"), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())), nicknameProv, request.getParameter("depAct"), colCats, linkImagen, linkVideo);
 			if (existe) {
-				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
-					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
-					file.delete();
-				}
 				request.setAttribute("error", "actividad-repetida");
 				errorActividad(request,response);
 			}

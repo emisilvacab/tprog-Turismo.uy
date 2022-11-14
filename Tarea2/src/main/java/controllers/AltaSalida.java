@@ -182,10 +182,6 @@ public class AltaSalida extends HttpServlet {
 				linkImagen = "sin";
 			boolean existe = portD.ingresarDatosSalida(request.getParameter("nombreSal"), Integer.parseInt(request.getParameter("cantTurSal")), DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())),  DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaSal), horaSal, request.getParameter("lugarSal"), request.getParameter("dpto"), request.getParameter("act"), linkImagen);
 			if (existe) {
-				if(part.getContentType().contains("image") && part.getInputStream() != null) { 
-					File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
-					file.delete();
-				}
 				request.setAttribute("error", "existe");
 				errorSalida(request,response);
 			}
