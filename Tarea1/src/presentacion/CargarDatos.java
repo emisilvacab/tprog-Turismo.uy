@@ -118,49 +118,49 @@ public class CargarDatos {
 			Estado estado = Estado.CONFIRMADA;
 			
 			categorias.add("Gastronomia");
-			icd.ingresarDatosActividad("Degusta",  "Festival gastronómico de productos locales en Rocha", 3, 800, "Rocha", new GregorianCalendar(2022, 6, 20), "washington", "Rocha", categorias, "resources/img/Degusta.jpeg", null);
+			icd.ingresarDatosActividad("Degusta",  "Festival gastronómico de productos locales en Rocha", 3, 800, "Rocha", new GregorianCalendar(2022, 6, 20), "washington", "Rocha", categorias, "https://s3.amazonaws.com/turismorocha/eventos/2569/cover/degusta-048968300-1659558891.jpg", "https://www.youtube.com/embed/zQjSMQ6uV1g");
 			icd.modificarEstadoActividad("Degusta", estado);
 					
 			categorias.add("Cultura y Patrimonio");
-			icd.ingresarDatosActividad("Teatro con Sabores",  "En el mes aniversario del Club Deportivo Unión de Rocha te invitamos a una merienda deliciosa.", 3, 500, "Rocha", new GregorianCalendar(2022, 6, 21), "washington", "Rocha", categorias, "resources/img/Teatro con Sabores.jpeg", null);
+			icd.ingresarDatosActividad("Teatro con Sabores",  "En el mes aniversario del Club Deportivo Unión de Rocha te invitamos a una merienda deliciosa.", 3, 500, "Rocha", new GregorianCalendar(2022, 6, 21), "washington", "Rocha", categorias, "https://s3.amazonaws.com/turismorocha/eventos/2579/cover/teatro-con-sabores-008950900-1659638152.jpg", "https://www.youtube.com/embed/Lxit3xvKShc");
 			icd.modificarEstadoActividad("Teatro con Sabores", estado);
 			
 			categorias.remove("Gastronomia");
-			icd.ingresarDatosActividad("Tour por Colonia del Sacramento",  "Con guía especializado y en varios idiomas. Varios circuitos posibles.", 2, 400, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias, "resources/img/Tour por Colonia del Sacramento.jpeg", null);
+			icd.ingresarDatosActividad("Tour por Colonia del Sacramento",  "Con guía especializado y en varios idiomas. Varios circuitos posibles.", 2, 400, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias, "https://www.coloniauy.com/wp-content/uploads/2014/10/city-tour-por-colonia-del-sacramento-2.jpg", "https://www.youtube.com/embed/zVDGjURCBz8");
 			icd.modificarEstadoActividad("Tour por Colonia del Sacramento", estado);
 			
 			categorias.add("Gastronomia");
 			categorias.remove("Cultura y Patrimonio");
-			icd.ingresarDatosActividad("Almuerzo en el Real de San Carlos",  "Restaurante en la renovada Plaza de Toros con menú internacional.", 2, 800, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias, "resources/img/Almuerzo en el Real de San Carlos.jpeg", null);
+			icd.ingresarDatosActividad("Almuerzo en el Real de San Carlos",  "Restaurante en la renovada Plaza de Toros con menú internacional.", 2, 800, "Colonia del Sacramento", new GregorianCalendar(2022, 7, 1), "meche", "Colonia", categorias, "https://www.colonia.gub.uy/uploads/noticia_9539a26b2ab84e8e5f3dc136206ffa24857f2850.jpg", "https://www.youtube.com/embed/wfyDxicM1PQ");
 			icd.modificarEstadoActividad("Almuerzo en el Real de San Carlos", estado);
 			
 			categorias.add("Campo y Naturaleza");
-			icd.ingresarDatosActividad("Almuerzo en Valle del Lunarejo",  "Almuerzo en la Posada con ticket fijo. Menú que incluye bebida y postre casero.", 2, 300, "Tranqueras", new GregorianCalendar(2022, 7, 1), "eldiez", "Rivera", categorias, "resources/img/Almuerzo en Valle del Lunarejo.jpeg", null);
+			icd.ingresarDatosActividad("Almuerzo en Valle del Lunarejo",  "Almuerzo en la Posada con ticket fijo. Menú que incluye bebida y postre casero.", 2, 300, "Tranqueras", new GregorianCalendar(2022, 7, 1), "eldiez", "Rivera", categorias, "https://www.gub.uy/ministerio-ambiente/sites/ministerio-ambiente/files/inline-images/Lunarejo.jpg", "https://www.youtube.com/embed/5uaEdiQVEEE");
 			icd.modificarEstadoActividad("Almuerzo en Valle del Lunarejo", estado);
 			
 			categorias.remove("Gastronomia");
-			icd.ingresarDatosActividad("Cabalgata en Valle del Lunarejo",  "Cabalgata por el Área protegida. Varios recorridos para elegir.", 2, 150, "Tranqueras", new GregorianCalendar(2022, 7, 1), "eldiez", "Rivera", categorias, "resources/img/Cabalgata en Valle del Lunarejo.jpeg", null);
+			icd.ingresarDatosActividad("Cabalgata en Valle del Lunarejo",  "Cabalgata por el Área protegida. Varios recorridos para elegir.", 2, 150, "Tranqueras", new GregorianCalendar(2022, 7, 1), "eldiez", "Rivera", categorias, "http://elgavilan-valledellunarejo.com.uy/wp-content/uploads/2020/12/WhatsApp-Image-2020-12-21-at-4.28.25-PM.jpeg", "https://www.youtube.com/embed/dlUb22YfXDg");
 			icd.modificarEstadoActividad("Cabalgata en Valle del Lunarejo", estado);
 
 			categorias.add("Cultura y Patrimonio");
 			categorias.remove("Campo y Naturaleza");
-			icd.ingresarDatosActividad("Bus turístico Colonia",  "Recorrida por los principales atractivos de la ciudad", 3, 600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 1), "meche", "Colonia", categorias, "resources/img/Bus turístico Colonia.jpeg", null);
+			icd.ingresarDatosActividad("Bus turístico Colonia",  "Recorrida por los principales atractivos de la ciudad", 3, 600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 1), "meche", "Colonia", categorias, "https://viajeacoloniauruguay.com/wp-content/uploads/2019/04/Bus_Turistico_Colonia.jpg", "https://www.youtube.com/embed/FCFoe4ibkk8");
 			estado = Estado.AGREGADA;
 			icd.modificarEstadoActividad("Bus turístico Colonia", estado);
 			
-			icd.ingresarDatosActividad("Colonia Premium Tour",  "Visita lugares exclusivos y relevantes", 4, 2600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 3), "meche", "Colonia", categorias, "resources/img/Colonia Premium Tour.jpeg", null);
+			icd.ingresarDatosActividad("Colonia Premium Tour",  "Visita lugares exclusivos y relevantes", 4, 2600, "Colonia del Sacramento", new GregorianCalendar(2022, 8, 3), "meche", "Colonia", categorias, "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/9d/ed/fd.jpg", null);
 			estado = Estado.RECHAZADA;
 			icd.modificarEstadoActividad("Colonia Premium Tour", estado);
 
 			categorias.add("Aventura y Deporte");
 			categorias.add("Turismo Playas");
 			categorias.remove("Cultura y Patrimonio");
-			icd.ingresarDatosActividad("Deportes náuticos sin uso de motor",  "kitsurf - windsurf - kayakismo - canotaje en Rocha", 3, 1200, "Rocha", new GregorianCalendar(2022, 8, 5), "washington", "Rocha", categorias, "resources/img/Deportes náuticos sin uso de motor.jpeg", null);
+			icd.ingresarDatosActividad("Deportes náuticos sin uso de motor",  "kitsurf - windsurf - kayakismo - canotaje en Rocha", 3, 1200, "Rocha", new GregorianCalendar(2022, 8, 5), "washington", "Rocha", categorias, "https://s3.amazonaws.com/turismorocha/operadores/202/med/la-barrita-de-la-laguna-032637600-1546992923.jpg", "https://www.youtube.com/embed/a7Lfx4Flb28");
 			estado = Estado.AGREGADA;
 			icd.modificarEstadoActividad("Deportes náuticos sin uso de motor", estado);
 
 			categorias.remove("Turismo Playas");
-			icd.ingresarDatosActividad("Descubre Rivera",  "Rivera es un departamento de extraordinaria riqueza natural patrimonial y cultural con una ubicación geográfica privilegiada", 2, 650, "Rivera", new GregorianCalendar(2022, 8, 16), "eldiez", "Rivera", categorias, "resources/img/Descubre Rivera.jpeg", null);
+			icd.ingresarDatosActividad("Descubre Rivera",  "Rivera es un departamento de extraordinaria riqueza natural patrimonial y cultural con una ubicación geográfica privilegiada", 2, 650, "Rivera", new GregorianCalendar(2022, 8, 16), "eldiez", "Rivera", categorias, "https://upload.wikimedia.org/wikipedia/commons/6/6e/Obelisco_-_Plaza_Internacional_-_Frontera_de_la_Paz_-_Livramento_-_Rivera.jpeg", null);
 			estado = Estado.RECHAZADA;
 			icd.modificarEstadoActividad("Descubre Rivera", estado);
 			
@@ -200,6 +200,8 @@ public class CargarDatos {
 			icd.ingresarDatosSalida("Cabalgata Extrema", 4, new GregorianCalendar(2022, 8, 15), new GregorianCalendar(2022, 9, 30), 1600, "Posada del Lunarejo", "Rivera", "Cabalgata en Valle del Lunarejo", "http://elgavilan-valledellunarejo.com.uy/wp-content/uploads/2020/12/WhatsApp-Image-2020-12-21-at-4.28.25-PM.jpeg");
 			icd.ingresarDatosSalida("Almuerzo en el Real 1", 10, new GregorianCalendar(2022, 9, 10), new GregorianCalendar(2022, 9, 30), 1200, "Restaurante de la Plaza de Toros", "Colonia", "Almuerzo en el Real de San Carlos", null);
 
+			icd.ingresarDatosSalida("Degusta Diciembre", 20, new GregorianCalendar(2022, 10, 7), new GregorianCalendar(2022, 11, 2), 1700, "Sociedad Agropecuaria de Rocha", "Rocha", "Degusta", "https://s3.amazonaws.com/turismorocha/operadores/156/med/maria-esther-089483400-1481752402.JPG");
+			icd.ingresarDatosSalida("Teatro con Sabores 4", 30, new GregorianCalendar(2022, 10, 7), new GregorianCalendar(2022, 11, 3), 1800, "Club Deportivo Unión", "Rocha", "Teatro con Sabores", null);
 		}
 		catch(actividadNoExisteException e1) {
 			e1.printStackTrace();
@@ -224,6 +226,11 @@ public class CargarDatos {
 			icu.ingresarDatosInscripcion("anibal", "Teatro con Sabores 2", 1, new GregorianCalendar(2022, 7, 21));
 			icu.ingresarDatosInscripcion("tony", "Degusta Setiembre", 11, new GregorianCalendar(2022, 7, 21));
 			
+			icu.ingresarDatosInscripcion("lachiqui", "Almuerzo 1", 5, new GregorianCalendar(2022, 8, 3));
+			icu.ingresarDatosInscripcion("waston", "Almuerzo 2", 1, new GregorianCalendar(2022, 8, 5));
+			icu.ingresarDatosInscripcion("elelvis", "Almuerzo en el Real 1", 2, new GregorianCalendar(2022, 9, 11));
+			icu.ingresarDatosInscripcion("mastropiero", "Almuerzo en el Real 1", 4, new GregorianCalendar(2022, 9, 12));
+			
 		}
 		catch(salidaNoExisteException e1) {
 			e1.printStackTrace();
@@ -236,7 +243,7 @@ public class CargarDatos {
 			icp.ingresarDatosPaquete("Disfrutar Rocha", "Actividades para hacer en familia y disfrutar arte y gastronomía", 60, 20, new GregorianCalendar(2022, 7, 10), "https://sites.google.com/site/areasprotegidasenuruguay/_/rsrc/1411660757953/algunas-de-las-areas-ingresadas-por-el-snap/laguna-de-rocha/Mapa_Rocha_BLOG.jpg?height=280&width=400");
 			icp.ingresarDatosPaquete("Un día en Colonia", "Paseos por el casco histórico y se puede terminar con Almuerzo en la Plaza de Toros", 45, 15, new GregorianCalendar(2022, 7, 1), "https://www.lr21.com.uy/wp-content/uploads/2021/12/plaza-toros-colonia.jpg");
 			icp.ingresarDatosPaquete("Valle del Lunarejo", "Visite un área protegida con un paisaje natural hermoso", 60, 15, new GregorianCalendar(2022, 8, 15), "http://www.indra.org.uy/images/inauguracion-03.jpg");
-
+			icp.ingresarDatosPaquete("Rocha de Fiesta", "Para cerrar el año a lo grande en nuestro departamento más océanico", 45, 30, new GregorianCalendar(2022, 10, 7), null);
 		}
 		catch(paqueteYaExisteException ep) {
 			ep.printStackTrace();
@@ -247,10 +254,14 @@ public class CargarDatos {
 			icp.agregarActividadPaquete("Rocha", "Disfrutar Rocha", "Teatro con Sabores");
 			
 			icp.agregarActividadPaquete("Colonia", "Un día en Colonia", "Tour por Colonia del Sacramento");
-			icp.agregarActividadPaquete("Colonia", "Un día en Colonia", "Almuerzo en el Real de San Carlos");
 			
 			icp.agregarActividadPaquete("Rivera", "Valle del Lunarejo", "Almuerzo en Valle del Lunarejo");
 			icp.agregarActividadPaquete("Rivera", "Valle del Lunarejo", "Cabalgata en Valle del Lunarejo");
+		
+			icp.agregarActividadPaquete("Rivera", "Valle del Lunarejo", "Almuerzo en Valle del Lunarejo");
+			icp.agregarActividadPaquete("Rivera", "Valle del Lunarejo", "Cabalgata en Valle del Lunarejo");
+			
+			icp.agregarActividadPaquete("Rocha", "Rocha de Fiesta", "Degusta");
 		}
 		catch(paqueteNoExisteException e1) {
 			e1.printStackTrace();
@@ -290,16 +301,12 @@ public class CargarDatos {
 			icu.ingresarDatosInscripcionPaq("elelvis", "Teatro con Sabores 1", 5, new GregorianCalendar(2022, 8, 2), "Disfrutar Rocha");
 			
 			icu.ingresarDatosInscripcionPaq("lachiqui", "Tour Colonia del Sacramento 11-09", 5, new GregorianCalendar(2022, 8, 3), "Un día en Colonia");
-			icu.ingresarDatosInscripcionPaq("lachiqui", "Almuerzo 1", 5, new GregorianCalendar(2022, 8, 3), "Un día en Colonia");
 			
 			icu.ingresarDatosInscripcionPaq("waston", "Tour Colonia del Sacramento 18-09", 1, new GregorianCalendar(2022, 8, 5), "Un día en Colonia");
-			icu.ingresarDatosInscripcionPaq("waston", "Almuerzo 2", 1, new GregorianCalendar(2022, 8, 5), "Un día en Colonia");
 			
 			icu.ingresarDatosInscripcionPaq("elelvis", "Tour Colonia del Sacramento 30-10", 2, new GregorianCalendar(2022, 9, 2), "Un día en Colonia");
-			icu.ingresarDatosInscripcionPaq("elelvis", "Almuerzo en el Real 1", 2, new GregorianCalendar(2022, 9, 11), "Un día en Colonia");
 			
 			icu.ingresarDatosInscripcionPaq("mastropiero", "Tour Colonia del Sacramento 30-10", 4, new GregorianCalendar(2022, 9, 12), "Un día en Colonia");
-			icu.ingresarDatosInscripcionPaq("mastropiero", "Almuerzo en el Real 1", 4, new GregorianCalendar(2022, 9, 12), "Un día en Colonia");
 			
 		}
 		catch(salidaNoExisteException e1) {
