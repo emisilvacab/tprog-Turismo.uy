@@ -1,10 +1,11 @@
-function validarIniciarSesion(){	
+function validarIniciarSesion(){
+	console.log("validar");	
 	if (document.getElementById('nickname').value.length == 0){
-		alert('Ingrese nickname');
+		document.getElementById('lblError').innerText = "Por favor, ingrese un nickname"
     	return false;
     }
 	else if (document.getElementById('password').value.length == 0){
-		alert('Ingrese contraseña');
+		document.getElementById('lblError').innerText = "Por favor, ingrese una contraseña"
     	return false;
     }
     return true

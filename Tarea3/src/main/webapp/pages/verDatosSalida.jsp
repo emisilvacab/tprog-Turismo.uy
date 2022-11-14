@@ -93,7 +93,7 @@
 	            <div class="card mx-3 mb-3" style="max-width: 100%;">
 	                <div class="row g-0">
 	                    <div class="col-md-4" style="min-width: 200px;">
-	                    	<a href="verDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
+	                    	<a href="VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
 	                        	<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded-start" alt="Actividad">
 	                    	</a>
 	                    </div>
