@@ -1,0 +1,55 @@
+		.cuerpo{
+		  position: fixed;
+		  top: 0;
+		  bottom:0;
+		  width: 100vw; /* viewport width */
+		  height: 100vh; /* viewport height */
+		  overflow-y: scroll;
+		  overflow-x: hidden;
+		  background-color: #fbf7f0;
+		}
+		
+		.max-lines {
+		white-space: nowrap;
+		max-width: 60vw;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		}
+		@media only screen and (max-device-width: 324px) {
+		  .max-lines{display:none;}
+		}
+		
+		.dropdown-menu {
+		  max-height: 45vh;
+		  overflow-y: auto;
+		}
+		
+		#section-listdo-usuarios{
+			overflow-y: auto;
+		}
+		
+		#flex-cards-usuarios{
+			gap: 10px;
+			flex-flow: row wrap;
+			display: flex;
+		}
+		
+		#container-cards-usuarios{
+			position: absolute;
+		}
+		
+		.card-img-usuario{
+		  height: 37vh;
+		  object-fit: cover
+		}
+		
+		.card-lines {
+			display: block;
+			display: -webkit-box;
+			height: 4.5em; /* calcular a partir de line-height por la cantidad de lineas */
+			line-height: 1.5em;
+			-webkit-line-clamp: 3; /* aca se pone cantidad de lineas */
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
