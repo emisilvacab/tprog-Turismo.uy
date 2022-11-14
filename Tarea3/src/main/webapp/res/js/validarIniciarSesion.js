@@ -1,4 +1,4 @@
-fun function validarIniciarSesion(){	
+function validarIniciarSesion(){	
 	if (document.getElementById('nickname').value.length == 0){
 		alert('Ingrese nickname');
     	return false;
@@ -8,5 +8,4 @@ fun function validarIniciarSesion(){
     	return false;
     }
     return true
-	
 }

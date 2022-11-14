@@ -17,6 +17,16 @@
 <body>
 	<div class="background container row d-flex">
 		<h1 class="tituloIniciarSesion">Turismo.uy</h1>
+		<%
+				EstadoSesion estado = (EstadoSesion) session.getAttribute("estado_sesion");
+				if (estado != null && estado == EstadoSesion.LOGIN_INCORRECTO) {
+					session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
+				
+			%>
+			<p style="color:#FF0000">Los datos ingresados son inválidos. Por favor inténtelo de nuevo.</p>
+			<%
+				}
+			%>
 		<form class="form-floating" action="log" method="post" onsubmit = "return validarIniciarSesion()">
 		
 			<input type="text" class="form-control" id="nickname" placeholder="nickname / correo">
