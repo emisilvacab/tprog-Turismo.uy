@@ -9,9 +9,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtInscripcion complex type.
+ * <p>Java class for dtInscripcion complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="dtInscripcion">
@@ -49,7 +49,7 @@ public class DtInscripcion {
     protected String nickname;
 
     /**
-     * Obtiene el valor de la propiedad fecha.
+     * Gets the value of the fecha property.
      * 
      * @return
      *     possible object is
@@ -61,7 +61,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Define el valor de la propiedad fecha.
+     * Sets the value of the fecha property.
      * 
      * @param value
      *     allowed object is
@@ -73,7 +73,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Obtiene el valor de la propiedad cantTuristas.
+     * Gets the value of the cantTuristas property.
      * 
      */
     public int getCantTuristas() {
@@ -81,7 +81,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Define el valor de la propiedad cantTuristas.
+     * Sets the value of the cantTuristas property.
      * 
      */
     public void setCantTuristas(int value) {
@@ -89,7 +89,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Obtiene el valor de la propiedad costo.
+     * Gets the value of the costo property.
      * 
      */
     public float getCosto() {
@@ -97,7 +97,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Define el valor de la propiedad costo.
+     * Sets the value of the costo property.
      * 
      */
     public void setCosto(float value) {
@@ -105,7 +105,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Obtiene el valor de la propiedad salida.
+     * Gets the value of the salida property.
      * 
      * @return
      *     possible object is
@@ -117,7 +117,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Define el valor de la propiedad salida.
+     * Sets the value of the salida property.
      * 
      * @param value
      *     allowed object is
@@ -129,7 +129,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Obtiene el valor de la propiedad nickname.
+     * Gets the value of the nickname property.
      * 
      * @return
      *     possible object is
@@ -141,7 +141,7 @@ public class DtInscripcion {
     }
 
     /**
-     * Define el valor de la propiedad nickname.
+     * Sets the value of the nickname property.
      * 
      * @param value
      *     allowed object is

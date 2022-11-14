@@ -7,9 +7,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtProveedor complex type.
+ * <p>Java class for dtProveedor complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="dtProveedor">
@@ -39,7 +39,7 @@ public class DtProveedor
     protected String link;
 
     /**
-     * Obtiene el valor de la propiedad descripcion.
+     * Gets the value of the descripcion property.
      * 
      * @return
      *     possible object is
@@ -51,7 +51,7 @@ public class DtProveedor
     }
 
     /**
-     * Define el valor de la propiedad descripcion.
+     * Sets the value of the descripcion property.
      * 
      * @param value
      *     allowed object is
@@ -63,7 +63,7 @@ public class DtProveedor
     }
 
     /**
-     * Obtiene el valor de la propiedad link.
+     * Gets the value of the link property.
      * 
      * @return
      *     possible object is
@@ -75,7 +75,7 @@ public class DtProveedor
     }
 
     /**
-     * Define el valor de la propiedad link.
+     * Sets the value of the link property.
      * 
      * @param value
      *     allowed object is

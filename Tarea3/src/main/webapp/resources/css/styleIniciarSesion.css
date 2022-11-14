@@ -7,7 +7,7 @@
         padding: 0;
         height: 100%;
         width: 100%;
-        background:#fbf7f0;
+        background:cornflowerblue;
     }
     .form-control{
         font-size: 40px;
@@ -58,5 +58,8 @@
         padding-top: 50%;
         font-size: 70px;
         
-
+    }
+    .lblError{
+    	font-size: 1.5vh;
+    	color: #FF0000;
     }

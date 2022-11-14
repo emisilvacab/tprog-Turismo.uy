@@ -9,9 +9,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtCompra complex type.
+ * <p>Java class for dtCompra complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="dtCompra">
@@ -53,7 +53,7 @@ public class DtCompra {
     protected String turista;
 
     /**
-     * Obtiene el valor de la propiedad fecha.
+     * Gets the value of the fecha property.
      * 
      * @return
      *     possible object is
@@ -65,7 +65,7 @@ public class DtCompra {
     }
 
     /**
-     * Define el valor de la propiedad fecha.
+     * Sets the value of the fecha property.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +77,7 @@ public class DtCompra {
     }
 
     /**
-     * Obtiene el valor de la propiedad cantTuristas.
+     * Gets the value of the cantTuristas property.
      * 
      */
     public int getCantTuristas() {
@@ -85,7 +85,7 @@ public class DtCompra {
     }
 
     /**
-     * Define el valor de la propiedad cantTuristas.
+     * Sets the value of the cantTuristas property.
      * 
      */
     public void setCantTuristas(int value) {
@@ -93,7 +93,7 @@ public class DtCompra {
     }
 
     /**
-     * Obtiene el valor de la propiedad vencimiento.
+     * Gets the value of the vencimiento property.
      * 
      * @return
      *     possible object is
@@ -105,7 +105,7 @@ public class DtCompra {
     }
 
     /**
-     * Define el valor de la propiedad vencimiento.
+     * Sets the value of the vencimiento property.
      * 
      * @param value
      *     allowed object is
@@ -117,7 +117,7 @@ public class DtCompra {
     }
 
     /**
-     * Obtiene el valor de la propiedad costo.
+     * Gets the value of the costo property.
      * 
      */
     public float getCosto() {
@@ -125,7 +125,7 @@ public class DtCompra {
     }
 
     /**
-     * Define el valor de la propiedad costo.
+     * Sets the value of the costo property.
      * 
      */
     public void setCosto(float value) {
@@ -133,7 +133,7 @@ public class DtCompra {
     }
 
     /**
-     * Obtiene el valor de la propiedad paquete.
+     * Gets the value of the paquete property.
      * 
      * @return
      *     possible object is
@@ -145,7 +145,7 @@ public class DtCompra {
     }
 
     /**
-     * Define el valor de la propiedad paquete.
+     * Sets the value of the paquete property.
      * 
      * @param value
      *     allowed object is
@@ -157,7 +157,7 @@ public class DtCompra {
     }
 
     /**
-     * Obtiene el valor de la propiedad turista.
+     * Gets the value of the turista property.
      * 
      * @return
      *     possible object is
@@ -169,7 +169,7 @@ public class DtCompra {
     }
 
     /**
-     * Define el valor de la propiedad turista.
+     * Sets the value of the turista property.
      * 
      * @param value
      *     allowed object is

@@ -34,17 +34,18 @@ public class Sesion extends HttpServlet {
 
     	try {
 			DtUsuario usr = port.iniciarSesion(request.getParameter("id_logging"),request.getParameter("password"));
-			/*if (usr.getClass() == DtProveedor.class) {
-				throw new Exception("No hay niingun turista con ese nickname o correo");
-			} */
+			//confien en el catch
 			if (usr.getClass().getName().equals("publicadores.DtProveedor")) {
-				request.getSession().setAttribute("error", "esProveedor"); // leer en el jsp si se manda este error como atributo
-				request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-			}
+				throw new Exception("No hay niingun turista con ese nickname o correo");
+			} 
+//			if (usr.getClass().getName().equals("publicadores.DtProveedor")) {
+//				request.getSession().setAttribute("error", "esProveedor"); // leer en el jsp si se manda este error como atributo
+//				request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+//			}
 			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_CORRECTO);
     		request.getSession().setAttribute("usuario_logueado", usr);
-    		request.getRequestDispatcher("/pages/index.jsp").forward(request, response); //NO HAY INDEX, FALTA ESO
-		} catch (IngresoInvalidoException_Exception e) {
+    		request.getRequestDispatcher("/pages/index.jsp").forward(request, response); 
+		} catch (Exception e) {
 			request.getSession().setAttribute("estado_sesion", EstadoSesion.LOGIN_INCORRECTO);
     		request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
 		} 
@@ -64,7 +65,7 @@ public class Sesion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("iniciar");
 		if (accion != null && accion.equals("si")) { //si iniciar es si entonces vamos a iniciar Sesion 
-			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response); 
+			request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response); 
 		}
 		else
 			cerrarSesion(request,response);

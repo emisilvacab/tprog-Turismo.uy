@@ -9,9 +9,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dtSalida complex type.
+ * <p>Java class for dtSalida complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>{@code
  * <complexType name="dtSalida">
@@ -56,7 +56,7 @@ public class DtSalida {
     protected String linkImagen;
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -68,7 +68,7 @@ public class DtSalida {
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -80,7 +80,7 @@ public class DtSalida {
     }
 
     /**
-     * Obtiene el valor de la propiedad maxTuristas.
+     * Gets the value of the maxTuristas property.
      * 
      */
     public int getMaxTuristas() {
@@ -88,7 +88,7 @@ public class DtSalida {
     }
 
     /**
-     * Define el valor de la propiedad maxTuristas.
+     * Sets the value of the maxTuristas property.
      * 
      */
     public void setMaxTuristas(int value) {
@@ -96,7 +96,7 @@ public class DtSalida {
     }
 
     /**
-     * Obtiene el valor de la propiedad alta.
+     * Gets the value of the alta property.
      * 
      * @return
      *     possible object is
@@ -108,7 +108,7 @@ public class DtSalida {
     }
 
     /**
-     * Define el valor de la propiedad alta.
+     * Sets the value of the alta property.
      * 
      * @param value
      *     allowed object is
@@ -120,7 +120,7 @@ public class DtSalida {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaDTSalida.
+     * Gets the value of the fechaDTSalida property.
      * 
      * @return
      *     possible object is
@@ -132,7 +132,7 @@ public class DtSalida {
     }
 
     /**
-     * Define el valor de la propiedad fechaDTSalida.
+     * Sets the value of the fechaDTSalida property.
      * 
      * @param value
      *     allowed object is
@@ -144,7 +144,7 @@ public class DtSalida {
     }
 
     /**
-     * Obtiene el valor de la propiedad hora.
+     * Gets the value of the hora property.
      * 
      */
     public int getHora() {
@@ -152,7 +152,7 @@ public class DtSalida {
     }
 
     /**
-     * Define el valor de la propiedad hora.
+     * Sets the value of the hora property.
      * 
      */
     public void setHora(int value) {
@@ -160,7 +160,7 @@ public class DtSalida {
     }
 
     /**
-     * Obtiene el valor de la propiedad lugarDTSalida.
+     * Gets the value of the lugarDTSalida property.
      * 
      * @return
      *     possible object is
@@ -172,7 +172,7 @@ public class DtSalida {
     }
 
     /**
-     * Define el valor de la propiedad lugarDTSalida.
+     * Sets the value of the lugarDTSalida property.
      * 
      * @param value
      *     allowed object is
@@ -184,7 +184,7 @@ public class DtSalida {
     }
 
     /**
-     * Obtiene el valor de la propiedad linkImagen.
+     * Gets the value of the linkImagen property.
      * 
      * @return
      *     possible object is
@@ -196,7 +196,7 @@ public class DtSalida {
     }
 
     /**
-     * Define el valor de la propiedad linkImagen.
+     * Sets the value of the linkImagen property.
      * 
      * @param value
      *     allowed object is
