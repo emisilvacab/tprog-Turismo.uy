@@ -145,4 +145,20 @@ public class PublicadorDepartamento {
 	public boolean salidaEstaVigente(String nombreSal) throws salidaNoExisteException {
 		return contD.salidaEstaVigente(nombreSal);
 	}
+	
+	@WebMethod
+	public DTColecciones obtenerCategorias() {
+		Set<String> cats = (HashSet<String>) contD.obtenerCategorias();
+		DTColecciones nuevo = new DTColecciones();
+		nuevo.setSetString(cats);
+		return nuevo;
+	}
+	
+	@WebMethod
+	public DTColecciones obtenerDepartamentos(){
+		Set<String> dptos = (HashSet<String>) contD.obtenerDepartamentos();
+		DTColecciones nuevo = new DTColecciones();
+		nuevo.setSetString(dptos);
+		return nuevo;
+	}
 }

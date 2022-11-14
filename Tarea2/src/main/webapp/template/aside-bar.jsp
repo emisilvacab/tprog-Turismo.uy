@@ -98,14 +98,6 @@
 			}
   	  	%>
       </div>
-	  <%  
-		String carga = (String) session.getAttribute("carga-datos");
-		if (carga == null || !carga.equals("lista")) {
-	  %>
-	  <a  href="/Tarea2/CargarDatos" id="button-cargarDatos" class="btn btn-primary">Cargar Datos</a>
-	  <% 
-	    }
-	  %>
       
     </div> 
 </aside>

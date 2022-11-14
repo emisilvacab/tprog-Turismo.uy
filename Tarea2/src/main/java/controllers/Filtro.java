@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.HashSet;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpFilter;
 
 import logica.Fabrica;
 import logica.controladores.IControladorDepartamento;
+import publicadores.DtColecciones;
+import publicadores.PublicadorDepartamento;
+import publicadores.PublicadorDepartamentoService;
 
 /**
  * Servlet Filter implementation class Filtro
@@ -59,10 +64,14 @@ public class Filtro extends HttpFilter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		request.setCharacterEncoding("UTF-8");
-		Fabrica fact = Fabrica.getInstance();//Cambia cuando tengamos publicadores
-    	IControladorDepartamento cd = fact.getIControladorDepartamento();
-    	request.setAttribute("cats",cd.obtenerCategorias());
-    	request.setAttribute("dptos",cd.obtenerDepartamentos());
+		
+		PublicadorDepartamentoService serviceDepartamento = new PublicadorDepartamentoService();
+        PublicadorDepartamento portDepartamento = serviceDepartamento.getPublicadorDepartamentoPort();
+
+    	DtColecciones colCats = portDepartamento.obtenerCategorias();
+    	DtColecciones colDptos = portDepartamento.obtenerDepartamentos();
+    	request.setAttribute("cats", new HashSet<String>(colCats.getSetString()));
+    	request.setAttribute("dptos", new HashSet<String>(colDptos.getSetString()));
 
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
