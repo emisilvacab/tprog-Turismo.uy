@@ -44,9 +44,9 @@
 	                        <div class="card" style="min-height:100%">
 	                            <img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="card-img-top card-img-usuario" alt="...">
 	                            <div class="card-body" style="font-size: 110%;">
-	                                <h2 class="title">Degusta</h2>
+	                                <h2 class="title"><%=actividad.getNombre()%></h2>
 	                                    <div class="card-text">
-	                                        Festival gastronómico de productos locales en Rocha.
+	                                        <%=actividad.getDescripcion()%>
 	                                    </div>
 	                            </div>
 	                        </div>
