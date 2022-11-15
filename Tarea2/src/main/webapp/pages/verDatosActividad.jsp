@@ -47,8 +47,11 @@
 									<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded" alt="Actividad">
 								</a>
 							<div class="card-body">
+								<h2 class="title mb-3 "><%=actividad.getNombre()%></h2>
+								<div class="card-text mb-2">
+									<%=actividad.getDescripcion()%>
+								</div>
 				          		<ul class="list-group list-group-flush">
-									<li class="list-group-item" style="font-size: 150%;"><%=actividad.getCiudad()%></li>
 									<li class="list-group-item" style="font-size: 150%;"><%=actividad.getDuracion()%> días</li>
 									<li class="list-group-item" style="font-weight: 600; font-size: 150%;">$<%=actividad.getCosto()%></li>
 									<li class="list-group-item" style="font-size: 150%;">Proveedor: <em style="color: #2f3131;"><%=nombreProveedor%></em></li>
@@ -61,11 +64,8 @@
 	    		<div class="row">
 	    			<div class="card mb-3">
 						<div class="card-body" style="font-size: 110%;">
-							<h2 class="title mb-3 "><%=actividad.getNombre()%></h2>
-							<div class="card-text mb-2">
-								<%=actividad.getDescripcion()%>
-							</div>
 							<ul class="list-group list-group-flush">
+								<li class="list-group-item" style="font-size: 150%;"><%=actividad.getCiudad()%></li>
 								<li class="list-group-item" style="font-size: 110%;">Departamento: <%=(String) request.getAttribute("departamento")%></li>
 								<li class="list-group-item" style="font-size: 110%;">
 								<%
