@@ -7,24 +7,24 @@
     
 <html>
     
-<head>	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-	<meta charset="utf-8">
-	<title>Iniciar Sesion</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="resources/css/style.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Iniciar sesion</title>
+    <link rel="icon" href="img?id=icono.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  	<link rel="stylesheet" href="resources/css/style.css">
+  </head>
 
 <body>
 
 	<div class="cuerpo">
       
 	<div class="d-flex justify-content-center" style="margin-top: 20vh;">
-		<img src="img?id=logo.png" style="width:auto; height:15vh" alt="...">
+		<img class="imagenLogo"src="img?id=logo.png" alt="...">
 	</div>
 	   <div class="d-flex justify-content-center">
-		<form class="form-floating" action="log" method="post" onsubmit = "return validarIniciarSesion()">
+		<form class="form-floating mx-3" action="log" method="post" onsubmit = "return validarIniciarSesion()">
 			<div class="form-group mb-1">
 				<label for="exampleInputEmail1">Nickname/Email</label>
 				<input class="form-control" id="nickname" name="id_logging" aria-describedby="emailHelp" placeholder="Ingrese nickname o email">
