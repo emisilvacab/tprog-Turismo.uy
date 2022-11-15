@@ -22,7 +22,7 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "PublicadorPaqueteService", targetNamespace = "http://publicadores/", wsdlLocation = "http://localhost:2023/publicadorPaquete?wsdl")
+@WebServiceClient(name = "PublicadorPaqueteService", targetNamespace = "http://publicadores/")
 public class PublicadorPaqueteService
     extends Service
 {
@@ -35,7 +35,7 @@ public class PublicadorPaqueteService
         URL url = null;
         WebServiceException e = null;
         String home = System.getProperty("user.home");
-		String filepath = home + "/.turismoUy/config.properties"; //linux, mac
+        String filepath = home + "/.turismoUy/config.properties"; //linux, mac
 		//String filepath = home + "\\.turismoUy\\config.properties"; //pc
 		String port = "";
 	    String dir = "";
