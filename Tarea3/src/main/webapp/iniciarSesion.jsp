@@ -20,32 +20,32 @@
 
 	<div class="cuerpo">
       
-    	<div class="d-flex justify-content-center" style="margin-top: 20vh;">
-      		<img src="/Tarea3/img?id=logo.png" style="width:auto; height:15vh" alt="...">
-		</div>
-	    <div class="d-flex justify-content-center">
-	      <form class="form-floating" action="log" method="post" onsubmit = "return validarIniciarSesion()">
-	        <div class="form-group mb-1">
-	         <label for="exampleInputEmail1">Nickname/Email</label>
-	         <input class="form-control" id="nickname" name="id_logging" aria-describedby="emailHelp" placeholder="Ingrese nickname o email">
-	          <!--<small id="emailHelp" class="form-text" style="color: #d63619;">Nunca compartiremos su informacion personal.</small> -->
-	        </div>
-	        <div class="form-group mb-1">
-	          <label for="exampleInputPassword1">Contraseña</label>
-	          <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese contraseña">
-	        <%
-			EstadoSesion estado = (EstadoSesion) session.getAttribute("estado_sesion");
-			if (estado != null && estado == EstadoSesion.LOGIN_INCORRECTO) {
-				session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
-			%>
-			<small class="form-text" style="color: #d63619;">Los datos ingresados son inválidos. Por favor inténtelo de nuevo.</small>
-			<%
-			} else {
-			%>
-	        <small id="lblError"  class="form-text text-muted">Nunca compartiremos su informacion personal.</small>
-			<%
-			}
-			%>
+	<div class="d-flex justify-content-center" style="margin-top: 20vh;">
+		<img src="/Tarea3/img?id=logo.png" style="width:auto; height:15vh" alt="...">
+	</div>
+	   <div class="d-flex justify-content-center">
+		<form class="form-floating" action="log" method="post" onsubmit = "return validarIniciarSesion()">
+			<div class="form-group mb-1">
+				<label for="exampleInputEmail1">Nickname/Email</label>
+				<input class="form-control" id="nickname" name="id_logging" aria-describedby="emailHelp" placeholder="Ingrese nickname o email">
+			</div>
+			<div class="form-group mb-1">
+				<label for="exampleInputPassword1">Contraseña</label>
+				<input type="password" class="form-control" id="password" name="password" placeholder="Ingrese contraseña">
+		
+		        <%
+				EstadoSesion estado = (EstadoSesion) session.getAttribute("estado_sesion");
+				if (estado != null && estado == EstadoSesion.LOGIN_INCORRECTO) {
+					session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
+				%>
+				<small class="form-text" style="color: #d63619;">Los datos ingresados son inválidos. Por favor inténtelo de nuevo.</small>
+				<%
+				} else {
+				%>
+		        <small id="lblError"  class="form-text text-muted">Nunca compartiremos su informacion personal.</small>
+				<%
+				}
+				%>
 	        </div>
 	        <button type="submit" class="btn btn-primary mt-2">Ingresar</button>
 	      </form>

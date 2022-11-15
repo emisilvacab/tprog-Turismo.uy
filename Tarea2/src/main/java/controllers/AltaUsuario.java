@@ -130,7 +130,7 @@ public class AltaUsuario extends HttpServlet {
     		request.setAttribute("tipo", "proveedor");
     		String descripcion = request.getParameter("descripcionProv");
     		String link = request.getParameter("linkProv");
-    		DtProveedor nuevo = (DtProveedor) setAttributesProv(nickname, nombre, apellido, correo, fecha, contrasena, linkImagen); 
+    		DtProveedor nuevo = (DtProveedor) setAttributesProv(nickname, nombre, apellido, correo, fecha, contrasena, linkImagen, descripcion); 
     		if (link == null)
     			link = "null";
     		nuevo.setLink(link);
@@ -150,10 +150,6 @@ public class AltaUsuario extends HttpServlet {
     		port.altaTurista(nuevo);	
 			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
 		} catch (UsuarioRepetidoException_Exception e) {
-			if(part.getContentType().contains("image") && part.getInputStream() != null) { 
-				File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
-				file.delete();
-			}
 			if (e.getMessage().contains("correo")) {
 				request.setAttribute("error", "usuario-repetido-correo");
 			}else {
@@ -171,10 +167,6 @@ public class AltaUsuario extends HttpServlet {
     		port.altaProveedor(nuevo);	
 			request.getRequestDispatcher("/pages/IniciarSesion.jsp").forward(request, response);
 		} catch (UsuarioRepetidoException_Exception e) {
-			if(part.getContentType().contains("image") && part.getInputStream() != null) { 
-				File file = new File(new File(this.getServletContext().getRealPath("/resources/img")), nuevoNombre);
-				file.delete();
-			}
 			if (e.getMessage().contains("correo")) {
 				request.setAttribute("error", "usuario-repetido-correo");
 			}else {
@@ -202,7 +194,7 @@ public class AltaUsuario extends HttpServlet {
     	return nuevo;
     }
     
-    private DtProveedor setAttributesProv(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen) {
+    private DtProveedor setAttributesProv(String nickname, String nombre, String apellido, String correo, GregorianCalendar nacimiento, String contrasena, String linkImagen, String descripcion) {
     	DtProveedor nuevo = new DtProveedor();
     	nuevo.setApellido(apellido);
     	nuevo.setNickname(nickname);
@@ -210,6 +202,7 @@ public class AltaUsuario extends HttpServlet {
     	nuevo.setContrasena(contrasena);
     	nuevo.setCorreo(correo);
     	nuevo.setLinkImagen(linkImagen);
+    	nuevo.setDescripcion(descripcion);
     	try {
 			nuevo.setNacimiento(DatatypeFactory.newInstance().newXMLGregorianCalendar(nacimiento));
 		} catch (DatatypeConfigurationException e) {

@@ -19,7 +19,7 @@
                     <a class="nav-link" aria-current="page" href="/Tarea3/ListarActividades">Ver actividades turisticas</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Cerrar sesion</a>
+                    <a class="nav-link" href="log">Cerrar sesion</a>
                     </li>
                 </ul>
             </div>
