@@ -1,7 +1,11 @@
 package publicadores;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
 import excepciones.compraExisteException;
@@ -29,7 +33,32 @@ public class PublicadorPaquete {
 	
 	@WebMethod(exclude = true) //el exclude = true hace que no se publique ese método
     public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:2023/publicadorPaquete", this);
+		String home = System.getProperty("user.home");
+		String filepath = home + "/.turismoUy/config.properties"; //linux, mac
+		//String filepath = home + "\\.turismoUy\\config.properties"; //pc
+		String port = "";
+	    String dir = "";
+	    
+	    
+	    Properties prop = new Properties();
+	    try {
+			FileInputStream input = new FileInputStream(filepath);
+			try {
+				prop.load(input);
+				input.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	  
+	    dir = prop.getProperty("ip");
+	    port = prop.getProperty("port");
+	    
+        endpoint = Endpoint.publish(dir+port+"/publicadorPaquete", this);
     }
 	
 	@WebMethod(exclude = true)

@@ -1,8 +1,13 @@
 
 package publicadores;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
+
 import javax.xml.namespace.QName;
 import jakarta.xml.ws.Service;
 import jakarta.xml.ws.WebEndpoint;
@@ -29,8 +34,33 @@ public class PublicadorUsuarioService
     static {
         URL url = null;
         WebServiceException e = null;
+        String home = System.getProperty("user.home");
+		String filepath = home + "/.turismoUy/config.properties"; //linux, mac
+		//String filepath = home + "\\.turismoUy\\config.properties"; //pc
+		String port = "";
+	    String dir = "";
+	    
+	    
+	    Properties prop = new Properties();
+	    try {
+			FileInputStream input = new FileInputStream(filepath);
+			try {
+				prop.load(input);
+				input.close();
+			} catch (IOException error) {
+				// TODO Auto-generated catch block
+				error.printStackTrace();
+			}
+		} catch (FileNotFoundException error) {
+			// TODO Auto-generated catch block
+			error.printStackTrace();
+		}
+	  
+	    dir = prop.getProperty("ip");
+	    port = prop.getProperty("port");
+	            
         try {
-            url = new URL("http://localhost:2023/publicadorUsuario?wsdl");
+            url = new URL(dir+port+"/publicadorUsuario?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
