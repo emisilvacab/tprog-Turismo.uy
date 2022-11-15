@@ -451,7 +451,7 @@ public class ConsultaDeActividad extends JInternalFrame {
 			
 		String areaCategorias = "";
 		for (String cat : categorias) {
-			areaCategorias = cat;
+			areaCategorias = areaCategorias + cat + ". ";
 		}
 		textAreaCategorias.setText(areaCategorias);
 		
