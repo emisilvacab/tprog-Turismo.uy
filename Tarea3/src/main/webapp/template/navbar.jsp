@@ -12,11 +12,11 @@
             if (usr != null) {
             %>
             <a class="navbar-brand max-lines" href="#">Bienvenido <%=usr.getNombre()%></a>
-            <img src="/Tarea3/img?id=icono.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-end">
+            <img src="img?id=icono.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-end">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mx-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/Tarea3/ListarActividades">Ver actividades turisticas</a>
+                    <a class="nav-link" aria-current="page" href="ListarActividades">Ver actividades turisticas</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="log">Cerrar sesion</a>

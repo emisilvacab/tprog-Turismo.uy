@@ -21,7 +21,7 @@
 	<div class="cuerpo">
       
 	<div class="d-flex justify-content-center" style="margin-top: 20vh;">
-		<img src="/Tarea3/img?id=logo.png" style="width:auto; height:15vh" alt="...">
+		<img src="img?id=logo.png" style="width:auto; height:15vh" alt="...">
 	</div>
 	   <div class="d-flex justify-content-center">
 		<form class="form-floating" action="log" method="post" onsubmit = "return validarIniciarSesion()">
