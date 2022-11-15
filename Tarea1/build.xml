@@ -6,31 +6,29 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build"  name="Tarea1">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../eclipse/"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
     <property name="source" value="11"/>
     <property name="dir.buildfile" value="."/>
-    <property name="dir.workspace" value="C:/Users/emisi/eclipse-workspace"/>
     <property name="dir.jarfile" value="${dir.buildfile}"/>
     <path id="JUnit 5.libraryclasspath">
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.jupiter.api_5.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.jupiter.engine_5.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.jupiter.migrationsupport_5.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.jupiter.params_5.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.platform.commons_1.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.platform.engine_1.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.platform.launcher_1.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.platform.runner_1.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.platform.suite.api_1.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.platform.suite.engine_1.8.1.v20211028-1957.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.platform.suite.commons_1.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit.vintage.engine_5.8.1.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.opentest4j_1.2.0.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.apiguardian_1.1.2.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.13.2.v20211018-1956.jar"/>
-        <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+        <pathelement location="plugins/org.junit.jupiter.engine_5.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.jupiter.api_5.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.jupiter.migrationsupport_5.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.jupiter.params_5.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.platform.commons_1.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.platform.engine_1.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.platform.launcher_1.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.platform.runner_1.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.platform.suite.api_1.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.platform.suite.engine_1.8.1.v20211028-1957.jar"/>
+        <pathelement location="plugins/org.junit.platform.suite.commons_1.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit.vintage.engine_5.8.1.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.opentest4j_1.2.0.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.apiguardian_1.1.2.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.junit_4.13.2.v20211018-1956.jar"/>
+        <pathelement location="plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
     </path>
     <path id="Tarea1.classpath">
         <pathelement location="bin"/>
@@ -231,11 +229,11 @@
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+            <fileset dir="/plugins" includes="org.eclipse.jdt.core_*.jar"/>
         </copy>
         <unzip dest="${ant.library.dir}">
             <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+            <fileset dir="/plugins" includes="org.eclipse.jdt.core_*.jar"/>
         </unzip>
     </target>
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
@@ -291,22 +289,22 @@
             <zipfileset src="jar-in-jar-loader.zip"/>
             <fileset dir="${dir.jarfile}/bin"/>
             <zipfileset dir="${dir.jarfile}" includes="jdatepicker-1.3.4.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.api_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.engine_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.migrationsupport_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.params_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.commons_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.engine_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.launcher_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.runner_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.api_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.engine_1.8.1.v20211028-1957.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.commons_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.vintage.engine_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.opentest4j_1.2.0.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.apiguardian_1.1.2.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit_4.13.2.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.jupiter.api_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.jupiter.engine_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.jupiter.migrationsupport_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.jupiter.params_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.platform.commons_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.platform.engine_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.platform.launcher_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.platform.runner_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.platform.suite.api_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.platform.suite.engine_1.8.1.v20211028-1957.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.platform.suite.commons_1.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit.vintage.engine_5.8.1.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.opentest4j_1.2.0.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.apiguardian_1.1.2.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.junit_4.13.2.v20211018-1956.jar"/>
+            <zipfileset dir="plugins" includes="org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
             <zipfileset dir="${dir.jarfile}/lib" includes="angus-activation.jar"/>
             <zipfileset dir="${dir.jarfile}/lib" includes="angus-mail.jar"/>
             <zipfileset dir="${dir.jarfile}/lib" includes="FastInfoset.jar"/>

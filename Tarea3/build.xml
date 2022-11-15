@@ -5,46 +5,44 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="Tarea3">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
     <property name="source" value="11"/>
     <property name="dir.buildfile" value="."/>
-    <property name="dir.workspace" value="C:/Users/emisi/eclipse-workspace"/>
     <property name="dir.warfile" value="${dir.buildfile}"/>
     <path id="Server Runtime [Apache Tomcat v9.0].libraryclasspath">
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/annotations-api.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/catalina-ant.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/catalina-ha.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/catalina-ssi.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/catalina-storeconfig.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/catalina-tribes.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/catalina.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/ecj-4.20.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/el-api.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/jasper-el.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/jasper.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/jaspic-api.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/jsp-api.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/servlet-api.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-api.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-coyote.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-dbcp.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-cs.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-de.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-es.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-fr.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-ja.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-ko.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-pt-BR.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-ru.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-zh-CN.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-jdbc.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-jni.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-util-scan.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-util.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/tomcat-websocket.jar"/>
-        <pathelement location="../../../../../Program Files (x86)/Apache Software Foundation/Tomcat 9.0/lib/websocket-api.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/annotations-api.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/catalina-ant.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/catalina-ha.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/catalina-ssi.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/catalina-storeconfig.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/catalina-tribes.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/catalina.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/ecj-4.20.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/el-api.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/jasper-el.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/jasper.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/jaspic-api.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/jsp-api.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/servlet-api.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-api.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-coyote.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-dbcp.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-cs.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-de.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-es.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-fr.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-ja.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-ko.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-pt-BR.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-ru.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-jdbc.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-jni.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-util-scan.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-util.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/tomcat-websocket.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/tomcat/websocket-api.jar"/>
     </path>
     <path id="Web App Libraries.libraryclasspath">
         <pathelement location="src/main/webapp/WEB-INF/lib/FastInfoset.jar"/>
@@ -139,11 +137,11 @@
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+            <fileset dir="/plugins" includes="org.eclipse.jdt.core_*.jar"/>
         </copy>
         <unzip dest="${ant.library.dir}">
             <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+            <fileset dir="/plugins" includes="org.eclipse.jdt.core_*.jar"/>
         </unzip>
     </target>
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
@@ -154,23 +152,6 @@
         <war destfile="${dir.warfile}/mobile.war"  webxml="src\main\webapp\WEB-INF\web.xml">
             <fileset dir="src\main\webapp"/>
             <classes dir="${dir.warfile}/build/classes"/>
-            <zipfileset dir="${dir.warfile}" includes="jdatepicker-1.3.4.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.api_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.engine_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.migrationsupport_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.jupiter.params_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.commons_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.engine_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.launcher_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.runner_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.api_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.engine_1.8.1.v20211028-1957.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.platform.suite.commons_1.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit.vintage.engine_5.8.1.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.opentest4j_1.2.0.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.apiguardian_1.1.2.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.junit_4.13.2.v20211018-1956.jar"/>
-            <zipfileset dir="C:/Users/emisi/eclipse/plugins" includes="org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
             <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="angus-activation.jar"/>
             <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="angus-mail.jar"/>
             <zipfileset dir="${dir.warfile}/src/main/webapp/WEB-INF/lib" includes="FastInfoset.jar"/>
