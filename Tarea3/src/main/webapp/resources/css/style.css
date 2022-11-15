@@ -19,6 +19,17 @@
 		  .max-lines{display:none;}
 		}
 		
+		.imagenLogo{
+			width:auto;
+			height:15vh
+		}
+		
+		@media only screen and (max-device-width: 313px) {
+		  .imagenLogo{height:auto;
+		  	width:90%;
+		  }
+		}
+		
 		.dropdown-menu {
 		  max-height: 45vh;
 		  overflow-y: auto;

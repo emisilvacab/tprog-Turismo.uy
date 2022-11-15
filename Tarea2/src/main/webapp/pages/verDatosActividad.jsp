@@ -39,28 +39,27 @@
 			%>
 		
 		  <div class="col-sm-6">
-				<div class="row">
-			      <div class="col-sm-6" style="min-width: 300px;">
-			        <div class="card" style="max-width: 100%;">
-			   			<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded" alt="Actividad">
-			   		</div>
-			      </div>
-			      <div class="col-sm-6"  style="min-width: 300px;">
-			        <div class="card mb-3" style="max-width: 100%;">
-						<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" style="font-size: 150%;"><%=actividad.getCiudad()%></li>
-							<li class="list-group-item" style="font-size: 150%;"><%=actividad.getDuracion()%> días</li>
-							<li class="list-group-item" style="font-weight: 600; font-size: 150%;">$<%=actividad.getCosto()%></li>
-							<li class="list-group-item" style="font-size: 150%;">Proveedor: <em style="color: #2f3131;"><%=nombreProveedor%></em></li>
-						</ul>
-						<p class="card-text"><small class="text-muted">Dada de alta el <%=(Integer) request.getAttribute("fechaAltaDia")%>/<%=(Integer) request.getAttribute("fechaAltaMes")%>/<%=(Integer) request.getAttribute("fechaAltaAño")%></small></p>
+					<div class="row">
+					
+						<div class="col-sm">
+					        <div class="card mx-3 my-3">
+								<a href="VerDatosActividad?actSeleccionada=<%=actividad.getNombre()%>">
+									<img <%if (actividad.getLinkImagen() != null){%> src="<%=actividad.getLinkImagen()%>" <%} else {%>src="img?id=imgDefaultActividad.png"<%}%> class="img-fluid rounded" alt="Actividad">
+								</a>
+							<div class="card-body">
+				          		<ul class="list-group list-group-flush">
+									<li class="list-group-item" style="font-size: 150%;"><%=actividad.getCiudad()%></li>
+									<li class="list-group-item" style="font-size: 150%;"><%=actividad.getDuracion()%> días</li>
+									<li class="list-group-item" style="font-weight: 600; font-size: 150%;">$<%=actividad.getCosto()%></li>
+									<li class="list-group-item" style="font-size: 150%;">Proveedor: <em style="color: #2f3131;"><%=nombreProveedor%></em></li>
+								</ul>
+								<p class="card-text"><small class="text-muted">Dada de alta el <%=(Integer) request.getAttribute("fechaAltaDia")%>/<%=(Integer) request.getAttribute("fechaAltaMes")%>/<%=(Integer) request.getAttribute("fechaAltaAño")%></small></p>
+							  </div>
+							</div>
 						</div>
-			  		</div>
-			      </div>
-	    		</div>
+					</div>
 	    		<div class="row">
-	    			<div class="card mb-3" style="max-width: 100%; min-width: 300px;">
+	    			<div class="card mb-3">
 						<div class="card-body" style="font-size: 110%;">
 							<h2 class="title mb-3 "><%=actividad.getNombre()%></h2>
 							<div class="card-text mb-2">
@@ -94,8 +93,11 @@
 						</div>
 						<%
 							String video = actividad.getLinkVideo();
-							if (video != null) {
-							
+							if (video.length() > 0) {
+						%>
+						<div class="card-body pt-0" style="height:46vh;">
+						<h5 class="card-title">Video de presentacion:</h5>
+						<%
 							String regex = "http(?:s)?:\\/\\/(?:m.)?(?:www\\.)?youtu(?:\\.be\\/|(?:be-nocookie|be)\\.com\\/(?:watch|[\\w]+\\?(?:feature=[\\w]+.[\\w]+\\&)?v=|v\\/|e\\/|embed\\/|user\\/(?:[\\w#]+\\/)+))([^&#?\\n]+)";
 							Pattern patron = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 							Matcher matcher = patron.matcher(video);
@@ -104,9 +106,7 @@
 								video = "https://www.youtube.com/embed/" + idVideo;
 							}
 						%>
-						<div class="card-body pt-0">
-						<h5 class="card-title">Video de presentacion:</h5>
-							<iframe width="720rem" height="480rem" src="<%=video%>" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<iframe class="mb-1" style="min-width:100%; min-height:40vh;" src="<%=video%>" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen></iframe>
 						</div>
 						<%
 					  		}
