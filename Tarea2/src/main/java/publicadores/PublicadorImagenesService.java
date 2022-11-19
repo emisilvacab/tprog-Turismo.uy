@@ -35,7 +35,7 @@ public class PublicadorImagenesService
         URL url = null;
         WebServiceException e = null;
         String home = System.getProperty("user.home");
-        String filepath = home + "/.turismoUy/config.properties"; //linux, mac
+        String filepath = home + "/.turismoUy/web.properties"; //linux, mac
 		//String filepath = home + "\\.turismoUy\\config.properties"; //pc
 		String port = "";
 	    String dir = "";

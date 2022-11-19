@@ -46,7 +46,7 @@ public class PublicadorUsuario {
 	@WebMethod(exclude = true) //el exclude = true hace que no se publique ese método
     public void publicar(){
 		String home = System.getProperty("user.home");
-		String filepath = home + "/.turismoUy/config.properties"; //linux, mac
+		String filepath = home + "/.turismoUy/server.properties"; //linux, mac
 		//String filepath = home + "\\.turismoUy\\config.properties"; //pc
 		String port = "";
 	    String dir = "";
